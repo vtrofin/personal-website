@@ -9,6 +9,12 @@ module.exports = {
         staticDir: path.join(__dirname, 'dist'),
         // Required - Routes to render.
         routes: ['/'], // '/about', '/some/deep/nested/route'
+        postProcess(renderedRoute) {
+          if (renderedRoute.route.endsWith('.html')) {
+            renderedRoute.outputPath = path.join(__dirname, 'dist', renderedRoute.route);
+          }
+          return renderedRoute;
+        },
       }),
     ],
   },

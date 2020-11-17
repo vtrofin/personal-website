@@ -3,6 +3,7 @@ const PrerenderSPAPlugin = require('prerender-spa-plugin');
 
 module.exports = {
   configureWebpack: {
+    devtool: 'source-map',
     plugins: [
       new PrerenderSPAPlugin({
         // Required - The path to the webpack-outputted app to prerender.
@@ -14,8 +15,8 @@ module.exports = {
             renderedRoute.outputPath = path.join(__dirname, 'dist', renderedRoute.route);
           }
           return renderedRoute;
-        },
-      }),
-    ],
-  },
+        }
+      })
+    ]
+  }
 };

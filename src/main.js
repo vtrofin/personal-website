@@ -6,8 +6,11 @@ import App from './App.vue';
 import HomePage from './pages/Home.vue';
 import Contact from './pages/Contact.vue';
 import ProjectItem from './pages/ProjectItem.vue';
+import NotFound from './pages/NotFound.vue';
+import { projects } from './helpers/';
 
 const routes = [
+  { path: '/:pathMatch(.*)', component: NotFound },
   {
     path: '/',
     component: HomePage,
@@ -25,7 +28,12 @@ const routes = [
   {
     path: '/projects/:project_item',
     component: ProjectItem,
-    name: 'projectItem'
+    name: 'projectItem',
+    beforeEnter: to => {
+      const toProject = to?.params?.project_item;
+      const isValidProject = !!projects.find(proj => proj === toProject);
+      return isValidProject ? true : { path: '/projects', params: { project_item: projects[0] } };
+    }
   }
 ];
 

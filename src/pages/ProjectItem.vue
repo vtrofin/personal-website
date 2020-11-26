@@ -6,7 +6,18 @@
 </template>
 
 <script>
-  export default {
-    name: 'ProjectItem'
+import { watch } from 'vue';
+import { onBeforeRouteUpdate, useRoute, useRouter } from 'vue-router';
+import { checkProjectRoute } from '../helpers';
+
+export default {
+  name: 'ProjectItem',
+  setup() {
+    onBeforeRouteUpdate((to, from) => {
+      const params = to?.params;
+      const pathRedirect = checkProjectRoute(params);
+      return pathRedirect;
+    });
   }
+};
 </script>

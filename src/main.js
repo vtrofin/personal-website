@@ -7,10 +7,9 @@ import HomePage from './pages/Home.vue';
 import Contact from './pages/Contact.vue';
 import ProjectItem from './pages/ProjectItem.vue';
 import NotFound from './pages/NotFound.vue';
-import { projects } from './helpers/';
-
+import { checkProjectRoute } from './helpers';
 const routes = [
-  { path: '/:pathMatch(.*)', component: NotFound },
+  { path: '/:pathMatch(.*)*', component: NotFound, name: 'not-found' },
   {
     path: '/',
     component: HomePage,
@@ -29,10 +28,8 @@ const routes = [
     path: '/projects/:project_item',
     component: ProjectItem,
     name: 'projectItem',
-    beforeEnter: to => {
-      const toProject = to?.params?.project_item;
-      const isValidProject = !!projects.find(proj => proj === toProject);
-      return isValidProject ? true : { path: '/projects', params: { project_item: projects[0] } };
+    beforeEnter: (to, from) => {
+      return checkProjectRoute(to?.params);
     }
   }
 ];

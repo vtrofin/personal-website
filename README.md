@@ -31,3 +31,12 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 ### Debugger config
 
 Just use regular old Launch Chrome configuration
+
+### Prettier setting for vue files.
+
+```
+// settings.json
+"[vue]": {
+  "editor.defaultFormatter": "esbenp.prettier-vscode"
+},
+```

@@ -6,6 +6,7 @@ import App from './App.vue';
 import HomePage from './pages/Home.vue';
 import ProjectItem from './pages/ProjectItem.vue';
 import NotFound from './pages/NotFound.vue';
+import Contact from './pages/Contact.vue';
 import { checkProjectRoute } from './helpers';
 const routes = [
   { path: '/:pathMatch(.*)*', component: NotFound, name: 'not-found' },
@@ -26,6 +27,11 @@ const routes = [
     beforeEnter: (to, from) => {
       return checkProjectRoute(to?.params);
     }
+  },
+  {
+    path: '/contact',
+    component: Contact,
+    name: 'contact'
   }
 ];
 

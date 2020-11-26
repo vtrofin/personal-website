@@ -1,11 +1,9 @@
 <template>
-  <main>
-    <h1>This is the 404 page</h1>
-  </main>
+  <h1>This is the 404 page</h1>
 </template>
 
 <script>
-  export default {
-    name: 'NotFound'  
-  }
+export default {
+  name: 'NotFound'
+};
 </script>

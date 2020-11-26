@@ -1,10 +1,9 @@
 <template>
-  <section>this is the footer</section>
+  <footer>this is the footer</footer>
 </template>
 
 <script>
-  export default {
-    name: 'Footer'
-  }
-
+export default {
+  name: 'Footer'
+};
 </script>

@@ -1,8 +1,6 @@
 <template>
-  <section>
-    <h1>This is the project item component</h1>
-    <div>{{ $route.params.project_item }}</div>
-  </section>
+  <h1>This is the project item component</h1>
+  <section>{{ $route.params.project_item }}</section>
 </template>
 
 <script>

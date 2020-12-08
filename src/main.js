@@ -8,6 +8,7 @@ import ProjectItem from './pages/ProjectItem.vue';
 import NotFound from './pages/NotFound.vue';
 import Contact from './pages/Contact.vue';
 import { checkProjectRoute } from './helpers';
+
 const routes = [
   { path: '/:pathMatch(.*)*', component: NotFound, name: 'not-found' },
   {

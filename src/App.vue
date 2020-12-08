@@ -15,6 +15,7 @@ html,
 body {
   height: 100%;
   margin: 0;
+  box-sizing: border-box;
 }
 
 #app {
@@ -24,12 +25,16 @@ body {
   margin: 0;
 }
 
-footer {
-  grid-row-start: -1;
-  background: #42a5f5;
-  color: white;
-  padding: 20px;
+main {
+  width: 100%;
 }
+
+main .content {
+  max-width: 90%;
+  margin: 0 auto;
+}
+
+/* the color hack */
 * {
   background-color: rgba(255, 0, 0, 0.2);
 }

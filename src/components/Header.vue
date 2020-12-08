@@ -8,15 +8,26 @@
       </ul>
       <div id="logo">logo placeholder</div>
       <ul class="social-links">
-        <li><a href="#">Github</a></li>
+        <li>
+          <a class="social-link" href="#" aria-label="View my GitHub profile">
+            <img :src="githubLogo" :style="{ width: '30px', height: '30px' }" />
+          </a>
+        </li>
       </ul>
     </div>
   </nav>
 </template>
 
 <script>
+import githubLogo from '../assets/github.svg';
+
 export default {
-  name: 'Header'
+  name: 'Header',
+  setup(props) {
+    return {
+      githubLogo
+    };
+  }
 };
 </script>
 
@@ -28,9 +39,9 @@ nav {
 .nav-container {
   display: flex;
   flex-wrap: wrap;
-  border: 1px solid red;
   max-width: 90%;
   margin: 0 auto;
+  /* align-items: center; */
 }
 
 nav ul {
@@ -46,6 +57,6 @@ nav ul li {
 }
 nav #logo {
   flex-grow: 1;
-  background-color: white;
+  /* background-color: white; */
 }
 </style>

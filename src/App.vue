@@ -11,11 +11,22 @@ export default {
 </script>
 
 <style>
+:root {
+  --white: #fff;
+}
+
 html,
 body {
   height: 100%;
   margin: 0;
   box-sizing: border-box;
+}
+
+body {
+  text-align: center;
+  font-size: 16px;
+  font-family: 'Helvetica Neue', 'Source Sans Pro', Arial, sans-serif;
+  background-color: var(--white);
 }
 
 #app {

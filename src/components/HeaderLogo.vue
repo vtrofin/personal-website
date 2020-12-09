@@ -2,7 +2,7 @@
   <div class="brand">
     <router-link to="/" aria-label="Start page" class="main-link">
       <div class="logo">
-        <svg viewBox="0 0 200 200">
+        <svg viewBox="0 0 200 200" height="50" width="50">
           <path
             stroke-width="0"
             stroke="#574B33"
@@ -20,14 +20,14 @@
 
 <style scoped>
 .brand {
-  --logo-size: 75px;
+  --logo-size: 50px;
 }
 
 .main-link {
   display: none;
   position: absolute;
   left: 50%;
-  bottom: 0px;
+  bottom: 10px;
   transform: translate3d(-50%, 0, 0);
   transition: all 0.2s;
 }
@@ -48,17 +48,17 @@
   position: absolute;
   text-align: center;
   color: var(--logo-gray);
-  font-size: 0.9rem;
+  font-size: 0.7rem;
   z-index: 99999;
   font-weight: bold;
   line-height: var(--logo-size);
-  margin: 0 0 0 calc(var(--logo-size) / 3);
+  margin: 0 0 0 17px;
 }
 
-svg {
+/* svg {
   width: var(--logo-size);
   height: var(--logo-size);
-}
+} */
 svg path {
   position: absolute;
   fill: none;

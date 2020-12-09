@@ -59,7 +59,7 @@ export default {
 }
 
 .nav-links li a {
-  padding: 1.5em 0.75em;
+  padding: 1.5rem 0.75rem;
   display: block;
   position: relative;
   cursor: pointer;

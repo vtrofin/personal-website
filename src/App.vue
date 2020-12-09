@@ -13,6 +13,8 @@ export default {
 <style>
 :root {
   --white: #fff;
+  --background-white: #fefaf6;
+  --logo-gray: #574b33;
 }
 
 html,
@@ -26,7 +28,7 @@ body {
   text-align: center;
   font-size: 16px;
   font-family: 'Helvetica Neue', 'Source Sans Pro', Arial, sans-serif;
-  background-color: var(--white);
+  background-color: var(--background-white);
 }
 
 #app {
@@ -46,7 +48,7 @@ main .content {
 }
 
 /* the color hack */
-* {
+/* * {
   background-color: rgba(255, 0, 0, 0.2);
 }
 * * {
@@ -72,5 +74,5 @@ main .content {
 }
 * * * * * * * * * {
   background-color: rgba(0, 0, 255, 0.2);
-}
+} */
 </style>

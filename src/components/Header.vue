@@ -2,15 +2,19 @@
   <nav>
     <div class="nav-container">
       <ul class="nav-links">
-        <li><router-link to="/">Home</router-link></li>
+        <li><router-link to="#">Work</router-link></li>
         <li><router-link to="/contact">Contact</router-link></li>
         <li><a href="https://vtrofin.github.io/">CV</a></li>
       </ul>
       <HeaderLogo />
       <ul class="social-links">
         <li>
-          <a class="social-link" href="#" aria-label="View my GitHub profile">
-            <img :src="githubLogo" :style="{ width: '30px', height: '30px' }" />
+          <a
+            class="social-link"
+            href="https://github.com/vtrofin"
+            aria-label="View my GitHub profile"
+          >
+            <img :src="githubLogo" :style="{ width: '25px', height: '25px' }" />
           </a>
         </li>
       </ul>
@@ -61,6 +65,5 @@ nav ul li {
 }
 nav #logo {
   flex-grow: 1;
-  /* background-color: white; */
 }
 </style>

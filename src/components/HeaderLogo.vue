@@ -20,38 +20,39 @@
 
 <style scoped>
 .brand {
-  --logo-size: 50px;
-  flex-grow: 1;
-  margin: 0 auto;
-  display: flex;
-  justify-content: flex-start;
+  --logo-size: 75px;
 }
+
 .main-link {
-  margin-left: calc(var(--logo-size) / 2);
   display: none;
+  position: absolute;
+  left: 50%;
+  bottom: 0px;
+  transform: translate3d(-50%, 0, 0);
+  transition: all 0.2s;
 }
-@media all and (min-width: 320px) {
+@media all and (min-width: 500px) {
   .main-link {
     display: block;
   }
 }
+
 .logo {
   position: relative;
 }
 .logo:hover {
   transform: rotate(10deg) scale(1.1);
 }
-
 .logo:before {
   content: '>_';
   position: absolute;
   text-align: center;
   color: var(--logo-gray);
-  font-size: 0.8rem;
+  font-size: 0.9rem;
   z-index: 99999;
   font-weight: bold;
   line-height: var(--logo-size);
-  margin: 0 0 0 16px;
+  margin: 0 0 0 calc(var(--logo-size) / 3);
 }
 
 svg {
@@ -64,22 +65,5 @@ svg path {
   stroke-width: 6;
   top: 0;
   left: 0;
-  transform-origin: 50% 50%;
-  transform: rotate(0deg);
-  animation: 4s linear infinite;
 }
-
-/*
-
-
-svg path {
-  position: absolute;
-  fill: none;
-  stroke-width: 2;
-  top: 0;
-  left: 0;
-  transform-origin: 50% 50%;
-  transform: rotate(0deg);
-  animation: 4s linear infinite;
-} */
 </style>

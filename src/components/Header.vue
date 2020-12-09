@@ -6,7 +6,7 @@
         <li><router-link to="/contact">Contact</router-link></li>
         <li><a href="https://vtrofin.github.io/">CV</a></li>
       </ul>
-      <div id="logo">logo placeholder</div>
+      <HeaderLogo />
       <ul class="social-links">
         <li>
           <a class="social-link" href="#" aria-label="View my GitHub profile">
@@ -20,9 +20,13 @@
 
 <script>
 import githubLogo from '../assets/github.svg';
+import HeaderLogo from './HeaderLogo';
 
 export default {
   name: 'Header',
+  components: {
+    HeaderLogo
+  },
   setup(props) {
     return {
       githubLogo
@@ -41,7 +45,7 @@ nav {
   flex-wrap: wrap;
   max-width: 90%;
   margin: 0 auto;
-  /* align-items: center; */
+  align-items: center;
 }
 
 nav ul {

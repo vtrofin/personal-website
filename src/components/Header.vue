@@ -5,32 +5,23 @@
       <li><router-link to="#">Work</router-link></li>
       <li><router-link to="/contact">Contact</router-link></li>
       <li><a href="https://vtrofin.github.io/">CV</a></li>
-      <li class="auto-margin">
-        <a
-          class="social-link"
-          href="https://github.com/vtrofin"
-          aria-label="View my GitHub profile"
-        >
-          <img :src="githubLogo" :style="{ width: '25px', height: '25px' }" />
-        </a>
-      </li>
+      <li class="auto-margin"><GithubLogo /></li>
     </ul>
   </nav>
 </template>
 
 <script>
-import githubLogo from '../assets/github.svg';
 import HeaderLogo from './HeaderLogo';
+import GithubLogo from './GithubLogo';
 
 export default {
   name: 'Header',
   components: {
-    HeaderLogo
+    HeaderLogo,
+    GithubLogo
   },
   setup(props) {
-    return {
-      githubLogo
-    };
+    return {};
   }
 };
 </script>

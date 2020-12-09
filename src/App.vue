@@ -1,12 +1,12 @@
 <template>
-  <MainLayout></MainLayout>
+  <MainLayout />
 </template>
 
 <script>
 import MainLayout from './layouts/MainLayout';
 export default {
   name: 'App',
-  components: { MainLayout }
+  components: { MainLayout },
 };
 </script>
 
@@ -14,7 +14,9 @@ export default {
 :root {
   --white: #fff;
   --background-white: #fefaf6;
-  --logo-gray: #574b33;
+  --gray: #574b33;
+  --black: #232320;
+  --navlink-brown: #d67a60;
 }
 
 html,
@@ -29,6 +31,7 @@ body {
   font-size: 16px;
   font-family: 'Helvetica Neue', 'Source Sans Pro', Arial, sans-serif;
   background-color: var(--background-white);
+  -webkit-font-smoothing: antialiased;
 }
 
 #app {
@@ -48,7 +51,7 @@ main .content {
 }
 
 /* the color hack */
-* {
+/* * {
   background-color: rgba(255, 0, 0, 0.2);
 }
 * * {
@@ -74,5 +77,5 @@ main .content {
 }
 * * * * * * * * * {
   background-color: rgba(0, 0, 255, 0.2);
-}
+} */
 </style>

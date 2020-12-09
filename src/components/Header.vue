@@ -2,10 +2,22 @@
   <nav class="nav-container">
     <ul class="nav-links">
       <li><HeaderLogo /></li>
-      <li><router-link to="#">Work</router-link></li>
-      <li><router-link to="/contact">Contact</router-link></li>
-      <li><a href="https://vtrofin.github.io/">CV</a></li>
-      <li class="auto-margin"><GithubLogo /></li>
+      <li>
+        <router-link to="#">
+          <span class="nav-link-text">Work</span>
+        </router-link>
+      </li>
+      <li>
+        <router-link to="/contact">
+          <span class="nav-link-text">Contact</span>
+        </router-link>
+      </li>
+      <li>
+        <a href="https://vtrofin.github.io/"><span class="nav-link-text">CV</span></a>
+      </li>
+      <li class="auto-margin">
+        <GithubLogo />
+      </li>
     </ul>
   </nav>
 </template>
@@ -18,11 +30,11 @@ export default {
   name: 'Header',
   components: {
     HeaderLogo,
-    GithubLogo
+    GithubLogo,
   },
   setup(props) {
     return {};
-  }
+  },
 };
 </script>
 
@@ -57,6 +69,9 @@ export default {
 .nav-links li.auto-margin {
   margin-left: auto;
 }
+.nav-links li:nth-child(2) a {
+  padding-left: 0px;
+}
 
 .nav-links li a {
   padding: 1.5rem 0.75rem;
@@ -64,8 +79,34 @@ export default {
   position: relative;
   cursor: pointer;
   text-decoration: none;
-  /* color: #232320; */
-  /* font-size: 1.1em; */
-  /* transition: color 0.2s linear; */
+  color: #232320;
+  font-size: 1.1rem;
+  transition: color 0.2s linear;
+}
+
+.nav-link-text {
+  position: relative;
+  z-index: 10;
+  font-weight: 500;
+}
+
+.nav-link-text:before {
+  z-index: 5;
+  content: '';
+  width: 100%;
+  position: absolute;
+  bottom: -10px;
+  height: 3px;
+  left: 0;
+  display: block;
+  background: var(--navlink-brown);
+  transform: translate3d(0, 5px, 0);
+  transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  opacity: 0;
+}
+
+.nav-links li:hover .nav-link-text:before {
+  opacity: 1;
+  transform: translateZ(0) scale3d(1.1, 1.1, 1.1) rotate(2deg);
 }
 </style>

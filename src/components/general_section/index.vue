@@ -13,6 +13,7 @@ export default {
   props: {
     className: { type: String, required: false, default: '' },
     title: { type: String, required: true },
+    // eslint-disable-next-line
     data: {
       validator: function(value) {
         if (!Array.isArray(value)) return false;

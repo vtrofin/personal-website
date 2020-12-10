@@ -6,7 +6,7 @@
 import MainLayout from './layouts/MainLayout';
 export default {
   name: 'App',
-  components: { MainLayout }
+  components: { MainLayout },
 };
 </script>
 

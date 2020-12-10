@@ -30,11 +30,11 @@ export default {
   name: 'Header',
   components: {
     HeaderLogo,
-    GithubLogo,
+    GithubLogo
   },
   setup(props) {
     return {};
-  },
+  }
 };
 </script>
 
@@ -44,10 +44,19 @@ export default {
 }
 
 .nav-container {
-  width: 100%;
-  margin: 0 auto;
   position: relative;
+  width: 100%;
   max-width: 1600px;
+  margin: 0 auto;
+
+  /* make sticky header
+  position: fixed;
+  z-index: 9999;
+  background-color: var(--background-white);
+  .hero-section {
+    padding-top: 100px;
+  }
+  */
 }
 
 .nav-links {

@@ -1,5 +1,8 @@
 <template>
-  <div>
+  <section class="hero-section">
+    <h1>This is the homepage</h1>
     this is the hero component
-  </div>
+  </section>
 </template>
+
+<style scoped></style>

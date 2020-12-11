@@ -14,3 +14,18 @@ export const checkExternalPath = ({ path = '' }) => {
   const regex = /^(https?:\/\/|www\.)/;
   return regex.test(path);
 };
+
+export const getSectionLinkClassName = ({
+  isExactActive,
+  isActive,
+  exactActiveClass,
+  activeClass
+}) => {
+  if (isExactActive) {
+    return ['section-link', exactActiveClass.value];
+  }
+  if (isActive) {
+    return ['section-link', activeClass.value];
+  }
+  return 'section-link';
+};

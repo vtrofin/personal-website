@@ -1,9 +1,18 @@
 <template>
   <section :class="[className, 'general-section']">
-    <h2 class="section-header">
-      {{ title }}
-    </h2>
-    <SectionAppLink v-for="(dataItem, idx) in data" :key="idx" :options="dataItem"></SectionAppLink>
+    <h2 class="section-header">{{ title }}</h2>
+    <SectionAppLink
+      v-for="(options, idx) in data"
+      :key="idx"
+      :to="options.path"
+      :aria-label="options.ariaLabel"
+      active-class="active"
+      exact-active-class="exact-active"
+    >
+      <template #section-link-slot>
+        <span>{{ options.title }}</span>
+      </template>
+    </SectionAppLink>
   </section>
 </template>
 
@@ -21,9 +30,6 @@ export default {
     // eslint-disable-next-line
     data: { validator: generalSectionArrayValidator }
   }
-  // setup(props) {
-  //   return {};
-  // }
 };
 </script>
 

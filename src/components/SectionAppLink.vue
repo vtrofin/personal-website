@@ -1,33 +1,52 @@
 <template>
-  <a v-if="isExternalLink" :href="path" target="_blank" :ariaLabel="ariaLabel" :class="classNames">
-    <slot /> {{ title }}</a
+  <a
+    v-if="isExternalLink"
+    v-bind="$attrs"
+    :href="to"
+    :class="computedClassName"
+    :aria-label="ariaLabel"
+    target="_blank"
   >
-  <router-link v-else :to="path" :class="classNames"> <slot /> {{ title }} </router-link>
+    <slot name="section-link-slot" />
+  </a>
+
+  <router-link v-else v-slot="{ href, navigate }" v-bind="$props" custom>
+    <a
+      v-bind="$attrs"
+      :href="href"
+      :class="computedClassName"
+      @click="navigate"
+      :aria-label="ariaLabel"
+    >
+      <slot name="section-link-slot" />
+    </a>
+  </router-link>
 </template>
 
 <script>
 import { computed, toRefs, toRef } from 'vue';
 import { RouterLink, useLink } from 'vue-router';
-import { appLinkValidator } from './helpers/validators';
-import { checkExternalPath } from '../helpers';
-
-console.log(RouterLink);
+import { checkExternalPath, getSectionLinkClassName } from '../helpers';
 
 export default {
   name: 'SectionAppLink',
   props: {
-    options: {
-      validator: appLinkValidator,
-      default: function() {
-        return { path: '#', ariaLabel: 'Dummy url link', title: 'Click here' };
-      }
-    },
-    inactiveClass: { type: String, required: false, default: '' }
+    ...RouterLink.props,
+    ariaLabel: { type: String, required: false, default: 'View section' },
+    // eslint-disable-next-line
+    inactiveClass: { type: String, required: false }
   },
   setup(props) {
-    const { path, ariaLabel, title } = toRefs(props.options);
+    const { activeClass, exactActiveClass } = toRefs(props);
+    const path = toRef(props, 'to');
+    const { navigate, href, route, isActive, isExactActive } = useLink(path);
+
     const isExternalLink = computed(() => checkExternalPath({ path: path.value }));
-    return { isExternalLink, ariaLabel, path, title, classNames: ['section-link'] };
+    const computedClassName = computed(() =>
+      getSectionLinkClassName({ isExactActive, isActive, exactActiveClass, activeClass })
+    );
+
+    return { isExternalLink, computedClassName };
   }
 };
 </script>

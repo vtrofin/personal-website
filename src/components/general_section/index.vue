@@ -9,26 +9,26 @@
       active-class="active"
       exact-active-class="exact-active"
     >
-      <template #section-link-slot>
-        <span>{{ options.title }}</span>
-      </template>
+      <Project v-if="type == 'project'" :options="options" />
     </SectionAppLink>
   </section>
 </template>
 
 <script>
-import { toRefs } from 'vue';
+import { toRefs, toRef } from 'vue';
 import SectionAppLink from '../SectionAppLink';
+import Project from './Project';
 import { generalSectionArrayValidator } from '../helpers/validators';
 
 export default {
   name: 'GeneralSection',
-  components: { SectionAppLink },
+  components: { SectionAppLink, Project },
   props: {
     className: { type: String, required: false, default: '' },
     title: { type: String, required: true },
     // eslint-disable-next-line
-    data: { validator: generalSectionArrayValidator }
+    data: { validator: generalSectionArrayValidator },
+    type: { type: String, required: false, default: 'project' }
   }
 };
 </script>

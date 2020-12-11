@@ -26,7 +26,8 @@ const projectsData = projects.map(project => {
     title: formatted,
     description: 'Some random text about this project',
     logo: '', // logo location here (svg) if possible
-    background: '' // background image here where needed (e.g. work section),
+    background: '', // background image here where needed (e.g. work section),
+    type: 'project'
   };
 });
 

@@ -9,3 +9,8 @@ export const checkProjectRoute = (params = {}) => {
 
   return;
 };
+
+export const checkExternalPath = ({ path = '' }) => {
+  const regex = /^(https?:\/\/|www\.)/;
+  return regex.test(path);
+};

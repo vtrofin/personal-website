@@ -9,7 +9,10 @@
       active-class="active"
       exact-active-class="exact-active"
     >
-      <Project v-if="type == 'project'" :options="options" />
+      <template #section-link-slot>
+        <Project v-if="options.type === 'project'" :options="options" />
+        <!-- add other sections here -->
+      </template>
     </SectionAppLink>
   </section>
 </template>
@@ -28,39 +31,128 @@ export default {
     title: { type: String, required: true },
     // eslint-disable-next-line
     data: { validator: generalSectionArrayValidator },
-    type: { type: String, required: false, default: 'project' }
-  }
+    type: { type: String, required: false, default: 'project' },
+  },
 };
 </script>
 
-<style scoped>
+<style>
 .general-section {
-  margin: 120px auto;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+  overflow: hidden;
+  margin: 120px auto;
+  box-sizing: border-box;
+  padding-top: 40px;
 }
 
-.general-section h2 {
+.general-section .section-header {
   font-size: 16vw;
   font-weight: 800;
   letter-spacing: -0.1rem;
   text-align: left;
-  line-height: 0.6rem;
+  line-height: 2.4rem;
   z-index: 10;
   pointer-events: none;
   flex-grow: 1;
   flex-basis: 100%;
+  margin: 0;
+  padding: 0;
+  vertical-align: baseline;
+  border: 0;
 }
 @media all and (min-width: 600px) {
-  .general-section h2 {
+  .general-section .section-header {
     font-size: 18vw;
   }
 }
 
 @media all and (min-width: 750px) {
-  .general-section h2 {
+  .general-section .section-header {
     font-size: 8rem;
   }
+}
+
+span.item-button {
+  position: absolute;
+  top: 0;
+  right: 20px;
+  padding: 1rem 1.1rem;
+  background-color: var(--black);
+  color: var(--white);
+  font-size: 0.8rem;
+
+  /* animation
+    transform-origin: 0 0;
+    will-change: transform, opacity;
+    transform: scaleY(0) translateZ(0);
+    transition: transform 0.3s cubic-bezier(0.215, 0.61, 0.355, 1);
+  */
+}
+span > .item-button-label {
+  display: block;
+  /* animation
+    opacity: 0;
+    transform: translateY(-15px);
+    transition: transform 0.35s cubic-bezier(0.19, 1, 0.22, 1) 0.1s,opacity 0.35s cubic-bezier(0.19, 1, 0.22, 1) 0.1s;
+  */
+}
+
+h3.item-title {
+  font-size: 9vmin;
+  font-weight: 800;
+  max-width: 80%;
+  margin: 3rem auto 1rem;
+  position: relative;
+  z-index: 10;
+  /* line-height: 1.3rem; */
+  /* letter-spacing: -0.3px; */
+  /* max-width: 680px; */
+
+  /* animation
+  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  transform: translateZ(0);
+
+  */
+}
+@media all and (min-width: 600px) {
+  h3.item-title {
+    font-size: 3rem;
+  }
+}
+
+.item-logo {
+  margin-top: 0.8rem;
+  margin-bottom: 2rem;
+  /* transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); */
+  /* width: 60px;
+    height: 60px;
+    background-color: #fff;
+    display: inline-block;
+    -webkit-animation: rotateplane 1.2s infinite ease-in-out;
+    animation: rotateplane 1.2s infinite ease-in-out; */
+}
+
+.item-divider {
+  display: block;
+  position: relative;
+  height: 3px;
+  background-color: currentColor;
+  width: 60px;
+  /* right: 0; */
+  margin: 3.2rem auto 2.2rem;
+  /* transform: scaleX(0.8);
+  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); */
+}
+
+p.item-text {
+  margin: 0 auto 3rem;
+  width: 80%;
+  z-index: 10;
+  max-width: 500px;
+  /* animation
+    transition: transform 0.3s cubic-bezier(0.215, 0.61, 0.355, 1);
+  */
 }
 </style>

@@ -7,7 +7,7 @@
     :aria-label="ariaLabel"
     target="_blank"
   >
-    <slot name="section-link-slot" />
+    <slot name="section-link-slot">Click here</slot>
   </a>
 
   <router-link v-else v-slot="{ href, navigate }" v-bind="$props" custom>
@@ -18,7 +18,7 @@
       @click="navigate"
       :aria-label="ariaLabel"
     >
-      <slot name="section-link-slot" />
+      <slot name="section-link-slot">Click me</slot>
     </a>
   </router-link>
 </template>
@@ -34,7 +34,7 @@ export default {
     ...RouterLink.props,
     ariaLabel: { type: String, required: false, default: 'View section' },
     // eslint-disable-next-line
-    inactiveClass: { type: String, required: false }
+    inactiveClass: { type: String, required: false },
   },
   setup(props) {
     const { activeClass, exactActiveClass } = toRefs(props);
@@ -47,15 +47,37 @@ export default {
     );
 
     return { isExternalLink, computedClassName };
-  }
+  },
 };
 </script>
 
 <style scoped>
 .section-link {
-  display: flex;
+  padding: 8rem 1.5rem;
   flex-grow: 1;
   flex-basis: 100%;
-  padding: 20px;
+  min-height: 500px;
+  overflow: hidden;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  text-decoration: none;
+  box-sizing: border-box;
+  position: relative;
+  border: 1px solid red; /* dev */
+  /* add the background color here */
+  /* add the text color for the box here  */
 }
+@media all and (min-width: 800px) {
+  .section-link {
+    flex-basis: 50%;
+  }
+  .section-link:nth-of-type(1),
+  .section-link:nth-of-type(4),
+  .section-link:nth-of-type(7) {
+    flex-basis: 100%;
+  }
+}
+
+/* */
 </style>

@@ -24,10 +24,11 @@ const projectsData = projects.map(project => {
     ariaLabel: `View ${formatted} project`,
     callToAction: 'View Project',
     title: formatted,
-    description: 'Some random text about this project',
+    description:
+      'Some random text about this project. Nobody likes to wait… but you can make it less of a pain. I have created. An open-source collection of loading spinners animated with CSS.',
     logo: '', // logo location here (svg) if possible
     background: '', // background image here where needed (e.g. work section),
-    type: 'project'
+    type: 'project',
   };
 });
 
@@ -38,9 +39,9 @@ export default {
     return {
       className: 'projects',
       title: 'Projects',
-      projectsData
+      projectsData,
     };
-  }
+  },
 };
 </script>
 

@@ -8,6 +8,7 @@
       :aria-label="options.ariaLabel"
       active-class="active"
       exact-active-class="exact-active"
+      :style="{ backgroundColor: options.backgroundColor, color: options.color }"
     >
       <template #section-link-slot>
         <Project v-if="options.type === 'project'" :options="options" />

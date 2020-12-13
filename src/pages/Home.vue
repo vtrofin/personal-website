@@ -29,6 +29,8 @@ const projectsData = projects.map(project => {
     logo: '', // logo location here (svg) if possible
     background: '', // background image here where needed (e.g. work section),
     type: 'project',
+    backgroundColor: '#ffefc4',
+    color: '#232320',
   };
 });
 

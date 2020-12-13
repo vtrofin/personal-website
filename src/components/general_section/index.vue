@@ -52,7 +52,7 @@ export default {
   font-weight: 800;
   letter-spacing: -0.1rem;
   text-align: left;
-  line-height: 2.4rem;
+  line-height: 0.6em;
   z-index: 10;
   pointer-events: none;
   flex-grow: 1;

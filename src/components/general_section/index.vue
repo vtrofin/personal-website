@@ -182,6 +182,9 @@ p.item-text {
   background-image: url('/logo-shipandco.svg');
 }
 
+.stockandco-logo {
+  background-image: url('/logo-stockandco.svg');
+}
 /*
 
 :style="{ backgroundColor: options.backgroundColor, color: options.color }"

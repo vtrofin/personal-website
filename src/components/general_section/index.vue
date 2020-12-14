@@ -122,18 +122,6 @@ h3.item-title {
   }
 }
 
-.item-logo {
-  margin-top: 0.8rem;
-  margin-bottom: 2rem;
-  /* transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); */
-  /* width: 60px;
-    height: 60px;
-    background-color: #fff;
-    display: inline-block;
-    -webkit-animation: rotateplane 1.2s infinite ease-in-out;
-    animation: rotateplane 1.2s infinite ease-in-out; */
-}
-
 .item-divider {
   display: block;
   position: relative;
@@ -159,18 +147,39 @@ p.item-text {
 
 .item-background {
   position: absolute;
+  background-repeat: no-repeat;
+  background-position: center bottom;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
 }
 
+/* add multiple classes here for each item (staff, stockandco) etc */
 .shipandco-background {
-  background: url('/shipandco_app.png') no-repeat center bottom;
+  background-image: url('/shipandco_app.png');
   /* background-size: cover; */
 }
 
+.item-logo {
+  margin: 0.8rem auto 2rem;
+  position: relative;
+  z-index: 10;
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 64px;
+  height: 64px;
+  /* transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); */
+  /*
+    background-color: #fff;
+    display: inline-block;
+    -webkit-animation: rotateplane 1.2s infinite ease-in-out;
+    animation: rotateplane 1.2s infinite ease-in-out; */
+}
+
+/* add multiple classes here for each item (staff, stockandco) etc */
 .shipandco-logo {
+  background-image: url('/logo-shipandco.svg');
 }
 
 /*

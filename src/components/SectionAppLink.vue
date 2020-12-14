@@ -79,10 +79,9 @@ export default {
     flex-basis: 100%;
   }
 }
+/* add multiple classes here for each item (staff, stockandco) etc */
 .shipandco-active {
   background-color: #ffefc4;
   color: #232320;
 }
-
-/* add multiple classes here for each item (staff, stockandco) etc */
 </style>

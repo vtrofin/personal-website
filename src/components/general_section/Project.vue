@@ -1,4 +1,8 @@
 <template>
+  <div
+    v-if="options.backgroundClass"
+    :class="'item-background' + ' ' + options.backgroundClass"
+  ></div>
   <span class="item-button">
     <span class="item-button-label">{{ options.callToAction }}</span>
   </span>
@@ -16,14 +20,14 @@ export default {
   props: {
     options: {
       type: Object,
-      required: true,
-    },
-  },
+      required: true
+    }
+  }
   // setup(props) {
   //   const { options } = toRefs(props);
   //   console.log(options.value);
   //   return { title: options.value.title };
-  // },
+  // }
 };
 </script>
 

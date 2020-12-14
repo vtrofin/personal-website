@@ -6,9 +6,8 @@
       :key="idx"
       :to="options.path"
       :aria-label="options.ariaLabel"
-      active-class="active"
-      exact-active-class="exact-active"
-      :style="{ backgroundColor: options.backgroundColor, color: options.color }"
+      active-class="active shipandco-active"
+      exact-active-class="exact-active shipandco-active"
     >
       <template #section-link-slot>
         <Project v-if="options.type === 'project'" :options="options" />
@@ -32,8 +31,8 @@ export default {
     title: { type: String, required: true },
     // eslint-disable-next-line
     data: { validator: generalSectionArrayValidator },
-    type: { type: String, required: false, default: 'project' },
-  },
+    type: { type: String, required: false, default: 'project' }
+  }
 };
 </script>
 
@@ -152,8 +151,35 @@ p.item-text {
   width: 80%;
   z-index: 10;
   max-width: 500px;
+  position: relative;
   /* animation
     transition: transform 0.3s cubic-bezier(0.215, 0.61, 0.355, 1);
   */
 }
+
+.item-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.shipandco-background {
+  background: url('/shipandco_app.png') no-repeat center bottom;
+  /* background-size: cover; */
+}
+
+.shipandco-logo {
+}
+
+/*
+
+:style="{ backgroundColor: options.backgroundColor, color: options.color }"
+  // logo location here (svg) if possible
+  const backgroundPath = i % 2 === 0 ? '/shipandco_app.png' : '/shipandco_website.png';
+  backgroundPath,
+  // will have to define custom classes for each element to properly handle different background images
+
+ */
 </style>

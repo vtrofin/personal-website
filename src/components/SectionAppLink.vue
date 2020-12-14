@@ -34,7 +34,7 @@ export default {
     ...RouterLink.props,
     ariaLabel: { type: String, required: false, default: 'View section' },
     // eslint-disable-next-line
-    inactiveClass: { type: String, required: false },
+    inactiveClass: { type: String, required: false }
   },
   setup(props) {
     const { activeClass, exactActiveClass } = toRefs(props);
@@ -47,11 +47,11 @@ export default {
     );
 
     return { isExternalLink, computedClassName };
-  },
+  }
 };
 </script>
 
-<style scoped>
+<style>
 .section-link {
   padding: 8rem 1.5rem;
   flex-grow: 1;
@@ -65,6 +65,7 @@ export default {
   box-sizing: border-box;
   position: relative;
   border: 1px solid red; /* dev */
+
   /* add the background color here */
   /* add the text color for the box here  */
 }
@@ -78,6 +79,10 @@ export default {
     flex-basis: 100%;
   }
 }
+.shipandco-active {
+  background-color: #ffefc4;
+  color: #232320;
+}
 
-/* */
+/* add multiple classes here for each item (staff, stockandco) etc */
 </style>

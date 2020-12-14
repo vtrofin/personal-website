@@ -22,10 +22,12 @@ export const getSectionLinkClassName = ({
   activeClass
 }) => {
   if (isExactActive) {
-    return ['section-link', exactActiveClass.value];
+    const computed = (exactActiveClass.value || '').split(' ');
+    return ['section-link', ...computed];
   }
   if (isActive) {
-    return ['section-link', activeClass.value];
+    const computed = (activeClass.value || '').split(' ');
+    return ['section-link', ...computed];
   }
   return 'section-link';
 };

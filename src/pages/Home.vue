@@ -17,8 +17,9 @@ import HeroSection from '../components/hero_component';
 import GeneralSection from '../components/general_section';
 import { projects } from '../helpers';
 
-const projectsData = projects.map(project => {
+const projectsData = projects.map((project, i) => {
   const formatted = project.charAt(0).toUpperCase() + project.substring(1);
+
   return {
     path: `/projects/${project}`,
     ariaLabel: `View ${formatted} project`,
@@ -26,11 +27,9 @@ const projectsData = projects.map(project => {
     title: formatted,
     description:
       'Some random text about this project. Nobody likes to wait… but you can make it less of a pain. I have created. An open-source collection of loading spinners animated with CSS.',
-    logo: '', // logo location here (svg) if possible
-    background: '', // background image here where needed (e.g. work section),
-    type: 'project',
-    backgroundColor: '#ffefc4',
-    color: '#232320',
+    logoClass: 'item-logo shipandco-logo',
+    backgroundClass: 'shipandco-background',
+    type: 'project'
   };
 });
 
@@ -41,9 +40,9 @@ export default {
     return {
       className: 'projects',
       title: 'Projects',
-      projectsData,
+      projectsData
     };
-  },
+  }
 };
 </script>
 

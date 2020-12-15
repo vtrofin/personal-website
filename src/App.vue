@@ -46,7 +46,8 @@ main {
 }
 
 main .content {
-  max-width: 90%;
+  /* max-width: 90%; */
+  max-width: 1600px;
   margin: 0 auto;
 }
 

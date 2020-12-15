@@ -93,13 +93,24 @@ span.item-button {
   transition: transform 0.35s cubic-bezier(0.19, 1, 0.22, 1);
 }
 
+@media (hover: none) {
+  /* https://www.w3schools.com/cssref/sel_link.asp || https://developer.mozilla.org/en-US/docs/Web/CSS/@media/hover  */
+  .section-link:link span.item-button {
+    opacity: 0;
+  }
+}
+
 span > .item-button-label {
   display: block;
-  /* animation
-    opacity: 0;
-    transform: translateY(-15px);
-    transition: transform 0.35s cubic-bezier(0.19, 1, 0.22, 1) 0.1s,opacity 0.35s cubic-bezier(0.19, 1, 0.22, 1) 0.1s;
-  */
+  opacity: 0;
+  transform: translateY(-15px);
+  transition: transform 0.35s cubic-bezier(0.19, 1, 0.22, 1) 0.1s,
+    opacity 0.35s cubic-bezier(0.19, 1, 0.22, 1) 0.1s;
+}
+
+.section-link:hover span > .item-button-label {
+  transform: translateY(0);
+  opacity: 1;
 }
 
 h3.item-title {

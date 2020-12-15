@@ -120,16 +120,15 @@ h3.item-title {
   margin: 3rem auto 1rem;
   position: relative;
   z-index: 10;
-  /* line-height: 1.3rem; */
-  /* letter-spacing: -0.3px; */
-  /* max-width: 680px; */
-
-  /* animation
-  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   transform: translateZ(0);
-
-  */
+  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  /* line-height: 2.5rem;
+  letter-spacing: -0.3px; */
 }
+.section-link:hover h3.item-title {
+  transform: translateY(-6px) translateZ(0);
+}
+
 @media all and (min-width: 600px) {
   h3.item-title {
     font-size: 3rem;
@@ -144,8 +143,11 @@ h3.item-title {
   width: 60px;
   /* right: 0; */
   margin: 3.2rem auto 2.2rem;
-  /* transform: scaleX(0.8);
-  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); */
+  transform: scaleX(0.8);
+  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+.section-link:hover .item-divider {
+  transform: scaleX(1) translateY(6px);
 }
 
 p.item-text {
@@ -154,9 +156,11 @@ p.item-text {
   z-index: 10;
   max-width: 500px;
   position: relative;
-  /* animation
-    transition: transform 0.3s cubic-bezier(0.215, 0.61, 0.355, 1);
-  */
+  transform: translateZ(0);
+  transition: transform 0.3s cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+.section-link:hover p.item-text {
+  transform: translateY(8px) translateZ(0);
 }
 
 .item-background {
@@ -183,12 +187,12 @@ p.item-text {
   background-position: center;
   width: 64px;
   height: 64px;
-  /* transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); */
-  /*
-    background-color: #fff;
-    display: inline-block;
-    -webkit-animation: rotateplane 1.2s infinite ease-in-out;
-    animation: rotateplane 1.2s infinite ease-in-out; */
+  transform: translateZ(0);
+  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.section-link:hover .item-logo {
+  transform: translateY(6px) translateZ(0);
 }
 
 /* add multiple classes here for each item (staff, stockandco) etc */
@@ -199,13 +203,4 @@ p.item-text {
 .stockandco-logo {
   background-image: url('/logo-stockandco.svg');
 }
-/*
-
-:style="{ backgroundColor: options.backgroundColor, color: options.color }"
-  // logo location here (svg) if possible
-  const backgroundPath = i % 2 === 0 ? '/shipandco_app.png' : '/shipandco_website.png';
-  backgroundPath,
-  // will have to define custom classes for each element to properly handle different background images
-
- */
 </style>

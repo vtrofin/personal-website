@@ -82,14 +82,17 @@ span.item-button {
   background-color: var(--black);
   color: var(--white);
   font-size: 0.8rem;
-
-  /* animation
-    transform-origin: 0 0;
-    will-change: transform, opacity;
-    transform: scaleY(0) translateZ(0);
-    transition: transform 0.3s cubic-bezier(0.215, 0.61, 0.355, 1);
-  */
+  transform-origin: 0 0;
+  will-change: transform, opacity;
+  transform: scaleY(0) translateZ(0);
+  transition: transform 0.3s cubic-bezier(0.215, 0.61, 0.355, 1);
 }
+
+.section-link:hover span.item-button {
+  transform: scaleY(1) translateZ(0);
+  transition: transform 0.35s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
 span > .item-button-label {
   display: block;
   /* animation

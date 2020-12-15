@@ -27,8 +27,8 @@ const projectsData = projects.map((project, i) => {
     title: formatted,
     description:
       'Some random text about this project. Nobody likes to wait… but you can make it less of a pain. I have created. An open-source collection of loading spinners animated with CSS.',
-    logoClass: 'shipandco-logo',
-    backgroundClass: 'shipandco-background',
+    // logoClass: 'shipandco-logo',
+    // backgroundClass: 'shipandco-background',
     type: 'project'
   };
 });

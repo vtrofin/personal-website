@@ -31,8 +31,8 @@ export default {
     title: { type: String, required: true },
     // eslint-disable-next-line
     data: { validator: generalSectionArrayValidator },
-    type: { type: String, required: false, default: 'project' }
-  }
+    type: { type: String, required: false, default: 'project' },
+  },
 };
 </script>
 
@@ -44,7 +44,7 @@ export default {
   overflow: hidden;
   margin: 120px auto;
   box-sizing: border-box;
-  padding-top: 40px;
+  padding-top: 2.5rem;
 }
 
 .general-section .section-header {

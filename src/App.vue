@@ -52,7 +52,7 @@ main .content {
 }
 
 /* the color hack */
-/* * {
+* {
   background-color: rgba(255, 0, 0, 0.2);
 }
 * * {
@@ -78,5 +78,5 @@ main .content {
 }
 * * * * * * * * * {
   background-color: rgba(0, 0, 255, 0.2);
-} */
+}
 </style>

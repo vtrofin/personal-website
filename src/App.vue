@@ -6,7 +6,7 @@
 import MainLayout from './layouts/MainLayout';
 export default {
   name: 'App',
-  components: { MainLayout }
+  components: { MainLayout },
 };
 </script>
 
@@ -46,8 +46,8 @@ main {
 }
 
 main .content {
-  /* max-width: 90%; */
-  max-width: 1600px;
+  width: 90%;
+  max-width: 1280px;
   margin: 0 auto;
 }
 

@@ -27,7 +27,7 @@
   display: none;
   position: absolute;
   left: 50%;
-  bottom: 10px;
+  bottom: -15px;
   transform: translate3d(-50%, 0, 0);
 }
 @media all and (min-width: 500px) {

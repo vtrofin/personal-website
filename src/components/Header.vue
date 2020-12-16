@@ -30,23 +30,23 @@ export default {
   name: 'Header',
   components: {
     HeaderLogo,
-    GithubLogo
+    GithubLogo,
   },
   setup(props) {
     return {};
-  }
+  },
 };
 </script>
 
-<style scoped>
+<style>
 .nav-container {
   --logo-size: 75px;
 }
 
 .nav-container {
   position: relative;
-  width: 100%;
-  max-width: 1600px;
+  width: 90%;
+  max-width: 1280px;
   margin: 0 auto;
 
   /* make sticky header
@@ -64,7 +64,7 @@ export default {
   list-style-type: none;
   padding: 0;
   overflow: hidden;
-  max-width: 90%;
+  width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;

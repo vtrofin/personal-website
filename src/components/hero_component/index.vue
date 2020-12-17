@@ -11,7 +11,13 @@
       <div class="decoration-block top-right" aria-hidden="true" />
       <div class="decoration-block bottom-left" aria-hidden="true" />
       <div class="decoration-block top-right" aria-hidden="true" />
-      <div class="cli-wrapper" style="">some filler here</div>
+      <div class="cli-wrapper" style="">
+        <!-- <div class="bash-history">Victors-MBP:~ victor$ npm install -g foobar</div> -->
+        <div class="bash-text">
+          Victors-MBP:~ victor$
+        </div>
+        <!-- <input type="text" value="npm install -g foobar" /> -->
+      </div>
     </div>
     <!-- <h1>This is the homepage</h1>
     this is the hero component -->
@@ -45,6 +51,60 @@
   border: 1px solid red; /* dev */
 }
 
+.cli-container .cli-wrapper {
+  height: 350px;
+  background-color: var(--black);
+  border-radius: 20px;
+  overflow: hidden;
+  font-family: Monaco, Arial, Helvetica, sans-serif;
+  font-size: 1rem;
+  line-height: 1rem;
+  text-align: left;
+  padding: 1rem 0.5rem;
+  color: var(--white);
+}
+
+.cli-wrapper .bash-text {
+  position: relative;
+  display: inline-block;
+}
+
+.cli-wrapper .bash-text:after {
+  position: absolute;
+  top: 0px;
+  right: -15px;
+  content: '';
+  width: 0.5rem;
+  height: 1rem;
+  background-color: #606060;
+  vertical-align: top;
+  -webkit-animation: cursor-blink 1s step-end infinite;
+  animation: cursor-blink 1s step-end infinite;
+}
+
+@-webkit-keyframes cursor-blink {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes cursor-blink {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
 @media all and (min-width: 1000px) {
   .hero-section {
     grid-template-columns: repeat(2, 1fr);
@@ -58,6 +118,9 @@
   .hero-section .cli-container {
     grid-column: 2 / 3;
     grid-row: 1/ 5;
+  }
+  .cli-container .cli-wrapper {
+    height: 550px;
   }
 }
 

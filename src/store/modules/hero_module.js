@@ -4,7 +4,7 @@ export default {
     bashHistory: ['npm run start', 'npm install', 'npm run setup', 'npm run serve'],
   }),
   getters: {
-    doneTodos: state => {
+    getBashHistory: state => {
       return state.bashHistory.filter(line => !!line);
     },
   },

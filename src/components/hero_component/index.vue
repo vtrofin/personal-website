@@ -12,7 +12,9 @@
       <div class="decoration-block bottom-left" aria-hidden="true" />
       <div class="decoration-block top-right" aria-hidden="true" />
       <div class="cli-wrapper" style="">
-        <!-- <div class="bash-history">Victors-MBP:~ victor$ npm install -g foobar</div> -->
+        <div class="bash-history" v-for="(line, i) in bashHistory" :key="i" :aria-label="line">
+          Victors-MBP:~ victor$ {{ line }}
+        </div>
         <!-- instead of using input, use a div with onKeyPress events || if key is enter => mutate;; otherwise append to state -->
         <!-- basically append text to the text below -->
         <div class="bash-text">
@@ -37,9 +39,11 @@ import { useStore } from 'vuex';
 export default {
   setup() {
     const store = useStore();
-    console.log(store.state.hero.bashHistory);
+    const bashHistory = computed(() => store.getters['hero/getBashHistory']);
 
-    return {};
+    return {
+      bashHistory,
+    };
   },
 };
 </script>

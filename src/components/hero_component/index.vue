@@ -13,6 +13,8 @@
       <div class="decoration-block top-right" aria-hidden="true" />
       <div class="cli-wrapper" style="">
         <!-- <div class="bash-history">Victors-MBP:~ victor$ npm install -g foobar</div> -->
+        <!-- instead of using input, use a div with onKeyPress events || if key is enter => mutate;; otherwise append to state -->
+        <!-- basically append text to the text below -->
         <div class="bash-text">
           Victors-MBP:~ victor$
         </div>
@@ -28,6 +30,18 @@
 // to do: all text in this page to be put in vuex and fetched directly from there
 // animation on sean halpin website make the cornea translateX and translateY + scale(0.7 -> 1);
 // the entire eye, translateY and the entire eye scale (4)
+
+import { computed } from 'vue';
+import { useStore } from 'vuex';
+
+export default {
+  setup() {
+    const store = useStore();
+    console.log(store.state.hero.bashHistory);
+
+    return {};
+  },
+};
 </script>
 
 <style>

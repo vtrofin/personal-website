@@ -129,10 +129,6 @@ export default {
   outline: none;
 }
 
-.pre-text {
-  white-space: pre;
-}
-
 .cli-wrapper .bash-text {
   position: relative;
   display: inline-block;
@@ -152,6 +148,10 @@ export default {
   vertical-align: top;
   -webkit-animation: cursor-blink 1s step-end infinite;
   animation: cursor-blink 1s step-end infinite;
+}
+
+.pre-text {
+  white-space: pre-wrap;
 }
 
 @-webkit-keyframes cursor-blink {

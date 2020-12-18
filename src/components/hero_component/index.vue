@@ -118,7 +118,8 @@ export default {
   height: 350px;
   background-color: var(--black);
   border-radius: 20px;
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: scroll;
   font-family: Monaco, Arial, Helvetica, sans-serif;
   font-size: 1rem;
   line-height: 1.2rem;

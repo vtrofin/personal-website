@@ -19,7 +19,7 @@ export const getSectionLinkClassName = ({
   isExactActive,
   isActive,
   exactActiveClass,
-  activeClass
+  activeClass,
 }) => {
   if (isExactActive) {
     const computed = (exactActiveClass.value || '').split(' ');
@@ -30,4 +30,28 @@ export const getSectionLinkClassName = ({
     return ['section-link', ...computed];
   }
   return 'section-link';
+};
+
+export const checkKeyMatch = ({ event, name, code }) => {
+  return (
+    event.key === name || event.code === name || event.keyCode === code || event.charCode === code
+  );
+};
+
+export const isControlKey = event => {
+  if (!event) return false;
+
+  const codes = ['Control', 'Shift', 'CapsLock', 'Alt', 'Meta'];
+  const keyCodes = [17, 16, 20, 18, 91, 93];
+
+  return codes.includes(event.key) || keyCodes.includes(event.keyCode);
+};
+
+export const isArrowKey = event => {
+  if (!event) return false;
+
+  const codes = ['ArrowLeft', 'ArrowDown', 'ArrowUp', 'ArrowRight'];
+  const keyCodes = [37, 40, 38, 39];
+
+  return codes.includes(event.key) || keyCodes.includes(event.keyCode);
 };

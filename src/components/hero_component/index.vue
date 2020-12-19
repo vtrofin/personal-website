@@ -6,13 +6,19 @@
       in Kyoto and working for
       <a href="https://www.shipandco.com/ja/" aria-label="Visit Ship&co website">Ship&co</a>
     </p>
-    <div class="cli-container">
+    <div class="cli-container" ref="cliContainer">
       <!-- not sure i want to add the four blocks anymore -->
       <div class="decoration-block top-left" aria-hidden="true" />
       <div class="decoration-block top-right" aria-hidden="true" />
       <div class="decoration-block bottom-left" aria-hidden="true" />
       <div class="decoration-block top-right" aria-hidden="true" />
-      <div tabindex="0" class="cli-wrapper" ref="cli" @keydown.prevent="appendChar">
+      <div
+        tabindex="0"
+        class="cli-wrapper"
+        ref="cli"
+        @keydown.prevent="appendChar"
+        @paste.stop.prevent="handlePaste"
+      >
         <div class="bash-history" v-for="(line, i) in bashHistory" :key="i" :aria-label="line">
           Victors-MBP:~ victor$ <span class="pre-text">{{ line }}</span>
         </div>
@@ -33,7 +39,7 @@
 // animation on sean halpin website make the cornea translateX and translateY + scale(0.7 -> 1);
 // the entire eye, translateY and the entire eye scale (4)
 
-import { computed, ref, onMounted } from 'vue';
+import { computed, ref, onMounted, onUnmounted } from 'vue';
 import { useStore } from 'vuex';
 import { checkKeyMatch, isControlKey, isArrowKey } from '../../helpers';
 
@@ -43,13 +49,35 @@ export default {
     const bashHistory = computed(() => store.getters['hero/getBashHistory']);
     const currentLine = computed(() => store.getters['hero/getCurrentLine']);
     const cli = ref(null);
+    const cliContainer = ref(null);
+
+    const handleResize = () => {
+      cli.value.style.maxWidth = `${cliContainer.value.clientWidth - 16}px`; // 0.5rem padding left right on .cli-wrapper element
+    };
+
+    window.addEventListener('resize', handleResize);
 
     onMounted(() => {
       cli.value.focus();
+      cli.value.contentEditable = true; // fix for ios => display keyboard on the cli
+      handleResize();
     });
 
+    onUnmounted(() => {
+      window.removeEventListener('resize', handleResize);
+    });
+
+    const handlePaste = event => {
+      try {
+        const clipboard = event.clipboardData || window.clipboardData;
+        const data = clipboard.getData('Text');
+        store.dispatch({ type: 'hero/pasteText', data });
+      } catch (err) {
+        throw new Error('paste not supported in this browser');
+      }
+    };
+
     const appendChar = async event => {
-      console.log(event.key + ' | ' + event.keyCode);
       if (!event) return;
       const isSubmit = checkKeyMatch({ event, name: 'Enter', code: 13 });
       const isBack = checkKeyMatch({ event, name: 'Backspace', code: 8 });
@@ -69,9 +97,9 @@ export default {
           store.dispatch({ type, char: ' ' });
         });
         return await Promise.all(promises);
-        // await store.dispatch({ type: 'hero/appendChar', char: ' ' });
-        // return store.dispatch({ type: 'hero/appendChar', char: ' ' });
       }
+
+      // if control v paste
 
       //if control key ignore
       if (isControlKey(event) || isArrowKey(event)) return;
@@ -87,7 +115,9 @@ export default {
       bashHistory,
       currentLine,
       cli,
+      cliContainer,
       appendChar,
+      handlePaste,
     };
   },
 };
@@ -127,11 +157,17 @@ export default {
   padding: 1rem 0.5rem;
   color: var(--white);
   outline: none;
+  caret-color: transparent; /* hide cursor on editable content */
+}
+
+.cli-wrapper .bash-history {
+  width: 100%;
 }
 
 .cli-wrapper .bash-text {
   position: relative;
   display: inline-block;
+  width: 100%;
   /* word-wrap: break-word; */
   /* overflow: hidden; */
 }
@@ -152,6 +188,7 @@ export default {
 
 .pre-text {
   white-space: pre-wrap;
+  word-wrap: break-word;
 }
 
 @-webkit-keyframes cursor-blink {

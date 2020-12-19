@@ -18,8 +18,10 @@ export default {
   },
   mutations: {
     append(state, payload) {
-      const { char, charCode } = payload;
-      if (char) {
+      const { char, charCode, data } = payload;
+      if (data) {
+        state.currentLine += data;
+      } else if (char) {
         state.currentLine += char;
       } else {
         state.currentLine += String.fromCharCode(charCode);
@@ -47,6 +49,9 @@ export default {
     },
     removeChar({ commit }) {
       commit('removeCharacter');
+    },
+    pasteText({ commit }, payload) {
+      commit('append', payload);
     },
   },
 };

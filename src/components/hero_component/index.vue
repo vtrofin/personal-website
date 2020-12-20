@@ -1,5 +1,5 @@
 <template>
-  <section class="hero-section" @click.self="refocusCli">
+  <section class="hero-section">
     <h1 class="hero-title">Hi. I'm Victor. <span class="text-block">A web engineer.</span></h1>
     <p class="hero-subtitle">
       I'm a full-stack web developer with a passion for bringing products to life. Currently living
@@ -54,6 +54,7 @@ export default {
     const currentLine = computed(() => store.getters['hero/getCurrentLine']);
     const cli = ref(null);
     const cliContainer = ref(null);
+    let cliObserver = null;
 
     const handleResize = () => {
       cli.value.style.maxWidth = `${cliContainer.value.clientWidth - 16}px`; // 0.5rem padding left right on .cli-wrapper element
@@ -65,10 +66,32 @@ export default {
       cli.value.focus();
       cli.value.contentEditable = true; // fix for ios => display keyboard on the cli
       handleResize();
+
+      // check when cli is visible in viewport
+      cliObserver = new IntersectionObserver(
+        entries => {
+          try {
+            if (entries?.[0]?.isIntersecting) {
+              // if cli not focused, focus..
+              if (cli.value !== document.activeElement) {
+                cli.value.focus();
+              }
+            } else {
+              cli.value.blur();
+            }
+          } catch (err) {
+            throw new Error('Intersection Observer Failed on this browser');
+          }
+        },
+        { root: null, threshhold: [0.2] }
+      );
+
+      cliObserver.observe(cli.value);
     });
 
     onUnmounted(() => {
       window.removeEventListener('resize', handleResize);
+      cliObserver.disconnect();
     });
 
     const enableControl = event => {
@@ -134,20 +157,25 @@ export default {
       });
     };
 
-    // check when cli is visible in viewport
-    // const cliObserver = new IntersectionObserver((entries) => {
+    /* focus cli on click on <main> element  */
+    // @click.self="refocusCli"
+    // const refocusCli = event => {
+    //   return true;
+    // };
+    // refocusCli,
 
-    // })
-
-    cliObserver.observe();
-
-    const refocusCli = event => {
-      return true;
-    };
-
-    const handleBlur = event => {
-      return true;
-    };
+    /* refocus cli on blur, if still visible. requires saving if cli is visible in a variable 
+    and editing this state inside the intersection observer */
+    // const cliVisible = ref(false);
+    // cliVisible.value = true;
+    // cliVisible.value = true;
+    // cliVisible.value = false;
+    // const handleBlur = event => {
+    //   if (cliVisible.value) {
+    //     cli.value.focus();
+    //   }
+    // };
+    // handleBlur,
 
     return {
       bashHistory,
@@ -158,8 +186,6 @@ export default {
       handlePaste,
       enableControl,
       disableControl,
-      refocusCli,
-      handleBlur,
     };
   },
 };

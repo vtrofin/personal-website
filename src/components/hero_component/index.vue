@@ -19,7 +19,6 @@
         @keyup.prevent="disableControl"
         @keydown.prevent="enableControl($event), appendChar($event)"
         @paste.stop.prevent="handlePaste"
-        @blur="handleBlur"
       >
         <div class="bash-history" v-for="(line, i) in bashHistory" :key="i" :aria-label="line">
           Victors-MBP:~ victor$ <span class="pre-text">{{ line }}</span>
@@ -123,7 +122,7 @@ export default {
       const isBack = checkKeyMatch({ event, name: 'Backspace', code: 8 });
       const isDel = checkKeyMatch({ event, name: 'Delete', code: 46 });
       const isTab = checkKeyMatch({ event, name: 'Tab', code: 9 });
-
+      // console.log('event is --->', event);
       if (isSubmit) {
         return store.dispatch({ type: 'hero/pushLine' });
       }
@@ -166,6 +165,7 @@ export default {
 
     /* refocus cli on blur, if still visible. requires saving if cli is visible in a variable 
     and editing this state inside the intersection observer */
+    // @blur="handleBlur"
     // const cliVisible = ref(false);
     // cliVisible.value = true;
     // cliVisible.value = true;

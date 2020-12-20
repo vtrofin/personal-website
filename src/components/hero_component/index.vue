@@ -1,5 +1,5 @@
 <template>
-  <section class="hero-section">
+  <section class="hero-section" @click.self="refocusCli">
     <h1 class="hero-title">Hi. I'm Victor. <span class="text-block">A web engineer.</span></h1>
     <p class="hero-subtitle">
       I'm a full-stack web developer with a passion for bringing products to life. Currently living
@@ -16,8 +16,10 @@
         tabindex="0"
         class="cli-wrapper"
         ref="cli"
-        @keydown.prevent="appendChar"
+        @keyup.prevent="disableControl"
+        @keydown.prevent="enableControl($event), appendChar($event)"
         @paste.stop.prevent="handlePaste"
+        @blur="handleBlur"
       >
         <div class="bash-history" v-for="(line, i) in bashHistory" :key="i" :aria-label="line">
           Victors-MBP:~ victor$ <span class="pre-text">{{ line }}</span>
@@ -45,6 +47,8 @@ import { checkKeyMatch, isControlKey, isArrowKey } from '../../helpers';
 
 export default {
   setup() {
+    // ctrl or command key is pressed; handles pasting on ctrl + v
+    const control = ref(false);
     const store = useStore();
     const bashHistory = computed(() => store.getters['hero/getBashHistory']);
     const currentLine = computed(() => store.getters['hero/getCurrentLine']);
@@ -67,6 +71,19 @@ export default {
       window.removeEventListener('resize', handleResize);
     });
 
+    const enableControl = event => {
+      if (event.metaKey || event.ctrlKey) {
+        control.value = true;
+      }
+    };
+
+    const disableControl = event => {
+      if (event.metaKey || event.ctrlKey) {
+        control.value = false;
+      }
+    };
+
+    // copy paste text
     const handlePaste = event => {
       try {
         const clipboard = event.clipboardData || window.clipboardData;
@@ -98,17 +115,38 @@ export default {
         });
         return await Promise.all(promises);
       }
-
-      // if control v paste
-
       //if control key ignore
       if (isControlKey(event) || isArrowKey(event)) return;
+
+      // if control v paste
+      const isControlOn = !!control.value;
+      const pressedKey = (event.key || '').toLowerCase();
+      if (isControlOn && (pressedKey === 'v' || event.keyCode === 86)) {
+        const clipboard = await window.navigator.clipboard.readText();
+        return store.dispatch({ type: 'hero/pasteText', data: clipboard });
+      }
+
       // if key append
       store.dispatch({
         type: 'hero/appendChar',
         char: event.key,
         charCode: event.keyCode,
       });
+    };
+
+    // check when cli is visible in viewport
+    // const cliObserver = new IntersectionObserver((entries) => {
+
+    // })
+
+    cliObserver.observe();
+
+    const refocusCli = event => {
+      return true;
+    };
+
+    const handleBlur = event => {
+      return true;
     };
 
     return {
@@ -118,6 +156,10 @@ export default {
       cliContainer,
       appendChar,
       handlePaste,
+      enableControl,
+      disableControl,
+      refocusCli,
+      handleBlur,
     };
   },
 };

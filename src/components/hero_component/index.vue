@@ -11,11 +11,6 @@
       </p>
     </div>
     <div class="cli-container" ref="cliContainer">
-      <!-- not sure i want to add the four blocks anymore -->
-      <div class="decoration-block top-left" aria-hidden="true" />
-      <div class="decoration-block top-right" aria-hidden="true" />
-      <div class="decoration-block bottom-left" aria-hidden="true" />
-      <div class="decoration-block top-right" aria-hidden="true" />
       <div
         tabindex="0"
         class="cli-wrapper"
@@ -67,7 +62,7 @@ export default {
 
     onMounted(() => {
       cli.value.focus();
-      cli.value.contentEditable = true; // fix for ios => display keyboard on the cli
+      cli.value.contenteditable = true; // fix for ios => display keyboard on the cli
       handleResize();
 
       // check when cli is visible in viewport

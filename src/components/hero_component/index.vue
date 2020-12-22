@@ -1,11 +1,15 @@
 <template>
   <section class="hero-section">
-    <h1 class="hero-title">Hi. I'm Victor. <span class="text-block">A web engineer.</span></h1>
-    <p class="hero-subtitle">
-      I'm a full-stack web developer with a passion for bringing products to life. Currently living
-      in Kyoto and working for
-      <a href="https://www.shipandco.com/ja/" aria-label="Visit Ship&co website">Ship&co</a>
-    </p>
+    <div class="hero-title">
+      <h1>Hi. I'm Victor. <span class="text-block">A web engineer.</span></h1>
+    </div>
+    <div class="hero-subtitle">
+      <p>
+        I'm a full-stack web developer with a passion for bringing products to life. Currently
+        living in Kyoto and working for
+        <a href="https://www.shipandco.com/ja/" aria-label="Visit Ship&co website">Ship&co</a>
+      </p>
+    </div>
     <div class="cli-container" ref="cliContainer">
       <!-- not sure i want to add the four blocks anymore -->
       <div class="decoration-block top-left" aria-hidden="true" />
@@ -201,15 +205,47 @@ export default {
   grid-auto-flow: row;
 }
 
-.hero-section h1,
-.hero-section p {
+.hero-section .hero-title h1,
+.hero-section .hero-subtitle p {
   margin: 0;
   padding: 0;
-  border: 1px solid red; /* dev */
 }
 
-.hero-section .cli-container {
-  border: 1px solid red; /* dev */
+.hero-section .hero-subtitle,
+.hero-section .hero-title {
+  position: relative;
+  display: flex;
+}
+
+.hero-section .hero-title {
+  align-items: flex-end;
+}
+
+.hero-section .hero-subtitle {
+  align-items: flex-start;
+}
+
+.hero-section .hero-title h1 {
+  font-size: 3.2rem;
+  letter-spacing: -2px;
+  line-height: 1.1;
+  text-align: left;
+  color: var(--black);
+}
+
+.hero-section .hero-subtitle p {
+  font-size: 1.2rem;
+  line-height: 1.5;
+  text-align: left;
+  color: var(--gray);
+}
+@media all and (min-width: 1000px) {
+  .hero-section .hero-title h1 {
+    font-size: 4.2rem;
+  }
+  .hero-section .hero-subtitle p {
+    padding-right: 3.5rem;
+  }
 }
 
 .cli-container .cli-wrapper {
@@ -287,8 +323,8 @@ export default {
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: repeat(4, auto);
   }
-  .hero-section h1,
-  .hero-section p {
+  .hero-section .hero-title,
+  .hero-section .hero-subtitle {
     grid-column: 1 / 2;
     grid-row: span 2;
   }

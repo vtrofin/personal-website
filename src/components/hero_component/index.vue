@@ -337,4 +337,10 @@ export default {
     display: block;
   }
 }
+
+[contenteditable] {
+  -webkit-user-select: text;
+  user-select: text;
+  border: 1px solid red;
+}
 </style>

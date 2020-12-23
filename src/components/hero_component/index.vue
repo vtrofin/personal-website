@@ -11,25 +11,17 @@
       </p>
     </div>
     <div class="cli-container" ref="cliContainer">
-      <div class="cli-wrapper">
-        <div class="bash-history" v-for="(line, i) in bashHistory" :key="i" :aria-label="line">
-          {{ staticText }} <span class="pre-text">{{ line }}</span>
-        </div>
+      <div class="bash-history" v-for="(line, i) in bashHistory" :key="i" :aria-label="line">
+        {{ staticText }} <span class="pre-text">{{ line }}</span>
       </div>
-      <div
-        class="cli-wrapper active-text"
-        ref="cliWrapper"
-        @click.stop.prevent="refocusActiveTextLine"
-      >
-        <div class="bash-text">
-          {{ staticText }}
-          <div
-            class="pre-text"
-            ref="cliWrapperActiveText"
-            tabindex="0"
-            @input.prevent="handleInput"
-          />
-        </div>
+      <div class="cli-wrapper" ref="cliWrapper" @click.stop.prevent="refocusActiveTextLine">
+        {{ staticText }}
+        <span
+          class="pre-text"
+          ref="cliWrapperActiveText"
+          tabindex="0"
+          @input.prevent="handleInput"
+        />
       </div>
     </div>
   </section>
@@ -50,16 +42,9 @@ export default {
     const cliWrapper = ref(null);
     const cliWrapperActiveText = ref(null);
 
-    // const handleResize = () => {
-    //   cliWrapper.value.style.maxWidth = `${cliContainer.value.clientWidth - 16}px`;
-    // };
-
-    // window.addEventListener('resize', handleResize);
-
     onMounted(() => {
       cliWrapperActiveText.value.contentEditable = true;
       cliWrapperActiveText.value.focus();
-      // handleResize();
 
       // check when cli-wrapper is visible in viewport
       // and focus active cli line
@@ -84,7 +69,6 @@ export default {
     });
 
     onUnmounted(() => {
-      // window.removeEventListener('resize', handleResize);
       cliObserver.disconnect();
     });
 
@@ -194,13 +178,10 @@ export default {
   outline: none;
   caret-color: transparent;
   background: none;
-}
-
-.cli-wrapper.active-text {
   flex-grow: 1;
 }
 
-.cli-wrapper .bash-history {
+.bash-history {
   width: 100%;
 }
 

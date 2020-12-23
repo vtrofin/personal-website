@@ -22,23 +22,15 @@
         <div class="bash-history" v-for="(line, i) in bashHistory" :key="i" :aria-label="line">
           Victors-MBP:~ victor$ <span class="pre-text">{{ line }}</span>
         </div>
-        <!-- instead of using input, use a div with onKeyPress events || if key is enter => mutate;; otherwise append to state -->
-        <!-- basically append text to the text below -->
         <div class="bash-text">
           Victors-MBP:~ victor$ <span class="pre-text">{{ currentLine }}</span>
         </div>
-        <!-- <input type="text" value="npm install -g foobar" /> -->
       </div>
     </div>
-    <!-- <h1>This is the homepage</h1>
-    this is the hero component -->
   </section>
 </template>
 
 <script>
-// animation on sean halpin website make the cornea translateX and translateY + scale(0.7 -> 1);
-// the entire eye, translateY and the entire eye scale (4)
-
 import { computed, ref, onMounted, onUnmounted } from 'vue';
 import { useStore } from 'vuex';
 import { checkKeyMatch, isControlKey, isArrowKey } from '../../helpers';

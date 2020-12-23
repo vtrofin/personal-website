@@ -14,7 +14,7 @@
       <div class="bash-history" v-for="(line, i) in bashHistory" :key="i" :aria-label="line">
         {{ staticText }} <span class="pre-text">{{ line }}</span>
       </div>
-      <div class="cli-wrapper" ref="cliWrapper" @click.stop.prevent="refocusActiveTextLine">
+      <div class="cli-wrapper" @click.stop.prevent="refocusActiveTextLine">
         {{ staticText }}
         <span
           class="pre-text"
@@ -34,38 +34,32 @@ import { useStore } from 'vuex';
 export default {
   setup() {
     let cliObserver = null;
-    const control = ref(false);
     const store = useStore();
     const bashHistory = computed(() => store.getters['hero/getBashHistory']);
     const staticText = computed(() => store.getters['hero/getStaticText']);
     const cliContainer = ref(null);
-    const cliWrapper = ref(null);
     const cliWrapperActiveText = ref(null);
 
     onMounted(() => {
       cliWrapperActiveText.value.contentEditable = true;
       cliWrapperActiveText.value.focus();
 
-      // check when cli-wrapper is visible in viewport
-      // and focus active cli line
-      cliObserver = new IntersectionObserver(
-        entries => {
-          try {
-            if (entries?.[0]?.isIntersecting) {
-              if (cliWrapperActiveText.value !== document.activeElement) {
-                cliWrapperActiveText.value.focus();
-              }
-            } else {
-              cliWrapperActiveText.value.blur();
+      const observeHandler = entries => {
+        try {
+          if (entries?.[0]?.isIntersecting) {
+            if (cliWrapperActiveText.value !== document.activeElement) {
+              cliWrapperActiveText.value.focus();
             }
-          } catch (err) {
-            throw new Error('Intersection Observer Failed on this browser');
+          } else {
+            cliWrapperActiveText.value.blur();
           }
-        },
-        { root: null, threshhold: [0.2] }
-      );
+        } catch (err) {
+          throw new Error('Intersection Observer Failed on this browser');
+        }
+      };
 
-      cliObserver.observe(cliWrapper.value);
+      cliObserver = new IntersectionObserver(observeHandler, { root: null, threshhold: [0.2] });
+      cliObserver.observe(cliContainer.value);
     });
 
     onUnmounted(() => {
@@ -94,7 +88,6 @@ export default {
       bashHistory,
       staticText,
       cliContainer,
-      cliWrapper,
       cliWrapperActiveText,
       handleInput,
       refocusActiveTextLine,

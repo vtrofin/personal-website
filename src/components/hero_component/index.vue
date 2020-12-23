@@ -19,7 +19,7 @@
       <div
         class="cli-wrapper"
         tabindex="0"
-        ref="cli"
+        ref="cliwrapper"
         @keyup.prevent="disableControl"
         @keydown.prevent="enableControl($event), appendChar($event)"
         @paste.stop.prevent="handlePaste"
@@ -39,26 +39,24 @@ import { checkKeyMatch, isControlKey, isArrowKey } from '../../helpers';
 
 export default {
   setup() {
-    // ctrl or command key is pressed; handles pasting on ctrl + v
-    const control = ref(false);
+    let cliObserver = null;
     const store = useStore();
     const bashHistory = computed(() => store.getters['hero/getBashHistory']);
     const currentLine = computed(() => store.getters['hero/getCurrentLine']);
     const staticText = computed(() => store.getters['hero/getStaticText']);
-    const cli = ref(null);
+    const control = ref(false);
+    const cliwrapper = ref(null);
     const cliContainer = ref(null);
-    let cliObserver = null;
 
     const handleResize = () => {
-      cli.value.style.maxWidth = `${cliContainer.value.clientWidth - 16}px`; // 0.5rem padding left right on .cli-wrapper element
+      cliwrapper.value.style.maxWidth = `${cliContainer.value.clientWidth - 16}px`; // 0.5rem padding left right on .cli-wrapper element
     };
 
     window.addEventListener('resize', handleResize);
 
     onMounted(() => {
-      cli.value.focus();
-      // fix for ios => display keyboard on the cli
-      cli.value.contentEditable = true;
+      cliwrapper.value.focus();
+      cliwrapper.value.contentEditable = true; // fix for ios => display keyboard on the cli
       handleResize();
 
       // check when cli is visible in viewport
@@ -67,11 +65,11 @@ export default {
           try {
             if (entries?.[0]?.isIntersecting) {
               // if cli not focused, focus..
-              if (cli.value !== document.activeElement) {
-                cli.value.focus();
+              if (cliwrapper.value !== document.activeElement) {
+                cliwrapper.value.focus();
               }
             } else {
-              cli.value.blur();
+              cliwrapper.value.blur();
             }
           } catch (err) {
             throw new Error('Intersection Observer Failed on this browser');
@@ -80,7 +78,7 @@ export default {
         { root: null, threshhold: [0.2] }
       );
 
-      cliObserver.observe(cli.value);
+      cliObserver.observe(cliwrapper.value);
     });
 
     onUnmounted(() => {
@@ -176,7 +174,7 @@ export default {
       bashHistory,
       currentLine,
       staticText,
-      cli,
+      cliwrapper,
       cliContainer,
       appendChar,
       handlePaste,
@@ -329,8 +327,6 @@ export default {
   .hero-section .cli-container {
     grid-column: 2 / 3;
     grid-row: 1/ 5;
-  }
-  .cli-container .cli-wrapper {
     height: 550px;
   }
 }

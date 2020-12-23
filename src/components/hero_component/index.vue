@@ -67,15 +67,22 @@ export default {
     });
 
     const handleInput = event => {
+      // console.log('event -->', event);
       const isSubmit =
         event?.inputType === 'insertParagraph' ||
         (event?.data === null && event?.inputType === 'insertText');
+      const isPaste = event?.inputType === 'insertFromPaste';
+      const text = cliWrapperActiveText.value.innerText;
 
       if (isSubmit) {
-        const text = cliWrapperActiveText.value.innerText;
         cliWrapperActiveText.value.innerText = '';
         // format text with regexp to remove the double \n
         return store.dispatch({ type: 'hero/pushLine', text });
+      }
+
+      if (isPaste) {
+        cliWrapperActiveText.value.innerText = text;
+        return;
       }
     };
 

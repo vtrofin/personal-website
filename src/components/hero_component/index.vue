@@ -5,8 +5,8 @@
     </div>
     <div class="hero-subtitle">
       <p>
-        I'm a full-stack web developer with a passion for bringing products to life. Currently
-        living in Kyoto and working for
+        I'm a full-stack web engineer with a passion for bringing products to life. Currently living
+        in Kyoto and working for
         <a href="https://www.shipandco.com/ja/" aria-label="Visit Ship&co website">Ship&co</a>
       </p>
     </div>
@@ -16,16 +16,19 @@
           {{ staticText }} <span class="pre-text">{{ line }}</span>
         </div>
       </div>
-      <div
-        class="cli-wrapper"
-        tabindex="0"
-        ref="cliwrapper"
-        @keyup.prevent="disableControl"
-        @keydown.prevent="enableControl($event), appendChar($event)"
-        @paste.stop.prevent="handlePaste"
-      >
+      <div class="cli-wrapper active-text" ref="cliWrapper" @click.prevent="refocusActiveTextLine">
         <div class="bash-text">
-          {{ staticText }} <span class="pre-text">{{ currentLine }}</span>
+          {{ staticText }}
+          <div
+            class="pre-text"
+            ref="cliWrapperActiveText"
+            tabindex="0"
+            @keyup.prevent="disableControl"
+            @keydown.prevent="enableControl($event), appendChar($event)"
+            @paste.stop.prevent="handlePaste"
+          >
+            {{ currentLine }}
+          </div>
         </div>
       </div>
     </div>
@@ -40,36 +43,37 @@ import { checkKeyMatch, isControlKey, isArrowKey } from '../../helpers';
 export default {
   setup() {
     let cliObserver = null;
+    const control = ref(false);
     const store = useStore();
     const bashHistory = computed(() => store.getters['hero/getBashHistory']);
     const currentLine = computed(() => store.getters['hero/getCurrentLine']);
     const staticText = computed(() => store.getters['hero/getStaticText']);
-    const control = ref(false);
-    const cliwrapper = ref(null);
     const cliContainer = ref(null);
+    const cliWrapper = ref(null);
+    const cliWrapperActiveText = ref(null);
 
     const handleResize = () => {
-      cliwrapper.value.style.maxWidth = `${cliContainer.value.clientWidth - 16}px`; // 0.5rem padding left right on .cli-wrapper element
+      cliWrapper.value.style.maxWidth = `${cliContainer.value.clientWidth - 16}px`;
     };
 
     window.addEventListener('resize', handleResize);
 
     onMounted(() => {
-      cliwrapper.value.focus();
-      cliwrapper.value.contentEditable = true; // fix for ios => display keyboard on the cli
+      cliWrapperActiveText.value.focus();
+      cliWrapperActiveText.value.contentEditable = true;
       handleResize();
 
-      // check when cli is visible in viewport
+      // check when cli-wrapper is visible in viewport
+      // and focus active cli line
       cliObserver = new IntersectionObserver(
         entries => {
           try {
             if (entries?.[0]?.isIntersecting) {
-              // if cli not focused, focus..
-              if (cliwrapper.value !== document.activeElement) {
-                cliwrapper.value.focus();
+              if (cliWrapperActiveText.value !== document.activeElement) {
+                cliWrapperActiveText.value.focus();
               }
             } else {
-              cliwrapper.value.blur();
+              cliWrapperActiveText.value.blur();
             }
           } catch (err) {
             throw new Error('Intersection Observer Failed on this browser');
@@ -78,7 +82,7 @@ export default {
         { root: null, threshhold: [0.2] }
       );
 
-      cliObserver.observe(cliwrapper.value);
+      cliObserver.observe(cliWrapper.value);
     });
 
     onUnmounted(() => {
@@ -98,7 +102,6 @@ export default {
       }
     };
 
-    // copy paste text
     const handlePaste = event => {
       try {
         const clipboard = event.clipboardData || window.clipboardData;
@@ -115,7 +118,7 @@ export default {
       const isBack = checkKeyMatch({ event, name: 'Backspace', code: 8 });
       const isDel = checkKeyMatch({ event, name: 'Delete', code: 46 });
       const isTab = checkKeyMatch({ event, name: 'Tab', code: 9 });
-      // console.log('event is --->', event);
+
       if (isSubmit) {
         return store.dispatch({ type: 'hero/pushLine' });
       }
@@ -149,37 +152,24 @@ export default {
       });
     };
 
-    /* focus cli on click on <main> element  */
-    // @click.self="refocusCli"
-    // const refocusCli = event => {
-    //   return true;
-    // };
-    // refocusCli,
-
-    /* refocus cli on blur, if still visible. requires saving if cli is visible in a variable 
-    and editing this state inside the intersection observer */
-    // @blur="handleBlur"
-    // const cliVisible = ref(false);
-    // cliVisible.value = true;
-    // cliVisible.value = true;
-    // cliVisible.value = false;
-    // const handleBlur = event => {
-    //   if (cliVisible.value) {
-    //     cli.value.focus();
-    //   }
-    // };
-    // handleBlur,
+    const refocusActiveTextLine = () => {
+      if (cliWrapperActiveText.value !== document.activeElement) {
+        cliWrapperActiveText.value.focus();
+      }
+    };
 
     return {
       bashHistory,
       currentLine,
       staticText,
-      cliwrapper,
       cliContainer,
+      cliWrapper,
+      cliWrapperActiveText,
       appendChar,
       handlePaste,
       enableControl,
       disableControl,
+      refocusActiveTextLine,
     };
   },
 };
@@ -252,6 +242,8 @@ export default {
   padding: 1rem 0.5rem;
   color: var(--white);
   outline: none;
+  display: flex;
+  flex-direction: column;
 }
 
 .cli-container .cli-wrapper {
@@ -260,19 +252,25 @@ export default {
   background: none;
 }
 
+.cli-wrapper.active-text {
+  flex-grow: 1;
+  /* display: flex;
+  flex-direction: row; */
+}
+
 .cli-wrapper .bash-history {
   width: 100%;
 }
 
 .cli-wrapper .bash-text {
-  position: relative;
   display: inline-block;
-  width: 100%;
+  /* position: relative;
+  display: inline-block; */
   /* word-wrap: break-word; */
   /* overflow: hidden; */
 }
 
-.cli-wrapper .bash-text:after {
+/* .cli-wrapper .bash-text:after {
   position: absolute;
   top: 0px;
   right: -15px;
@@ -284,14 +282,23 @@ export default {
   vertical-align: top;
   -webkit-animation: cursor-blink 1s step-end infinite;
   animation: cursor-blink 1s step-end infinite;
-}
+} */
 
 .pre-text {
   white-space: pre-wrap;
   word-wrap: break-word;
 }
 
-@-webkit-keyframes cursor-blink {
+.bash-text .static-text {
+  display: inline-block;
+}
+
+.bash-text .pre-text {
+  display: inline-block;
+  outline: none;
+}
+
+/* @-webkit-keyframes cursor-blink {
   0% {
     opacity: 1;
   }
@@ -312,7 +319,7 @@ export default {
   100% {
     opacity: 1;
   }
-}
+} */
 
 @media all and (min-width: 1000px) {
   .hero-section {

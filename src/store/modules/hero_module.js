@@ -4,6 +4,7 @@ export default {
     writeMode: false,
     bashHistory: [],
     currentLine: '',
+    staticText: 'Victors-MBP:~ victor$',
   }),
   getters: {
     getBashHistory: state => {
@@ -14,6 +15,9 @@ export default {
     },
     getCurrentLine: state => {
       return state.currentLine;
+    },
+    getStaticText: state => {
+      return state.staticText;
     },
   },
   mutations: {

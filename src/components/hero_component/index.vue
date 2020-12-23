@@ -11,19 +11,21 @@
       </p>
     </div>
     <div class="cli-container" ref="cliContainer">
+      <div class="cli-wrapper">
+        <div class="bash-history" v-for="(line, i) in bashHistory" :key="i" :aria-label="line">
+          {{ staticText }} <span class="pre-text">{{ line }}</span>
+        </div>
+      </div>
       <div
-        tabindex="0"
         class="cli-wrapper"
+        tabindex="0"
         ref="cli"
         @keyup.prevent="disableControl"
         @keydown.prevent="enableControl($event), appendChar($event)"
         @paste.stop.prevent="handlePaste"
       >
-        <div class="bash-history" v-for="(line, i) in bashHistory" :key="i" :aria-label="line">
-          Victors-MBP:~ victor$ <span class="pre-text">{{ line }}</span>
-        </div>
         <div class="bash-text">
-          Victors-MBP:~ victor$ <span class="pre-text">{{ currentLine }}</span>
+          {{ staticText }} <span class="pre-text">{{ currentLine }}</span>
         </div>
       </div>
     </div>
@@ -42,6 +44,7 @@ export default {
     const store = useStore();
     const bashHistory = computed(() => store.getters['hero/getBashHistory']);
     const currentLine = computed(() => store.getters['hero/getCurrentLine']);
+    const staticText = computed(() => store.getters['hero/getStaticText']);
     const cli = ref(null);
     const cliContainer = ref(null);
     let cliObserver = null;
@@ -54,7 +57,8 @@ export default {
 
     onMounted(() => {
       cli.value.focus();
-      cli.value.contenteditable = true; // fix for ios => display keyboard on the cli
+      // fix for ios => display keyboard on the cli
+      cli.value.contentEditable = true;
       handleResize();
 
       // check when cli is visible in viewport
@@ -171,6 +175,7 @@ export default {
     return {
       bashHistory,
       currentLine,
+      staticText,
       cli,
       cliContainer,
       appendChar,
@@ -226,6 +231,7 @@ export default {
   text-align: left;
   color: var(--gray);
 }
+
 @media all and (min-width: 1000px) {
   .hero-section .hero-title h1 {
     font-size: 4.2rem;
@@ -235,10 +241,10 @@ export default {
   }
 }
 
-.cli-container .cli-wrapper {
+.hero-section .cli-container {
   height: 350px;
   background-color: var(--black);
-  border-radius: 20px;
+  border-radius: 15px;
   overflow-x: hidden;
   overflow-y: scroll;
   font-family: Monaco, Arial, Helvetica, sans-serif;
@@ -248,7 +254,12 @@ export default {
   padding: 1rem 0.5rem;
   color: var(--white);
   outline: none;
-  caret-color: transparent; /* hide cursor on editable content */
+}
+
+.cli-container .cli-wrapper {
+  outline: none;
+  caret-color: transparent;
+  background: none;
 }
 
 .cli-wrapper .bash-history {
@@ -333,6 +344,6 @@ export default {
 [contenteditable] {
   -webkit-user-select: text;
   user-select: text;
-  border: 1px solid red;
+  border: 1px solid red; /* dev */
 }
 </style>

@@ -16,19 +16,19 @@
           {{ staticText }} <span class="pre-text">{{ line }}</span>
         </div>
       </div>
-      <div class="cli-wrapper active-text" ref="cliWrapper" @click.prevent="refocusActiveTextLine">
+      <div
+        class="cli-wrapper active-text"
+        ref="cliWrapper"
+        @click.stop.prevent="refocusActiveTextLine"
+      >
         <div class="bash-text">
           {{ staticText }}
           <div
             class="pre-text"
             ref="cliWrapperActiveText"
             tabindex="0"
-            @keyup.prevent="disableControl"
-            @keydown.prevent="enableControl($event), appendChar($event)"
-            @paste.stop.prevent="handlePaste"
-          >
-            {{ currentLine }}
-          </div>
+            @input.prevent="handleInput"
+          />
         </div>
       </div>
     </div>
@@ -38,7 +38,6 @@
 <script>
 import { computed, ref, onMounted, onUnmounted } from 'vue';
 import { useStore } from 'vuex';
-import { checkKeyMatch, isControlKey, isArrowKey } from '../../helpers';
 
 export default {
   setup() {
@@ -46,7 +45,6 @@ export default {
     const control = ref(false);
     const store = useStore();
     const bashHistory = computed(() => store.getters['hero/getBashHistory']);
-    const currentLine = computed(() => store.getters['hero/getCurrentLine']);
     const staticText = computed(() => store.getters['hero/getStaticText']);
     const cliContainer = ref(null);
     const cliWrapper = ref(null);
@@ -59,8 +57,8 @@ export default {
     window.addEventListener('resize', handleResize);
 
     onMounted(() => {
-      cliWrapperActiveText.value.focus();
       cliWrapperActiveText.value.contentEditable = true;
+      cliWrapperActiveText.value.focus();
       handleResize();
 
       // check when cli-wrapper is visible in viewport
@@ -90,66 +88,16 @@ export default {
       cliObserver.disconnect();
     });
 
-    const enableControl = event => {
-      if (event.metaKey || event.ctrlKey) {
-        control.value = true;
-      }
-    };
-
-    const disableControl = event => {
-      if (event.metaKey || event.ctrlKey) {
-        control.value = false;
-      }
-    };
-
-    const handlePaste = event => {
-      try {
-        const clipboard = event.clipboardData || window.clipboardData;
-        const data = clipboard.getData('Text');
-        store.dispatch({ type: 'hero/pasteText', data });
-      } catch (err) {
-        throw new Error('paste not supported in this browser');
-      }
-    };
-
-    const appendChar = async event => {
-      if (!event) return;
-      const isSubmit = checkKeyMatch({ event, name: 'Enter', code: 13 });
-      const isBack = checkKeyMatch({ event, name: 'Backspace', code: 8 });
-      const isDel = checkKeyMatch({ event, name: 'Delete', code: 46 });
-      const isTab = checkKeyMatch({ event, name: 'Tab', code: 9 });
+    const handleInput = event => {
+      const isSubmit =
+        event?.inputType === 'insertParagraph' ||
+        (event?.data === null && event?.inputType === 'insertText');
 
       if (isSubmit) {
-        return store.dispatch({ type: 'hero/pushLine' });
+        const text = cliWrapperActiveText.value.innerText;
+        cliWrapperActiveText.value.innerText = '';
+        return store.dispatch({ type: 'hero/pushLine', text });
       }
-      // if delete remove from current
-      if (isBack || isDel) {
-        return store.dispatch({ type: 'hero/removeChar' });
-      }
-
-      if (isTab) {
-        const promises = new Array(2).fill('hero/appendChar').map(type => {
-          store.dispatch({ type, char: ' ' });
-        });
-        return await Promise.all(promises);
-      }
-      //if control key ignore
-      if (isControlKey(event) || isArrowKey(event)) return;
-
-      // if control v paste
-      const isControlOn = !!control.value;
-      const pressedKey = (event.key || '').toLowerCase();
-      if (isControlOn && (pressedKey === 'v' || event.keyCode === 86)) {
-        const clipboard = await window.navigator.clipboard.readText();
-        return store.dispatch({ type: 'hero/pasteText', data: clipboard });
-      }
-
-      // if key append
-      store.dispatch({
-        type: 'hero/appendChar',
-        char: event.key,
-        charCode: event.keyCode,
-      });
     };
 
     const refocusActiveTextLine = () => {
@@ -160,15 +108,11 @@ export default {
 
     return {
       bashHistory,
-      currentLine,
       staticText,
       cliContainer,
       cliWrapper,
       cliWrapperActiveText,
-      appendChar,
-      handlePaste,
-      enableControl,
-      disableControl,
+      handleInput,
       refocusActiveTextLine,
     };
   },
@@ -254,8 +198,6 @@ export default {
 
 .cli-wrapper.active-text {
   flex-grow: 1;
-  /* display: flex;
-  flex-direction: row; */
 }
 
 .cli-wrapper .bash-history {
@@ -264,8 +206,6 @@ export default {
 
 .cli-wrapper .bash-text {
   display: inline-block;
-  /* position: relative;
-  display: inline-block; */
   /* word-wrap: break-word; */
   /* overflow: hidden; */
 }

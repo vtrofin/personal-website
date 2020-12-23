@@ -50,16 +50,16 @@ export default {
     const cliWrapper = ref(null);
     const cliWrapperActiveText = ref(null);
 
-    const handleResize = () => {
-      cliWrapper.value.style.maxWidth = `${cliContainer.value.clientWidth - 16}px`;
-    };
+    // const handleResize = () => {
+    //   cliWrapper.value.style.maxWidth = `${cliContainer.value.clientWidth - 16}px`;
+    // };
 
-    window.addEventListener('resize', handleResize);
+    // window.addEventListener('resize', handleResize);
 
     onMounted(() => {
       cliWrapperActiveText.value.contentEditable = true;
       cliWrapperActiveText.value.focus();
-      handleResize();
+      // handleResize();
 
       // check when cli-wrapper is visible in viewport
       // and focus active cli line
@@ -84,7 +84,7 @@ export default {
     });
 
     onUnmounted(() => {
-      window.removeEventListener('resize', handleResize);
+      // window.removeEventListener('resize', handleResize);
       cliObserver.disconnect();
     });
 

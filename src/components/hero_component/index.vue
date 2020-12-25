@@ -76,8 +76,9 @@ export default {
 
       if (isSubmit) {
         cliWrapperActiveText.value.innerText = '';
-        // format text with regexp to remove the double \n
-        return store.dispatch({ type: 'hero/pushLine', text });
+        const regexp = new RegExp('^(\\r\\n|\\r|\\n)\\1*|(\\r\\n|\\r|\\n)\\2*$', 'gi');
+        const formattedText = text.replace(regexp, '');
+        return store.dispatch({ type: 'hero/pushLine', text: formattedText });
       }
 
       if (isPaste) {
@@ -191,6 +192,8 @@ export default {
   white-space: pre-wrap;
   word-wrap: break-word;
   outline: none;
+  background: inherit;
+  color: inherit;
 }
 
 @media all and (min-width: 768px) {

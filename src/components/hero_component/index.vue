@@ -224,40 +224,4 @@ export default {
   user-select: text;
   border: 1px solid red; /* dev */
 }
-
-/* .cli-wrapper .bash-text:after {
-  position: absolute;
-  top: 0px;
-  right: -15px;
-  content: '';
-  width: 0.5rem;
-  height: 1rem;
-  line-height: 1.2rem;
-  background-color: #606060;
-  vertical-align: top;
-  -webkit-animation: cursor-blink 1s step-end infinite;
-  animation: cursor-blink 1s step-end infinite;
-} */
-/* @-webkit-keyframes cursor-blink {
-  0% {
-    opacity: 1;
-  }
-  50% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-}
-@keyframes cursor-blink {
-  0% {
-    opacity: 1;
-  }
-  50% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-} */
 </style>

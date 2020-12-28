@@ -31,7 +31,7 @@
 <script>
 import { computed, ref, onMounted, onUnmounted } from 'vue';
 import { useStore } from 'vuex';
-import { handleCursorReposition } from '../helpers';
+import { handleCursorReposition, handleCaretReposition } from '../helpers';
 
 export default {
   emits: {
@@ -93,6 +93,11 @@ export default {
 
       if (isPaste) {
         cliWrapperActiveText.value.innerText = text;
+        handleCaretReposition({
+          windowElem: window,
+          windowDocument: document,
+          domRef: cliWrapperActiveText.value,
+        });
       }
 
       return handleCursorReposition({

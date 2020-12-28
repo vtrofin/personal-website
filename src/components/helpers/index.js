@@ -43,3 +43,14 @@ export const handleCursorReposition = ({ store, domRef, windowElem, offsetY = 0 
     y: (coordinates?.y ?? 0) + offsetY,
   });
 };
+
+export const handleCaretReposition = ({ windowElem, domRef, windowDocument }) => {
+  // https://stackoverflow.com/a/6249440
+  const range = windowDocument.createRange();
+  const sel = windowElem.getSelection();
+  const childElems = domRef.childNodes;
+  range.setStart(childElems[childElems.length - 1], childElems[childElems.length - 1].length);
+  range.collapse(true);
+  sel.removeAllRanges();
+  sel.addRange(range);
+};

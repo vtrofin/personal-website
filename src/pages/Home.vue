@@ -1,5 +1,4 @@
 <template>
-  <!-- instead of using all these Sections such as Projects, Work, etc, use a General Section component since they are all the same -->
   <HeroSection @update-caret-position="updateCaretPosition" />
   <GeneralSection :class-name="className" :title="title" :data="projectsData" />
   <!-- <Projects></Projects>

@@ -80,9 +80,6 @@ export default {
         .catch(err => {
           console.log('Failed to update caret position');
         });
-
-      // computedStyle.value.left = `${coordinates.x || 0}px`;
-      // computedStyle.value.top = `${coordinates.y + 2 || 0}px`;
     });
 
     onUnmounted(() => {

@@ -25,3 +25,8 @@ export const getCaretPosition = windowElem => {
 
   return { x, y };
 };
+
+export const getCaretPositionFromElement = domElem => {
+  const rect = domElem.getBoundingClientRect();
+  return { x: rect.right, y: rect.top };
+};

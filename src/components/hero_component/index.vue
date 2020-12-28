@@ -21,6 +21,7 @@
           ref="cliWrapperActiveText"
           tabindex="0"
           @input.prevent="handleInput"
+          @keyup.stop.prevent="handleKeyUp"
         />
       </div>
     </div>
@@ -30,7 +31,7 @@
 <script>
 import { computed, ref, onMounted, onUnmounted } from 'vue';
 import { useStore } from 'vuex';
-import { getCaretPositionFromElement } from '../helpers';
+import { getCaretPositionFromElement, getCaretPosition } from '../helpers';
 
 export default {
   emits: {
@@ -86,13 +87,19 @@ export default {
       cliObserver.disconnect();
     });
 
-    const handleInput = event => {
-      // console.log('event -->', event);
+    const handleInput = async event => {
       const isSubmit =
         event?.inputType === 'insertParagraph' ||
         (event?.data === null && event?.inputType === 'insertText');
       const isPaste = event?.inputType === 'insertFromPaste';
       const text = cliWrapperActiveText.value.innerText;
+      const coordinates = getCaretPosition(window);
+      await store.dispatch({
+        type: 'hero/updateCoordinates',
+        x: coordinates?.x ?? 0,
+        y: (coordinates?.y ?? 0) + 1,
+      });
+      emit('update-caret-position');
 
       if (isSubmit) {
         cliWrapperActiveText.value.innerText = '';
@@ -107,6 +114,20 @@ export default {
       }
     };
 
+    const handleKeyUp = async event => {
+      const isArrowKey = ['ArrowRight', 'ArrowLeft', 'ArrowUp', 'ArrowDown'].includes(event.key);
+      if (!isArrowKey) {
+        return;
+      }
+      const coordinates = getCaretPosition(window);
+      await store.dispatch({
+        type: 'hero/updateCoordinates',
+        x: coordinates?.x ?? 0,
+        y: (coordinates?.y ?? 0) + 1,
+      });
+      emit('update-caret-position');
+    };
+
     const refocusActiveTextLine = () => {
       if (cliWrapperActiveText.value !== document.activeElement) {
         cliWrapperActiveText.value.focus();
@@ -119,6 +140,7 @@ export default {
       cliContainer,
       cliWrapperActiveText,
       handleInput,
+      handleKeyUp,
       refocusActiveTextLine,
     };
   },
@@ -242,6 +264,5 @@ export default {
 [contenteditable] {
   -webkit-user-select: text;
   user-select: text;
-  border: 1px solid red; /* dev */
 }
 </style>

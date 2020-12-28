@@ -74,24 +74,24 @@ export default {
 }
 @-webkit-keyframes cursor-blink {
   0% {
-    opacity: 1;
+    opacity: 0.8;
   }
   50% {
     opacity: 0;
   }
   100% {
-    opacity: 1;
+    opacity: 0.8;
   }
 }
 @keyframes cursor-blink {
   0% {
-    opacity: 1;
+    opacity: 0.8;
   }
   50% {
     opacity: 0;
   }
   100% {
-    opacity: 1;
+    opacity: 0.8;
   }
 }
 </style>

@@ -1,6 +1,10 @@
-export const getCaretPosition = windowElem => {
+const getCaretPosition = windowElem => {
   let x = 0;
   let y = 0;
+
+  if (!windowElem) {
+    return;
+  }
 
   const isSupported = typeof windowElem.getSelection === 'function';
   if (!isSupported) {
@@ -13,7 +17,7 @@ export const getCaretPosition = windowElem => {
   }
 
   const range = selection.getRangeAt(0).cloneRange();
-  range.collapse(true);
+  range.collapse(false);
   const rect = range.getClientRects()[0];
 
   if (!rect) {
@@ -26,7 +30,16 @@ export const getCaretPosition = windowElem => {
   return { x, y };
 };
 
-export const getCaretPositionFromElement = domElem => {
+const getCaretPositionFromElement = domElem => {
   const rect = domElem.getBoundingClientRect();
   return { x: rect.right, y: rect.top };
+};
+
+export const handleCursorReposition = ({ store, domRef, windowElem, offsetY = 0 }) => {
+  const coordinates = getCaretPosition(windowElem) || getCaretPositionFromElement(domRef) || {};
+  return store.dispatch({
+    type: 'hero/updateCoordinates',
+    x: coordinates?.x ?? 0,
+    y: (coordinates?.y ?? 0) + offsetY,
+  });
 };

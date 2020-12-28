@@ -31,7 +31,7 @@
 <script>
 import { computed, ref, onMounted, onUnmounted } from 'vue';
 import { useStore } from 'vuex';
-import { getCaretPositionFromElement, getCaretPosition } from '../helpers';
+import { handleCursorReposition } from '../helpers';
 
 export default {
   emits: {
@@ -68,19 +68,9 @@ export default {
       cliObserver = new IntersectionObserver(observeHandler, { root: null, threshhold: [0.2] });
       cliObserver.observe(cliContainer.value);
 
-      const coordinates = getCaretPositionFromElement(cliWrapperActiveText.value);
-      return store
-        .dispatch({
-          type: 'hero/updateCoordinates',
-          x: coordinates?.x ?? 0,
-          y: (coordinates?.y ?? 0) + 2,
-        })
-        .then(() => {
-          emit('update-caret-position');
-        })
-        .catch(err => {
-          console.log('Failed to update caret position');
-        });
+      return handleCursorReposition({ store, domRef: cliWrapperActiveText.value, offsetY: 2 })
+        .then(() => emit('update-caret-position'))
+        .catch(err => console.log('Failed to update caret position', err.message));
     });
 
     onUnmounted(() => {
@@ -93,25 +83,26 @@ export default {
         (event?.data === null && event?.inputType === 'insertText');
       const isPaste = event?.inputType === 'insertFromPaste';
       const text = cliWrapperActiveText.value.innerText;
-      const coordinates = getCaretPosition(window);
-      await store.dispatch({
-        type: 'hero/updateCoordinates',
-        x: coordinates?.x ?? 0,
-        y: (coordinates?.y ?? 0) + 1,
-      });
-      emit('update-caret-position');
 
       if (isSubmit) {
         cliWrapperActiveText.value.innerText = '';
         const regexp = new RegExp('^(\\r\\n|\\r|\\n)\\1*|(\\r\\n|\\r|\\n)\\2*$', 'gi');
         const formattedText = text.replace(regexp, '');
-        return store.dispatch({ type: 'hero/pushLine', text: formattedText });
+        await store.dispatch({ type: 'hero/pushLine', text: formattedText });
       }
 
       if (isPaste) {
         cliWrapperActiveText.value.innerText = text;
-        return;
       }
+
+      return handleCursorReposition({
+        windowElem: isSubmit ? undefined : window,
+        domRef: cliWrapperActiveText.value,
+        offsetY: isSubmit ? 2 : 1,
+        store,
+      })
+        .then(() => emit('update-caret-position'))
+        .catch(err => console.log('Failed to update caret position', err.message));
     };
 
     const handleKeyUp = async event => {
@@ -119,13 +110,9 @@ export default {
       if (!isArrowKey) {
         return;
       }
-      const coordinates = getCaretPosition(window);
-      await store.dispatch({
-        type: 'hero/updateCoordinates',
-        x: coordinates?.x ?? 0,
-        y: (coordinates?.y ?? 0) + 1,
-      });
-      emit('update-caret-position');
+      return handleCursorReposition({ store, windowElem: window, offsetY: 1 })
+        .then(() => emit('update-caret-position'))
+        .catch(err => console.log('Failed to update caret position', err.message));
     };
 
     const refocusActiveTextLine = () => {
@@ -264,5 +251,6 @@ export default {
 [contenteditable] {
   -webkit-user-select: text;
   user-select: text;
+  border: 1px solid red;
 }
 </style>

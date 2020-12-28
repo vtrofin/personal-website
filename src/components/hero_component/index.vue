@@ -256,6 +256,6 @@ export default {
 [contenteditable] {
   -webkit-user-select: text;
   user-select: text;
-  border: 1px solid red;
+  border: 1px solid transparent;
 }
 </style>

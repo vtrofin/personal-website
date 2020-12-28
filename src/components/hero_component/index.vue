@@ -30,9 +30,15 @@
 <script>
 import { computed, ref, onMounted, onUnmounted } from 'vue';
 import { useStore } from 'vuex';
+import { getCaretPositionFromElement } from '../helpers';
 
 export default {
-  setup() {
+  emits: {
+    // https://vueschool.io/lessons/defining-custom-events-emits
+    'update-caret-position': null,
+  },
+  setup(props, context) {
+    const { emit } = context;
     let cliObserver = null;
     const store = useStore();
     const bashHistory = computed(() => store.getters['hero/getBashHistory']);
@@ -60,6 +66,23 @@ export default {
 
       cliObserver = new IntersectionObserver(observeHandler, { root: null, threshhold: [0.2] });
       cliObserver.observe(cliContainer.value);
+
+      const coordinates = getCaretPositionFromElement(cliWrapperActiveText.value);
+      return store
+        .dispatch({
+          type: 'hero/updateCoordinates',
+          x: coordinates?.x ?? 0,
+          y: (coordinates?.y ?? 0) + 2,
+        })
+        .then(() => {
+          emit('update-caret-position');
+        })
+        .catch(err => {
+          console.log('Failed to update caret position');
+        });
+
+      // computedStyle.value.left = `${coordinates.x || 0}px`;
+      // computedStyle.value.top = `${coordinates.y + 2 || 0}px`;
     });
 
     onUnmounted(() => {

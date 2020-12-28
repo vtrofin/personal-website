@@ -1,6 +1,6 @@
 <template>
   <!-- instead of using all these Sections such as Projects, Work, etc, use a General Section component since they are all the same -->
-  <HeroSection ref="heroComponent" />
+  <HeroSection @update-caret-position="updateCaretPosition" />
   <GeneralSection :class-name="className" :title="title" :data="projectsData" />
   <!-- <Projects></Projects>
   <Work></Work>
@@ -10,7 +10,8 @@
 </template>
 
 <script>
-import { onMounted, onBeforeUpdate, onRenderTriggered, ref } from 'vue';
+import { ref } from 'vue';
+import { useStore } from 'vuex';
 // import Work from '../components/work';
 // import Projects from '../components/projects';
 // import Skills from '../components/skills';
@@ -18,7 +19,6 @@ import { onMounted, onBeforeUpdate, onRenderTriggered, ref } from 'vue';
 import HeroSection from '../components/hero_component';
 import GeneralSection from '../components/general_section';
 import { projects } from '../helpers';
-import { getCaretPositionFromElement, getCaretPosition } from '../components/helpers';
 
 const projectsData = projects.map((project, i) => {
   const formatted = project.charAt(0).toUpperCase() + project.substring(1);
@@ -40,32 +40,21 @@ export default {
   name: 'HomePage',
   components: { GeneralSection, HeroSection }, // Work, Projects, Skills, Interests
   setup(props) {
-    const heroComponent = ref(null);
+    const store = useStore();
     const computedStyle = ref({});
 
-    onMounted(() => {
-      const tpl = heroComponent.value;
-      console.log('tpl is --->', tpl);
-      console.log('$ =>', tpl.$);
-      const editableText = tpl.cliWrapperActiveText;
-      const coordinates = getCaretPositionFromElement(editableText);
-      computedStyle.value.left = `${coordinates.x || 0}px`;
-      computedStyle.value.top = `${coordinates.y + 1 || 0}px`;
-      // getCaretPosition(window) ||
-    });
-    // onBeforeUpdate(() => {
-    //   console.log('1. this is --->', this);
-    // });
-    // onRenderTriggered(() => {
-    //   console.log('2. this is --->', this);
-    // });
+    const updateCaretPosition = () => {
+      const { x, y } = store.getters['hero/getCoordinates'];
+      computedStyle.value.left = `${x}px`;
+      computedStyle.value.top = `${y}px`;
+    };
 
     return {
       className: 'projects',
       title: 'Projects',
       projectsData,
-      heroComponent,
       computedStyle,
+      updateCaretPosition,
     };
   },
 };

@@ -158,6 +158,7 @@ p.item-text {
   position: relative;
   transform: translateZ(0);
   transition: transform 0.3s cubic-bezier(0.215, 0.61, 0.355, 1);
+  font-size: 1.2rem;
 }
 .section-link:hover p.item-text {
   transform: translateY(8px) translateZ(0);

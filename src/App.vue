@@ -16,7 +16,9 @@ export default {
   --background-white: #fefaf6;
   --gray: #574b33;
   --black: #232320;
-  --navlink-brown: #d67a60;
+  --scarlet: #fc2f00;
+  --light-magenta: #eedcfc;
+  --light-teal: #dcfce8;
 }
 
 html,
@@ -52,7 +54,7 @@ main .content {
 }
 
 /* the color hack */
-* {
+/* * {
   background-color: rgba(255, 0, 0, 0.2);
 }
 * * {
@@ -78,5 +80,5 @@ main .content {
 }
 * * * * * * * * * {
   background-color: rgba(0, 0, 255, 0.2);
-}
+} */
 </style>

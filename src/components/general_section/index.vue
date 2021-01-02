@@ -47,7 +47,7 @@ export default {
   padding-top: 2.5rem;
 }
 
-.general-section .section-header {
+.section-header {
   font-size: 16vw;
   font-weight: 800;
   letter-spacing: -0.1rem;
@@ -63,13 +63,13 @@ export default {
   border: 0;
 }
 @media all and (min-width: 600px) {
-  .general-section .section-header {
+  .section-header {
     font-size: 18vw;
   }
 }
 
 @media all and (min-width: 750px) {
-  .general-section .section-header {
+  .section-header {
     font-size: 8rem;
   }
 }

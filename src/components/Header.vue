@@ -108,7 +108,7 @@ export default {
   height: 3px;
   left: 0;
   display: block;
-  background: var(--navlink-brown);
+  background: var(--scarlet);
   transform: translate3d(0, 5px, 0);
   transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   opacity: 0;

@@ -42,18 +42,7 @@ footer .section-header {
   margin: 0 auto;
   padding: 0;
 }
-
-/*
-
-.general-section {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  overflow: hidden;
-  margin: 120px auto;
-  box-sizing: border-box;
-  padding-top: 2.5rem;
+.footer-container p.item-text {
+  max-width: 100%;
 }
-
- */
 </style>

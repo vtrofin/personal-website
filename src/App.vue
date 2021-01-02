@@ -19,6 +19,7 @@ export default {
   --scarlet: #fc2f00;
   --magenta: #b6a0ea;
   --light-magenta: #f1ebff;
+  --purple: #150042;
 }
 
 html,

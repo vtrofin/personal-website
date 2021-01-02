@@ -17,8 +17,8 @@ export default {
   --gray: #574b33;
   --black: #232320;
   --scarlet: #fc2f00;
-  --light-magenta: #eedcfc;
-  --light-teal: #dcfce8;
+  --magenta: #b6a0ea;
+  --light-magenta: #f1ebff;
 }
 
 html,

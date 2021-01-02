@@ -4,11 +4,11 @@
       <h2 class="section-header">Connect</h2>
     </div>
     <div class="footer-container">
-      <p>text text text text text text text text</p>
-      <p>text text text text text text text text</p>
-      <p>text text text text text text text text</p>
-      <p>text text text text text text text text</p>
-      <p>text text text text text text text text</p>
+      <h3 class="item-title">Want to work with me?</h3>
+      <p class="item-text">
+        I do take on freelance opportunities. Feel free to
+        <a class="contact-link" href="mailto:#?subject=Hi" target="_blank"> send me a message</a>.
+      </p>
     </div>
   </footer>
 </template>
@@ -22,8 +22,8 @@ export default {
 <style>
 footer {
   grid-row-start: -1;
-  background: linear-gradient(39.4deg, var(--light-magenta) -5%, rgba(182, 160, 234, 0) 155%),
-    var(--light-teal);
+  background: linear-gradient(39.4deg, var(--magenta) -2.55%, rgba(182, 160, 234, 0) 45.21%),
+    var(--light-magenta);
   color: var(--black);
   width: 100%;
 }
@@ -38,11 +38,9 @@ footer .section-header {
 .footer-container {
   width: 90%;
   max-width: 1280px;
-  background-color: yellow;
   color: black;
   margin: 0 auto;
   padding: 0;
-  border: 1px solid red; /* dev */
 }
 
 /*

@@ -6,7 +6,7 @@
     <div class="hero-subtitle">
       <p>
         I'm a full-stack web engineer with a passion for bringing products to life. Currently living
-        in Kyoto and working for
+        in Kyoto and working at
         <a href="https://www.shipandco.com/ja/" aria-label="Visit Ship&co website">Ship&co</a>
       </p>
     </div>
@@ -47,6 +47,23 @@ export default {
     const cliContainer = ref(null);
     const cliWrapperActiveText = ref(null);
 
+    const handleResize = async () => {
+      try {
+        await handleCursorReposition({
+          windowElem: window,
+          domRef: cliWrapperActiveText.value,
+          offsetY: 1,
+          store,
+        });
+        cliWrapperActiveText.value.focus();
+        emit('update-caret-position');
+      } catch (err) {
+        console.log('Failed to update caret position on window resize', err.message);
+      }
+    };
+
+    window.addEventListener('resize', handleResize);
+
     onMounted(() => {
       cliWrapperActiveText.value.contentEditable = true;
       cliWrapperActiveText.value.focus();
@@ -75,6 +92,7 @@ export default {
 
     onUnmounted(() => {
       cliObserver.disconnect();
+      window.removeEventListener('resize', handleResize);
     });
 
     const handleInput = async event => {

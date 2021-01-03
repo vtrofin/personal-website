@@ -11,10 +11,6 @@
 <script>
 import { ref } from 'vue';
 import { useStore } from 'vuex';
-// import Work from '../components/work';
-// import Projects from '../components/projects';
-// import Skills from '../components/skills';
-// import Interests from '../components/interests';
 import HeroSection from '../components/hero_component';
 import GeneralSection from '../components/general_section';
 import { projects } from '../helpers';
@@ -37,7 +33,7 @@ const projectsData = projects.map((project, i) => {
 
 export default {
   name: 'HomePage',
-  components: { GeneralSection, HeroSection }, // Work, Projects, Skills, Interests
+  components: { GeneralSection, HeroSection },
   setup(props) {
     const store = useStore();
     const computedStyle = ref({});

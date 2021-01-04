@@ -6,8 +6,12 @@
       :key="idx"
       :to="options.path"
       :aria-label="options.ariaLabel"
-      active-class="active shipandco-active"
-      exact-active-class="exact-active shipandco-active"
+      :active-class="
+        'active' + ' ' + options.project ? `${options.projects}-active` : 'shipandco-active'
+      "
+      :exact-active-class="
+        'exact-active' + ' ' + options.project ? `${options.project}-active` : 'shipandco-active'
+      "
     >
       <template #section-link-slot>
         <Project v-if="options.type === 'project'" :options="options" />

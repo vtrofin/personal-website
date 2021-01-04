@@ -1,5 +1,5 @@
 <template>
-  <nav class="nav-container">
+  <nav :class="navContainerClass">
     <ul class="nav-links">
       <li><HeaderLogo /></li>
       <li>
@@ -25,6 +25,7 @@
 <script>
 import HeaderLogo from './HeaderLogo';
 import GithubLogo from './GithubLogo';
+import { ref, onBeforeUpdate } from 'vue';
 
 export default {
   name: 'Header',
@@ -32,8 +33,19 @@ export default {
     HeaderLogo,
     GithubLogo,
   },
+  props: { modifierClass: { type: String, required: false, default: '' } },
   setup(props) {
-    return {};
+    const navContainerClass = ref('nav-container');
+
+    onBeforeUpdate(() => {
+      if (props?.modifierClass) {
+        navContainerClass.value = navContainerClass.value + ' ' + props.modifierClass;
+      } else {
+        navContainerClass.value = 'nav-container';
+      }
+    });
+
+    return { navContainerClass };
   },
 };
 </script>

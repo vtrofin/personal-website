@@ -28,6 +28,7 @@ const projectsData = projects.map((project, i) => {
     // logoClass: 'shipandco-logo',
     // backgroundClass: 'shipandco-background',
     type: 'project',
+    project,
   };
 });
 

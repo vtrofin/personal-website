@@ -11,11 +11,11 @@ import { getHeaderClass } from '../helpers';
 export default {
   name: 'ProjectItemHeader',
   props: {
-    modifierClass: { type: String, required: false, default: '.shipandco-project-active' }
+    modifierClass: { type: String, required: false, default: '.shipandco-project-active' },
   },
   setup(props) {
     return {};
-  }
+  },
 };
 </script>
 

@@ -1,7 +1,9 @@
 <template>
   <Header :modifier-class="modifierClass" />
   <main>
-    <router-view />
+    <div class="content">
+      <router-view />
+    </div>
   </main>
   <Footer />
 </template>
@@ -31,8 +33,8 @@ export default {
     );
 
     return {
-      modifierClass
+      modifierClass,
     };
-  }
+  },
 };
 </script>

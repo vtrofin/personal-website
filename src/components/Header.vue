@@ -1,5 +1,5 @@
 <template>
-  <nav :class="navClass">
+  <nav>
     <div class="nav-container">
       <ul class="nav-links">
         <li><HeaderLogo /></li>
@@ -21,25 +21,40 @@
         </li>
       </ul>
     </div>
+    <ProjectItemHeader v-if="isProjectPage" :modifier-class="modifierClass" />
   </nav>
 </template>
 
 <script>
+import { ref, onBeforeUpdate } from 'vue';
+import { useRoute } from 'vue-router';
 import HeaderLogo from './HeaderLogo';
 import GithubLogo from './GithubLogo';
-import { ref, onBeforeUpdate } from 'vue';
+import ProjectItemHeader from './project_item/project_header.vue';
+import { projects } from '../helpers';
 
 export default {
   name: 'Header',
-  components: {
-    HeaderLogo,
-    GithubLogo
-  },
+  components: { HeaderLogo, GithubLogo, ProjectItemHeader },
   props: { modifierClass: { type: String, required: false, default: '' } },
   setup(props) {
-    const navClass = ref('navigator');
-    return { navClass };
-  }
+    const route = useRoute();
+    const isProjectPage = ref(false);
+
+    const checkProjectPage = () => {
+      return projects.includes(route?.params?.project_item);
+    };
+
+    onBeforeUpdate(() => {
+      isProjectPage.value = checkProjectPage();
+    });
+
+    isProjectPage.value = checkProjectPage();
+
+    return {
+      isProjectPage,
+    };
+  },
 };
 </script>
 
@@ -53,15 +68,6 @@ export default {
   width: 90%;
   max-width: 1280px;
   margin: 0 auto;
-
-  /* make sticky header
-  position: fixed;
-  z-index: 9999;
-  background-color: var(--background-white);
-  .hero-section {
-    padding-top: 100px;
-  }
-  */
 }
 
 .shipandco-project-active {

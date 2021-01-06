@@ -1,11 +1,9 @@
 <template>
-  <div class="content">
-    <h1>This is the 404 page</h1>
-  </div>
+  <h1>This is the 404 page</h1>
 </template>
 
 <script>
 export default {
-  name: 'NotFound'
+  name: 'NotFound',
 };
 </script>

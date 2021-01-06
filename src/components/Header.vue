@@ -1,24 +1,26 @@
 <template>
-  <nav :class="navContainerClass">
-    <ul class="nav-links">
-      <li><HeaderLogo /></li>
-      <li>
-        <router-link to="#">
-          <span class="nav-link-text">Work</span>
-        </router-link>
-      </li>
-      <li>
-        <router-link to="/contact">
-          <span class="nav-link-text">Contact</span>
-        </router-link>
-      </li>
-      <li>
-        <a href="https://vtrofin.github.io/"><span class="nav-link-text">CV</span></a>
-      </li>
-      <li class="auto-margin">
-        <GithubLogo />
-      </li>
-    </ul>
+  <nav :class="navClass">
+    <div class="nav-container">
+      <ul class="nav-links">
+        <li><HeaderLogo /></li>
+        <li>
+          <router-link to="#">
+            <span class="nav-link-text">Work</span>
+          </router-link>
+        </li>
+        <li>
+          <router-link to="/contact">
+            <span class="nav-link-text">Contact</span>
+          </router-link>
+        </li>
+        <li>
+          <a href="https://vtrofin.github.io/"><span class="nav-link-text">CV</span></a>
+        </li>
+        <li class="auto-margin">
+          <GithubLogo />
+        </li>
+      </ul>
+    </div>
   </nav>
 </template>
 
@@ -31,22 +33,22 @@ export default {
   name: 'Header',
   components: {
     HeaderLogo,
-    GithubLogo,
+    GithubLogo
   },
   props: { modifierClass: { type: String, required: false, default: '' } },
   setup(props) {
-    const navContainerClass = ref('nav-container');
+    const navClass = ref('');
 
     onBeforeUpdate(() => {
       if (props?.modifierClass) {
-        navContainerClass.value = navContainerClass.value + ' ' + props.modifierClass;
+        navClass.value = props.modifierClass;
       } else {
-        navContainerClass.value = 'nav-container';
+        navClass.value = '';
       }
     });
 
-    return { navContainerClass };
-  },
+    return { navClass };
+  }
 };
 </script>
 
@@ -69,6 +71,11 @@ export default {
     padding-top: 100px;
   }
   */
+}
+
+.shipandco-project-active {
+  background-color: #ffefc4;
+  color: #232320;
 }
 
 .nav-links {

@@ -81,7 +81,7 @@ export default {
 }
 /* add multiple classes here for each item (staff, stockandco) etc */
 .shipandco-active {
-  background-color: #ffefc4;
-  color: #232320;
+  background-color: var(--shipandco);
+  color: var(--black);
 }
 </style>

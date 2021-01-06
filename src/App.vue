@@ -6,7 +6,7 @@
 import MainLayout from './layouts/MainLayout';
 export default {
   name: 'App',
-  components: { MainLayout },
+  components: { MainLayout }
 };
 </script>
 
@@ -20,6 +20,11 @@ export default {
   --magenta: #b6a0ea;
   --light-magenta: #f1ebff;
   --purple: #150042;
+  --shipandco: #e76f51;
+  --stockandco: #f4a261;
+  --staff: #e9c46a;
+  --utils: #2a9d8f;
+  --shopify: #264653;
 }
 
 html,

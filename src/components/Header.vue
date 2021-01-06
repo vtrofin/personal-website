@@ -74,8 +74,8 @@ export default {
 }
 
 .shipandco-project-active {
-  background-color: #ffefc4;
-  color: #232320;
+  background-color: var(--shipandco);
+  color: var(--black);
 }
 
 .nav-links {

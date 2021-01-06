@@ -31,13 +31,3 @@ export const getSectionLinkClassName = ({
   }
   return 'section-link';
 };
-
-export const getHeaderClass = (modifier, currentClass = '') => {
-  // todo : handle case when prevClass is the same kind as the modifier (incoming class)
-  if (modifier) {
-    const prevClass = currentClass.split(' ')[0];
-    return prevClass + ' ' + modifier;
-  } else {
-    return currentClass.split(' ')[0];
-  }
-};

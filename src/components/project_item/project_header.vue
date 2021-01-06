@@ -5,8 +5,6 @@
 </template>
 
 <script>
-import { getHeaderClass } from '../../helpers';
-
 export default {
   name: 'ProjectItemHeader',
   props: {
@@ -23,9 +21,5 @@ export default {
 .project-header-container {
   width: 100%;
   padding: 21vh 0;
-}
-
-.project-header-container .content {
-  border: 1px solid black; /*dev */
 }
 </style>

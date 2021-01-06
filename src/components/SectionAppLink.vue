@@ -34,7 +34,7 @@ export default {
     ...RouterLink.props,
     ariaLabel: { type: String, required: false, default: 'View section' },
     // eslint-disable-next-line
-    inactiveClass: { type: String, required: false }
+    inactiveClass: { type: String, required: false },
   },
   setup(props) {
     const { activeClass, exactActiveClass } = toRefs(props);
@@ -47,7 +47,7 @@ export default {
     );
 
     return { isExternalLink, computedClassName };
-  }
+  },
 };
 </script>
 
@@ -78,10 +78,5 @@ export default {
   .section-link:nth-of-type(7) {
     flex-basis: 100%;
   }
-}
-/* add multiple classes here for each item (staff, stockandco) etc */
-.shipandco-active {
-  background-color: var(--shipandco);
-  color: var(--black);
 }
 </style>

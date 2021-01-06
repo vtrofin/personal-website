@@ -2,6 +2,7 @@
   <HeroSection @update-caret-position="updateCaretPosition" />
   <GeneralSection :class-name="className" :title="title" :data="projectsData" />
   <!-- <Projects></Projects> <Work></Work> <Skills></Skills> <Interests></Interests> -->
+  <!-- General Section will need to handle Skills and Interests where there are no links provided!-->
   <span id="blinking-cursor" :style="computedStyle" />
 </template>
 

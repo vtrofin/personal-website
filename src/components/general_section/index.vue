@@ -178,12 +178,6 @@ p.item-text {
   bottom: 0;
 }
 
-/* add multiple classes here for each item (staff, stockandco) etc */
-.shipandco-background {
-  background-image: url('/shipandco_app.png');
-  /* background-size: cover; */
-}
-
 .item-logo {
   margin: 0.8rem auto 2rem;
   position: relative;
@@ -198,14 +192,5 @@ p.item-text {
 
 .section-link:hover .item-logo {
   transform: translateY(6px) translateZ(0);
-}
-
-/* add multiple classes here for each item (staff, stockandco) etc */
-.shipandco-logo {
-  background-image: url('/logo-shipandco.svg');
-}
-
-.stockandco-logo {
-  background-image: url('/logo-stockandco.svg');
 }
 </style>

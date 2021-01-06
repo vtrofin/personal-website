@@ -6,7 +6,7 @@
 import MainLayout from './layouts/MainLayout';
 export default {
   name: 'App',
-  components: { MainLayout }
+  components: { MainLayout },
 };
 </script>
 
@@ -47,16 +47,6 @@ body {
   display: grid;
   grid-template-rows: auto 1fr auto;
   margin: 0;
-}
-
-main {
-  width: 100%;
-}
-
-main .content {
-  width: 90%;
-  max-width: 1280px;
-  margin: 0 auto;
 }
 
 /* the color hack */

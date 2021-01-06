@@ -36,7 +36,7 @@ import { handleCursorReposition, handleCaretReposition } from '../helpers';
 export default {
   emits: {
     // https://vueschool.io/lessons/defining-custom-events-emits
-    'update-caret-position': null,
+    'update-caret-position': null
   },
   setup(props, context) {
     const { emit } = context;
@@ -53,7 +53,7 @@ export default {
           windowElem: window,
           domRef: cliWrapperActiveText.value,
           offsetY: 1,
-          store,
+          store
         });
         cliWrapperActiveText.value.focus();
         emit('update-caret-position');
@@ -114,7 +114,7 @@ export default {
         handleCaretReposition({
           windowElem: window,
           windowDocument: document,
-          domRef: cliWrapperActiveText.value,
+          domRef: cliWrapperActiveText.value
         });
       }
 
@@ -122,7 +122,7 @@ export default {
         windowElem: isSubmit ? undefined : window,
         domRef: cliWrapperActiveText.value,
         offsetY: isSubmit ? 2 : 1,
-        store,
+        store
       })
         .then(() => emit('update-caret-position'))
         .catch(err => console.log('Failed to update caret position', err.message));
@@ -151,9 +151,9 @@ export default {
       cliWrapperActiveText,
       handleInput,
       handleKeyUp,
-      refocusActiveTextLine,
+      refocusActiveTextLine
     };
-  },
+  }
 };
 </script>
 
@@ -226,6 +226,12 @@ export default {
   text-align: left;
   padding: 1rem 0.5rem;
   outline: none;
+  scrollbar-width: none;
+}
+
+.hero-section .cli-container::-webkit-scrollbar {
+  /* background: transparent; */
+  display: none;
 }
 
 .cli-container .bash-history {

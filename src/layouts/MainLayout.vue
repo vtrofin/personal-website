@@ -9,8 +9,6 @@
 </template>
 
 <script>
-import { ref, watch } from 'vue';
-import { useRoute } from 'vue-router';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 
@@ -18,23 +16,14 @@ export default {
   name: 'MainLayout',
   components: { Header, Footer },
   setup() {
-    const route = useRoute();
-    const modifierClass = ref('');
-
-    watch(
-      () => route.params,
-      () => {
-        if (route?.params?.project_item) {
-          return (modifierClass.value = `${route.params.project_item}-project-active`);
-        }
-
-        return (modifierClass.value = '');
-      }
-    );
-
-    return {
-      modifierClass,
-    };
+    return {};
   },
 };
 </script>
+<style>
+.shipandco-project-active {
+  background-color: var(--shipandco);
+  color: var(--black);
+  transition: background-color 0.3s ease; /* keep it here */
+}
+</style>

@@ -5,13 +5,13 @@
 </template>
 
 <script>
-import { ref, onBeforeUpdate } from 'vue';
-import { getHeaderClass } from '../helpers';
+import { getHeaderClass } from '../../helpers';
 
 export default {
   name: 'ProjectItemHeader',
   props: {
     modifierClass: { type: String, required: false, default: '.shipandco-project-active' },
+    projectItem: { type: String, required: false, default: null },
   },
   setup(props) {
     return {};
@@ -22,7 +22,6 @@ export default {
 <style>
 .project-header-container {
   width: 100%;
-  background-color: red; /*dev */
   padding: 21vh 0;
 }
 

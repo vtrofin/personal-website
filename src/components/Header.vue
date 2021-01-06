@@ -1,5 +1,5 @@
 <template>
-  <nav>
+  <nav :class="headerClass">
     <div class="nav-container">
       <ul class="nav-links">
         <li><HeaderLogo /></li>
@@ -21,12 +21,16 @@
         </li>
       </ul>
     </div>
-    <ProjectItemHeader v-if="isProjectPage" :modifier-class="modifierClass" />
+    <ProjectItemHeader
+      v-if="isProjectPage"
+      :modifier-class="headerClass"
+      :project-item="$route.params.project_item"
+    />
   </nav>
 </template>
 
 <script>
-import { ref, onBeforeUpdate } from 'vue';
+import { ref, onBeforeUpdate, watch } from 'vue';
 import { useRoute } from 'vue-router';
 import HeaderLogo from './HeaderLogo';
 import GithubLogo from './GithubLogo';
@@ -40,20 +44,29 @@ export default {
   setup(props) {
     const route = useRoute();
     const isProjectPage = ref(false);
+    const headerClass = ref('');
 
     const checkProjectPage = () => {
       return projects.includes(route?.params?.project_item);
     };
 
-    onBeforeUpdate(() => {
-      isProjectPage.value = checkProjectPage();
-    });
+    const isProject = checkProjectPage();
+    isProjectPage.value = isProject;
+    if (isProject) {
+      headerClass.value = `${route?.params?.project_item}-project-active`;
+    }
 
-    isProjectPage.value = checkProjectPage();
+    watch(
+      () => route.params,
+      () => {
+        isProjectPage.value = checkProjectPage();
+        headerClass.value = route?.params?.project_item
+          ? `${route.params.project_item}-project-active`
+          : '';
+      }
+    );
 
-    return {
-      isProjectPage,
-    };
+    return { isProjectPage, headerClass };
   },
 };
 </script>
@@ -68,11 +81,6 @@ export default {
   width: 90%;
   max-width: 1280px;
   margin: 0 auto;
-}
-
-.shipandco-project-active {
-  background-color: var(--shipandco);
-  color: var(--black);
 }
 
 .nav-links {

@@ -43,7 +43,7 @@ export const handleCursorReposition = ({ store, domRef, windowElem, offsetY = 0 
   return store.dispatch({
     type: 'hero/updateCoordinates',
     x: coordinates?.x ?? 0,
-    y: (coordinates?.y ?? 0) + offsetY
+    y: (coordinates?.y ?? 0) + offsetY,
   });
 };
 
@@ -56,14 +56,4 @@ export const handleCaretReposition = ({ windowElem, domRef, windowDocument }) =>
   range.collapse(true);
   sel.removeAllRanges();
   sel.addRange(range);
-};
-
-export const getHeaderClass = (modifier, currentClass = '') => {
-  // todo : handle case when prevClass is the same kind as the modifier (incoming class)
-  if (modifier) {
-    const prevClass = currentClass.split(' ')[0];
-    return prevClass + ' ' + modifier;
-  } else {
-    return currentClass.split(' ')[0];
-  }
 };

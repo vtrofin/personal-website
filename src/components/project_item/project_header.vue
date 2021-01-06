@@ -1,5 +1,7 @@
 <template>
-  <section :class="projectHeaderClass">this is the project item header</section>
+  <section class="project-header-container">
+    <div class="content">this is the project item header</div>
+  </section>
 </template>
 
 <script>
@@ -12,28 +14,19 @@ export default {
     modifierClass: { type: String, required: false, default: '.shipandco-project-active' }
   },
   setup(props) {
-    const projectHeaderClass = ref(getHeaderClass(props?.modifierClass, 'project-header'));
-
-    onBeforeUpdate(() => {
-      const newClass = getHeaderClass(props?.modifierClass, projectHeaderClass.value);
-      projectHeaderClass.value = newClass;
-    });
-
-    return {
-      projectHeaderClass
-    };
+    return {};
   }
 };
 </script>
 
 <style>
-.project-header {
-  transform: translateZ(0);
-  transition: background-color 0.25s ease;
+.project-header-container {
+  width: 100%;
+  background-color: red; /*dev */
+  padding: 21vh 0;
 }
 
-.shipandco-project-active {
-  color: var(--black);
-  background-color: var(--shipandco);
+.project-header-container .content {
+  border: 1px solid black; /*dev */
 }
 </style>

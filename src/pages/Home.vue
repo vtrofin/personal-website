@@ -1,11 +1,10 @@
 <template>
-  <HeroSection @update-caret-position="updateCaretPosition" />
-  <GeneralSection :class-name="className" :title="title" :data="projectsData" />
-  <!-- <Projects></Projects>
-  <Work></Work>
-  <Skills></Skills>
-  <Interests></Interests> -->
-  <span id="blinking-cursor" :style="computedStyle" />
+  <div class="content">
+    <HeroSection @update-caret-position="updateCaretPosition" />
+    <GeneralSection :class-name="className" :title="title" :data="projectsData" />
+    <!-- <Projects></Projects> <Work></Work> <Skills></Skills> <Interests></Interests> -->
+    <span id="blinking-cursor" :style="computedStyle" />
+  </div>
 </template>
 
 <script>
@@ -28,7 +27,7 @@ const projectsData = projects.map((project, i) => {
     // logoClass: 'shipandco-logo',
     // backgroundClass: 'shipandco-background',
     type: 'project',
-    project,
+    project
   };
 });
 
@@ -50,9 +49,9 @@ export default {
       title: 'Projects',
       projectsData,
       computedStyle,
-      updateCaretPosition,
+      updateCaretPosition
     };
-  },
+  }
 };
 </script>
 

@@ -28,7 +28,6 @@
 import HeaderLogo from './HeaderLogo';
 import GithubLogo from './GithubLogo';
 import { ref, onBeforeUpdate } from 'vue';
-import { getHeaderClass } from './helpers';
 
 export default {
   name: 'Header',
@@ -38,13 +37,7 @@ export default {
   },
   props: { modifierClass: { type: String, required: false, default: '' } },
   setup(props) {
-    const navClass = ref('with-nav-transition');
-
-    onBeforeUpdate(() => {
-      const newClass = getHeaderClass(props?.modifierClass, navClass.value);
-      navClass.value = newClass;
-    });
-
+    const navClass = ref('navigator');
     return { navClass };
   }
 };
@@ -69,11 +62,6 @@ export default {
     padding-top: 100px;
   }
   */
-}
-
-.with-nav-transition {
-  transform: translateZ(0);
-  transition: background-color 0.25s ease;
 }
 
 .shipandco-project-active {

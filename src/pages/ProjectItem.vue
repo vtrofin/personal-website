@@ -3,15 +3,18 @@
 </template>
 
 <script>
-import { onBeforeRouteUpdate, useRoute, useRouter } from 'vue-router';
-import { checkProjectRoute } from '../helpers';
+import { onBeforeRouteUpdate } from 'vue-router';
 import ProjectItemContent from '../components/project_item/project_content.vue';
 
 export default {
   name: 'ProjectItem',
   components: { ProjectItemContent },
-  setup() {
-    const route = useRoute();
+  setup(props) {
+    onBeforeRouteUpdate((to, from) => {
+      const params = to?.params;
+      const pathRedirect = checkProjectRoute(params);
+      return pathRedirect;
+    });
     return {};
   },
 };

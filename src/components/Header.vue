@@ -28,6 +28,7 @@
 import HeaderLogo from './HeaderLogo';
 import GithubLogo from './GithubLogo';
 import { ref, onBeforeUpdate } from 'vue';
+import { getHeaderClass } from './helpers';
 
 export default {
   name: 'Header',
@@ -40,12 +41,8 @@ export default {
     const navClass = ref('with-nav-transition');
 
     onBeforeUpdate(() => {
-      if (props?.modifierClass) {
-        const prevClass = navClass.value.split(' ')[0];
-        navClass.value = prevClass + ' ' + props.modifierClass;
-      } else {
-        navClass.value = 'with-nav-transition';
-      }
+      const newClass = getHeaderClass(props?.modifierClass, navClass.value);
+      navClass.value = newClass;
     });
 
     return { navClass };

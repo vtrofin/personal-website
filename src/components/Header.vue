@@ -37,13 +37,14 @@ export default {
   },
   props: { modifierClass: { type: String, required: false, default: '' } },
   setup(props) {
-    const navClass = ref('');
+    const navClass = ref('with-nav-transition');
 
     onBeforeUpdate(() => {
       if (props?.modifierClass) {
-        navClass.value = props.modifierClass;
+        const prevClass = navClass.value.split(' ')[0];
+        navClass.value = prevClass + ' ' + props.modifierClass;
       } else {
-        navClass.value = '';
+        navClass.value = 'with-nav-transition';
       }
     });
 
@@ -71,6 +72,10 @@ export default {
     padding-top: 100px;
   }
   */
+}
+
+.with-nav-transition {
+  transition: background-color 0.5s ease;
 }
 
 .shipandco-project-active {

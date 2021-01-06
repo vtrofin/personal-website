@@ -63,6 +63,6 @@ export const getHeaderClass = (modifier, currentClass = '') => {
     const prevClass = currentClass.split(' ')[0];
     return prevClass + ' ' + modifier;
   } else {
-    return currentClass;
+    return currentClass.split(' ')[0];
   }
 };

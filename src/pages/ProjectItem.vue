@@ -15,7 +15,7 @@
 import { watch, ref } from 'vue';
 import { onBeforeRouteUpdate, useRoute, useRouter } from 'vue-router';
 import { checkProjectRoute } from '../helpers';
-import ProjectItemHeader from '../components/project_item/header.vue';
+import ProjectItemHeader from '../components/project_item/project_header.vue';
 
 export default {
   name: 'ProjectItem',

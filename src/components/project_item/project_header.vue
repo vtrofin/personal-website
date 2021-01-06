@@ -27,6 +27,11 @@ export default {
 </script>
 
 <style>
+.project-header {
+  transform: translateZ(0);
+  transition: background-color 0.25s ease;
+}
+
 .shipandco-project-active {
   color: var(--black);
   background-color: var(--shipandco);

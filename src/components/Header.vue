@@ -72,7 +72,8 @@ export default {
 }
 
 .with-nav-transition {
-  transition: background-color 0.5s ease;
+  transform: translateZ(0);
+  transition: background-color 0.25s ease;
 }
 
 .shipandco-project-active {

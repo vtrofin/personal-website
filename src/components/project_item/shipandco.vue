@@ -20,7 +20,9 @@
     </p>
     <img src="/shipandco_app.png" /><br />
     <span class="caption-text"> a caption for my image</span>
-    <a href="#">some link</a><br />
+    <a href="#" class="content-link reversed" target="_blank" rel="noopener"
+      ><span>some link</span></a
+    ><br />
   </div>
 </template>
 

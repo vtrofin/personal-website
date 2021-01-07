@@ -6,6 +6,7 @@
     :class="computedClassName"
     :aria-label="ariaLabel"
     target="_blank"
+    rel="noopener"
   >
     <slot name="section-link-slot">Click here</slot>
   </a>

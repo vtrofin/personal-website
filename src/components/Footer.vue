@@ -7,7 +7,9 @@
       <h3 class="item-title">Want to work with me?</h3>
       <p class="item-text">
         I do take on freelance opportunities. Feel free to
-        <a class="contact-link" href="mailto:#?subject=Hi" target="_blank"> send me a message</a>.
+        <a class="contact-link" href="mailto:#?subject=Hi" target="_blank" rel="noopener">
+          <span>send me a message </span></a
+        >.
       </p>
     </div>
   </footer>

@@ -4,8 +4,9 @@
     :to="
       $route.params.project_item === 'stockandco' ? '/projects/shipandco' : '/projects/stockandco'
     "
+    class="content-link"
   >
-    <span class="nav-link-text">Work</span>
+    <span>Work</span>
   </router-link>
   <section>{{ $route.params.project_item }}</section>
 </template>

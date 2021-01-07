@@ -4,9 +4,6 @@
       <h1>{{ projectTitle }}</h1>
       <p :v-if="role" class="role-class">{{ role }}</p>
       <div :v-if="logoClass" :class="logoClass" />
-      <p>
-        <span :v-if="excerpt">{{ excerpt }}</span>
-      </p>
     </div>
   </section>
 </template>
@@ -51,11 +48,14 @@ export default {
 <style>
 .project-header-container {
   width: 100%;
-  padding: 12vh 0 30vh;
+  padding: 12vh 0 25vh;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
 }
 @media all and (min-width: 600px) {
   .project-header-container {
-    padding-bottom: 20vh;
+    padding-bottom: 30vh;
   }
 }
 
@@ -63,32 +63,32 @@ export default {
   font-size: 10vw;
   font-weight: 800;
   line-height: 1.2em;
-  max-width: 800px;
   margin: auto;
 }
 @media all and (min-width: 600px) {
   .project-header-container h1 {
-    font-size: 4.2rem;
+    font-size: 4rem;
   }
 }
 
-.project-header-container .item-logo,
-.project-header-container p {
-  margin: 5vh auto 0;
-  max-width: 800px;
-}
-@media all and (min-width: 600px) {
-  .project-header-container .item-logo,
-  .project-header-container p {
-    margin-top: 4.5rem;
-  }
-}
-
-.project-header-container span {
-  font-style: italic;
-}
 .project-header-container .role-class {
   font-size: 1.2rem;
-  margin-top: 0.8rem;
+  margin-top: 1.5rem;
+}
+
+@media all and (min-width: 600px) {
+  .project-header-container .role-class {
+    margin-top: 2rem;
+  }
+}
+
+.project-header-container .item-logo {
+  margin-top: 5vh;
+}
+
+@media all and (min-width: 600px) {
+  .project-header-container .item-logo {
+    margin-top: 4.5rem;
+  }
 }
 </style>

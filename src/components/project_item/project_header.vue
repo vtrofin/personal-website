@@ -62,7 +62,7 @@ export default {
   max-width: 800px;
   margin: auto;
 }
-@media all and (min-width: 1000px) {
+@media all and (min-width: 600px) {
   .project-header-container h1 {
     font-size: 4.2rem;
   }

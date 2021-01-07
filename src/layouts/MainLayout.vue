@@ -101,30 +101,8 @@ main .content,
   height: 10px;
 }
 
-/*
-
-
-
-
-.nav-link-text:before {
-  z-index: 5;
-  content: '';
+.content-image {
   width: 100%;
-  position: absolute;
-  bottom: -10px;
-  height: 3px;
-  left: 0;
-  display: block;
-  background: var(--scarlet);
-  transform: translate3d(0, 5px, 0);
-  transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  opacity: 0;
+  filter: drop-shadow(0 52px 74px rgba(0, 21, 64, 0.14));
 }
-
-.nav-links li:hover .nav-link-text:before {
-  opacity: 1;
-  transform: translateZ(0) scale3d(1.1, 1.1, 1.1) rotate(2deg);
-}
-
- */
 </style>

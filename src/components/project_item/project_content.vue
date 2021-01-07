@@ -100,11 +100,4 @@ export default {
   line-height: 150%;
   margin: 2rem auto;
 }
-
-.project-content img {
-  max-width: 100%;
-}
-
-.project-content a {
-}
 </style>

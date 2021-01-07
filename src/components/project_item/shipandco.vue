@@ -18,11 +18,15 @@
       tell us which of a set of variations is better at producing a certain effect, encouraging a
       behavior, or achieving a goal.
     </p>
-    <img src="/shipandco_app.png" /><br />
+    <img class="content-image" src="/shipandco_app.png" alt="" loading="lazy" /><br />
     <span class="caption-text"> a caption for my image</span>
     <a href="#" class="content-link reversed" target="_blank" rel="noopener"
       ><span>some link</span></a
     ><br />
+    <div class="project-summary">
+      <div>left</div>
+      <div>right</div>
+    </div>
   </div>
 </template>
 

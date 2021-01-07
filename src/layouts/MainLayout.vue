@@ -1,5 +1,5 @@
 <template>
-  <Header :modifier-class="modifierClass" />
+  <Header />
   <main>
     <div class="content">
       <router-view />
@@ -17,7 +17,7 @@ export default {
   components: { Header, Footer },
   setup() {
     return {};
-  },
+  }
 };
 </script>
 <style>

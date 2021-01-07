@@ -3,7 +3,7 @@ export function generalSectionArrayValidator(value) {
     return false;
   }
   for (let val of value) {
-    if (!val || !val.path || !val.callToAction || !val.title || !val.description) {
+    if (!val || !val.path || !val.callToAction || !val.title || !val.excerpt) {
       return false;
     }
   }

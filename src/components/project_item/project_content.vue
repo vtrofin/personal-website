@@ -1,5 +1,5 @@
 <template>
-  <component :is="projectContentComponent"></component>
+  <component :is="projectContentComponent" />
   <router-link
     :to="
       $route.params.project_item === 'stockandco' ? '/projects/shipandco' : '/projects/stockandco'
@@ -26,7 +26,7 @@ export default {
     StockandcoContent,
     UtilsContent,
     StaffContent,
-    ShopifyContent
+    ShopifyContent,
   },
   setup(props) {
     const route = useRoute();
@@ -40,9 +40,9 @@ export default {
     });
 
     return {
-      projectContentComponent
+      projectContentComponent,
     };
-  }
+  },
 };
 </script>
 <style>
@@ -60,34 +60,44 @@ export default {
   }
 }
 
-.project-content h1 {
+/* .project-content h1 {
   margin: 3rem auto 2rem;
   font-size: 2.5rem;
   font-weight: 700;
   scroll-margin-top: 2em;
-}
+} */
 .project-content h2 {
-  margin: 2.5rem auto 1.5rem;
+  margin: 2.5rem auto 0.5rem;
   font-size: 2rem;
   font-weight: 600;
   scroll-margin-top: 2em;
 }
 
 .project-content h3 {
-  margin: 2rem auto 1.2rem;
+  margin: 2rem auto 0.5rem;
   font-size: 1.7rem;
   font-weight: 500;
   scroll-margin-top: 1.5em;
 }
 
 .project-content p {
-  margin: 0 auto 2.5rem;
+  margin: 1.5rem auto 1rem;
   font-size: 1.2rem;
   scroll-margin-top: 1em;
+  line-height: 1.5rem;
 }
 
-.project-content span {
+.project-content span.italic-text {
   font-style: italic;
+}
+
+.project-content span.caption-text {
+  width: 100%;
+  display: block;
+  text-align: center;
+  font-size: 0.9rem;
+  line-height: 150%;
+  margin: 2rem auto;
 }
 
 .project-content img {

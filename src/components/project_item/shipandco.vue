@@ -9,6 +9,7 @@
       The process can’t tell us if one variation is unequivocally “better” than another, but it can
       tell us which of a set of variations is better at producing a certain effect, encouraging a
       behavior, or achieving a goal.
+      <span class="italic-text" />
     </p>
     <p>
       This is the project item content p A/B-testing is a guiding compass for making product
@@ -18,12 +19,13 @@
       behavior, or achieving a goal.
     </p>
     <img src="/shipandco_app.png" /><br />
+    <span class="caption-text"> a caption for my image</span>
     <a href="#">some link</a><br />
   </div>
 </template>
 
 <script>
 export default {
-  name: 'ShipandcoContent'
+  name: 'ShipandcoContent',
 };
 </script>

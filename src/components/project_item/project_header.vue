@@ -2,8 +2,11 @@
   <section class="project-header-container">
     <div class="content">
       <h1>{{ projectTitle }}</h1>
-      <div :v-if="logoClass" :class="logoClass"></div>
-      <p :v-if="excerpt">{{ excerpt }}</p>
+      <p :v-if="role" class="role-class">{{ role }}</p>
+      <div :v-if="logoClass" :class="logoClass" />
+      <p>
+        <span :v-if="excerpt">{{ excerpt }}</span>
+      </p>
     </div>
   </section>
 </template>
@@ -19,17 +22,18 @@ const setLocalState = (localState, projectData, props) => {
     : 'item-divider';
   localState.projectTitle = projectData.item_title || getFormattedTitle(props.projectItem);
   localState.excerpt = projectData.excerpt;
+  localState.role = projectData.role;
 };
 
 export default {
   name: 'ProjectItemHeader',
   props: {
     modifierClass: { type: String, required: false, default: '.shipandco-project-active' },
-    projectItem: { type: String, required: false, default: null }
+    projectItem: { type: String, required: false, default: null },
   },
   setup(props) {
     const store = useStore();
-    const localState = reactive({ logoClass: '', projectTitle: '', excerpt: '' });
+    const localState = reactive({ logoClass: '', projectTitle: '', excerpt: '', role: '' });
     const projectData = store.getters[`projects/${props.projectItem}/getProject`] || {};
     setLocalState(localState, projectData, props);
 
@@ -40,7 +44,7 @@ export default {
     });
 
     return localState;
-  }
+  },
 };
 </script>
 
@@ -73,13 +77,18 @@ export default {
   margin: 5vh auto 0;
   max-width: 800px;
 }
-.project-header-container p {
-  font-style: italic;
-}
 @media all and (min-width: 600px) {
   .project-header-container .item-logo,
   .project-header-container p {
     margin-top: 4.5rem;
   }
+}
+
+.project-header-container span {
+  font-style: italic;
+}
+.project-header-container .role-class {
+  font-size: 1.2rem;
+  margin-top: 0.8rem;
 }
 </style>

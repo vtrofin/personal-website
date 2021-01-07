@@ -14,7 +14,9 @@ import { reactive, computed, onBeforeUpdate } from 'vue';
 import { getFormattedTitle } from '../../helpers';
 
 const setLocalState = (localState, projectData, props) => {
-  localState.logoClass = projectData?.logoClass ? 'item-logo' + ' ' + projectData.logoClass : '';
+  localState.logoClass = projectData?.logoClass
+    ? 'item-logo' + ' ' + projectData.logoClass
+    : 'item-divider';
   localState.projectTitle = projectData.item_title || getFormattedTitle(props.projectItem);
   localState.excerpt = projectData.excerpt;
 };

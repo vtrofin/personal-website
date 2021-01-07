@@ -5,6 +5,7 @@
 <script>
 import { onBeforeRouteUpdate } from 'vue-router';
 import ProjectItemContent from '../components/project_item/project_content.vue';
+import { checkProjectRoute } from '../helpers';
 
 export default {
   name: 'ProjectItem',
@@ -16,7 +17,7 @@ export default {
       return pathRedirect;
     });
     return {};
-  },
+  }
 };
 </script>
 

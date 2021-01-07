@@ -32,10 +32,11 @@
 <script>
 import { ref, onBeforeUpdate, watch } from 'vue';
 import { useRoute } from 'vue-router';
+import { useStore } from 'vuex';
+
 import HeaderLogo from './HeaderLogo';
 import GithubLogo from './GithubLogo';
 import ProjectItemHeader from './project_item/project_header.vue';
-import { projects } from '../helpers';
 
 export default {
   name: 'Header',
@@ -43,6 +44,8 @@ export default {
   props: { modifierClass: { type: String, required: false, default: '' } },
   setup(props) {
     const route = useRoute();
+    const store = useStore();
+    const projects = store.getters['projects/getAllProjects'];
     const isProjectPage = ref(false);
     const headerClass = ref('');
 
@@ -67,7 +70,7 @@ export default {
     );
 
     return { isProjectPage, headerClass };
-  },
+  }
 };
 </script>
 

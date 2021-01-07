@@ -1,4 +1,4 @@
-export const projects = ['shipandco', 'stockandco', 'staff', 'utils', 'shopify'];
+const projects = ['shipandco', 'stockandco', 'staff', 'utils', 'shopify'];
 
 export const checkProjectRoute = (params = {}) => {
   const { project_item } = params;
@@ -19,7 +19,7 @@ export const getSectionLinkClassName = ({
   isExactActive,
   isActive,
   exactActiveClass,
-  activeClass,
+  activeClass
 }) => {
   if (isExactActive) {
     const computed = (exactActiveClass.value || '').split(' ');
@@ -30,4 +30,8 @@ export const getSectionLinkClassName = ({
     return ['section-link', ...computed];
   }
   return 'section-link';
+};
+
+export const getFormattedTitle = value => {
+  return value.charAt(0).toUpperCase() + value.substring(1);
 };

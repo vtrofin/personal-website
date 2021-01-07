@@ -11,24 +11,7 @@ import { ref } from 'vue';
 import { useStore } from 'vuex';
 import HeroSection from '../components/hero_component';
 import GeneralSection from '../components/general_section';
-import { projects } from '../helpers';
-
-const projectsData = projects.map((project, i) => {
-  const formatted = project.charAt(0).toUpperCase() + project.substring(1);
-
-  return {
-    path: `/projects/${project}`,
-    ariaLabel: `View ${formatted} project`,
-    callToAction: 'View Project',
-    title: formatted,
-    description:
-      'Some random text about this project. Nobody likes to wait… but you can make it less of a pain. I have created. An open-source collection of loading spinners animated with CSS.',
-    // logoClass: 'shipandco-logo',
-    // backgroundClass: 'shipandco-background',
-    type: 'project',
-    project,
-  };
-});
+import { getFormattedTitle } from '../helpers';
 
 export default {
   name: 'HomePage',
@@ -36,6 +19,29 @@ export default {
   setup(props) {
     const store = useStore();
     const computedStyle = ref({});
+    const allProjects = store.getters['projects/getAllProjects'];
+
+    const projectsData = allProjects.map((project, i) => {
+      const projectData = store.getters[`projects/${project}/getProject`];
+      const formatted = getFormattedTitle(project);
+      const path = `/projects/${project}`;
+
+      /* dev only */
+      const baseData = {
+        path,
+        ariaLabel: `View ${formatted} project`,
+        callToAction: 'View Project',
+        title: formatted,
+        excerpt:
+          'Some random text about this project. Nobody likes to wait… but you can make it less of a pain. I have created. An open-source collection of loading spinners animated with CSS.',
+        // logoClass: `${project}-logo`,
+        // backgroundClass: `${project}-background`,
+        type: 'project',
+        project
+      };
+
+      return { ...baseData, ...projectData };
+    });
 
     const updateCaretPosition = () => {
       const { x, y } = store.getters['hero/getCoordinates'];
@@ -48,9 +54,9 @@ export default {
       title: 'Projects',
       projectsData,
       computedStyle,
-      updateCaretPosition,
+      updateCaretPosition
     };
-  },
+  }
 };
 </script>
 

@@ -31,7 +31,6 @@ export default {
   setup(props) {
     const route = useRoute();
     const projectContentComponent = computed(() => {
-      console.log('route --->', route);
       const current = route?.params?.project_item;
       if (!current) {
         return undefined;
@@ -39,8 +38,6 @@ export default {
 
       return `${route.params.project_item}-content`;
     });
-    // <shipandco-content></shipandco-content>
-    // <stockandco-content></stockandco-content>
 
     return {
       projectContentComponent

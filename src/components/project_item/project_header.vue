@@ -10,8 +10,14 @@
 
 <script>
 import { useStore } from 'vuex';
-import { ref, onBeforeUpdate } from 'vue';
+import { reactive, computed, onBeforeUpdate } from 'vue';
 import { getFormattedTitle } from '../../helpers';
+
+const setLocalState = (localState, projectData, props) => {
+  localState.logoClass = projectData?.logoClass ? 'item-logo' + ' ' + projectData.logoClass : '';
+  localState.projectTitle = projectData.item_title || getFormattedTitle(props.projectItem);
+  localState.excerpt = projectData.excerpt;
+};
 
 export default {
   name: 'ProjectItemHeader',
@@ -21,24 +27,17 @@ export default {
   },
   setup(props) {
     const store = useStore();
-    const logoClass = ref('');
-
+    const localState = reactive({ logoClass: '', projectTitle: '', excerpt: '' });
     const projectData = store.getters[`projects/${props.projectItem}/getProject`] || {};
-    if (projectData?.logoClass) {
-      logoClass.value = 'item-logo' + ' ' + projectData.logoClass;
-    }
+    setLocalState(localState, projectData, props);
 
     onBeforeUpdate(() => {
       const getterPath = `projects/${props.projectItem}/getProject`;
       const newProjData = store.getters[getterPath];
-      logoClass.value = newProjData?.logoClass ? 'item-logo' + ' ' + newProjData.logoClass : '';
+      setLocalState(localState, newProjData, props);
     });
 
-    return {
-      logoClass,
-      projectTitle: projectData.item_title || getFormattedTitle(props.projectItem),
-      excerpt: projectData.excerpt
-    };
+    return localState;
   }
 };
 </script>

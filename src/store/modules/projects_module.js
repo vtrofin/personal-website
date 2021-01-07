@@ -1,4 +1,5 @@
 import shipandcoModule from './shipandco_module';
+import stockandcoModule from './stockandco_module';
 
 export default {
   state: () => ({
@@ -6,7 +7,8 @@ export default {
   }),
   namespaced: true,
   modules: {
-    shipandco: shipandcoModule
+    shipandco: shipandcoModule,
+    stockandco: stockandcoModule
   },
   getters: {
     getAllProjects: state => {

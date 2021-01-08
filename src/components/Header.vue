@@ -119,22 +119,4 @@ export default {
   opacity: 1;
   transform: translateZ(0) scale3d(1.1, 1.1, 1.1) rotate(2deg);
 }
-
-/* nav-links modifiers */
-.nav-links li a.utils,
-.nav-links li a.bentoandco {
-  color: var(--white);
-}
-.nav-link-text.utils:before,
-.nav-link-text.bentoandco:before {
-  background: var(--white);
-}
-
-.nav-links li a.staff {
-  color: var(--black);
-}
-
-.nav-link-text.staff:before {
-  background: var(--black);
-}
 </style>

@@ -7,7 +7,6 @@ import { userStore, useStore } from 'vuex';
 import { useRoute } from 'vue-router';
 import { watch, ref } from 'vue';
 import MainLayout from './layouts/MainLayout';
-import { checkProjectPage } from './helpers';
 
 export default {
   name: 'App',

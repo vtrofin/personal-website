@@ -23,15 +23,18 @@
     <a href="#" class="content-link reversed" target="_blank" rel="noopener"
       ><span>some link</span></a
     ><br />
-    <div class="project-summary">
-      <div>left</div>
-      <div>right</div>
-    </div>
+    <ProjectSummary />
   </div>
 </template>
 
 <script>
+import ProjectSummary from './project_summary';
+
 export default {
   name: 'ShipandcoContent',
+  components: { ProjectSummary },
+  setup(props) {
+    return {};
+  }
 };
 </script>

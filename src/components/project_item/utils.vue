@@ -8,11 +8,14 @@
       tell us which of a set of variations is better at producing a certain effect, encouraging a
       behavior, or achieving a goal.
     </p>
+    <ProjectSummary />
   </div>
 </template>
 
 <script>
+import ProjectSummary from './project_summary';
 export default {
-  name: 'UtilsContent'
+  name: 'UtilsContent',
+  components: { ProjectSummary }
 };
 </script>

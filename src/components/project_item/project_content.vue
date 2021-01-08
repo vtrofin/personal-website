@@ -27,7 +27,7 @@ export default {
     StockandcoContent,
     UtilsContent,
     StaffContent,
-    ShopifyContent,
+    ShopifyContent
   },
   setup(props) {
     const route = useRoute();
@@ -41,9 +41,9 @@ export default {
     });
 
     return {
-      projectContentComponent,
+      projectContentComponent
     };
-  },
+  }
 };
 </script>
 <style>

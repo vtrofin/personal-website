@@ -56,7 +56,7 @@ export default {
   --staff: #e76f51;
   --utils: #2a9d8f;
   --bentoandco: #264653;
-  --base-border: 15px;
+  --base-border: 5px;
 }
 
 html,

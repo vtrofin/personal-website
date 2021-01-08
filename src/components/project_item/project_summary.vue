@@ -41,7 +41,7 @@ export default {
   background-color: red;
   width: 100%;
   padding: 2rem 0.5rem;
-  border-radius: var(--baseBorder);
+  border-radius: var(--base-border);
 }
 @media all and (min-width: 600px) {
   .project-summary {

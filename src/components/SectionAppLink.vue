@@ -69,6 +69,15 @@ export default {
   /* add the background color here */
   /* add the text color for the box here  */
 }
+.section-link:first-of-type {
+  border-top-left-radius: var(--base-border);
+  border-top-right-radius: var(--base-border);
+}
+.section-link:last-of-type {
+  border-bottom-left-radius: var(--base-border);
+  border-bottom-right-radius: var(--base-border);
+}
+
 @media all and (min-width: 800px) {
   .section-link {
     flex-basis: 50%;

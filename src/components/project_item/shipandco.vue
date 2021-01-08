@@ -22,13 +22,13 @@
     <span class="caption-text"> a caption for my image</span>
     <a
       href="#"
-      class="content-link reversed"
+      :class="modifier ? 'content-link reversed' + ' ' + modifier : 'content-link reversed'"
       target="_blank"
       rel="noopener"
       aria-label="Click to see this awesome url"
       ><span>some link</span></a
     ><br />
-    <ProjectSummary />
+    <ProjectSummary :modifier="modifier" />
   </div>
 </template>
 
@@ -38,6 +38,9 @@ import ProjectSummary from './project_summary';
 export default {
   name: 'ShipandcoContent',
   components: { ProjectSummary },
+  props: {
+    modifier: { type: String, required: false, default: '' }
+  },
   setup(props) {
     return {};
   }

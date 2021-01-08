@@ -1,5 +1,5 @@
 <template>
-  <component :is="projectContentComponent" />
+  <component :is="projectContentComponent" :modifier="modifierClass" />
   <router-link
     :to="
       $route.params.project_item === 'stockandco' ? '/projects/shipandco' : '/projects/stockandco'
@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import { computed } from 'vue';
+import { computed, ref } from 'vue';
 import { useRoute } from 'vue-router';
 import ShipandcoContent from './shipandco';
 import StockandcoContent from './stockandco';
@@ -31,17 +31,24 @@ export default {
   },
   setup(props) {
     const route = useRoute();
+    const modifierClass = ref('');
+    if (route?.params?.project_item) {
+      modifierClass.value = route.params.project_item;
+    }
+
     const projectContentComponent = computed(() => {
       const current = route?.params?.project_item;
       if (!current) {
+        modifierClass.value = '';
         return undefined;
       }
-
+      modifierClass.value = `${route.params.project_item}-link`;
       return `${route.params.project_item}-content`;
     });
 
     return {
-      projectContentComponent
+      projectContentComponent,
+      modifierClass
     };
   }
 };

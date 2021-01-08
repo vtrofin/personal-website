@@ -3,10 +3,32 @@
 </template>
 
 <script>
+import { userStore, useStore } from 'vuex';
+import { useRoute } from 'vue-router';
+import { watch } from 'vue';
 import MainLayout from './layouts/MainLayout';
+import { checkProjectPage } from './helpers';
+
 export default {
   name: 'App',
-  components: { MainLayout }
+  components: { MainLayout },
+  setup(props) {
+    const route = useRoute();
+    const store = useStore();
+
+    watch(
+      () => route.params,
+      () => {
+        const project = route?.params?.project_item;
+        return store.dispatch({
+          type: 'projects/setActiveProject',
+          project: route?.params?.project_item ?? ''
+        });
+      }
+    );
+
+    return {};
+  }
 };
 </script>
 

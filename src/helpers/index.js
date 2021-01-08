@@ -42,7 +42,7 @@ export const checkProjectPage = (store, route) => {
   }
 
   const projects = store.getters['projects/getAllProjects'] || [];
-  const project = route?.params?.project_item;
+  const project = route?.params?.project_item || store.getters['projects/getActiveProject'];
 
   if (!projects.length || !project) {
     return false;

@@ -35,3 +35,18 @@ export const getSectionLinkClassName = ({
 export const getFormattedTitle = value => {
   return value.charAt(0).toUpperCase() + value.substring(1);
 };
+
+export const checkProjectPage = (store, route) => {
+  if (!store) {
+    throw new Error('missing arguments store');
+  }
+
+  const projects = store.getters['projects/getAllProjects'] || [];
+  const project = route?.params?.project_item;
+
+  if (!projects.length || !project) {
+    return false;
+  }
+
+  return projects.includes(project);
+};

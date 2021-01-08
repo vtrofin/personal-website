@@ -23,7 +23,8 @@
 
 <script>
 export default {
-  name: 'Footer'
+  name: 'Footer',
+  props: { modifier: { type: String, required: false, default: '' } }
 };
 </script>
 

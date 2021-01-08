@@ -1,39 +1,34 @@
 <template>
-  <nav :class="headerClass">
+  <nav :class="classModifiers.navClass">
     <div class="nav-container">
       <ul class="nav-links">
-        <li><HeaderLogo /></li>
+        <li><HeaderLogo :modifier-class="classModifiers.linkClass" /></li>
         <li>
-          <router-link to="#">
-            <span class="nav-link-text">Work</span>
+          <router-link to="#" :class="classModifiers.linkClass">
+            <span :class="classModifiers.spanClass">Work</span>
           </router-link>
         </li>
         <li>
-          <router-link to="/contact">
-            <span class="nav-link-text">Contact</span>
+          <router-link to="/contact" :class="classModifiers.linkClass">
+            <span :class="classModifiers.spanClass">Contact</span>
           </router-link>
         </li>
         <li>
-          <a href="https://vtrofin.github.io/"><span class="nav-link-text">CV</span></a>
+          <a href="https://vtrofin.github.io/" :class="classModifiers.linkClass"
+            ><span :class="classModifiers.spanClass">CV</span></a
+          >
         </li>
         <li class="auto-margin">
-          <GithubLogo />
+          <GithubLogo :modifier-class="classModifiers.linkClass" />
         </li>
       </ul>
     </div>
-    <ProjectItemHeader
-      v-if="isProjectPage"
-      :modifier-class="headerClass"
-      :project-item="$route.params.project_item"
-    />
+    <ProjectItemHeader v-if="isProjectPage" :modifier="moodifier" />
   </nav>
 </template>
 
 <script>
-import { ref, onBeforeUpdate, watch } from 'vue';
-import { useRoute } from 'vue-router';
-import { useStore } from 'vuex';
-
+import { computed, reactive } from 'vue';
 import HeaderLogo from './HeaderLogo';
 import GithubLogo from './GithubLogo';
 import ProjectItemHeader from './project_item/project_header.vue';
@@ -41,35 +36,16 @@ import ProjectItemHeader from './project_item/project_header.vue';
 export default {
   name: 'Header',
   components: { HeaderLogo, GithubLogo, ProjectItemHeader },
-  props: { modifierClass: { type: String, required: false, default: '' } },
+  props: { modifier: { type: String, required: false, default: '' } },
   setup(props) {
-    const route = useRoute();
-    const store = useStore();
-    const projects = store.getters['projects/getAllProjects'];
-    const isProjectPage = ref(false);
-    const headerClass = ref('');
+    const classModifiers = computed(() => {
+      const linkClass = props.modifier ? props.modifier : '';
+      const spanClass = props.modifier ? props.modifier + ' ' + 'nav-link-text' : 'nav-link-text';
+      const navClass = props.modifier ? props.modifier + '-project-active' : '';
+      return { linkClass, spanClass, navClass };
+    });
 
-    const checkProjectPage = () => {
-      return projects.includes(route?.params?.project_item);
-    };
-
-    const isProject = checkProjectPage();
-    isProjectPage.value = isProject;
-    if (isProject) {
-      headerClass.value = `${route?.params?.project_item}-project-active`;
-    }
-
-    watch(
-      () => route.params,
-      () => {
-        isProjectPage.value = checkProjectPage();
-        headerClass.value = route?.params?.project_item
-          ? `${route.params.project_item}-project-active`
-          : '';
-      }
-    );
-
-    return { isProjectPage, headerClass };
+    return { classModifiers };
   }
 };
 </script>
@@ -115,11 +91,10 @@ export default {
   position: relative;
   cursor: pointer;
   text-decoration: none;
-  color: #232320;
+  color: var(--black);
   font-size: 1.1rem;
   transition: color 0.2s linear;
 }
-
 .nav-link-text {
   position: relative;
   z-index: 10;
@@ -140,9 +115,26 @@ export default {
   transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   opacity: 0;
 }
-
 .nav-links li:hover .nav-link-text:before {
   opacity: 1;
   transform: translateZ(0) scale3d(1.1, 1.1, 1.1) rotate(2deg);
+}
+
+/* nav-links modifiers */
+.nav-links li a.utils,
+.nav-links li a.bentoandco {
+  color: var(--white);
+}
+.nav-link-text.utils:before,
+.nav-link-text.bentoandco:before {
+  background: var(--white);
+}
+
+.nav-links li a.staff {
+  color: var(--black);
+}
+
+.nav-link-text.staff:before {
+  background: var(--black);
 }
 </style>

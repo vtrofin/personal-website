@@ -1,23 +1,22 @@
 <template>
-  <Header />
+  <Header :modifier="modifier" />
   <main>
     <div class="content">
       <router-view />
     </div>
   </main>
-  <Footer />
+  <Footer :modifier="modifier" />
 </template>
 
 <script>
 import Header from '../components/Header';
 import Footer from '../components/Footer';
-
 export default {
   name: 'MainLayout',
-  components: { Header, Footer },
-  setup(props) {
-    return {};
-  }
+  props: {
+    modifier: { type: String, required: false, default: '' }
+  },
+  components: { Header, Footer }
 };
 </script>
 <style>

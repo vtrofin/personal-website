@@ -25,8 +25,7 @@ const setLocalState = (localState, projectData, props) => {
 export default {
   name: 'ProjectItemHeader',
   props: {
-    modifierClass: { type: String, required: false, default: '.shipandco-project-active' },
-    projectItem: { type: String, required: false, default: null },
+    modifier: { type: String, required: false, default: '' }
   },
   setup(props) {
     const store = useStore();
@@ -41,7 +40,7 @@ export default {
     });
 
     return localState;
-  },
+  }
 };
 </script>
 

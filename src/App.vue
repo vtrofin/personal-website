@@ -1,11 +1,11 @@
 <template>
-  <MainLayout />
+  <MainLayout :modifier="modifier" />
 </template>
 
 <script>
 import { userStore, useStore } from 'vuex';
 import { useRoute } from 'vue-router';
-import { watch } from 'vue';
+import { watch, ref } from 'vue';
 import MainLayout from './layouts/MainLayout';
 import { checkProjectPage } from './helpers';
 
@@ -15,19 +15,29 @@ export default {
   setup(props) {
     const route = useRoute();
     const store = useStore();
+    const modifier = ref('');
 
     watch(
       () => route.params,
       () => {
         const project = route?.params?.project_item;
-        return store.dispatch({
-          type: 'projects/setActiveProject',
-          project: route?.params?.project_item ?? ''
-        });
+        // saving current route param in the store just to have some fun with vuex
+        return store
+          .dispatch({
+            type: 'projects/setActiveProject',
+            project: route?.params?.project_item ?? ''
+          })
+          .then(() => {
+            modifier.value = route?.params?.project_item ?? '';
+          })
+          .catch(err => {
+            console.error('Failed to set current project', err.message);
+            modifier.value = '';
+          });
       }
     );
 
-    return {};
+    return { modifier };
   }
 };
 </script>

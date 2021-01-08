@@ -2,11 +2,11 @@ import shipandcoModule from './shipandco_module';
 import stockandcoModule from './stockandco_module';
 import staffModule from './staff_module';
 import utilsModule from './utils_module';
-import shopifyModule from './shopify_module';
+import bentoandcoModule from './bentoandco_module';
 
 export default {
   state: () => ({
-    projects: ['shipandco', 'stockandco', 'staff', 'utils', 'shopify']
+    projects: ['shipandco', 'stockandco', 'staff', 'utils', 'bentoandco']
   }),
   namespaced: true,
   modules: {
@@ -14,7 +14,7 @@ export default {
     stockandco: stockandcoModule,
     staff: staffModule,
     utils: utilsModule,
-    shopify: shopifyModule
+    bentoandco: bentoandcoModule
   },
   getters: {
     getAllProjects: state => {

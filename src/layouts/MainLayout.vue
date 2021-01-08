@@ -17,7 +17,7 @@ export default {
   components: { Header, Footer },
   setup() {
     return {};
-  },
+  }
 };
 </script>
 <style>
@@ -32,16 +32,35 @@ main .content,
   margin: 0 auto;
 }
 
-/* add multiple classes here for each item (staff, stockandco) etc */
-.shipandco-active {
-  background-color: var(--shipandco);
-  color: var(--black);
-}
-
+/* Modifier classes */
+.shipandco-active,
 .shipandco-project-active {
   background-color: var(--shipandco);
   color: var(--black);
-  transition: background-color 0.3s ease; /* keep it here */
+}
+.stockandco-active,
+.stockandco-project-active {
+  background-color: var(--stockandco);
+  color: var(--black);
+}
+.staff-active,
+.staff-project-active {
+  background-color: var(--staff);
+  color: var(--black);
+}
+.utils-active,
+.utils-project-active {
+  background-color: var(--utils);
+  color: var(--white);
+}
+.bentoandco-active,
+.bentoandco-project-active {
+  background-color: var(--bentoandco);
+  color: var(--white);
+}
+
+.shipandco-project-active {
+  transition: background-color 0.3s ease;
 }
 
 .shipandco-background {
@@ -52,9 +71,11 @@ main .content,
 .shipandco-logo {
   background-image: url('/logo-shipandco.svg');
 }
-
 .stockandco-logo {
   background-image: url('/logo-stockandco.svg');
+}
+.bentoandco-logo {
+  background-image: url('/logo-bentoandco.svg');
 }
 
 .content-link,
@@ -104,5 +125,6 @@ main .content,
 .content-image {
   width: 100%;
   filter: drop-shadow(0 52px 74px rgba(0, 21, 64, 0.14));
+  border-radius: var(--base-border);
 }
 </style>

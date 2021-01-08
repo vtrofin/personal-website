@@ -20,7 +20,12 @@
     </p>
     <img class="content-image" src="/shipandco_app.png" alt="" loading="lazy" /><br />
     <span class="caption-text"> a caption for my image</span>
-    <a href="#" class="content-link reversed" target="_blank" rel="noopener"
+    <a
+      href="#"
+      class="content-link reversed"
+      target="_blank"
+      rel="noopener"
+      aria-label="Click to see this awesome url"
       ><span>some link</span></a
     ><br />
     <ProjectSummary />

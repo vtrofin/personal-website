@@ -35,7 +35,7 @@ export default {
     ...RouterLink.props,
     ariaLabel: { type: String, required: false, default: 'View section' },
     // eslint-disable-next-line
-    inactiveClass: { type: String, required: false },
+    inactiveClass: { type: String, required: false }
   },
   setup(props) {
     const { activeClass, exactActiveClass } = toRefs(props);
@@ -48,7 +48,7 @@ export default {
     );
 
     return { isExternalLink, computedClassName };
-  },
+  }
 };
 </script>
 
@@ -65,7 +65,6 @@ export default {
   text-decoration: none;
   box-sizing: border-box;
   position: relative;
-  border: 1px solid red; /* dev */
 
   /* add the background color here */
   /* add the text color for the box here  */

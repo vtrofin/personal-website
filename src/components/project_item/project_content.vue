@@ -18,7 +18,7 @@ import ShipandcoContent from './shipandco';
 import StockandcoContent from './stockandco';
 import UtilsContent from './utils';
 import StaffContent from './staff';
-import ShopifyContent from './shopify';
+import BentoandcoContent from './bentoandco';
 
 export default {
   name: 'ProjectItemContent',
@@ -27,7 +27,7 @@ export default {
     StockandcoContent,
     UtilsContent,
     StaffContent,
-    ShopifyContent
+    BentoandcoContent
   },
   setup(props) {
     const route = useRoute();

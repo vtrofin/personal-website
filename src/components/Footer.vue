@@ -7,7 +7,13 @@
       <h3 class="item-title">Want to work with me?</h3>
       <p class="item-text">
         I do take on freelance opportunities. Feel free to
-        <a class="contact-link" href="mailto:#?subject=Hi" target="_blank" rel="noopener">
+        <a
+          class="contact-link reversed"
+          href="mailto:#?subject=Hi"
+          target="_blank"
+          rel="noopener"
+          aria-label="Write me an email"
+        >
           <span>send me a message </span></a
         >.
       </p>
@@ -17,7 +23,7 @@
 
 <script>
 export default {
-  name: 'Footer',
+  name: 'Footer'
 };
 </script>
 

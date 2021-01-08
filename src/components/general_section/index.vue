@@ -35,8 +35,8 @@ export default {
     title: { type: String, required: true },
     // eslint-disable-next-line
     data: { validator: generalSectionArrayValidator },
-    type: { type: String, required: false, default: 'project' },
-  },
+    type: { type: String, required: false, default: 'project' }
+  }
 };
 </script>
 
@@ -188,6 +188,9 @@ p.item-text {
   height: 64px;
   transform: translateZ(0);
   transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+.item-logo.bentoandco-logo {
+  width: 128px;
 }
 
 .section-link:hover .item-logo {

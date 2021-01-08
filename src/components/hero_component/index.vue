@@ -7,7 +7,14 @@
       <p>
         I'm a full-stack web engineer with a passion for bringing products to life. Currently living
         in Kyoto and working at
-        <a href="https://www.shipandco.com/ja/" aria-label="Visit Ship&co website">Ship&co</a>
+        <a
+          class="content-link"
+          target="_blank"
+          rel="noopener"
+          href="https://www.shipandco.com/ja/"
+          aria-label="Visit Ship&co website"
+          >Ship&co</a
+        >
       </p>
     </div>
     <div class="cli-container" ref="cliContainer">
@@ -217,7 +224,7 @@ export default {
   height: 350px;
   background-color: var(--black);
   color: var(--white);
-  border-radius: 15px;
+  border-radius: var(--base-border);
   overflow-x: hidden;
   overflow-y: scroll;
   font-family: Monaco, Arial, Helvetica, sans-serif;

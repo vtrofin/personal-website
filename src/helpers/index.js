@@ -1,4 +1,4 @@
-const projects = ['shipandco', 'stockandco', 'staff', 'utils', 'shopify'];
+const projects = ['shipandco', 'stockandco', 'staff', 'utils', 'bentoandco'];
 
 export const checkProjectRoute = (params = {}) => {
   const { project_item } = params;

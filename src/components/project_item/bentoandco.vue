@@ -15,7 +15,7 @@
 <script>
 import ProjectSummary from './project_summary';
 export default {
-  name: 'ShopifyContent',
+  name: 'BentoandcoContent',
   components: { ProjectSummary }
 };
 </script>

@@ -24,7 +24,7 @@
 <script>
 export default {
   name: 'Footer',
-  props: { modifier: { type: String, required: false, default: '' } }
+  props: { modifier: { type: String, required: false, default: '' } },
 };
 </script>
 
@@ -43,6 +43,7 @@ footer .section-header {
   width: 90%;
   max-width: 1280px;
   margin: 0 auto;
+  line-height: 0.5em;
 }
 .footer-container {
   width: 90%;
@@ -50,8 +51,20 @@ footer .section-header {
   color: black;
   margin: 0 auto;
   padding: 0;
+  text-align: left;
 }
 .footer-container p.item-text {
   max-width: 100%;
+  padding-bottom: 2.5rem;
+}
+.footer-container h3.item-title {
+  font-size: 8vmin;
+  font-weight: 500;
+}
+
+@media all and (min-width: 600px) {
+  .footer-container h3.item-title {
+    font-size: 2.2rem;
+  }
 }
 </style>

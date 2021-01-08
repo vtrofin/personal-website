@@ -33,15 +33,31 @@ export default {
   setup(props) {
     const currentYear = `${new Date().getFullYear()}`;
     return { currentYear };
-  }
+  },
 };
 </script>
 <style>
+.summary-container {
+  margin: 3.5rem auto;
+  box-sizing: border-box;
+}
+.project-content .summary-container h3 {
+  margin: 0;
+  z-index: 10;
+  font-weight: 500;
+  line-height: 0.5em;
+  font-size: 8vmin;
+}
+@media all and (min-width: 600px) {
+  .project-content .summary-container h3 {
+    font-size: 2.2rem;
+  }
+}
+
 .summary {
   display: flex;
   box-sizing: border-box;
-  margin: 3.5rem auto;
-  background-color: red;
+  background-color: var(--french-gray);
   width: 100%;
   padding: 2rem 0.5rem;
   border-radius: var(--base-border);

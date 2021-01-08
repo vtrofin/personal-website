@@ -43,7 +43,7 @@ import { handleCursorReposition, handleCaretReposition } from '../helpers';
 export default {
   emits: {
     // https://vueschool.io/lessons/defining-custom-events-emits
-    'update-caret-position': null
+    'update-caret-position': null,
   },
   setup(props, context) {
     const { emit } = context;
@@ -60,7 +60,7 @@ export default {
           windowElem: window,
           domRef: cliWrapperActiveText.value,
           offsetY: 1,
-          store
+          store,
         });
         cliWrapperActiveText.value.focus();
         emit('update-caret-position');
@@ -121,7 +121,7 @@ export default {
         handleCaretReposition({
           windowElem: window,
           windowDocument: document,
-          domRef: cliWrapperActiveText.value
+          domRef: cliWrapperActiveText.value,
         });
       }
 
@@ -129,7 +129,7 @@ export default {
         windowElem: isSubmit ? undefined : window,
         domRef: cliWrapperActiveText.value,
         offsetY: isSubmit ? 2 : 1,
-        store
+        store,
       })
         .then(() => emit('update-caret-position'))
         .catch(err => console.log('Failed to update caret position', err.message));
@@ -158,9 +158,9 @@ export default {
       cliWrapperActiveText,
       handleInput,
       handleKeyUp,
-      refocusActiveTextLine
+      refocusActiveTextLine,
     };
-  }
+  },
 };
 </script>
 
@@ -195,7 +195,7 @@ export default {
 }
 
 .hero-section .hero-title h1 {
-  font-size: 3.2rem;
+  font-size: 10vmin;
   letter-spacing: -2px;
   line-height: 1.1;
   text-align: left;
@@ -208,11 +208,12 @@ export default {
   text-align: left;
   color: var(--gray);
 }
-
-@media all and (min-width: 1000px) {
+@media all and (min-width: 600px) {
   .hero-section .hero-title h1 {
-    font-size: 4.2rem;
+    font-size: 4rem;
   }
+}
+@media all and (min-width: 1000px) {
   .hero-section .hero-subtitle p {
     padding-right: 3.5rem;
   }
@@ -261,10 +262,8 @@ export default {
   color: inherit;
 }
 
-@media all and (min-width: 768px) {
-  span.text-block {
-    display: block;
-  }
+span.text-block {
+  display: block;
 }
 
 @media all and (min-width: 1000px) {

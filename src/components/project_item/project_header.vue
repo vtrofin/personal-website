@@ -25,7 +25,7 @@ const setLocalState = (localState, projectData, props) => {
 export default {
   name: 'ProjectItemHeader',
   props: {
-    modifier: { type: String, required: false, default: '' }
+    modifier: { type: String, required: false, default: '' },
   },
   setup(props) {
     const store = useStore();
@@ -40,7 +40,7 @@ export default {
     });
 
     return localState;
-  }
+  },
 };
 </script>
 
@@ -59,7 +59,7 @@ export default {
 }
 
 .project-header-container h1 {
-  font-size: 10vw;
+  font-size: 10vmin;
   font-weight: 800;
   line-height: 1.2em;
   margin: auto;

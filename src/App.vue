@@ -24,7 +24,7 @@ export default {
         return store
           .dispatch({
             type: 'projects/setActiveProject',
-            project: route?.params?.project_item ?? ''
+            project: route?.params?.project_item ?? '',
           })
           .then(() => {
             modifier.value = route?.params?.project_item ?? '';
@@ -37,7 +37,7 @@ export default {
     );
 
     return { modifier };
-  }
+  },
 };
 </script>
 
@@ -57,6 +57,8 @@ export default {
   --utils: #2a9d8f;
   --bentoandco: #264653;
   --base-border: 5px;
+  --misty-rose: #f0efeb;
+  --french-gray: #eddcd2;
 }
 
 html,

@@ -35,7 +35,7 @@ export default {
     ...RouterLink.props,
     ariaLabel: { type: String, required: false, default: 'View section' },
     // eslint-disable-next-line
-    inactiveClass: { type: String, required: false }
+    inactiveClass: { type: String, required: false },
   },
   setup(props) {
     const { activeClass, exactActiveClass } = toRefs(props);
@@ -48,7 +48,7 @@ export default {
     );
 
     return { isExternalLink, computedClassName };
-  }
+  },
 };
 </script>
 
@@ -78,7 +78,7 @@ export default {
   border-bottom-right-radius: var(--base-border);
 }
 
-@media all and (min-width: 800px) {
+@media all and (min-width: 1000px) {
   .section-link {
     flex-basis: 50%;
   }

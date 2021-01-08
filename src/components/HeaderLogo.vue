@@ -22,7 +22,7 @@ export default {
   props: { modifierClass: { type: String, default: '', required: false } },
   setup(props) {
     return {};
-  }
+  },
 };
 </script>
 <style scoped>
@@ -37,7 +37,7 @@ export default {
   bottom: -15px;
   transform: translate3d(-50%, 0, 0);
 }
-@media all and (min-width: 500px) {
+@media all and (min-width: 600px) {
   .main-link {
     display: block;
   }

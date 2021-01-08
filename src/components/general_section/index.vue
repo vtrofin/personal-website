@@ -35,8 +35,8 @@ export default {
     title: { type: String, required: true },
     // eslint-disable-next-line
     data: { validator: generalSectionArrayValidator },
-    type: { type: String, required: false, default: 'project' }
-  }
+    type: { type: String, required: false, default: 'project' },
+  },
 };
 </script>
 
@@ -52,7 +52,7 @@ export default {
 }
 
 .section-header {
-  font-size: 16vw;
+  font-size: 10vmin;
   font-weight: 800;
   letter-spacing: -0.1rem;
   text-align: left;
@@ -68,13 +68,7 @@ export default {
 }
 @media all and (min-width: 600px) {
   .section-header {
-    font-size: 18vw;
-  }
-}
-
-@media all and (min-width: 750px) {
-  .section-header {
-    font-size: 8rem;
+    font-size: 4rem;
   }
 }
 

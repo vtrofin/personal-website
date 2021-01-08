@@ -27,7 +27,7 @@ export default {
     StockandcoContent,
     UtilsContent,
     StaffContent,
-    BentoandcoContent
+    BentoandcoContent,
   },
   setup(props) {
     const route = useRoute();
@@ -48,9 +48,9 @@ export default {
 
     return {
       projectContentComponent,
-      modifierClass
+      modifierClass,
     };
-  }
+  },
 };
 </script>
 <style>
@@ -68,12 +68,6 @@ export default {
   }
 }
 
-/* .project-content h1 {
-  margin: 3rem auto 2rem;
-  font-size: 2.5rem;
-  font-weight: 700;
-  scroll-margin-top: 2em;
-} */
 .project-content h2 {
   margin: 2.5rem auto 0.5rem;
   font-size: 2rem;

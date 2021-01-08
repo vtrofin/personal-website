@@ -17,7 +17,7 @@ const setLocalState = (localState, projectData, props) => {
   localState.logoClass = projectData?.logoClass
     ? 'item-logo' + ' ' + projectData.logoClass
     : 'item-divider';
-  localState.projectTitle = projectData.item_title || getFormattedTitle(props.projectItem);
+  localState.projectTitle = projectData.item_title || getFormattedTitle(props.modifier);
   localState.excerpt = projectData.excerpt;
   localState.role = projectData.role;
 };
@@ -30,11 +30,11 @@ export default {
   setup(props) {
     const store = useStore();
     const localState = reactive({ logoClass: '', projectTitle: '', excerpt: '', role: '' });
-    const projectData = store.getters[`projects/${props.projectItem}/getProject`] || {};
+    const projectData = store.getters[`projects/${props.modifier}/getProject`] || {};
     setLocalState(localState, projectData, props);
 
     onBeforeUpdate(() => {
-      const getterPath = `projects/${props.projectItem}/getProject`;
+      const getterPath = `projects/${props.modifier}/getProject`;
       const newProjData = store.getters[getterPath];
       setLocalState(localState, newProjData, props);
     });

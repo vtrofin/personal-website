@@ -23,7 +23,7 @@
         </li>
       </ul>
     </div>
-    <ProjectItemHeader v-if="isProjectPage" :modifier="moodifier" />
+    <ProjectItemHeader v-if="modifier" :modifier="modifier" />
   </nav>
 </template>
 

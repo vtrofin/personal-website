@@ -52,11 +52,6 @@ export default {
   margin-left: auto;
   margin-right: auto;
 }
-@media all and (min-width: 600px) {
-  .project-header-container {
-    padding-bottom: 30vh;
-  }
-}
 
 .project-header-container h1 {
   font-size: 10vmin;

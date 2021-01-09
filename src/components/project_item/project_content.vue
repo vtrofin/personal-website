@@ -8,7 +8,6 @@
   >
     <span>Work</span>
   </router-link>
-  <section>{{ $route.params.project_item }}</section>
 </template>
 
 <script>

@@ -2,7 +2,7 @@
   <main>
     <h1>Contact me...</h1>
     <p>...if you can!</p>
-    <form method="post" action="#">
+    <form method="post" @submit.prevent="handleFormSubmit">
       <div class="form-input">
         <label for="name"> Name </label>
         <input id="name" type="text" name="name" />
@@ -22,7 +22,6 @@
       <button type="submit">
         Send
       </button>
-      <input type="reset" value="Clear" />
     </form>
   </main>
 </template>
@@ -32,6 +31,14 @@
 // make a form for the fun of it
 export default {
   name: 'Contact',
+  setup(props) {
+    const handleFormSubmit = event => {
+      console.log('it works');
+    };
+    return {
+      handleFormSubmit,
+    };
+  },
 };
 </script>
 <style scoped>

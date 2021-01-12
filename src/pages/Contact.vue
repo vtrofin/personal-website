@@ -62,7 +62,7 @@ export default {
     const templateData = reactive({
       isLoading: false,
       formSubmitMessage: '',
-      messageClass: 'form-result'
+      messageClass: 'form-result',
     });
 
     const handleFormSubmit = async event => {
@@ -74,13 +74,15 @@ export default {
         const response = await fetch(url, {
           method: 'POST',
           headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
           },
-          body: JSON.stringify(data)
+          body: JSON.stringify(data),
         });
         const res = await response.json();
         templateData.formSubmitMessage = res.message || '';
-        templateData.messageClass = 'form-result success';
+        templateData.messageClass = `form-result ${
+          res && res.response === 'error' ? 'error' : 'success'
+        }`;
         setTimeout(timeOutHandler(templateData), timeoutVal);
       } catch (err) {
         templateData.formSubmitMessage = `Error: ${err.message}`;
@@ -91,9 +93,9 @@ export default {
 
     return {
       handleFormSubmit,
-      templateData
+      templateData,
     };
-  }
+  },
 };
 </script>
 <style scoped>

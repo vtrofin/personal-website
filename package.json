@@ -3,13 +3,18 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "serve": "vue-cli-service serve --port 3000",
+    "serve": "vue-cli-service serve --port 3002",
+    "serve_api": "vercel dev --listen 3002",
     "build": "vue-cli-service build",
     "preview-locally": "serve -s dist",
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
     "core-js": "^3.6.5",
+    "googleapis": "^67.0.0",
+    "got": "^11.8.1",
+    "lodash.get": "^4.4.2",
+    "nodemailer": "^6.4.17",
     "vue": "^3.0.0",
     "vue-router": "^4.0.0-rc.3",
     "vuex": "^4.0.0-rc.1"

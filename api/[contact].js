@@ -4,10 +4,10 @@ const { OAuth2 } = google.auth;
 const get = require('lodash.get');
 
 module.exports = (req, res) => {
-  // const body = req.body;
+  const body = req.body;
+  const headers = req.headers || {};
   // const cookies = req.cookies;
-  const headers = req.headers;
-  const query = req.query;
+  // const query = req.query;
 
   const clientId = process.env.CLIENT_ID;
   const secret = process.env.CLIENT_SECRET;
@@ -45,6 +45,18 @@ module.exports = (req, res) => {
     })
     .catch((err, info = {}) => {
       const message = err.message;
-      return res.status(400).json({ headers, message, response: info.response }); // headers is dev only
+      return res
+        .status(400)
+        .json({
+          headers,
+          message,
+          response: info.response,
+          receiver,
+          sender,
+          clientId,
+          secret,
+          refreshToken,
+          redirectUrl
+        }); // headers is dev only
     });
 };

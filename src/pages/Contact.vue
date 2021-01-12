@@ -19,19 +19,24 @@
         <label for="message"> Message </label>
         <textarea id="message" name="message" rows="5" />
       </div>
-      <button type="submit" :disabled="isLoading">
+      <button type="submit" :disabled="templateData.isLoading">
         Send
       </button>
-      <div class="form-result">{{ formSubmitMessage }}</div>
+      <div :class="templateData.messageClass" :v-if="templateData.formSubmitMessage">
+        {{ templateData.formSubmitMessage }}
+      </div>
     </form>
   </main>
 </template>
 
 <script>
-import { ref, computed } from 'vue';
-const timeOutHandler = isLoading => {
+import { reactive } from 'vue';
+
+const timeOutHandler = reactiveVal => {
   return () => {
-    isLoading.value = false;
+    reactiveVal.isLoading = false;
+    reactiveVal.messageClass = 'form-result';
+    reactiveVal.formSubmitMessage = '';
   };
 };
 
@@ -53,15 +58,18 @@ const readForm = formTarget => {
 export default {
   name: 'Contact',
   setup(props) {
-    const isLoading = ref(false);
-    const formSubmitMessage = ref('');
     const timeoutVal = (process.env.NODE_ENV === 'development' ? 3 : 30) * 1000;
+    const templateData = reactive({
+      isLoading: false,
+      formSubmitMessage: '',
+      messageClass: 'form-result'
+    });
 
     const handleFormSubmit = async event => {
       const data = readForm(event.target);
 
       try {
-        isLoading.value = true;
+        templateData.isLoading = true;
         const url = `/api/contact?token=${process.env.VUE_APP_CONTACT_TOKEN}`;
         const response = await fetch(url, {
           method: 'POST',
@@ -71,18 +79,19 @@ export default {
           body: JSON.stringify(data)
         });
         const res = await response.json();
-        formSubmitMessage.value = res.message;
-        setTimeout(timeOutHandler(isLoading), timeoutVal);
+        templateData.formSubmitMessage = res.message || '';
+        templateData.messageClass = 'form-result success';
+        setTimeout(timeOutHandler(templateData), timeoutVal);
       } catch (err) {
-        formSubmitMessage.value = `Error: ${err.message}`;
-        setTimeout(timeOutHandler(isLoading), timeoutVal);
+        templateData.formSubmitMessage = `Error: ${err.message}`;
+        templateData.messageClass = 'form-result error';
+        setTimeout(timeOutHandler(templateData), timeoutVal);
       }
     };
 
     return {
       handleFormSubmit,
-      isLoading,
-      formSubmitMessage
+      templateData
     };
   }
 };
@@ -100,5 +109,15 @@ label {
   text-align: left;
   width: 60px;
   padding-right: 3rem;
+}
+.form-result {
+  padding: 0.5rem;
+  margin: 1rem auto;
+}
+.form-result.success {
+  border: 1px solid green;
+}
+.form-result.error {
+  border: 1px solid red;
 }
 </style>

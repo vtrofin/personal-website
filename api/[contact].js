@@ -5,8 +5,12 @@ const { OAuth2 } = google.auth;
 const get = require('lodash.get');
 
 module.exports = async (req, res) => {
-  // const body = req.body;
-  // const headers = req.headers;
+  if (req.method !== 'POST') {
+    return res.status(400).json({
+      message: `${req.method} method not available. Try a POST request`,
+      response: 'error'
+    });
+  }
 
   // don't spend too much time on this. if someone gets the token from the code so be it
   const dumbAssToken = get(req, 'query.token', '');

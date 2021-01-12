@@ -1,4 +1,4 @@
-# personal-website
+# My personal website
 
 ## Project setup
 
@@ -7,6 +7,14 @@ npm install
 ```
 
 ### Compiles and hot-reloads for development
+
+- Run with the vercel serverless api
+
+```
+npm run serve_api
+```
+
+- Run just the vueJS front-end
 
 ```
 npm run serve
@@ -24,9 +32,11 @@ npm run build
 npm run lint
 ```
 
+## Configure the app
+
 ### Customize configuration
 
-See [Configuration Reference](https://cli.vuejs.org/config/).
+See the Vuejs CLI [Configuration Reference](https://cli.vuejs.org/config/).
 
 ### Debugger config
 
@@ -41,17 +51,13 @@ Just use regular old Launch Chrome configuration
 },
 ```
 
-### Vercel docs:
-
-See limits [here](https://vercel.com/docs/platform/limits#serverless-function-size)
-Vercel CLI [reference](https://vercel.com/docs/cli#commands/overview/basic-usage)
-
 ### Nodemailer
 
-Mailing app done with user testmaa33@gmail.com. See [here](https://console.developers.google.com/apis/credentials?project=send-email-from-web-form) the app details
+Mailing app done with user testmaa33@gmail.com. See the app details [here](https://console.developers.google.com/apis/credentials?project=send-email-from-web-form)
 
-### env variables
+### Env variables
 
+```
 CLIENT_ID=
 CLIENT_SECRET=
 REFRESH_TOKEN=
@@ -59,3 +65,13 @@ SENDER_EMAIL=testmaa33@gmail.com
 RECEIVER_EMAIL=
 REDIRECT_URL=https://developers.google.com/oauthplayground
 VUE_APP_CONTACT_TOKEN=
+```
+
+- Set up Vercel production env variables [here](https://vercel.com/victortrofin/personal-website/settings/environment-variables)
+- Notes about [VueJS and env variables](https://cli.vuejs.org/guide/mode-and-env.html#example-staging-mode)
+
+### Vercel docs:
+
+- See limits [here](https://vercel.com/docs/platform/limits#serverless-function-size)
+- Vercel CLI [reference](https://vercel.com/docs/cli#commands/overview/basic-usage)
+- Notes about [Vercel and env variables](https://vercel.com/docs/environment-variables#development-environment-variables)

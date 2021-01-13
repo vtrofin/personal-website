@@ -6,14 +6,16 @@
       <label for="name"> Name </label>
       <input id="name" type="text" name="name" />
 
-      <label for="email"> Email </label>
-      <input id="email" type="email" name="email" />
+      <label for="email"> Email* </label>
+      <input id="email" type="email" name="email" :required="true" />
+      <span class="required-label">*Required</span>
 
       <label for="subject"> Subject </label>
       <input id="subject" type="text" name="subject" />
 
-      <label for="message"> Message </label>
-      <textarea id="message" name="message" rows="5" />
+      <label for="message"> Message* </label>
+      <textarea id="message" name="message" rows="5" :required="true" />
+      <span class="required-label">*Required</span>
 
       <button type="submit" :disabled="templateData.isLoading">
         Send
@@ -111,6 +113,12 @@ label {
   text-align: left;
   font-size: 0.9rem;
 }
+.required-label {
+  font-size: 0.8rem;
+  color: var(--gray);
+  text-align: left;
+}
+
 input,
 textarea {
   padding: 0.5rem;
@@ -122,6 +130,12 @@ textarea {
   font-weight: 500;
   color: var(--black);
   margin-top: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+input + .required-label,
+textarea + .required-label {
+  margin-top: -0.7rem;
   margin-bottom: 1rem;
 }
 
@@ -143,16 +157,24 @@ button[type='submit'] {
   align-self: center;
   font-size: 1.2rem;
   font-weight: 700;
-  background-color: var(--scarlet);
+  background-color: var(--submit-button);
   color: var(--white);
   border: none;
   border-radius: var(--base-border);
   transition: all 0.3s ease-in;
   text-transform: capitalize;
+  cursor: pointer;
+  outline: none;
 }
 
 button[type='submit']:hover {
-  background-color: green;
+  background-color: var(--submit-button-focus);
+  transition: all 0.3s ease-out;
+}
+
+button[type='submit']:disabled {
+  background-color: var(--submit-button-disabled);
+  pointer-events: none;
   transition: all 0.3s ease-out;
 }
 
@@ -162,11 +184,12 @@ button[type='submit']:hover {
   padding: 0.5rem;
   margin-top: 2rem;
   text-align: left;
+  transition: all 0.3s ease-out;
 }
 .form-result.success {
-  border: 1px solid green;
+  border: 1px solid var(--submit-message-success);
 }
 .form-result.error {
-  border: 1px solid var(--scarlet);
+  border: 1px solid var(--submit-message-error);
 }
 </style>

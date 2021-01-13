@@ -59,6 +59,11 @@ export default {
   --misty-rose: #f0efeb;
   --french-gray: #eddcd2;
   --base-border: 5px;
+  --submit-button-disabled: lime;
+  --submit-button: gray;
+  --submit-button-focus: green;
+  --submit-message-success: green;
+  --submit-message-error: red;
 }
 
 html,

@@ -21,14 +21,24 @@
         Send
       </button>
       <div :class="templateData.messageClass" :v-if="templateData.formSubmitMessage">
+        <Alert width="16px" color="red" v-if="templateData.messageClass.includes('error')" />
+        <Tick
+          width="16px"
+          color="green"
+          v-else-if="templateData.messageClass.includes('success')"
+        />
         {{ templateData.formSubmitMessage }}
       </div>
+      <div></div>
+      <div></div>
     </form>
   </main>
 </template>
 
 <script>
 import { reactive } from 'vue';
+import Tick from '../components/contact/tick.vue';
+import Alert from '../components/contact/alert.vue';
 
 const timeOutHandler = reactiveVal => {
   return () => {
@@ -55,6 +65,7 @@ const readForm = formTarget => {
 
 export default {
   name: 'Contact',
+  components: { Tick, Alert },
   setup(props) {
     const timeoutVal = (process.env.NODE_ENV === 'development' ? 3 : 30) * 1000;
     const templateData = reactive({
@@ -191,5 +202,9 @@ button[type='submit']:disabled {
 }
 .form-result.error {
   border: 1px solid var(--submit-message-error);
+}
+
+.form-result svg {
+  margin-bottom: -1px;
 }
 </style>

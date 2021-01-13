@@ -75,3 +75,14 @@ VUE_APP_CONTACT_TOKEN=
 - See limits [here](https://vercel.com/docs/platform/limits#serverless-function-size)
 - Vercel CLI [reference](https://vercel.com/docs/cli#commands/overview/basic-usage)
 - Notes about [Vercel and env variables](https://vercel.com/docs/environment-variables#development-environment-variables)
+
+## Font-awesome:
+
+- If you need to use font-aweme you'll have to use these package versions
+
+```
+"@fortawesome/fontawesome-svg-core": "^1.2.32"
+"@fortawesome/vue-fontawesome": "^3.0.0-3"
+```
+
+- See details on how to configure font-awesome with the vue 3 app [here](https://github.com/FortAwesome/vue-fontawesome/issues/230#issuecomment-696719673). Problem is package is still currently in beta.

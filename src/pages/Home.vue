@@ -20,6 +20,7 @@ export default {
     const store = useStore();
     const computedStyle = ref({});
     const allProjects = store.getters['projects/getAllProjects'];
+    const allCompanies = store.getters['companies/getAllCompanies'];
 
     const projectsData = allProjects.map((project, i) => {
       const projectData = store.getters[`projects/${project}/getProject`];

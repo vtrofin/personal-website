@@ -3,22 +3,18 @@
     <h1>Contact me...</h1>
     <p>...if you can!</p>
     <form method="post" @submit.prevent="handleFormSubmit">
-      <div class="form-input">
-        <label for="name"> Name </label>
-        <input id="name" type="text" name="name" />
-      </div>
-      <div class="form-input">
-        <label for="email"> Email </label>
-        <input id="email" type="email" name="email" />
-      </div>
-      <div class="form-input">
-        <label for="subject"> Subject </label>
-        <input id="subject" type="text" name="subject" />
-      </div>
-      <div class="form-input">
-        <label for="message"> Message </label>
-        <textarea id="message" name="message" rows="5" />
-      </div>
+      <label for="name"> Name </label>
+      <input id="name" type="text" name="name" />
+
+      <label for="email"> Email </label>
+      <input id="email" type="email" name="email" />
+
+      <label for="subject"> Subject </label>
+      <input id="subject" type="text" name="subject" />
+
+      <label for="message"> Message </label>
+      <textarea id="message" name="message" rows="5" />
+
       <button type="submit" :disabled="templateData.isLoading">
         Send
       </button>
@@ -62,7 +58,7 @@ export default {
     const templateData = reactive({
       isLoading: false,
       formSubmitMessage: '',
-      messageClass: 'form-result',
+      messageClass: 'form-result'
     });
 
     const handleFormSubmit = async event => {
@@ -74,9 +70,9 @@ export default {
         const response = await fetch(url, {
           method: 'POST',
           headers: {
-            'Content-Type': 'application/json',
+            'Content-Type': 'application/json'
           },
-          body: JSON.stringify(data),
+          body: JSON.stringify(data)
         });
         const res = await response.json();
         templateData.formSubmitMessage = res.message || '';
@@ -93,33 +89,84 @@ export default {
 
     return {
       handleFormSubmit,
-      templateData,
+      templateData
     };
-  },
+  }
 };
 </script>
 <style scoped>
 form {
-  display: block;
+  max-width: 600px;
+  display: flex;
+  flex-direction: column;
   margin: 3rem auto;
 }
-.form-input {
-  display: block;
+label,
+input {
+  flex-grow: 1;
+  flex-basis: 100%;
 }
+
 label {
-  display: inline-block;
   text-align: left;
-  width: 60px;
-  padding-right: 3rem;
+  font-size: 0.9rem;
 }
-.form-result {
+input,
+textarea {
   padding: 0.5rem;
-  margin: 1rem auto;
+  outline: none;
+  font-size: 1rem;
+  border: 1px solid #ddd;
+  transition: border-color 0.3s ease;
+  appearance: none;
+  font-weight: 500;
+  color: var(--black);
+  margin-top: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+textarea {
+  resize: vertical;
+  min-height: 70px;
+}
+
+input:hover,
+input:focus,
+textarea:hover,
+textarea:focus {
+  border-color: var(--black);
+}
+
+button[type='submit'] {
+  padding: 0.75rem 1.5rem;
+  margin-top: 1rem;
+  align-self: center;
+  font-size: 1.2rem;
+  font-weight: 700;
+  background-color: var(--scarlet);
+  color: var(--white);
+  border: none;
+  border-radius: var(--base-border);
+  transition: all 0.3s ease-in;
+  text-transform: capitalize;
+}
+
+button[type='submit']:hover {
+  background-color: green;
+  transition: all 0.3s ease-out;
+}
+
+.form-result {
+  flex-grow: 1;
+  flex-basis: 100%;
+  padding: 0.5rem;
+  margin-top: 2rem;
+  text-align: left;
 }
 .form-result.success {
   border: 1px solid green;
 }
 .form-result.error {
-  border: 1px solid red;
+  border: 1px solid var(--scarlet);
 }
 </style>

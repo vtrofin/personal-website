@@ -172,7 +172,7 @@ button[type='submit'] {
   color: var(--white);
   border: none;
   border-radius: var(--base-border);
-  transition: all 0.3s ease-in;
+  transition: all 0.3s ease-out;
   text-transform: capitalize;
   cursor: pointer;
   outline: none;
@@ -180,13 +180,13 @@ button[type='submit'] {
 
 button[type='submit']:hover {
   background-color: var(--submit-button-focus);
-  transition: all 0.3s ease-out;
+  transition: all 0.3s ease-in;
 }
 
 button[type='submit']:disabled {
   background-color: var(--submit-button-disabled);
   pointer-events: none;
-  transition: all 0.3s ease-out;
+  transition: all 0.3s ease-in;
 }
 
 .form-result {

@@ -29,6 +29,7 @@
 
 <script>
 import { reactive } from 'vue';
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 
 const timeOutHandler = reactiveVal => {
   return () => {

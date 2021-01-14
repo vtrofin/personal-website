@@ -13,10 +13,10 @@ import Header from '../components/Header';
 import Footer from '../components/Footer';
 export default {
   name: 'MainLayout',
+  components: { Header, Footer },
   props: {
-    modifier: { type: String, required: false, default: '' }
+    modifier: { type: String, required: false, default: '' },
   },
-  components: { Header, Footer }
 };
 </script>
 <style>
@@ -29,6 +29,7 @@ main .content,
   width: 90%;
   max-width: 1280px;
   margin: 0 auto;
+  height: 100%;
 }
 
 .content-link,

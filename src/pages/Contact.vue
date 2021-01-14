@@ -1,7 +1,7 @@
 <template>
-  <main>
-    <h1>Contact me...</h1>
-    <p>...if you can!</p>
+  <section>
+    <h1>Contact me</h1>
+    <p>Have a project you want to discuss? Leave a message and I'll be in touch with you shortly</p>
     <form method="post" @submit.prevent="handleFormSubmit">
       <label for="name"> Name </label>
       <input id="name" type="text" name="name" />
@@ -18,7 +18,7 @@
       <span class="required-label">*Required</span>
 
       <button type="submit" :disabled="templateData.isLoading">
-        Send
+        Submit
       </button>
       <div :class="templateData.messageClass" :v-if="templateData.formSubmitMessage">
         <Alert width="16px" color="red" v-if="templateData.messageClass.includes('error')" />
@@ -29,10 +29,10 @@
         />
         {{ templateData.formSubmitMessage }}
       </div>
-      <div></div>
-      <div></div>
+      <div />
+      <div />
     </form>
-  </main>
+  </section>
 </template>
 
 <script>
@@ -71,7 +71,7 @@ export default {
     const templateData = reactive({
       isLoading: false,
       formSubmitMessage: '',
-      messageClass: 'form-result'
+      messageClass: 'form-result',
     });
 
     const handleFormSubmit = async event => {
@@ -83,9 +83,9 @@ export default {
         const response = await fetch(url, {
           method: 'POST',
           headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
           },
-          body: JSON.stringify(data)
+          body: JSON.stringify(data),
         });
         const res = await response.json();
         templateData.formSubmitMessage = res.message || '';
@@ -102,9 +102,9 @@ export default {
 
     return {
       handleFormSubmit,
-      templateData
+      templateData,
     };
-  }
+  },
 };
 </script>
 <style scoped>

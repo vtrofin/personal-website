@@ -24,6 +24,13 @@
         </div>
         <div class="ghost-shadow" />
       </div>
+      <div class="text-container">
+        <h2>すみません</h2>
+        <p>Sorry, I can't find this page</p>
+        <router-link to="/" class="content-link not-found">
+          <span>Go Back</span>
+        </router-link>
+      </div>
     </div>
   </div>
 </template>
@@ -45,15 +52,17 @@ export default {
   position: relative;
   width: 100%;
   height: 100%;
-  max-width: 800px;
   margin: auto;
   padding-bottom: 20px;
 }
 
 .box-container {
+  position: relative;
   box-sizing: border-box;
   height: 100%;
   padding: 50px;
+  min-height: 400px;
+  max-height: 600px;
   background-color: var(--animation-gray);
   border-radius: var(--base-animation-border);
 }
@@ -239,6 +248,34 @@ export default {
 }
 .symbol:nth-of-type(6)::after {
   transform: rotate(180deg);
+}
+
+.text-container {
+  color: var(--white);
+  position: absolute;
+  left: 50%;
+  bottom: 30px;
+  transform: translateX(-50%);
+}
+
+.text-container h2 {
+  margin: 1rem auto;
+  padding: 0;
+  font-size: 7vmin;
+  font-weight: 800;
+  line-height: 1.2em;
+  margin: auto;
+}
+.text-container p {
+  margin: 1rem auto;
+  padding: 0;
+  font-size: 1.2rem;
+  line-height: 1.5;
+}
+@media all and (min-width: 600px) {
+  .text-container h2 {
+    font-size: 2.5rem;
+  }
 }
 
 @keyframes updown {

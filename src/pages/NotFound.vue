@@ -278,6 +278,18 @@ export default {
   }
 }
 
+.content-link.not-found {
+  color: var(--white);
+  font-weight: 500;
+}
+.content-link.not-found:before {
+  bottom: -10px;
+  background-color: var(--white);
+}
+.content-link.not-found:hover:before {
+  height: 10px;
+}
+
 @keyframes updown {
   0% {
     transform: translateY(5px);

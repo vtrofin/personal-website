@@ -70,14 +70,16 @@ export default {
     };
 
     onMounted(() => {
+      // leave eyes animation only on desktop devices because of the
+      // scroll issue interfering with the touchmove event
       window.addEventListener('resize', handleResize);
-      window.addEventListener('pointermove', handleMouseMove);
+      window.addEventListener('mousemove', handleMouseMove);
       handleResize();
     });
 
     onUnmounted(() => {
       window.removeEventListener('resize', handleResize);
-      window.removeEventListener('pointermove', handleMouseMove);
+      window.removeEventListener('mousemove', handleMouseMove);
     });
 
     const computedStyle = computed(() => {

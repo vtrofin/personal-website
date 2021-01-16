@@ -39,11 +39,8 @@
 import { reactive, onMounted, onUnmounted, computed, ref } from 'vue';
 const getX = (mouseX, pageX) => {
   // x => translated -50%. translate -80% -> -20%
-  const baseX = -50;
-  const xMouseMove = (mouseX / pageX) * 100;
-  const xMove = 2 * baseX + xMouseMove;
-
-  return xMove < -80 ? -80 : xMove > -20 ? -20 : xMove;
+  const xAxis = (mouseX / pageX) * 100 - 100;
+  return xAxis < -80 ? -80 : xAxis > -20 ? -20 : xAxis;
 };
 
 const getY = (mouseY, pageY) => {
@@ -74,13 +71,13 @@ export default {
 
     onMounted(() => {
       window.addEventListener('resize', handleResize);
-      window.addEventListener('mousemove', handleMouseMove);
+      window.addEventListener('pointermove', handleMouseMove);
       handleResize();
     });
 
     onUnmounted(() => {
       window.removeEventListener('resize', handleResize);
-      window.removeEventListener('mousemove', handleMouseMove);
+      window.removeEventListener('pointermove', handleMouseMove);
     });
 
     const computedStyle = computed(() => {

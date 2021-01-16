@@ -69,9 +69,8 @@ export default {
       }
     };
 
-    window.addEventListener('resize', handleResize);
-
     onMounted(() => {
+      window.addEventListener('resize', handleResize);
       cliWrapperActiveText.value.contentEditable = true;
       cliWrapperActiveText.value.focus();
 

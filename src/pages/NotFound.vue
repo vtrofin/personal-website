@@ -2,15 +2,15 @@
   <div class="container">
     <div class="box-container">
       <div class="box-ghost">
-        <div class="symbol"></div>
-        <div class="symbol"></div>
-        <div class="symbol"></div>
-        <div class="symbol"></div>
-        <div class="symbol"></div>
-        <div class="symbol"></div>
+        <div class="symbol" />
+        <div class="symbol" />
+        <div class="symbol" />
+        <div class="symbol" />
+        <div class="symbol" />
+        <div class="symbol" />
 
         <div class="ghost-container">
-          <div class="ghost-eyes-container">
+          <div class="ghost-eyes-container" :style="computedStyle">
             <div class="eye" />
             <div class="eye" />
           </div>
@@ -26,7 +26,7 @@
       </div>
       <div class="text-container">
         <h2>すみません</h2>
-        <p>Sorry, I can't find this page</p>
+        <p>I'm sorry, I can't find this page.</p>
         <router-link to="/" class="content-link not-found">
           <span>Go Back</span>
         </router-link>
@@ -36,8 +36,59 @@
 </template>
 
 <script>
+import { reactive, onMounted, onUnmounted, computed, ref } from 'vue';
+const getX = (mouseX, pageX) => {
+  // x => translated -50%. translate -80% -> -20%
+  const baseX = -50;
+  const xMouseMove = (mouseX / pageX) * 100;
+  const xMove = 2 * baseX + xMouseMove;
+
+  return xMove < -80 ? -80 : xMove > -20 ? -20 : xMove;
+};
+
+const getY = (mouseY, pageY) => {
+  // y -> translated 0; translate -70% -> 40%
+  const baseY = 0;
+  const yAxis = baseY - ((pageY / 2 - mouseY) / pageY) * 300;
+
+  return yAxis < -70 ? -70 : yAxis > 40 ? 40 : yAxis;
+};
+
 export default {
-  name: 'NotFound'
+  name: 'NotFound',
+  setup(props) {
+    const pos = reactive({ pageX: 0, pageY: 0, style: '' });
+
+    const handleResize = () => {
+      pos.pageX = window.innerWidth;
+      pos.pageY = window.innerHeight;
+    };
+
+    const handleMouseMove = event => {
+      const { pageX: mouseX = 0, pageY: mouseY = 0, isPrimary } = event;
+
+      pos.style = {
+        transform: `translate3d(${getX(mouseX, pos.pageX)}%,${getY(mouseY, pos.pageY)}%,0)`,
+      };
+    };
+
+    onMounted(() => {
+      window.addEventListener('resize', handleResize);
+      window.addEventListener('mousemove', handleMouseMove);
+      handleResize();
+    });
+
+    onUnmounted(() => {
+      window.removeEventListener('resize', handleResize);
+      window.removeEventListener('mousemove', handleMouseMove);
+    });
+
+    const computedStyle = computed(() => {
+      return pos.style;
+    });
+
+    return { computedStyle };
+  },
 };
 </script>
 

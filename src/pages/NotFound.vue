@@ -10,7 +10,7 @@
         <div class="symbol" />
 
         <div class="ghost-container">
-          <div class="ghost-eyes-container" :style="computedStyle">
+          <div class="ghost-eyes-container">
             <div class="eye" />
             <div class="eye" />
           </div>
@@ -36,63 +36,27 @@
 </template>
 
 <script>
-import { reactive, onMounted, onUnmounted, computed, ref } from 'vue';
-const getX = (mouseX, pageX) => {
-  // x => translated -50%. translate -80% -> -20%
-  const xAxis = (mouseX / pageX) * 100 - 100;
-  return xAxis < -80 ? -80 : xAxis > -20 ? -20 : xAxis;
-};
-
-const getY = (mouseY, pageY) => {
-  // y -> translated 0; translate -70% -> 40%
-  const baseY = 0;
-  const yAxis = baseY - ((pageY / 2 - mouseY) / pageY) * 300;
-
-  return yAxis < -70 ? -70 : yAxis > 40 ? 40 : yAxis;
-};
+import anime from 'animejs/lib/anime.es.js';
+import { onMounted, onUnmounted } from 'vue';
+import { setUpAnimation, stopAnimation } from '../components/helpers/animate';
 
 export default {
   name: 'NotFound',
   setup(props) {
-    const pos = reactive({ pageX: 0, pageY: 0, style: '' });
-
-    const handleResize = () => {
-      pos.pageX = window.innerWidth;
-      pos.pageY = window.innerHeight;
-    };
-
-    const handleMouseMove = event => {
-      const { pageX: mouseX = 0, pageY: mouseY = 0, isPrimary } = event;
-
-      pos.style = {
-        transform: `translate3d(${getX(mouseX, pos.pageX)}%,${getY(mouseY, pos.pageY)}%,0)`,
-      };
-    };
-
+    let tl;
     onMounted(() => {
-      // leave eyes animation only on desktop devices because of the
-      // scroll issue interfering with the touchmove event
-      window.addEventListener('resize', handleResize);
-      window.addEventListener('mousemove', handleMouseMove);
-      handleResize();
+      tl = setUpAnimation(anime);
+      tl.play();
     });
 
     onUnmounted(() => {
-      window.removeEventListener('resize', handleResize);
-      window.removeEventListener('mousemove', handleMouseMove);
+      // stopAnimation(tl);
     });
-
-    const computedStyle = computed(() => {
-      return pos.style;
-    });
-
-    return { computedStyle };
   },
 };
 </script>
 
 <style scoped>
-/* https://codepen.io/diogo_ml_gomes/pen/PyWdLb */
 .container {
   --base-animation-border: 5px;
   --animation-gray: #574b33;
@@ -142,7 +106,7 @@ export default {
   left: 50%;
   height: 12px;
   width: 70px;
-  transform: translate3d(-50%, 0, 0);
+  transform: translateX(-50%) translateZ(0);
 }
 
 .ghost-eyes-container .eye {

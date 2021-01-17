@@ -18,6 +18,11 @@
       </p>
     </div>
     <div class="cli-container" ref="cliContainer">
+      <div class="cli-buttons">
+        <span />
+        <span />
+        <span />
+      </div>
       <div class="bash-history" v-for="(line, i) in bashHistory" :key="i" :aria-label="line">
         {{ staticText }} <span class="pre-text">{{ line }}</span>
       </div>
@@ -286,5 +291,28 @@ span.text-block {
   -webkit-user-select: text;
   user-select: text;
   border: 1px solid transparent;
+}
+
+.cli-buttons {
+  box-sizing: border-box;
+  padding-bottom: 20px;
+}
+.cli-buttons > span {
+  height: 14px;
+  width: 14px;
+  display: inline-block;
+  border-radius: 50%;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+.cli-buttons > span:first-child {
+  background-color: #ef4444;
+}
+.cli-buttons > span:nth-child(2) {
+  background-color: #facc15;
+}
+.cli-buttons > span:last-child {
+  background-color: #22c55e;
 }
 </style>

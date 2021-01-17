@@ -15,6 +15,7 @@
     >
       <template #section-link-slot>
         <Project v-if="options.type === 'project'" :options="options" />
+        <Work v-else-if="options.type === 'work'" :options="options" />
         <!-- add other sections here -->
       </template>
     </SectionAppLink>
@@ -25,11 +26,12 @@
 import { toRefs, toRef } from 'vue';
 import SectionAppLink from '../SectionAppLink';
 import Project from './Project';
+import Work from './Work';
 import { generalSectionArrayValidator } from '../helpers/validators';
 
 export default {
   name: 'GeneralSection',
-  components: { SectionAppLink, Project },
+  components: { SectionAppLink, Project, Work },
   props: {
     className: { type: String, required: false, default: '' },
     title: { type: String, required: true },

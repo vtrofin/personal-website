@@ -1,3 +1,5 @@
+import { getFormattedTitle } from '../../helpers';
+
 const getCaretPosition = windowElem => {
   let x = 0;
   let y = 0;
@@ -56,4 +58,40 @@ export const handleCaretReposition = ({ windowElem, domRef, windowDocument }) =>
   range.collapse(true);
   sel.removeAllRanges();
   sel.addRange(range);
+};
+
+export const getProjectData = (vuexProjects, store) => {
+  return vuexProjects.map((project, i) => {
+    const projectData = store.getters[`projects/${project}/getProject`];
+    const formatted = getFormattedTitle(project);
+    const path = `/projects/${project}`;
+
+    /* dev only */
+    const baseData = {
+      path,
+      ariaLabel: `View ${formatted} project`,
+      callToAction: 'View Project',
+      title: formatted,
+      excerpt:
+        'Some random text about this project. Nobody likes to wait… but you can make it less of a pain. I have created. An open-source collection of loading spinners animated with CSS.',
+      // logoClass: `${project}-logo`,
+      // backgroundClass: `${project}-background`,
+      type: 'project',
+      project,
+    };
+
+    return { ...baseData, ...projectData };
+  });
+};
+
+export const getWorkData = vuexCompanies => {
+  return vuexCompanies.map(work => {
+    const formatted = getFormattedTitle(work.project);
+
+    return {
+      ...work,
+      callToAction: 'View Company',
+      title: formatted,
+    };
+  });
 };

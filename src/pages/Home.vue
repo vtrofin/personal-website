@@ -1,8 +1,8 @@
 <template>
   <HeroSection @update-caret-position="updateCaretPosition" />
-  <GeneralSection :class-name="className" :title="title" :data="projectsData" />
-  <!-- <Projects></Projects> <Work></Work> <Skills></Skills> <Interests></Interests> -->
-  <!-- General Section will need to handle Skills and Interests where there are no links provided!-->
+  <GeneralSection class-name="projects" title="Projects" :data="projectsData" />
+  <GeneralSection class-name="work" title="Work" :data="workData" />
+  <!--<Skills /> <Interests /> -->
   <span id="blinking-cursor" :style="computedStyle" />
 </template>
 
@@ -11,7 +11,7 @@ import { ref } from 'vue';
 import { useStore } from 'vuex';
 import HeroSection from '../components/hero_component';
 import GeneralSection from '../components/general_section';
-import { getFormattedTitle } from '../helpers';
+import { getProjectData, getWorkData } from '../components/helpers';
 
 export default {
   name: 'HomePage',
@@ -21,29 +21,8 @@ export default {
     const computedStyle = ref({});
     const allProjects = store.getters['projects/getAllProjects'];
     const allCompanies = store.getters['companies/getAllCompanies'];
-
-    const projectsData = allProjects.map((project, i) => {
-      const projectData = store.getters[`projects/${project}/getProject`];
-      const formatted = getFormattedTitle(project);
-      const path = `/projects/${project}`;
-
-      /* dev only */
-      const baseData = {
-        path,
-        ariaLabel: `View ${formatted} project`,
-        callToAction: 'View Project',
-        title: formatted,
-        excerpt:
-          'Some random text about this project. Nobody likes to wait… but you can make it less of a pain. I have created. An open-source collection of loading spinners animated with CSS.',
-        // logoClass: `${project}-logo`,
-        // backgroundClass: `${project}-background`,
-        type: 'project',
-        project
-      };
-
-      return { ...baseData, ...projectData };
-    });
-
+    const projectsData = getProjectData(allProjects, store);
+    const workData = getWorkData(allCompanies);
     const updateCaretPosition = () => {
       const { x, y } = store.getters['hero/getCoordinates'];
       computedStyle.value.left = `${x}px`;
@@ -51,13 +30,12 @@ export default {
     };
 
     return {
-      className: 'projects',
-      title: 'Projects',
+      workData,
       projectsData,
       computedStyle,
-      updateCaretPosition
+      updateCaretPosition,
     };
-  }
+  },
 };
 </script>
 

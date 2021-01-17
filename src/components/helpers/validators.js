@@ -3,24 +3,31 @@ export function generalSectionArrayValidator(value) {
     return false;
   }
   for (let val of value) {
-    if (!val || !val.path || !val.callToAction || !val.title || !val.excerpt) {
+    if (
+      !val ||
+      !val.path ||
+      !val.callToAction ||
+      !val.title ||
+      (!val.excerpt && val.type === 'project')
+    ) {
       return false;
     }
   }
   return true;
 }
 
-// export const appLinkValidator = value => {
-//   const { path, to, title } = value;
-//   if (!title) {
-//     return false;
-//   }
-//   if (!path) {
-//     return false;
-//   }
-//   if (!path && !to) {
-//     return false;
-//   }
+/*export const appLinkValidator = value => {
+  const { path, to, title } = value;
+  if (!title) {
+    return false;
+  }
+  if (!path) {
+    return false;
+  }
+  if (!path && !to) {
+    return false;
+  }
 
-//   return true;
-// };
+  return true;
+};
+*/

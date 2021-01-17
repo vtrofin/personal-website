@@ -8,7 +8,7 @@ export default {
         item_title: 'Cocos - i work at Bento&co',
         excerpt: 'I did some work here ',
         description: ['Here i describe how i gambatted myself'],
-        logoClass: `bentoandco-logo`,
+        // logoClass: `bentoandco-logo`,
         // backgroundClass: `bentoandco-background`,
         path: 'https://bertrandco.com/',
       },

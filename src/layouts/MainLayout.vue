@@ -108,6 +108,14 @@ main .content,
   background-color: var(--bentoandco);
   color: var(--white);
 }
+.smoothjapan-active {
+  background-color: var(--smoothjapan);
+  color: var(--black);
+}
+.bertrandandco-active {
+  background-color: var(--bertrandandco);
+  color: var(--black);
+}
 
 .shipandco-project-active {
   transition: background-color 0.3s ease;

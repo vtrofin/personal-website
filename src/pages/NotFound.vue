@@ -45,14 +45,15 @@ export default {
   setup(props) {
     let tl;
     onMounted(() => {
+      let test = anime;
       tl = setUpAnimation(anime);
       tl.play();
     });
 
     onUnmounted(() => {
-      // stopAnimation(tl);
+      stopAnimation(tl, anime);
     });
-  },
+  }
 };
 </script>
 

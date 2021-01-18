@@ -96,7 +96,12 @@ export default {
       cliObserver = new IntersectionObserver(observeHandler, { root: null, threshhold: [0.2] });
       cliObserver.observe(cliContainer.value);
 
-      return handleCursorReposition({ store, domRef: cliWrapperActiveText.value, offsetY: 2 })
+      return handleCursorReposition({
+        windowElem: window,
+        domRef: cliWrapperActiveText.value,
+        offsetY: 2,
+        store,
+      })
         .then(() => emit('update-caret-position'))
         .catch(err => console.log('Failed to update caret position', err.message));
     });
@@ -130,10 +135,11 @@ export default {
       }
 
       return handleCursorReposition({
-        windowElem: isSubmit ? undefined : window,
+        windowElem: window,
         domRef: cliWrapperActiveText.value,
         offsetY: isSubmit ? 2 : 1,
         store,
+        isSubmit,
       })
         .then(() => emit('update-caret-position'))
         .catch(err => console.log('Failed to update caret position', err.message));
@@ -144,7 +150,7 @@ export default {
       if (!isArrowKey) {
         return;
       }
-      return handleCursorReposition({ store, windowElem: window, offsetY: 1 })
+      return handleCursorReposition({ windowElem: window, offsetY: 1, store })
         .then(() => emit('update-caret-position'))
         .catch(err => console.log('Failed to update caret position', err.message));
     };
@@ -249,6 +255,9 @@ export default {
 .cli-container .bash-history {
   width: 100%;
   background: none;
+  padding-left: 2%;
+  padding-right: 2%;
+  box-sizing: border-box;
 }
 
 .cli-container .cli-wrapper {
@@ -256,6 +265,8 @@ export default {
   caret-color: transparent;
   background: none;
   flex-grow: 1;
+  padding-left: 2%;
+  padding-right: 2%;
 }
 
 .pre-text {

@@ -1,9 +1,12 @@
 import { getFormattedTitle } from '../../helpers';
 
-const getCaretPosition = windowElem => {
-  let x = 0;
-  let y = 0;
+const getScrollOffset = windowElem => {
+  const offsetX = windowElem.scrollX || windowElem.pageXOffset || 0;
+  const offsetY = windowElem.scrollY || windowElem.pageYOffset || 0;
+  return { offsetX, offsetY };
+};
 
+const getCaretPosition = windowElem => {
   if (!windowElem) {
     return;
   }
@@ -26,22 +29,28 @@ const getCaretPosition = windowElem => {
     return;
   }
 
-  x = rect.left;
-  y = rect.top;
-
-  return { x, y };
+  const { offsetX, offsetY } = getScrollOffset(windowElem);
+  return { x: rect.left + offsetX, y: rect.top + offsetY };
 };
 
-const getCaretPositionFromElement = domElem => {
+const getCaretPositionFromElement = (domElem, windowElem) => {
   if (!domElem) {
     return;
   }
   const rect = domElem.getBoundingClientRect();
-  return { x: rect.right, y: rect.top };
+  const { offsetX, offsetY } = getScrollOffset(windowElem);
+
+  return {
+    x: rect.right + offsetX,
+    y: rect.top + offsetY,
+  };
 };
 
-export const handleCursorReposition = ({ store, domRef, windowElem, offsetY = 0 }) => {
-  const coordinates = getCaretPosition(windowElem) || getCaretPositionFromElement(domRef) || {};
+export const handleCursorReposition = ({ windowElem, domRef, offsetY = 0, store, isSubmit }) => {
+  const coordinates =
+    (!isSubmit && getCaretPosition(windowElem)) ||
+    getCaretPositionFromElement(domRef, windowElem) ||
+    {};
   return store.dispatch({
     type: 'hero/updateCoordinates',
     x: coordinates?.x ?? 0,

@@ -1,12 +1,12 @@
 <template>
-  <canvas id="toolbox-overlay" width="350" height="200" :style="toolBoxStyle" />
+  <canvas id="toolbox-overlay" :style="toolBoxStyle" ref="toolbox" />
   <MainLayout :modifier="modifier" @toggle-toolbox="toggleCanvas" />
 </template>
 
 <script>
 import { useStore } from 'vuex';
 import { useRoute } from 'vue-router';
-import { watch, ref, reactive } from 'vue';
+import { watch, ref, reactive, onMounted } from 'vue';
 import MainLayout from './layouts/MainLayout';
 
 export default {
@@ -16,7 +16,15 @@ export default {
     const route = useRoute();
     const store = useStore();
     const modifier = ref('');
+    const toolbox = ref(null);
     const toolBoxStyle = reactive({ display: 'none' });
+    const reactiveCanvas = reactive({
+      ctx: null,
+      width: null,
+      height: null,
+      x: 0,
+      y: 0
+    });
 
     const isMobileDevice = /Mobi/i.test(window.navigator.userAgent);
     store.dispatch({ type: 'setMobileDevice', isMobile: isMobileDevice });
@@ -45,7 +53,17 @@ export default {
       toolBoxStyle.display = isActive ? 'block' : 'none';
     };
 
-    return { modifier, toolBoxStyle, toggleCanvas };
+    onMounted(() => {
+      const canvas = toolbox.value;
+      reactiveCanvas.ctx = canvas.getContext('2d');
+      reactiveCanvas.ctx.width = 800;
+      reactiveCanvas.ctx.height = 200;
+
+      reactiveCanvas.ctx.fillStyle = 'green';
+      reactiveCanvas.ctx.fillRect(0, 0, 100, 100);
+    });
+
+    return { modifier, toolBoxStyle, toggleCanvas, toolbox, reactiveCanvas };
   }
 };
 </script>
@@ -128,6 +146,7 @@ body {
   background-color: rgba(0, 0, 255, 0.2);
 } */
 
+/*dev */
 canvas {
   border: 1px solid red;
   margin: 0 auto;

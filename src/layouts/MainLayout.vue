@@ -15,8 +15,8 @@ export default {
   name: 'MainLayout',
   components: { Header, Footer },
   props: {
-    modifier: { type: String, required: false, default: '' },
-  },
+    modifier: { type: String, required: false, default: '' }
+  }
 };
 </script>
 <style>

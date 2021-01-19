@@ -1,9 +1,15 @@
 <template>
+  <canvas
+    id="toolbox-overlay"
+    width="350"
+    height="200"
+    :style="{ display: 'block', border: '1px solid red', margin: '0 auto' }"
+  />
   <MainLayout :modifier="modifier" />
 </template>
 
 <script>
-import { userStore, useStore } from 'vuex';
+import { useStore } from 'vuex';
 import { useRoute } from 'vue-router';
 import { watch, ref } from 'vue';
 import MainLayout from './layouts/MainLayout';

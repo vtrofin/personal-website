@@ -1,13 +1,14 @@
 <template>
-  <canvas id="toolbox-overlay" :style="toolBoxStyle" ref="toolbox" />
-  <MainLayout :modifier="modifier" @toggle-toolbox="toggleCanvas" />
+  <MainLayout :modifier="modifier" />
 </template>
 
 <script>
 import { useStore } from 'vuex';
 import { useRoute } from 'vue-router';
-import { watch, ref, reactive, onMounted } from 'vue';
+import { watch, ref } from 'vue';
 import MainLayout from './layouts/MainLayout';
+
+const getProjectItem = route => route?.params?.project_item ?? '';
 
 export default {
   name: 'App',
@@ -16,15 +17,6 @@ export default {
     const route = useRoute();
     const store = useStore();
     const modifier = ref('');
-    const toolbox = ref(null);
-    const toolBoxStyle = reactive({ display: 'none' });
-    const reactiveCanvas = reactive({
-      ctx: null,
-      width: null,
-      height: null,
-      x: 0,
-      y: 0
-    });
 
     const isMobileDevice = /Mobi/i.test(window.navigator.userAgent);
     store.dispatch({ type: 'setMobileDevice', isMobile: isMobileDevice });
@@ -32,14 +24,13 @@ export default {
     watch(
       () => route.params,
       () => {
-        // saving current route param in the store just to have some fun with vuex
         return store
           .dispatch({
             type: 'projects/setActiveProject',
-            project: route?.params?.project_item ?? ''
+            project: getProjectItem(route),
           })
           .then(() => {
-            modifier.value = route?.params?.project_item ?? '';
+            modifier.value = getProjectItem(route);
           })
           .catch(err => {
             console.error('Failed to set current project', err.message);
@@ -48,23 +39,8 @@ export default {
       }
     );
 
-    const toggleCanvas = () => {
-      const isActive = store.getters['checkToolBox'];
-      toolBoxStyle.display = isActive ? 'block' : 'none';
-    };
-
-    onMounted(() => {
-      const canvas = toolbox.value;
-      reactiveCanvas.ctx = canvas.getContext('2d');
-      reactiveCanvas.ctx.width = 800;
-      reactiveCanvas.ctx.height = 200;
-
-      reactiveCanvas.ctx.fillStyle = 'green';
-      reactiveCanvas.ctx.fillRect(0, 0, 100, 100);
-    });
-
-    return { modifier, toolBoxStyle, toggleCanvas, toolbox, reactiveCanvas };
-  }
+    return { modifier };
+  },
 };
 </script>
 

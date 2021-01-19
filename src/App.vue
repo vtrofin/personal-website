@@ -15,6 +15,8 @@ export default {
     const route = useRoute();
     const store = useStore();
     const modifier = ref('');
+    const isMobileDevice = /Mobi/i.test(window.navigator.userAgent);
+    store.dispatch({ type: 'setMobileDevice', isMobile: isMobileDevice });
 
     watch(
       () => route.params,
@@ -24,7 +26,7 @@ export default {
         return store
           .dispatch({
             type: 'projects/setActiveProject',
-            project: route?.params?.project_item ?? '',
+            project: route?.params?.project_item ?? ''
           })
           .then(() => {
             modifier.value = route?.params?.project_item ?? '';
@@ -37,7 +39,7 @@ export default {
     );
 
     return { modifier };
-  },
+  }
 };
 </script>
 
@@ -56,8 +58,8 @@ export default {
   --staff: #e76f51;
   --utils: #2a9d8f;
   --bentoandco: #264653;
-  --smoothjapan:#fca311;
-  --bertrandandco:  #a8dadc;
+  --smoothjapan: #fca311;
+  --bertrandandco: #a8dadc;
   --misty-rose: #f0efeb;
   --french-gray: #eddcd2;
   --base-border: 5px;

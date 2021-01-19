@@ -3,10 +3,8 @@
     <div class="nav-container">
       <ul class="nav-links">
         <li><HeaderLogo :modifier-class="classModifiers.linkClass" /></li>
-        <li>
-          <router-link to="#" :class="classModifiers.linkClass">
-            <span :class="classModifiers.spanClass">Work</span>
-          </router-link>
+        <li :class="'toolbox' + classModifiers.linkClass" @click.prevent="toggleToolbox">
+          <span :class="classModifiers.spanClass">ToolBox</span>
         </li>
         <li>
           <router-link to="/contact" :class="classModifiers.linkClass">
@@ -14,9 +12,11 @@
           </router-link>
         </li>
         <li>
-          <a href="https://vtrofin.github.io/" :class="classModifiers.linkClass"
-            ><span :class="classModifiers.spanClass">CV</span></a
-          >
+          <a :class="classModifiers.linkClass" href="https://vtrofin.github.io/">
+            <span :class="classModifiers.spanClass">
+              CV
+            </span>
+          </a>
         </li>
         <li class="auto-margin">
           <GithubLogo :modifier-class="classModifiers.linkClass" />
@@ -28,7 +28,8 @@
 </template>
 
 <script>
-import { computed, reactive } from 'vue';
+import { computed } from 'vue';
+import { useStore } from 'vuex';
 import HeaderLogo from './HeaderLogo';
 import GithubLogo from './GithubLogo';
 import ProjectItemHeader from './project_item/project_header.vue';
@@ -37,7 +38,13 @@ export default {
   name: 'Header',
   components: { HeaderLogo, GithubLogo, ProjectItemHeader },
   props: { modifier: { type: String, required: false, default: '' } },
-  setup(props) {
+  emits: {
+    relayToggleCanvas: null
+  },
+  setup(props, context) {
+    const store = useStore();
+    const { emit } = context;
+
     const classModifiers = computed(() => {
       const linkClass = props.modifier ? props.modifier : '';
       const spanClass = props.modifier ? props.modifier + ' ' + 'nav-link-text' : 'nav-link-text';
@@ -45,7 +52,13 @@ export default {
       return { linkClass, spanClass, navClass };
     });
 
-    return { classModifiers };
+    const toggleToolbox = () => {
+      const isActive = store.getters['checkToolBox'];
+      store.dispatch({ type: 'setToolBoxState', isToolboxActive: !isActive });
+      emit('relayToggleCanvas');
+    };
+
+    return { classModifiers, toggleToolbox };
   }
 };
 </script>
@@ -76,6 +89,13 @@ export default {
 .nav-links li {
   max-width: 100%;
   min-width: 0;
+}
+
+.toolbox {
+  padding: 1.5rem 0.75rem;
+  cursor: pointer;
+  font-size: 1.1rem;
+  color: var(--black);
 }
 
 .nav-links li.auto-margin {

@@ -1,33 +1,29 @@
 <template>
-  <canvas
-    id="toolbox-overlay"
-    width="350"
-    height="200"
-    :style="{ display: 'block', border: '1px solid red', margin: '0 auto' }"
-  />
-  <MainLayout :modifier="modifier" />
+  <canvas id="toolbox-overlay" width="350" height="200" :style="toolBoxStyle" />
+  <MainLayout :modifier="modifier" @toggle-toolbox="toggleCanvas" />
 </template>
 
 <script>
 import { useStore } from 'vuex';
 import { useRoute } from 'vue-router';
-import { watch, ref } from 'vue';
+import { watch, ref, reactive } from 'vue';
 import MainLayout from './layouts/MainLayout';
 
 export default {
   name: 'App',
   components: { MainLayout },
-  setup(props) {
+  setup() {
     const route = useRoute();
     const store = useStore();
     const modifier = ref('');
+    const toolBoxStyle = reactive({ display: 'none' });
+
     const isMobileDevice = /Mobi/i.test(window.navigator.userAgent);
     store.dispatch({ type: 'setMobileDevice', isMobile: isMobileDevice });
 
     watch(
       () => route.params,
       () => {
-        const project = route?.params?.project_item;
         // saving current route param in the store just to have some fun with vuex
         return store
           .dispatch({
@@ -44,7 +40,12 @@ export default {
       }
     );
 
-    return { modifier };
+    const toggleCanvas = () => {
+      const isActive = store.getters['checkToolBox'];
+      toolBoxStyle.display = isActive ? 'block' : 'none';
+    };
+
+    return { modifier, toolBoxStyle, toggleCanvas };
   }
 };
 </script>
@@ -126,4 +127,9 @@ body {
 * * * * * * * * * {
   background-color: rgba(0, 0, 255, 0.2);
 } */
+
+canvas {
+  border: 1px solid red;
+  margin: 0 auto;
+}
 </style>

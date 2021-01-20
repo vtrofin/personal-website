@@ -1,16 +1,7 @@
 <template>
-  <div
-    :class="'toolbox-container' + (toolboxState.active ? ' ' + 'toolbox-open' : '')"
-    ref="toolbox"
-    @click.self="handleBlur"
-  >
-    <div class="toolbox-menu" />
-    <!-- <nav class="toolbox-menu"> <div class="profile" /> <div class="list" /> </nav> <button id="close-button">Close</button> -->
-  </div>
-
-  <div :class="'container' + (toolboxState.active ? ' ' + 'toolbox-open' : '')">
+  <ToolBoxWrapper :toolbox-state="toolboxState" @toggle-toolbox-state="toggleAndTranslateBody">
     <MainLayout :modifier="modifier" @relay-toggle-toolbox="toggleAndTranslateBody" />
-  </div>
+  </ToolBoxWrapper>
 </template>
 
 <script>
@@ -18,17 +9,17 @@ import { useStore } from 'vuex';
 import { useRoute } from 'vue-router';
 import { watch, ref, reactive } from 'vue';
 import MainLayout from './layouts/MainLayout';
+import ToolBoxWrapper from './layouts/ToolBoxWrapper';
 
 const getProjectItem = route => route?.params?.project_item ?? '';
 
 export default {
   name: 'App',
-  components: { MainLayout },
+  components: { MainLayout, ToolBoxWrapper },
   setup() {
     const route = useRoute();
     const store = useStore();
     const modifier = ref('');
-    const toolbox = ref(null);
     const toolboxState = reactive({ active: false });
 
     const isMobileDevice = /Mobi/i.test(window.navigator.userAgent);
@@ -57,21 +48,10 @@ export default {
       toolboxState.active = isActive;
     };
 
-    const handleBlur = e => {
-      if (!toolboxState.active) {
-        return;
-      } else {
-        toolboxState.active = false;
-        store.dispatch({ type: 'setToolBoxState', isToolboxActive: false });
-      }
-    };
-
     return {
       modifier,
       toggleAndTranslateBody,
-      toolbox,
       toolboxState,
-      handleBlur,
     };
   },
 };
@@ -122,52 +102,6 @@ body {
 #app {
   overflow: hidden;
   width: 100%;
-}
-#app > .container {
-  min-height: 100%;
-  display: grid;
-  grid-template-rows: auto 1fr auto;
-  margin: 0;
-  transform: translate3d(0, 0, 0);
-  transition: transform 0.3s;
-  background-color: var(--background-white);
-}
-
-#app > .toolbox-open:nth-child(2) {
-  transform: translate3d(50px, 50px, 0);
-  transition: transform 0.3s;
-}
-
-.toolbox-container {
-  display: none;
-  position: fixed;
-  overflow: hidden;
-  z-index: 100;
-  width: 100%;
-  height: 100%;
-  background-color: transparent;
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-.toolbox-container.toolbox-open {
-  display: block;
-}
-
-.toolbox-menu {
-  position: absolute;
-  box-sizing: border-box;
-  z-index: 101;
-  width: 320px;
-  height: 320px;
-  padding: 2rem;
-  background-color: var(--misty-rose);
-  color: var(--black);
-  transform: translate3d(-320px, -320px, 0);
-}
-.toolbox-open .toolbox-menu {
-  transform: translate3d(0, 0, 0);
-  transition: transform 0.2s linear;
 }
 
 /* the color hack */

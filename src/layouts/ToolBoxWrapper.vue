@@ -93,7 +93,7 @@ export default {
   z-index: 100;
   width: 100%;
   height: 100%;
-  background-color: transparent;
+  background-color: rgba(0, 0, 0, 0.3); /* transparent */
   box-sizing: border-box;
   margin: 0;
   padding: 0;
@@ -192,12 +192,13 @@ export default {
 }
 
 .toolbox-icons {
-  align-content: space-between;
+  align-content: center;
+  justify-content: space-evenly;
 }
 
 .toolbox-icons > div {
-  height: 24px;
-  width: 24px;
+  height: 28px;
+  width: 28px;
   background-repeat: no-repeat;
   background-position: center;
   margin: 5px;
@@ -205,6 +206,7 @@ export default {
 }
 .toolbox-icons > svg {
   margin: 5px;
+  flex-grow: 1;
 }
 
 .toolbox-icons #go {

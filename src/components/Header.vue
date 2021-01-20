@@ -4,11 +4,17 @@
       <ul class="nav-links">
         <li><HeaderLogo :modifier-class="classModifiers.linkClass" /></li>
         <li :class="'toolbox' + classModifiers.linkClass" @click.prevent="toggleToolbox">
-          <span :class="classModifiers.spanClass">ToolBox</span>
+          <span :class="classModifiers.spanClass">
+            ToolBox
+            <fa :icon="['fas', 'tools']" />
+          </span>
         </li>
         <li>
           <router-link to="/contact" :class="classModifiers.linkClass">
-            <span :class="classModifiers.spanClass">Contact</span>
+            <span :class="classModifiers.spanClass">
+              Contact
+              <fa :icon="['fas', 'envelope']" />
+            </span>
           </router-link>
         </li>
         <li>
@@ -138,5 +144,15 @@ export default {
 .nav-links li:hover .nav-link-text:before {
   opacity: 1;
   transform: translateZ(0) scale3d(1.1, 1.1, 1.1) rotate(2deg);
+}
+
+.nav-link-text svg {
+  display: none;
+}
+
+@media all and (min-width: 600px) {
+  .nav-link-text svg {
+    display: inline-block;
+  }
 }
 </style>

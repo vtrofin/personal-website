@@ -1,12 +1,14 @@
 <template>
-  <div :class="toolBoxStyle" ref="toolbox">
-    <!-- <nav class="toolbox-menu">
-      <div class="profile" />
-      <div class="list" />
-    </nav>
-    <button id="close-button">Close</button> -->
+  <div
+    :class="'toolbox-container' + (toolboxState.active ? ' ' + 'toolbox-open' : '')"
+    ref="toolbox"
+    @click.self="handleBlur"
+  >
+    <div class="toolbox-menu" />
+    <!-- <nav class="toolbox-menu"> <div class="profile" /> <div class="list" /> </nav> <button id="close-button">Close</button> -->
   </div>
-  <div :class="containerStyle">
+
+  <div :class="'container' + (toolboxState.active ? ' ' + 'toolbox-open' : '')">
     <MainLayout :modifier="modifier" @relay-toggle-toolbox="toggleAndTranslateBody" />
   </div>
 </template>
@@ -14,7 +16,7 @@
 <script>
 import { useStore } from 'vuex';
 import { useRoute } from 'vue-router';
-import { watch, ref, reactive, onUnmounted, onMounted } from 'vue';
+import { watch, ref, reactive } from 'vue';
 import MainLayout from './layouts/MainLayout';
 
 const getProjectItem = route => route?.params?.project_item ?? '';
@@ -27,8 +29,7 @@ export default {
     const store = useStore();
     const modifier = ref('');
     const toolbox = ref(null);
-    const containerStyle = reactive({ container: true, 'toolbox-open': false });
-    const toolBoxStyle = reactive({ 'toolbox-container': true, 'toolbox-open': false });
+    const toolboxState = reactive({ active: false });
 
     const isMobileDevice = /Mobi/i.test(window.navigator.userAgent);
     store.dispatch({ type: 'setMobileDevice', isMobile: isMobileDevice });
@@ -53,16 +54,24 @@ export default {
 
     const toggleAndTranslateBody = () => {
       const isActive = store.getters['checkToolBox'];
-      containerStyle['toolbox-open'] = isActive;
-      toolBoxStyle['toolbox-open'] = isActive;
+      toolboxState.active = isActive;
+    };
+
+    const handleBlur = e => {
+      if (!toolboxState.active) {
+        return;
+      } else {
+        toolboxState.active = false;
+        store.dispatch({ type: 'setToolBoxState', isToolboxActive: false });
+      }
     };
 
     return {
       modifier,
       toggleAndTranslateBody,
-      containerStyle,
-      toolBoxStyle,
       toolbox,
+      toolboxState,
+      handleBlur,
     };
   },
 };
@@ -131,8 +140,24 @@ body {
 
 .toolbox-container {
   display: none;
-  position: absolute;
+  position: fixed;
+  overflow: hidden;
   z-index: 100;
+  width: 100%;
+  height: 100%;
+  background-color: transparent;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+.toolbox-container.toolbox-open {
+  display: block;
+}
+
+.toolbox-menu {
+  position: absolute;
+  box-sizing: border-box;
+  z-index: 101;
   width: 320px;
   height: 320px;
   padding: 2rem;
@@ -140,8 +165,7 @@ body {
   color: var(--black);
   transform: translate3d(-320px, -320px, 0);
 }
-.toolbox-container.toolbox-open {
-  display: block;
+.toolbox-open .toolbox-menu {
   transform: translate3d(0, 0, 0);
   transition: transform 0.2s linear;
 }

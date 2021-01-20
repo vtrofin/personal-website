@@ -9,10 +9,9 @@
   </a>
 </template>
 <script>
-import { computed } from 'vue';
 export default {
   name: 'GithubLogo',
-  props: { modifierClass: { type: String, default: '', required: false } }
+  props: { modifierClass: { type: String, default: '', required: false } },
 };
 </script>
 

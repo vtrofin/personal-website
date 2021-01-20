@@ -5,8 +5,23 @@
   >
     <nav class="toolbox-menu">
       <section class="profile-container">
-        <div class="profile" />
-        <div class="list" />
+        <div class="profile">
+          <img src="/img_vt.jpg" alt="victor trofin" loading="lazy" width="42px" />
+          <span class="caption-text">Victor Trofin</span>
+        </div>
+        <div class="toolbox-list">
+          <span>Something</span>
+          <span>Something Else </span>
+          <span>Something New</span>
+          <span>Another</span>
+          <span>Before</span>
+        </div>
+        <div class="toolbox-icons">
+          <div id="js" />
+          <div id="node-js" />
+          <div id="python" />
+          <div id="go" />
+        </div>
       </section>
       <button id="close-button" @click.prevent="handleBlur">Close</button>
     </nav>
@@ -134,5 +149,65 @@ export default {
 }
 #close-button:after {
   transform: rotate(-45deg);
+}
+.profile-container {
+  display: block;
+  box-sizing: border-box;
+  text-align: left;
+}
+.profile {
+  line-height: 42px;
+  margin-bottom: 1rem;
+  font-weight: 700;
+  margin-left: 0;
+  display: flex;
+  align-items: center;
+}
+
+.profile img {
+  border-radius: 50%;
+  margin-left: 0;
+  margin-right: 1rem;
+}
+
+.profile span {
+  font-size: 1.2rem;
+}
+.toolbox-list,
+.toolbox-icons {
+  display: flex;
+  flex-direction: row;
+  margin: 1.5rem auto 0;
+  flex-wrap: wrap;
+  padding: 1.2rem 0.2rem 0;
+  border-top: 3px solid rgba(125, 129, 148, 0.2);
+}
+
+.toolbox-list span {
+  background-color: var(--shipandco);
+  border: 1px solid var(--stockandco);
+  border-radius: var(--base-border);
+  margin: 2px;
+  padding: 2px 4px;
+}
+
+.toolbox-icons > div {
+  height: 42px;
+  width: 42px;
+}
+
+.toolbox-icons #js {
+  background-image: url('/js_logo.svg');
+}
+.toolbox-icons #node-js {
+  background-image: url('/node_logo.svg');
+}
+
+.toolbox-icons #python {
+  background-image: url('/python_logo.svg');
+}
+
+.toolbox-icons #go {
+  background-image: url('/go_logo.svg');
 }
 </style>

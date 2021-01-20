@@ -2,30 +2,29 @@
   <div
     :class="'toolbox-container' + (toolboxActive ? ' ' + 'toolbox-open' : '')"
     @click.self="handleBlur"
-  >
-    <nav class="toolbox-menu">
-      <section class="profile-container">
-        <div class="profile">
-          <img src="/img_vt.jpg" alt="victor trofin" loading="lazy" width="42px" />
-          <span class="caption-text">Victor Trofin</span>
-        </div>
-        <div class="toolbox-list">
-          <span>Something</span>
-          <span>Something Else </span>
-          <span>Something New</span>
-          <span>Another</span>
-          <span>Before</span>
-        </div>
-        <div class="toolbox-icons">
-          <div id="js" />
-          <div id="node-js" />
-          <div id="python" />
-          <div id="go" />
-        </div>
-      </section>
-      <button id="close-button" @click.prevent="handleBlur">Close</button>
-    </nav>
-  </div>
+  />
+  <nav :class="'toolbox-menu' + (toolboxActive ? ' ' + 'toolbox-open' : '')">
+    <section class="profile-container">
+      <div class="profile">
+        <img src="/img_vt.jpg" alt="victor trofin" loading="lazy" width="42px" />
+        <span class="caption-text">Victor Trofin</span>
+      </div>
+      <div class="toolbox-list">
+        <span>Something</span>
+        <span>Something Else </span>
+        <span>Something New</span>
+        <span>Another</span>
+        <span>Before</span>
+      </div>
+      <div class="toolbox-icons">
+        <div id="js" />
+        <div id="node-js" />
+        <div id="python" />
+        <div id="go" />
+      </div>
+    </section>
+    <button id="close-button" @click.prevent="handleBlur">Close</button>
+  </nav>
 
   <div :class="'container' + (toolboxActive ? ' ' + 'toolbox-open' : '')">
     <slot />
@@ -73,7 +72,7 @@ export default {
   background-color: var(--background-white);
 }
 
-#app > .toolbox-open:nth-child(2) {
+#app > .toolbox-open:nth-child(3) {
   transform: translate3d(var(--base-translate-unit), var(--base-translate-unit), 0);
   transition: transform 0.3s;
 }
@@ -104,7 +103,7 @@ export default {
 }
 
 .toolbox-menu {
-  position: absolute;
+  position: fixed;
   box-sizing: border-box;
   z-index: 101;
   width: 320px;
@@ -114,9 +113,9 @@ export default {
   color: var(--black);
   /* fix transition! */
   transform: translate3d(-320px, -320px, 0);
-  transition: transform 1.2s;
+  transition: transform 0.3s;
 }
-.toolbox-open .toolbox-menu {
+.toolbox-menu.toolbox-open {
   transform: translate3d(0, 0, 0);
 }
 

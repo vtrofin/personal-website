@@ -43,7 +43,7 @@ export default {
 </script>
 <style>
 #app > .container {
-  min-height: 100%;
+  min-height: 100vh;
   display: grid;
   grid-template-rows: auto 1fr auto;
   margin: 0;

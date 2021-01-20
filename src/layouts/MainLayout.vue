@@ -1,5 +1,5 @@
 <template>
-  <Header :modifier="modifier" @relay-toggle-canvas="relayToggle" />
+  <Header :modifier="modifier" @toggle-toolbox="relayToggle" />
   <main>
     <div class="content">
       <router-view />
@@ -15,16 +15,16 @@ export default {
   name: 'MainLayout',
   components: { Header, Footer },
   props: {
-    modifier: { type: String, required: false, default: '' }
+    modifier: { type: String, required: false, default: '' },
   },
   emits: {
-    toggleToolbox: null
+    relayToggleToolbox: null,
   },
   setup(props, context) {
     const { emit } = context;
-    const relayToggle = () => emit('toggleToolbox');
+    const relayToggle = () => emit('relayToggleToolbox');
     return { relayToggle };
-  }
+  },
 };
 </script>
 <style>

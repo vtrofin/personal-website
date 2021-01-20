@@ -39,7 +39,7 @@ export default {
   components: { HeaderLogo, GithubLogo, ProjectItemHeader },
   props: { modifier: { type: String, required: false, default: '' } },
   emits: {
-    toggleCanvas: null,
+    toggleToolbox: null,
   },
   setup(props, context) {
     const store = useStore();
@@ -55,7 +55,7 @@ export default {
     const toggleToolbox = () => {
       const isActive = store.getters['checkToolBox'];
       store.dispatch({ type: 'setToolBoxState', isToolboxActive: !isActive });
-      emit('toggleCanvas');
+      emit('toggleToolbox');
     };
 
     return { classModifiers, toggleToolbox };

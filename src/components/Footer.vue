@@ -35,6 +35,7 @@ footer {
     var(--light-magenta);
   color: var(--black);
   width: 100%;
+  margin-top: 2.5rem;
 }
 .section-header-container {
   background-color: var(--background-white);

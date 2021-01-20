@@ -53,7 +53,7 @@ export default {
     onUnmounted(() => {
       stopAnimation(tl, anime);
     });
-  }
+  },
 };
 </script>
 
@@ -63,23 +63,38 @@ export default {
   --animation-gray: #574b33;
   --animation-shadow: #695e46;
 
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: transparent;
+  border-radius: var(--base-animation-border);
   box-sizing: border-box;
+  padding: 0;
+
   position: relative;
   width: 100%;
   height: 100%;
   margin: auto;
-  padding-bottom: 20px;
+}
+@media all and (min-width: 600px) {
+  .container {
+    padding: 5%;
+    background-color: var(--animation-shadow);
+  }
 }
 
 .box-container {
   position: relative;
   box-sizing: border-box;
+  left: 50%;
   height: 100%;
   padding: 50px;
   min-height: 400px;
   max-height: 600px;
+  max-width: 600px;
   background-color: var(--animation-gray);
-  border-radius: var(--base-animation-border);
+  border-radius: calc(var(--base-animation-border) * 4);
+  transform: translate3d(-50%, 0, 0);
 }
 
 .box-ghost {

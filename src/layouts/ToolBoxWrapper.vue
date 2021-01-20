@@ -112,11 +112,12 @@ export default {
   padding: 2rem;
   background-color: var(--misty-rose);
   color: var(--black);
+  /* fix transition! */
   transform: translate3d(-320px, -320px, 0);
+  transition: transform 1.2s;
 }
 .toolbox-open .toolbox-menu {
   transform: translate3d(0, 0, 0);
-  transition: transform 0.2s linear;
 }
 
 #close-button {
@@ -194,6 +195,10 @@ export default {
 .toolbox-icons > div {
   height: 42px;
   width: 42px;
+  background-repeat: no-repeat;
+  background-position: center;
+  margin: 5px;
+  flex-grow: 1;
 }
 
 .toolbox-icons #js {

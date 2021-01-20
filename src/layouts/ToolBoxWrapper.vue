@@ -6,7 +6,7 @@
   <nav :class="'toolbox-menu' + (toolboxActive ? ' ' + 'toolbox-open' : '')">
     <section class="profile-container">
       <div class="profile">
-        <img src="/img_vt.jpg" alt="victor trofin" loading="lazy" width="42px" />
+        <img src="/img_vt.jpg" alt="victor trofin" loading="lazy" width="42" height="42" />
         <span class="caption-text">Victor Trofin</span>
       </div>
       <div class="toolbox-list">
@@ -17,9 +17,9 @@
         <span>Before</span>
       </div>
       <div class="toolbox-icons">
-        <div id="js" />
-        <div id="node-js" />
-        <div id="python" />
+        <fa :icon="['fab', 'js']" class="fa-2x" />
+        <fa :icon="['fab', 'node-js']" class="fa-2x" />
+        <fa :icon="['fab', 'python']" class="fa-2x" />
         <div id="go" />
       </div>
     </section>
@@ -191,24 +191,20 @@ export default {
   padding: 2px 4px;
 }
 
+.toolbox-icons {
+  align-content: space-between;
+}
+
 .toolbox-icons > div {
-  height: 42px;
-  width: 42px;
+  height: 24px;
+  width: 24px;
   background-repeat: no-repeat;
   background-position: center;
   margin: 5px;
   flex-grow: 1;
 }
-
-.toolbox-icons #js {
-  background-image: url('/js_logo.svg');
-}
-.toolbox-icons #node-js {
-  background-image: url('/node_logo.svg');
-}
-
-.toolbox-icons #python {
-  background-image: url('/python_logo.svg');
+.toolbox-icons > svg {
+  margin: 5px;
 }
 
 .toolbox-icons #go {

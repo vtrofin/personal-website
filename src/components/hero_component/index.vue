@@ -18,24 +18,26 @@
         </a>
       </p>
     </div>
-    <div class="cli-container" ref="cliContainer">
+    <div class="cli-interaction-wrap">
       <div class="cli-buttons">
         <span />
         <span />
         <span />
       </div>
-      <div class="bash-history" v-for="(line, i) in bashHistory" :key="i" :aria-label="line">
-        {{ staticText }} <span class="pre-text">{{ line }}</span>
-      </div>
-      <div class="cli-wrapper" @click.stop.prevent="refocusActiveTextLine">
-        {{ staticText }}
-        <span
-          class="pre-text"
-          ref="cliWrapperActiveText"
-          tabindex="0"
-          @input.prevent="handleInput"
-          @keyup.stop.prevent="handleKeyUp"
-        />
+      <div class="cli-container" ref="cliContainer">
+        <div class="bash-history" v-for="(line, i) in bashHistory" :key="i" :aria-label="line">
+          {{ staticText }} <span class="pre-text">{{ line }}</span>
+        </div>
+        <div class="cli-wrapper" @click.stop.prevent="refocusActiveTextLine">
+          {{ staticText }}
+          <span
+            class="pre-text"
+            ref="cliWrapperActiveText"
+            tabindex="0"
+            @input.prevent="handleInput"
+            @keyup.stop.prevent="handleKeyUp"
+          />
+        </div>
       </div>
     </div>
   </section>
@@ -48,7 +50,6 @@ import { handleCursorReposition, handleCaretReposition } from '../helpers';
 
 export default {
   emits: {
-    // https://vueschool.io/lessons/defining-custom-events-emits
     'update-caret-position': null,
   },
   setup(props, context) {
@@ -232,22 +233,34 @@ export default {
   }
 }
 
-.hero-section .cli-container {
+.hero-section .cli-interaction-wrap {
   display: flex;
   flex-direction: column;
+  box-sizing: border-box;
   height: 350px;
   background-color: var(--black);
-  color: var(--white);
   border-radius: var(--base-border);
-  overflow-x: hidden;
-  overflow-y: scroll;
+}
+
+.hero-section .cli-container {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  margin-bottom: 1rem;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  color: var(--white);
   font-family: Monaco, Arial, Helvetica, sans-serif;
   font-size: 1rem;
   line-height: 1.1rem;
   text-align: left;
-  padding: 1rem 0.5rem;
+  word-break: break-all;
   outline: none;
+  overflow-x: hidden;
+  overflow-y: scroll;
   scrollbar-width: none;
+  scroll-snap-type: y mandatory;
 }
 
 .hero-section .cli-container::-webkit-scrollbar {
@@ -261,6 +274,7 @@ export default {
   padding-left: 2%;
   padding-right: 2%;
   box-sizing: border-box;
+  scroll-snap-align: start;
 }
 
 .cli-container .cli-wrapper {
@@ -294,7 +308,7 @@ span.text-block {
     grid-column: 1 / 2;
     grid-row: span 2;
   }
-  .hero-section .cli-container {
+  .hero-section .cli-interaction-wrap {
     grid-column: 2 / 3;
     grid-row: 1/ 5;
     height: 550px;
@@ -309,7 +323,8 @@ span.text-block {
 
 .cli-buttons {
   box-sizing: border-box;
-  padding-bottom: 20px;
+  padding: 10px 10px;
+  align-self: flex-start;
 }
 .cli-buttons > span {
   height: 14px;

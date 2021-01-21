@@ -2,7 +2,6 @@
   <HeroSection @update-caret-position="updateCaretPosition" />
   <GeneralSection class-name="projects" title="Projects" :data="projectsData" />
   <GeneralSection class-name="work" title="Work" :data="workData" />
-  <!--<Skills /> <Interests /> -->
   <span id="blinking-cursor" :style="computedStyle" />
 </template>
 

@@ -1,23 +1,24 @@
 <template>
-  <section>
-    <h1>This is the project item component</h1>
-    <div>{{ $route.params.project_item }}</div>
-  </section>
+  <ProjectItemContent />
 </template>
 
 <script>
-import { watch } from 'vue';
-import { onBeforeRouteUpdate, useRoute, useRouter } from 'vue-router';
+import { onBeforeRouteUpdate } from 'vue-router';
+import ProjectItemContent from '../components/project_item/project_content.vue';
 import { checkProjectRoute } from '../helpers';
 
 export default {
   name: 'ProjectItem',
-  setup() {
+  components: { ProjectItemContent },
+  setup(props) {
     onBeforeRouteUpdate((to, from) => {
       const params = to?.params;
       const pathRedirect = checkProjectRoute(params);
       return pathRedirect;
     });
-  }
+    return {};
+  },
 };
 </script>
+
+<style></style>

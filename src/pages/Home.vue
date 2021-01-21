@@ -1,21 +1,77 @@
 <template>
-  <main>
-    <h1>This is the homepage</h1>
-  </main>
-  <Projects></Projects>
-  <Work></Work>
-  <Skills></Skills>
-  <Interests></Interests>
+  <HeroSection @update-caret-position="updateCaretPosition" />
+  <GeneralSection class-name="projects" title="Projects" :data="projectsData" />
+  <GeneralSection class-name="work" title="Work" :data="workData" />
+  <!--<Skills /> <Interests /> -->
+  <span id="blinking-cursor" :style="computedStyle" />
 </template>
 
 <script>
-  import Work from '../components/work'
-  import Projects from '../components/projects'
-  import Skills from '../components/skills'
-  import Interests from '../components/interests'
+import { ref } from 'vue';
+import { useStore } from 'vuex';
+import HeroSection from '../components/hero_component';
+import GeneralSection from '../components/general_section';
+import { getProjectData, getWorkData } from '../components/helpers';
 
-  export default {
-    name: 'HomePage',
-    components: { Work, Projects, Skills, Interests }
-  }
+export default {
+  name: 'HomePage',
+  components: { GeneralSection, HeroSection },
+  setup(props) {
+    const store = useStore();
+    const computedStyle = ref({});
+    const allProjects = store.getters['projects/getAllProjects'];
+    const allCompanies = store.getters['companies/getAllCompanies'];
+    const projectsData = getProjectData(allProjects, store);
+    const workData = getWorkData(allCompanies);
+    const updateCaretPosition = () => {
+      const { x, y } = store.getters['hero/getCoordinates'];
+      computedStyle.value.left = `${x}px`;
+      computedStyle.value.top = `${y}px`;
+    };
+
+    return {
+      workData,
+      projectsData,
+      computedStyle,
+      updateCaretPosition,
+    };
+  },
+};
 </script>
+
+<style>
+#blinking-cursor {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 0.5rem;
+  height: 1rem;
+  line-height: 1.2rem;
+  background-color: #606060;
+  vertical-align: top;
+  -webkit-animation: cursor-blink 1s step-end infinite;
+  animation: cursor-blink 1s step-end infinite;
+}
+@-webkit-keyframes cursor-blink {
+  0% {
+    opacity: 0.8;
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0.8;
+  }
+}
+@keyframes cursor-blink {
+  0% {
+    opacity: 0.8;
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0.8;
+  }
+}
+</style>

@@ -1,6 +1,7 @@
 import { createApp } from 'vue';
 import { createRouter, createWebHistory } from 'vue-router';
-// import { createStore } from 'vuex';
+import store from './store';
+import { FontAwesomeIcon } from '../libs/fa/font_awesome';
 
 import App from './App.vue';
 import HomePage from './pages/Home.vue';
@@ -8,17 +9,18 @@ import ProjectItem from './pages/ProjectItem.vue';
 import NotFound from './pages/NotFound.vue';
 import Contact from './pages/Contact.vue';
 import { checkProjectRoute } from './helpers';
+
 const routes = [
   { path: '/:pathMatch(.*)*', component: NotFound, name: 'not-found' },
   {
     path: '/',
     component: HomePage,
     name: 'homepage',
-    alias: ['/home', '/work']
+    alias: ['/home', '/work'],
   },
   {
     path: '/projects',
-    redirect: { name: 'projectItem', params: { project_item: 'shipandco' } }
+    redirect: { name: 'projectItem', params: { project_item: 'shipandco' } },
   },
   {
     path: '/projects/:project_item',
@@ -26,39 +28,24 @@ const routes = [
     name: 'projectItem',
     beforeEnter: (to, from) => {
       return checkProjectRoute(to?.params);
-    }
+    },
   },
   {
     path: '/contact',
     component: Contact,
-    name: 'contact'
-  }
+    name: 'contact',
+  },
 ];
 
 const router = createRouter({
   history: createWebHistory(),
-  routes
+  routes,
 });
-
-// const store = createStore({
-//   state() {
-//     return {
-//       count: 0
-//     };
-//   },
-//   mutations: {
-//     increment(state) {
-//       state.count++;
-//     }
-//   }
-// });
-
-// store.commit('increment');
-// store.commit('increment');
-// console.log(store.state.count);
 
 const app = createApp(App);
 app.use(router);
-// app.use(store);
+app.use(store);
+app.component('Fa', FontAwesomeIcon);
+app.config.productionTip = false;
 
 app.mount('#app');

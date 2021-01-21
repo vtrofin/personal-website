@@ -3,6 +3,9 @@
     "plugin:vue/vue3-recommended"
   ],
   "rules": {
-    "no-unused-vars": "off"
+    "no-unused-vars": 1,
+    "vue/singleline-html-element-content-newline": "off",
+    "vue/max-attributes-per-line": "off",
+    "vue/attributes-order": "off"
   }
 }

@@ -24,11 +24,11 @@
         <span />
         <span />
       </div>
-      <div class="cli-container" ref="cliContainer">
+      <div class="cli-container" ref="cliContainer" @click.stop.prevent="refocusActiveTextLine">
         <div class="bash-history" v-for="(line, i) in bashHistory" :key="i" :aria-label="line">
           {{ staticText }} <span class="pre-text">{{ line }}</span>
         </div>
-        <div class="cli-wrapper" @click.stop.prevent="refocusActiveTextLine">
+        <div class="cli-wrapper">
           {{ staticText }}
           <span
             class="pre-text"
@@ -60,6 +60,7 @@ export default {
     const staticText = computed(() => store.getters['hero/getStaticText']);
     const cliContainer = ref(null);
     const cliWrapperActiveText = ref(null);
+    const isMobile = store.getters['checkMobile'];
 
     const handleResize = async () => {
       try {
@@ -69,7 +70,6 @@ export default {
           offsetY: 1,
           store,
         });
-        cliWrapperActiveText.value.focus();
         emit('update-caret-position');
       } catch (err) {
         console.log('Failed to update caret position on window resize', err.message);
@@ -79,13 +79,13 @@ export default {
     onMounted(() => {
       window.addEventListener('resize', handleResize);
       cliWrapperActiveText.value.contentEditable = true;
-      cliWrapperActiveText.value.focus();
 
       const observeHandler = entries => {
         try {
           if (entries?.[0]?.isIntersecting) {
             if (cliWrapperActiveText.value !== document.activeElement) {
-              cliWrapperActiveText.value.focus();
+              // only refocus desktop browsers on scroll back up to the CLI
+              !isMobile && cliWrapperActiveText.value.focus();
             }
           } else {
             cliWrapperActiveText.value.blur();

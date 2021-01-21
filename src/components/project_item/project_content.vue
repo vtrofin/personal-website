@@ -1,13 +1,5 @@
 <template>
   <component :is="projectContentComponent" :modifier="modifierClass" />
-  <router-link
-    :to="
-      $route.params.project_item === 'stockandco' ? '/projects/shipandco' : '/projects/stockandco'
-    "
-    class="content-link"
-  >
-    <span>Work</span>
-  </router-link>
 </template>
 
 <script>

@@ -18,7 +18,8 @@
       tell us which of a set of variations is better at producing a certain effect, encouraging a
       behavior, or achieving a goal.
     </p>
-    <img class="content-image" src="/shipandco_app.png" alt="" loading="lazy" /><br />
+    <img class="content-image" src="/shipandco_app.png" alt="" loading="lazy" />
+    <br />
     <span class="caption-text"> a caption for my image</span>
     <a
       href="#"
@@ -26,8 +27,10 @@
       target="_blank"
       rel="noopener"
       aria-label="Click to see this awesome url"
-      ><span>some link</span></a
-    ><br />
+    >
+      <span>some link</span>
+    </a>
+    <br />
     <ProjectSummary :modifier="modifier" />
   </div>
 </template>
@@ -40,9 +43,6 @@ export default {
   components: { ProjectSummary },
   props: {
     modifier: { type: String, required: false, default: '' },
-  },
-  setup(props) {
-    return {};
   },
 };
 </script>

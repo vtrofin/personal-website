@@ -23,7 +23,6 @@
 </template>
 
 <script>
-import { toRefs, toRef } from 'vue';
 import SectionAppLink from '../SectionAppLink';
 import Project from './Project';
 // import Work from './Work';Work

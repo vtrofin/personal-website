@@ -40,7 +40,7 @@ export default {
   setup(props) {
     const { activeClass, exactActiveClass } = toRefs(props);
     const path = toRef(props, 'to');
-    const { navigate, href, route, isActive, isExactActive } = useLink(path);
+    const { /*navigate, href, route,*/ isActive, isExactActive } = useLink(path);
 
     const isExternalLink = computed(() => checkExternalPath({ path: path.value }));
     const computedClassName = computed(() =>

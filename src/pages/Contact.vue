@@ -66,7 +66,7 @@ const readForm = formTarget => {
 export default {
   name: 'Contact',
   components: { Tick, Alert },
-  setup(props) {
+  setup() {
     const timeoutVal = (process.env.NODE_ENV === 'development' ? 3 : 30) * 1000;
     const templateData = reactive({
       isLoading: false,

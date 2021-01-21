@@ -4,12 +4,12 @@ export const setUpAnimation = anime => {
   anime.set('.ghost-eyes-container', {
     translateX: () => {
       return '-50%';
-    }
+    },
   });
   const tl = anime.timeline({
     targets: '.ghost-eyes-container',
     easing: 'easeInOutExpo',
-    loop: true
+    loop: true,
   });
 
   const moves = {
@@ -30,7 +30,7 @@ export const setUpAnimation = anime => {
     blinkFive: { opacity: 0, duration: 300, delay: 250 },
     blinkSix: { opacity: 1, duration: 350 },
     blinkSeven: { opacity: 0, duration: 300, delay: 250 },
-    blinkEight: { opacity: 1, duration: 350 }
+    blinkEight: { opacity: 1, duration: 350 },
   };
 
   return Object.keys(moves).reduce((acc, key) => {

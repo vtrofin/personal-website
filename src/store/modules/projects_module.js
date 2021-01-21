@@ -7,7 +7,7 @@ import bentoandcoModule from './bentoandco_module';
 export default {
   state: () => ({
     projects: ['shipandco', 'stockandco', 'staff', 'utils', 'bentoandco'],
-    activeProject: ''
+    activeProject: '',
   }),
   namespaced: true,
   modules: {
@@ -15,7 +15,7 @@ export default {
     stockandco: stockandcoModule,
     staff: staffModule,
     utils: utilsModule,
-    bentoandco: bentoandcoModule
+    bentoandco: bentoandcoModule,
   },
   getters: {
     getAllProjects: state => {
@@ -23,17 +23,17 @@ export default {
     },
     getActiveProject: state => {
       return state.activeProject;
-    }
+    },
   },
   mutations: {
     setActiveProject: (state, payload) => {
       const { project } = payload;
       state.activeProject = project ? project : '';
-    }
+    },
   },
   actions: {
     setActiveProject: ({ commit }, payload) => {
       commit('setActiveProject', payload);
-    }
-  }
+    },
+  },
 };

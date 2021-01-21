@@ -39,10 +39,10 @@ export default {
   name: 'ShipandcoContent',
   components: { ProjectSummary },
   props: {
-    modifier: { type: String, required: false, default: '' }
+    modifier: { type: String, required: false, default: '' },
   },
   setup(props) {
     return {};
-  }
+  },
 };
 </script>

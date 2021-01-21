@@ -7,12 +7,12 @@ export default {
       logoClass: `stockandco-logo`,
       // backgroundClass: `stockandco-background`,
       type: 'project',
-      item_title: '' // will not overwrite the homepage short title
-    }
+      item_title: '', // will not overwrite the homepage short title
+    },
   }),
   getters: {
     getProject: state => {
       return state.project;
-    }
-  }
+    },
+  },
 };

@@ -19,7 +19,7 @@ export const getSectionLinkClassName = ({
   isExactActive,
   isActive,
   exactActiveClass,
-  activeClass
+  activeClass,
 }) => {
   if (isExactActive) {
     const computed = (exactActiveClass.value || '').split(' ');

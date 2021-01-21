@@ -6,12 +6,12 @@ import companiesModule from './modules/companies_module';
 const store = createStore({
   state: () => ({
     isMobile: false,
-    isToolboxActive: false
+    isToolboxActive: false,
   }),
   modules: {
     hero: heroModule,
     projects: projectsModule,
-    companies: companiesModule
+    companies: companiesModule,
   },
   getters: {
     checkMobile: state => {
@@ -19,7 +19,7 @@ const store = createStore({
     },
     checkToolBox: state => {
       return state.isToolboxActive;
-    }
+    },
   },
   mutations: {
     updateMobileStatus: (state, payload) => {
@@ -31,7 +31,7 @@ const store = createStore({
         return;
       }
       state.isToolboxActive = payload.isToolboxActive;
-    }
+    },
   },
   actions: {
     setMobileDevice: ({ commit }, payload) => {
@@ -39,8 +39,8 @@ const store = createStore({
     },
     setToolBoxState: ({ commit }, payload) => {
       commit('updateToolBoxState', payload);
-    }
-  }
+    },
+  },
 });
 
 export default store;

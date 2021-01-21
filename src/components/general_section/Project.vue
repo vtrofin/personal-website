@@ -15,9 +15,9 @@ export default {
   props: {
     options: {
       type: Object,
-      required: true
-    }
-  }
+      required: true,
+    },
+  },
 };
 </script>
 

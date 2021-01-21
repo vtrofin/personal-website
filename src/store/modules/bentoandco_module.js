@@ -9,12 +9,12 @@ export default {
       // backgroundClass: `shipandco-background`,
       type: 'project',
       item_title: 'A long title for the project description', // will not overwrite the homepage short title
-      role: 'Front-End bug fixes and enhancements'
-    }
+      role: 'Front-End bug fixes and enhancements',
+    },
   }),
   getters: {
     getProject: state => {
       return state.project;
-    }
-  }
+    },
+  },
 };

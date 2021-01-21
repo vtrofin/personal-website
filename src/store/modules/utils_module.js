@@ -8,12 +8,12 @@ export default {
       // logoClass: `shipandco-logo`,
       // backgroundClass: `shipandco-background`,
       type: 'project',
-      item_title: 'A long title for the project description' // will not overwrite the homepage short title
-    }
+      item_title: 'A long title for the project description', // will not overwrite the homepage short title
+    },
   }),
   getters: {
     getProject: state => {
       return state.project;
-    }
-  }
+    },
+  },
 };

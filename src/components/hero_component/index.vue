@@ -13,8 +13,9 @@
           rel="noopener"
           href="https://www.shipandco.com/ja/"
           aria-label="Visit Ship&co website"
-          >Ship&co</a
         >
+          Ship&co
+        </a>
       </p>
     </div>
     <div class="cli-container" ref="cliContainer">

@@ -28,8 +28,8 @@ export default {
   name: 'Alert',
   props: {
     width: { type: String, required: false, default: '24px' },
-    color: { type: String, required: false, default: 'red' }
-  }
+    color: { type: String, required: false, default: 'red' },
+  },
 };
 </script>
 <style scoped></style>

@@ -26,8 +26,8 @@ export default {
   name: 'Tick',
   props: {
     width: { type: String, required: false, default: '24px' },
-    color: { type: String, required: false, default: 'green' }
-  }
+    color: { type: String, required: false, default: 'green' },
+  },
 };
 </script>
 <style scoped></style>

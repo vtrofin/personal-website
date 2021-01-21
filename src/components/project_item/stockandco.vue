@@ -16,6 +16,6 @@
 import ProjectSummary from './project_summary';
 export default {
   name: 'StockandcoContent',
-  components: { ProjectSummary }
+  components: { ProjectSummary },
 };
 </script>

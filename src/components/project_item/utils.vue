@@ -16,6 +16,6 @@
 import ProjectSummary from './project_summary';
 export default {
   name: 'UtilsContent',
-  components: { ProjectSummary }
+  components: { ProjectSummary },
 };
 </script>

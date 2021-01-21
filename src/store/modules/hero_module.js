@@ -5,8 +5,8 @@ export default {
     staticText: 'Victors-MBP:~ victor$',
     coordinates: {
       x: null,
-      y: null
-    }
+      y: null,
+    },
   }),
   getters: {
     getBashHistory: state => {
@@ -17,7 +17,7 @@ export default {
     },
     getCoordinates: state => {
       return state.coordinates;
-    }
+    },
   },
   mutations: {
     pushToHistory(state, payload) {
@@ -28,9 +28,9 @@ export default {
       const { x, y } = payload;
       state.coordinates = {
         x: !!x || x === 0 ? x : state.coordinates.x,
-        y: !!y || y === 0 ? y : state.coordinates.y
+        y: !!y || y === 0 ? y : state.coordinates.y,
       };
-    }
+    },
   },
   actions: {
     pushLine({ commit }, payload) {
@@ -38,6 +38,6 @@ export default {
     },
     updateCoordinates({ commit }, payload) {
       commit('updateCoords', payload);
-    }
-  }
+    },
+  },
 };

@@ -97,14 +97,16 @@ export default {
       cliObserver = new IntersectionObserver(observeHandler, { root: null, threshhold: [0.2] });
       cliObserver.observe(cliContainer.value);
 
-      return handleCursorReposition({
-        windowElem: window,
-        domRef: cliWrapperActiveText.value,
-        offsetY: 2,
-        store,
-      })
-        .then(() => emit('update-caret-position'))
-        .catch(err => console.log('Failed to update caret position', err.message));
+      setTimeout(() => {
+        return handleCursorReposition({
+          windowElem: window,
+          domRef: cliWrapperActiveText.value,
+          offsetY: 2,
+          store,
+        })
+          .then(() => emit('update-caret-position'))
+          .catch(err => console.log('Failed to update caret position', err.message));
+      }, 0);
     });
 
     onUnmounted(() => {

@@ -20,9 +20,6 @@
 export default {
   name: 'HeaderLogo',
   props: { modifierClass: { type: String, default: '', required: false } },
-  setup(props) {
-    return {};
-  },
 };
 </script>
 <style scoped>

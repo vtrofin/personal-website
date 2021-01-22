@@ -61,7 +61,8 @@ export const getCliObserver = ({
           const isPortraitBug =
             orientation === 'portrait' && action === 'leave' && direction === 'up';
           const isLandscapeBug = orientation === 'landscape' && direction === 'no-scroll';
-
+          console.log('orentation ---> ', orientation);
+          console.log('scrollState -->', scrollState);
           isPortraitBug || isLandscapeBug ? undefined : cliWrapperActiveText.value.blur();
         } else {
           cliWrapperActiveText.value.blur();

@@ -86,6 +86,7 @@ export default {
           domRef: cliWrapperActiveText.value,
           offsetY: 2,
           store,
+          isSubmit: true, // force get from Elem
         })
           .then(() => emit('update-caret-position'))
           .catch(err => console.log('Failed to update caret position', err.message));

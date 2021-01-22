@@ -8,7 +8,9 @@ export const getCliObserver = ({ cliWrapperActiveText, cliContainer, isMobile, i
           cliWrapperActiveText.value.focus();
       } else {
         const isClick = cliContainer.value.getAttribute('data-focus-click') === 'true';
-        if (!isClick) {
+        if (isMobile && isAndroid) {
+          !isClick && cliWrapperActiveText.value.blur();
+        } else {
           cliWrapperActiveText.value.blur();
         }
         !!isClick && cliContainer.value.removeAttribute('data-focus-click');
@@ -18,7 +20,10 @@ export const getCliObserver = ({ cliWrapperActiveText, cliContainer, isMobile, i
     }
   };
 
-  const cliObserver = new IntersectionObserver(observeHandler, { root: null, threshhold: [0.2] });
+  const cliObserver = new IntersectionObserver(observeHandler, {
+    root: null,
+    threshhold: isMobile && isAndroid ? [0.2, 0.8] : [0.2],
+  });
   cliObserver.observe(cliContainer.value);
   return cliObserver;
 };

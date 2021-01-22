@@ -47,7 +47,7 @@
 import { computed, ref, onMounted, onUnmounted } from 'vue';
 import { useStore } from 'vuex';
 import { handleCursorReposition, handleCaretReposition } from '../helpers';
-import { getCliObserver } from '../helpers/intersect';
+import { getCliObserver, getCursorObserver } from '../helpers/intersect';
 
 export default {
   emits: {
@@ -56,6 +56,7 @@ export default {
   setup(props, context) {
     const { emit } = context;
     let cliObserver = null;
+    let cursorObserver = null;
     const store = useStore();
     const bashHistory = computed(() => store.getters['hero/getBashHistory']);
     const staticText = computed(() => store.getters['hero/getStaticText']);
@@ -82,6 +83,7 @@ export default {
       cliWrapperActiveText.value.contentEditable = true;
       cliObserver = getCliObserver(cliWrapperActiveText, isMobile, document);
       cliObserver.observe(cliContainer.value);
+      cursorObserver = getCursorObserver(cliContainer, cliWrapperActiveText, document);
 
       setTimeout(() => {
         return handleCursorReposition({

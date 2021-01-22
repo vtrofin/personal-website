@@ -32,9 +32,9 @@ export default {
       workData,
       projectsData,
       computedStyle,
-      updateCaretPosition,
+      updateCaretPosition
     };
-  },
+  }
 };
 </script>
 

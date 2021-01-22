@@ -24,7 +24,12 @@
         <span />
         <span />
       </div>
-      <div class="cli-container" ref="cliContainer" @click.stop.prevent="refocusActiveTextLine">
+      <div
+        class="cli-container"
+        ref="cliContainer"
+        @click.stop.prevent="refocusActiveTextLine"
+        @touchstart.stop.prevent="refocusActiveTextLine"
+      >
         <div class="bash-history" v-for="(line, i) in bashHistory" :key="i" :aria-label="line">
           {{ staticText }} <span class="pre-text">{{ line }}</span>
         </div>
@@ -46,12 +51,18 @@
 <script>
 import { computed, ref, onMounted, onUnmounted, reactive } from 'vue';
 import { useStore } from 'vuex';
-import { handleCursorReposition, handleCaretReposition } from '../helpers';
+import { handleCursorReposition } from '../helpers';
 import { getCliObserver, getCursorObserver } from '../helpers/intersect';
+import {
+  refocusActiveTextLine,
+  handleResizeEvent,
+  handleKeyUpEvent,
+  handleInputEvent,
+} from '../helpers/event_handlers';
 
 export default {
   emits: {
-    'update-caret-position': null
+    'update-caret-position': null,
   },
   setup(props, context) {
     const { emit } = context;
@@ -65,23 +76,11 @@ export default {
     const { isMobile, isAndroid } = store.getters['checkMobile'];
     const pos = reactive({ prevY: 0, prevRatio: 0 });
 
-    const handleResize = async () => {
-      try {
-        await handleCursorReposition({
-          windowElem: window,
-          domRef: cliWrapperActiveText.value,
-          offsetY: 1,
-          store
-        });
-        emit('update-caret-position');
-      } catch (err) {
-        console.log('Failed to update caret position on window resize', err.message);
-      }
-    };
-
     onMounted(() => {
-      window.addEventListener('resize', handleResize);
+      const resizeHandler = handleResizeEvent(cliWrapperActiveText, store, emit);
+      window.addEventListener('resize', resizeHandler);
       cliWrapperActiveText.value.contentEditable = true;
+
       cliObserver = getCliObserver({
         cliWrapperActiveText,
         target: cliContainer,
@@ -89,16 +88,15 @@ export default {
         isAndroid,
         windowElem: window,
         docElem: document,
-        pos
+        pos,
       });
       cursorObserver = getCursorObserver(cliContainer, cliWrapperActiveText, document);
 
       setTimeout(() => {
         return handleCursorReposition({
-          windowElem: window,
           domRef: cliWrapperActiveText.value,
           offsetY: 2,
-          store
+          store,
         })
           .then(() => emit('update-caret-position'))
           .catch(err => console.log('Failed to update caret position', err.message));
@@ -107,69 +105,20 @@ export default {
 
     onUnmounted(() => {
       cliObserver.disconnect();
-      window.removeEventListener('resize', handleResize);
+      const resizeHandler = handleResizeEvent(cliWrapperActiveText, store, emit);
+      window.removeEventListener('resize', resizeHandler);
     });
-
-    const handleInput = async event => {
-      const isSubmit =
-        event?.inputType === 'insertParagraph' ||
-        (event?.data === null && event?.inputType === 'insertText');
-      const isPaste = event?.inputType === 'insertFromPaste';
-      const text = cliWrapperActiveText.value.innerText;
-
-      if (isSubmit) {
-        cliWrapperActiveText.value.innerText = '';
-        const regexp = new RegExp('^(\\r\\n|\\r|\\n)\\1*|(\\r\\n|\\r|\\n)\\2*$', 'gi');
-        const formattedText = text.replace(regexp, '');
-        await store.dispatch({ type: 'hero/pushLine', text: formattedText });
-      }
-
-      if (isPaste) {
-        cliWrapperActiveText.value.innerText = text;
-        handleCaretReposition({
-          windowElem: window,
-          windowDocument: document,
-          domRef: cliWrapperActiveText.value
-        });
-      }
-
-      return handleCursorReposition({
-        windowElem: window,
-        domRef: cliWrapperActiveText.value,
-        offsetY: isSubmit ? 2 : 1,
-        store,
-        isSubmit
-      })
-        .then(() => emit('update-caret-position'))
-        .catch(err => console.log('Failed to update caret position', err.message));
-    };
-
-    const handleKeyUp = async event => {
-      const isArrowKey = ['ArrowRight', 'ArrowLeft', 'ArrowUp', 'ArrowDown'].includes(event.key);
-      if (!isArrowKey) {
-        return;
-      }
-      return handleCursorReposition({ windowElem: window, offsetY: 1, store })
-        .then(() => emit('update-caret-position'))
-        .catch(err => console.log('Failed to update caret position', err.message));
-    };
-
-    const refocusActiveTextLine = () => {
-      if (cliWrapperActiveText.value !== document.activeElement) {
-        cliWrapperActiveText.value.focus();
-      }
-    };
 
     return {
       bashHistory,
       staticText,
       cliContainer,
       cliWrapperActiveText,
-      handleInput,
-      handleKeyUp,
-      refocusActiveTextLine
+      handleInput: handleInputEvent(store, emit, cliWrapperActiveText),
+      handleKeyUp: handleKeyUpEvent(store, emit),
+      refocusActiveTextLine: refocusActiveTextLine(cliWrapperActiveText),
     };
-  }
+  },
 };
 </script>
 

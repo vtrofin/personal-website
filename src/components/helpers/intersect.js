@@ -43,7 +43,7 @@ export const getCliObserver = ({
   windowElem
 }) => {
   const observeHandler = entries => {
-    const scrollState = getScrollState({ entries, pos });
+    const scrollState = isMobile && isAndroid && getScrollState({ entries, pos });
 
     try {
       if (entries?.[0]?.isIntersecting) {

@@ -44,7 +44,7 @@
 </template>
 
 <script>
-import { computed, ref, onMounted, onUnmounted } from 'vue';
+import { computed, ref, onMounted, onUnmounted, reactive } from 'vue';
 import { useStore } from 'vuex';
 import { handleCursorReposition, handleCaretReposition } from '../helpers';
 import { getCliObserver, getCursorObserver } from '../helpers/intersect';
@@ -62,7 +62,8 @@ export default {
     const staticText = computed(() => store.getters['hero/getStaticText']);
     const cliContainer = ref(null);
     const cliWrapperActiveText = ref(null);
-    const isMobile = store.getters['checkMobile'];
+    const { isMobile, isAndroid } = store.getters['checkMobile'];
+    const pos = reactive({ prevY: 0, prevRatio: 0 });
 
     const handleResize = async () => {
       try {
@@ -81,8 +82,15 @@ export default {
     onMounted(() => {
       window.addEventListener('resize', handleResize);
       cliWrapperActiveText.value.contentEditable = true;
-      cliObserver = getCliObserver(cliWrapperActiveText, isMobile, document);
-      cliObserver.observe(cliContainer.value);
+      cliObserver = getCliObserver({
+        cliWrapperActiveText,
+        target: cliContainer,
+        isMobile,
+        isAndroid,
+        windowElem: window,
+        docElem: document,
+        pos
+      });
       cursorObserver = getCursorObserver(cliContainer, cliWrapperActiveText, document);
 
       setTimeout(() => {

@@ -6,32 +6,36 @@ import companiesModule from './modules/companies_module';
 const store = createStore({
   state: () => ({
     isMobile: false,
-    isToolboxActive: false,
+    isAndroid: false,
+    isToolboxActive: false
   }),
   modules: {
     hero: heroModule,
     projects: projectsModule,
-    companies: companiesModule,
+    companies: companiesModule
   },
   getters: {
     checkMobile: state => {
-      return state.isMobile;
+      return { isMobile: state.isMobile, isAndroid: state.isAndroid };
     },
     checkToolBox: state => {
       return state.isToolboxActive;
-    },
+    }
   },
   mutations: {
     updateMobileStatus: (state, payload) => {
-      const { isMobile } = payload;
+      const { isMobile, isAndroid } = payload;
       state.isMobile = isMobile;
+      if (typeof isAndroid === 'boolean') {
+        state.isAndroid = isAndroid;
+      }
     },
     updateToolBoxState: (state, payload = {}) => {
       if (typeof payload.isToolboxActive !== 'boolean') {
         return;
       }
       state.isToolboxActive = payload.isToolboxActive;
-    },
+    }
   },
   actions: {
     setMobileDevice: ({ commit }, payload) => {
@@ -39,8 +43,8 @@ const store = createStore({
     },
     setToolBoxState: ({ commit }, payload) => {
       commit('updateToolBoxState', payload);
-    },
-  },
+    }
+  }
 });
 
 export default store;

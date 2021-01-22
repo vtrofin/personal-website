@@ -23,7 +23,8 @@ export default {
     const toolboxState = reactive({ active: false });
 
     const isMobileDevice = /Mobi/i.test(window.navigator.userAgent);
-    store.dispatch({ type: 'setMobileDevice', isMobile: isMobileDevice });
+    const isAndroid = /Android/i.test(window.navigator.userAgent);
+    store.dispatch({ type: 'setMobileDevice', isMobile: isMobileDevice, isAndroid });
 
     watch(
       () => route.params,
@@ -31,7 +32,7 @@ export default {
         return store
           .dispatch({
             type: 'projects/setActiveProject',
-            project: getProjectItem(route),
+            project: getProjectItem(route)
           })
           .then(() => {
             modifier.value = getProjectItem(route);
@@ -51,9 +52,9 @@ export default {
     return {
       modifier,
       toggleAndTranslateBody,
-      toolboxState,
+      toolboxState
     };
-  },
+  }
 };
 </script>
 

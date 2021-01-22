@@ -47,10 +47,11 @@
 import { computed, ref, onMounted, onUnmounted } from 'vue';
 import { useStore } from 'vuex';
 import { handleCursorReposition, handleCaretReposition } from '../helpers';
+import { getCliObserver } from '../helpers/intersect';
 
 export default {
   emits: {
-    'update-caret-position': null,
+    'update-caret-position': null
   },
   setup(props, context) {
     const { emit } = context;
@@ -68,7 +69,7 @@ export default {
           windowElem: window,
           domRef: cliWrapperActiveText.value,
           offsetY: 1,
-          store,
+          store
         });
         emit('update-caret-position');
       } catch (err) {
@@ -79,23 +80,7 @@ export default {
     onMounted(() => {
       window.addEventListener('resize', handleResize);
       cliWrapperActiveText.value.contentEditable = true;
-
-      const observeHandler = entries => {
-        try {
-          if (entries?.[0]?.isIntersecting) {
-            if (cliWrapperActiveText.value !== document.activeElement) {
-              // only refocus desktop browsers on scroll back up to the CLI
-              !isMobile && cliWrapperActiveText.value.focus();
-            }
-          } else {
-            cliWrapperActiveText.value.blur();
-          }
-        } catch (err) {
-          throw new Error('Intersection Observer Failed on this browser');
-        }
-      };
-
-      cliObserver = new IntersectionObserver(observeHandler, { root: null, threshhold: [0.2] });
+      cliObserver = getCliObserver(cliWrapperActiveText, isMobile, document);
       cliObserver.observe(cliContainer.value);
 
       setTimeout(() => {
@@ -103,7 +88,7 @@ export default {
           windowElem: window,
           domRef: cliWrapperActiveText.value,
           offsetY: 2,
-          store,
+          store
         })
           .then(() => emit('update-caret-position'))
           .catch(err => console.log('Failed to update caret position', err.message));
@@ -134,7 +119,7 @@ export default {
         handleCaretReposition({
           windowElem: window,
           windowDocument: document,
-          domRef: cliWrapperActiveText.value,
+          domRef: cliWrapperActiveText.value
         });
       }
 
@@ -143,7 +128,7 @@ export default {
         domRef: cliWrapperActiveText.value,
         offsetY: isSubmit ? 2 : 1,
         store,
-        isSubmit,
+        isSubmit
       })
         .then(() => emit('update-caret-position'))
         .catch(err => console.log('Failed to update caret position', err.message));
@@ -172,9 +157,9 @@ export default {
       cliWrapperActiveText,
       handleInput,
       handleKeyUp,
-      refocusActiveTextLine,
+      refocusActiveTextLine
     };
-  },
+  }
 };
 </script>
 

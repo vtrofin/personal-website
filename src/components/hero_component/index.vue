@@ -28,7 +28,7 @@
         class="cli-container"
         ref="cliContainer"
         @click.stop.prevent="refocusActiveTextLine"
-        @touchstart.stop.prevent="refocusActiveTextLine"
+        @touchend.stop.prevent="refocusActiveTextLine"
       >
         <div class="bash-history" v-for="(line, i) in bashHistory" :key="i" :aria-label="line">
           {{ staticText }} <span class="pre-text">{{ line }}</span>
@@ -71,26 +71,15 @@ export default {
     const store = useStore();
     const bashHistory = computed(() => store.getters['hero/getBashHistory']);
     const staticText = computed(() => store.getters['hero/getStaticText']);
+    const { isMobile, isAndroid } = store.getters['checkMobile'];
     const cliContainer = ref(null);
     const cliWrapperActiveText = ref(null);
-    const { isMobile, isAndroid } = store.getters['checkMobile'];
-    const pos = reactive({ prevY: 0, prevRatio: 0 });
 
     onMounted(() => {
-      const resizeHandler = handleResizeEvent(cliWrapperActiveText, store, emit);
-      window.addEventListener('resize', resizeHandler);
+      window.addEventListener('resize', handleResizeEvent(cliWrapperActiveText, store, emit));
       cliWrapperActiveText.value.contentEditable = true;
-
-      cliObserver = getCliObserver({
-        cliWrapperActiveText,
-        target: cliContainer,
-        isMobile,
-        isAndroid,
-        windowElem: window,
-        docElem: document,
-        pos,
-      });
-      cursorObserver = getCursorObserver(cliContainer, cliWrapperActiveText, document);
+      cliObserver = getCliObserver({ cliWrapperActiveText, cliContainer, isMobile, isAndroid });
+      cursorObserver = getCursorObserver(cliContainer, cliWrapperActiveText);
 
       setTimeout(() => {
         return handleCursorReposition({
@@ -105,8 +94,8 @@ export default {
 
     onUnmounted(() => {
       cliObserver.disconnect();
-      const resizeHandler = handleResizeEvent(cliWrapperActiveText, store, emit);
-      window.removeEventListener('resize', resizeHandler);
+      cursorObserver.disconnect();
+      window.removeEventListener('resize', handleResizeEvent(cliWrapperActiveText, store, emit));
     });
 
     return {

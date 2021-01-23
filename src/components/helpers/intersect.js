@@ -1,20 +1,20 @@
 export const getCliObserver = ({ cliWrapperActiveText, cliContainer, isMobile, isAndroid }) => {
   const observeHandler = entries => {
     try {
+      const isClick = cliContainer.value.getAttribute('data-focus-click') === 'true';
       if (entries?.[0]?.isIntersecting) {
         // only refocus desktop browsers on scroll back up to the CLI
         cliWrapperActiveText.value !== document.activeElement &&
           !isMobile &&
           cliWrapperActiveText.value.focus();
       } else {
-        const isClick = cliContainer.value.getAttribute('data-focus-click') === 'true';
         if (isMobile && isAndroid) {
           !isClick && cliWrapperActiveText.value.blur();
         } else {
           cliWrapperActiveText.value.blur();
         }
-        !!isClick && cliContainer.value.removeAttribute('data-focus-click');
       }
+      !!isClick && cliContainer.value.removeAttribute('data-focus-click');
     } catch (err) {
       throw new Error('Intersection Observer Failed on this browser');
     }
@@ -22,7 +22,7 @@ export const getCliObserver = ({ cliWrapperActiveText, cliContainer, isMobile, i
 
   const cliObserver = new IntersectionObserver(observeHandler, {
     root: null,
-    threshhold: isMobile && isAndroid ? [0.2, 0.8] : [0.2],
+    threshhold: isMobile && isAndroid ? [0.2, 0.6, 0.9] : [0.2],
   });
   cliObserver.observe(cliContainer.value);
   return cliObserver;

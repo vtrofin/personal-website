@@ -63,6 +63,9 @@
 </template>
 
 <script>
+// hiding the cli until i have the time to make it interactive
+// do no clean unused variables in this file
+// N.B. I'm reusing some already defined variables for the animated cli. e.g. cliContainer ref
 import anime from 'animejs/lib/anime.es.js';
 import { computed, ref, onMounted, onUnmounted, reactive } from 'vue';
 import { useStore } from 'vuex';
@@ -95,39 +98,39 @@ export default {
     let staggeredAnimation = ref(null);
 
     onMounted(() => {
+      // prepare text for animation -> explode into single characters
       const formattedText = getExplodedContent(animationText);
       for (let i in formattedText) {
         animationTextRefs[`animationText${i}`].value.innerHTML = formattedText[i];
       }
-
       //  check that cli is visible & trigger animation
       cliObserver = getAnimationObserver({ cliContainer, anime, staggeredAnimation });
 
-      // reposition cursor on window resize?
-
-      return;
-      // window.addEventListener('resize', handleResizeEvent(cliWrapperActiveText, store, emit));
-      // cliWrapperActiveText.value.contentEditable = true;
-      // cliObserver = getCliObserver({ cliWrapperActiveText, cliContainer, isMobile, isAndroid });
-      // cursorObserver = getCursorObserver(cliContainer, cliWrapperActiveText);
-      // setTimeout(() => {
-      //   return handleCursorReposition({
-      //     domRef: cliWrapperActiveText.value,
-      //     offsetY: 2,
-      //     store,
-      //     isSubmit: true, // force get from Elem
-      //   })
-      //     .then(() => emit('update-caret-position'))
-      //     .catch(err => console.log('Failed to update caret position', err.message));
-      // }, 0);
+      /*
+      window.addEventListener('resize', handleResizeEvent(cliWrapperActiveText, store, emit));
+      cliWrapperActiveText.value.contentEditable = true;
+      cliObserver = getCliObserver({ cliWrapperActiveText, cliContainer, isMobile, isAndroid });
+      cursorObserver = getCursorObserver(cliContainer, cliWrapperActiveText);
+      setTimeout(() => {
+        return handleCursorReposition({
+          domRef: cliWrapperActiveText.value,
+          offsetY: 2,
+          store,
+          isSubmit: true, // force get from Elem
+        })
+          .then(() => emit('update-caret-position'))
+          .catch(err => console.log('Failed to update caret position', err.message));
+      }, 0);
+      */
     });
 
     onUnmounted(() => {
       cliObserver.disconnect();
       stopAnimation(staggeredAnimation.value, anime);
-
-      // cursorObserver.disconnect();
-      // window.removeEventListener('resize', handleResizeEvent(cliWrapperActiveText, store, emit));
+      /*
+      cursorObserver.disconnect();
+      window.removeEventListener('resize', handleResizeEvent(cliWrapperActiveText, store, emit));
+      */
     });
 
     return {

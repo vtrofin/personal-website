@@ -2,6 +2,7 @@
   <HeroSection @update-caret-position="updateCaretPosition" />
   <GeneralSection class-name="projects" title="Projects" :data="projectsData" />
   <GeneralSection class-name="work" title="Work" :data="workData" />
+  <!-- hide cli blinking cursor until i have the time to make it interactive -->
   <!-- <span id="blinking-cursor" :style="computedStyle" /> -->
 </template>
 

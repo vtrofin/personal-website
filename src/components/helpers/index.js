@@ -122,3 +122,18 @@ export const getExplodedContent = (textArr = []) => {
 
   return textArr.filter(Boolean).map(getFormattedLine);
 };
+
+export const getLastNode = parent => {
+  if (!parent) {
+    return;
+  }
+  let ch = parent?.children;
+  while (ch.length) {
+    if (!ch[ch.length - 1].children.length) {
+      return ch[ch.length - 1];
+    }
+    ch = ch[ch.length - 1].children;
+  }
+
+  return ch[ch.length - 1];
+};

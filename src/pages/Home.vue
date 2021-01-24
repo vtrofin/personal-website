@@ -39,7 +39,8 @@ export default {
 </script>
 
 <style>
-#blinking-cursor {
+#blinking-cursor,
+#animation-blinking-cursor {
   position: absolute;
   top: 0px;
   left: 0px;
@@ -51,6 +52,11 @@ export default {
   -webkit-animation: cursor-blink 1s step-end infinite;
   animation: cursor-blink 1s step-end infinite;
 }
+#animation-blinking-cursor {
+  position: relative;
+  display: none;
+}
+
 @-webkit-keyframes cursor-blink {
   0% {
     opacity: 0.8;

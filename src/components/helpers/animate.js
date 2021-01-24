@@ -1,3 +1,5 @@
+import { getLastNode } from './index';
+
 export const setUpAnimation = anime => {
   // x => translated -50%. translate -80% -> -20%
   // y -> translated 0; translate -70% -> 40%
@@ -61,8 +63,9 @@ export const animateCliText = ({ cliContainer, anime, staggeredAnimation }) => {
     delay: 25,
     delay: anime.stagger(25, { start: 350, direction: 'normal', easing: 'linear' }),
     complete: anim => {
-      // position cursor after animation finished
-      return;
+      // position blinking cursor after animation finished
+      const cursor = getLastNode(cliContainer.value);
+      cursor.style.display = 'inline-block';
     },
   });
 

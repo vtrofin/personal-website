@@ -112,10 +112,15 @@ export const createAnimationRefs = (refName, maxNumber, ref) => {
 };
 
 export const getExplodedContent = (textArr = []) => {
-  const getFormattedLine = (textLine = '') => {
+  const getFormattedLine = (textLine = '', i, self) => {
     const split = textLine.split('');
-    return split.reduce((acc, char) => {
+
+    return split.reduce((acc, char, j, arr) => {
+      const isLast = i === self.length - 1 && j === arr.length - 1;
       acc = acc + `<span class="animation-text">${char}</span>`;
+      if (isLast) {
+        acc = acc + '<div id="animation-blinking-cursor" />';
+      }
       return acc;
     }, '');
   };

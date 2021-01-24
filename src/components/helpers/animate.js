@@ -52,3 +52,19 @@ export const stopAnimation = (tl, anime) => {
   const allTargets = getTargets(tl);
   return allTargets.map(target => anime.remove(target));
 };
+
+export const animateCliText = ({ cliContainer, anime, staggeredAnimation }) => {
+  staggeredAnimation.value = anime({
+    targets: '.bash-history .animation-text',
+    opacity: [0, 1],
+    round: 1,
+    delay: 25,
+    delay: anime.stagger(25, { start: 350, direction: 'normal', easing: 'linear' }),
+    complete: anim => {
+      // position cursor after animation finished
+      return;
+    },
+  });
+
+  staggeredAnimation.value.play();
+};

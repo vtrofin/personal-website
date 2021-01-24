@@ -42,10 +42,9 @@ import { setUpAnimation, stopAnimation } from '../components/helpers/animate';
 
 export default {
   name: 'NotFound',
-  setup(props) {
+  setup() {
     let tl;
     onMounted(() => {
-      let test = anime;
       tl = setUpAnimation(anime);
       tl.play();
     });
@@ -53,7 +52,7 @@ export default {
     onUnmounted(() => {
       stopAnimation(tl, anime);
     });
-  }
+  },
 };
 </script>
 

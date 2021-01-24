@@ -97,3 +97,28 @@ export const getWorkData = vuexCompanies => {
     };
   });
 };
+
+export const createAnimationRefs = (refName, maxNumber, ref) => {
+  if (maxNumber === 0 || !maxNumber) {
+    return undefined;
+  }
+
+  const animationRefs = new Array(maxNumber).fill().reduce((acc, val, i) => {
+    acc[refName + i] = ref(null);
+    return acc;
+  }, {});
+
+  return animationRefs;
+};
+
+export const getExplodedContent = (textArr = []) => {
+  const getFormattedLine = (textLine = '') => {
+    const split = textLine.split('');
+    return split.reduce((acc, char) => {
+      acc = acc + `<span class="animation-text">${char}</span>`;
+      return acc;
+    }, '');
+  };
+
+  return textArr.filter(Boolean).map(getFormattedLine);
+};

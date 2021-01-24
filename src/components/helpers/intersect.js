@@ -1,4 +1,9 @@
+import { animateCliText } from './animate';
+
 export const getCliObserver = ({ cliWrapperActiveText, cliContainer, isMobile, isAndroid }) => {
+  // improve this function by checking all entries, not just the first one
+  // and see if inters ratio decreases or increases (for android mobile)
+  // and act accordingly -> see https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API
   const observeHandler = entries => {
     try {
       const isClick = cliContainer.value.getAttribute('data-focus-click') === 'true';
@@ -56,4 +61,22 @@ export const getCursorObserver = (container, activeTxt) => {
   const observer = new IntersectionObserver(handler, { root: container.value, threshhold: [1] });
   observer.observe(activeTxt.value);
   return observer;
+};
+
+export const getAnimationObserver = ({ cliContainer, anime, staggeredAnimation }) => {
+  const handler = (entries, observer) => {
+    try {
+      if (entries?.[0]?.isIntersecting) {
+        observer.disconnect(anime);
+        animateCliText({ cliContainer, anime, staggeredAnimation });
+      }
+    } catch (err) {
+      throw new Error('Intersection Observer Failed on this browser');
+    }
+  };
+
+  const animationObserver = new IntersectionObserver(handler, { root: null, threshold: [1] });
+  animationObserver.observe(cliContainer.value);
+
+  return animationObserver;
 };

@@ -24,7 +24,20 @@
         <span />
         <span />
       </div>
+      <div class="cli-container" ref="cliContainer">
+        <div
+          class="bash-history"
+          v-for="(line, i) in animationText"
+          :key="i"
+          :aria-label="line"
+          :ref="'animationText' + i"
+        >
+          <span class="animation-text">{{ line }}</span>
+        </div>
+      </div>
+      <!-- hide cli until i have the time to make it interactive -->
       <div
+        v-if="false"
         class="cli-container"
         ref="cliContainer"
         @click.stop.prevent="refocusActiveTextLine"
@@ -44,21 +57,24 @@
           />
         </div>
       </div>
+      <!-- end hidden cli  -->
     </div>
   </section>
 </template>
 
 <script>
+import anime from 'animejs/lib/anime.es.js';
 import { computed, ref, onMounted, onUnmounted, reactive } from 'vue';
 import { useStore } from 'vuex';
-import { handleCursorReposition } from '../helpers';
-import { getCliObserver, getCursorObserver } from '../helpers/intersect';
+import { handleCursorReposition, createAnimationRefs, getExplodedContent } from '../helpers';
+import { getCliObserver, getCursorObserver, getAnimationObserver } from '../helpers/intersect';
 import {
   refocusActiveTextLine,
   handleResizeEvent,
   handleKeyUpEvent,
   handleInputEvent,
 } from '../helpers/event_handlers';
+import { stopAnimation } from '../helpers/animate';
 
 export default {
   emits: {
@@ -74,29 +90,44 @@ export default {
     const { isMobile, isAndroid } = store.getters['checkMobile'];
     const cliContainer = ref(null);
     const cliWrapperActiveText = ref(null);
+    const animationText = store.getters['hero/getAnimationText'];
+    const animationTextRefs = createAnimationRefs('animationText', animationText?.length, ref);
+    let staggeredAnimation = ref(null);
 
     onMounted(() => {
-      window.addEventListener('resize', handleResizeEvent(cliWrapperActiveText, store, emit));
-      cliWrapperActiveText.value.contentEditable = true;
-      cliObserver = getCliObserver({ cliWrapperActiveText, cliContainer, isMobile, isAndroid });
-      cursorObserver = getCursorObserver(cliContainer, cliWrapperActiveText);
+      const formattedText = getExplodedContent(animationText);
+      for (let i in formattedText) {
+        animationTextRefs[`animationText${i}`].value.innerHTML = formattedText[i];
+      }
 
-      setTimeout(() => {
-        return handleCursorReposition({
-          domRef: cliWrapperActiveText.value,
-          offsetY: 2,
-          store,
-          isSubmit: true, // force get from Elem
-        })
-          .then(() => emit('update-caret-position'))
-          .catch(err => console.log('Failed to update caret position', err.message));
-      }, 0);
+      //  check that cli is visible & trigger animation
+      cliObserver = getAnimationObserver({ cliContainer, anime, staggeredAnimation });
+
+      // reposition cursor on window resize?
+
+      return;
+      // window.addEventListener('resize', handleResizeEvent(cliWrapperActiveText, store, emit));
+      // cliWrapperActiveText.value.contentEditable = true;
+      // cliObserver = getCliObserver({ cliWrapperActiveText, cliContainer, isMobile, isAndroid });
+      // cursorObserver = getCursorObserver(cliContainer, cliWrapperActiveText);
+      // setTimeout(() => {
+      //   return handleCursorReposition({
+      //     domRef: cliWrapperActiveText.value,
+      //     offsetY: 2,
+      //     store,
+      //     isSubmit: true, // force get from Elem
+      //   })
+      //     .then(() => emit('update-caret-position'))
+      //     .catch(err => console.log('Failed to update caret position', err.message));
+      // }, 0);
     });
 
     onUnmounted(() => {
       cliObserver.disconnect();
-      cursorObserver.disconnect();
-      window.removeEventListener('resize', handleResizeEvent(cliWrapperActiveText, store, emit));
+      stopAnimation(staggeredAnimation.value, anime);
+
+      // cursorObserver.disconnect();
+      // window.removeEventListener('resize', handleResizeEvent(cliWrapperActiveText, store, emit));
     });
 
     return {
@@ -107,6 +138,8 @@ export default {
       handleInput: handleInputEvent(store, emit, cliWrapperActiveText),
       handleKeyUp: handleKeyUpEvent(store, emit),
       refocusActiveTextLine: refocusActiveTextLine(cliWrapperActiveText),
+      animationText,
+      ...animationTextRefs,
     };
   },
 };
@@ -171,9 +204,10 @@ export default {
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
-  height: 350px;
+  /* height: 350px; */
   background-color: var(--black);
   border-radius: var(--base-border);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
 }
 
 .hero-section .cli-container {
@@ -185,20 +219,21 @@ export default {
   padding-left: 0.5rem;
   padding-right: 0.5rem;
   color: var(--white);
-  font-family: Monaco, Arial, Helvetica, sans-serif;
+  font-family: 'Roboto Mono', Courier, Monaco, Arial, Helvetica, sans-serif;
+  font-weight: 500;
   font-size: 1rem;
   line-height: 1.1rem;
   text-align: left;
   word-break: break-all;
   outline: none;
-  overflow-x: hidden;
-  overflow-y: scroll;
+  /* overflow-x: hidden;
+  overflow-y: scroll; */
+  overflow: hidden;
   scrollbar-width: none;
   scroll-snap-type: y mandatory;
 }
 
 .hero-section .cli-container::-webkit-scrollbar {
-  /* background: transparent; */
   display: none;
 }
 
@@ -209,6 +244,8 @@ export default {
   padding-right: 2%;
   box-sizing: border-box;
   scroll-snap-align: start;
+  line-height: 1.2em;
+  margin-bottom: 1rem;
 }
 
 .cli-container .cli-wrapper {
@@ -220,12 +257,18 @@ export default {
   padding-right: 2%;
 }
 
-.pre-text {
+.pre-text,
+.animation-text {
   white-space: pre-wrap;
-  word-wrap: break-word;
   outline: none;
   background: inherit;
   color: inherit;
+  letter-spacing: 0.0625em;
+  display: block;
+}
+.animation-text {
+  display: inline-block;
+  opacity: 0;
 }
 
 span.text-block {
@@ -257,7 +300,7 @@ span.text-block {
 
 .cli-buttons {
   box-sizing: border-box;
-  padding: 10px 10px;
+  padding: 20px 10px;
   align-self: flex-start;
 }
 .cli-buttons > span {

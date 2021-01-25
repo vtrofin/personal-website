@@ -85,4 +85,10 @@ VUE_APP_CONTACT_TOKEN=
 "@fortawesome/vue-fontawesome": "^3.0.0-3"
 ```
 
-- See details on how to configure font-awesome with the vue 3 app [here](https://github.com/FortAwesome/vue-fontawesome/issues/230#issuecomment-696719673). Problem is package is still currently in beta.
+- Follow the config from [here](https://www.npmjs.com/package/@fortawesome/vue-fontawesome)
+- How to use in code:
+
+```
+<fa icon="user-secret" />
+<fa :icon="['fab', 'twitter']" :class="fa-3x" />
+```

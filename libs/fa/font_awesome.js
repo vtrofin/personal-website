@@ -8,11 +8,3 @@ const importedIcons = [fas, far, faEnvelope, faPython, faJs, faNodeJs, faGithub,
 library.add(...importedIcons);
 
 export { FontAwesomeIcon };
-
-/*
-How to use in code
-https://www.npmjs.com/package/@fortawesome/vue-fontawesome
-<fa icon="user-secret" />
-<fa :icon="['fab', 'twitter']" :class="fa-3x" />
-
-*/

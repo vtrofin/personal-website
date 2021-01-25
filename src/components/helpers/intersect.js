@@ -75,7 +75,7 @@ export const getAnimationObserver = ({ cliContainer, anime, staggeredAnimation }
     }
   };
 
-  const animationObserver = new IntersectionObserver(handler, { root: null, threshold: [0.75] });
+  const animationObserver = new IntersectionObserver(handler, { root: null, threshold: [0.5] });
   animationObserver.observe(cliContainer.value);
 
   return animationObserver;

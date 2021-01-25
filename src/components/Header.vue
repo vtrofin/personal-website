@@ -4,7 +4,12 @@
       <ul class="nav-links">
         <li><HeaderLogo :modifier-class="classModifiers.linkClass" /></li>
         <li class="mobile-home-button">
-          <router-link to="/" :class="classModifiers.linkClass" aria-label="See the Homepage">
+          <router-link
+            to="/"
+            :class="classModifiers.linkClass"
+            aria-label="Go to the Homepage"
+            :aria-hidden="!isMobile"
+          >
             <span :class="classModifiers.spanClass">
               <fa :icon="['fas', 'home']" />
             </span>
@@ -13,7 +18,8 @@
         <li
           :class="'toolbox' + classModifiers.linkClass"
           @click.prevent="toggleToolbox"
-          aria-label="View my programming stack"
+          tabindex="0"
+          aria-label="My skills"
         >
           <span :class="classModifiers.spanClass">
             <fa :icon="['fas', 'tools']" />
@@ -34,7 +40,7 @@
           <a
             :class="classModifiers.linkClass"
             href="https://vtrofin.github.io/"
-            aria-label="View my online Curriculum Vitae"
+            aria-label="View my curriculum vitae"
           >
             <span :class="classModifiers.spanClass">
               CV
@@ -67,7 +73,7 @@ export default {
   setup(props, context) {
     const store = useStore();
     const { emit } = context;
-
+    const { isMobile } = store.getters['checkMobile'];
     const classModifiers = computed(() => {
       const linkClass = props.modifier ? props.modifier : '';
       const spanClass = props.modifier ? props.modifier + ' ' + 'nav-link-text' : 'nav-link-text';
@@ -81,7 +87,7 @@ export default {
       emit('toggleToolbox');
     };
 
-    return { classModifiers, toggleToolbox };
+    return { classModifiers, toggleToolbox, isMobile };
   },
 };
 </script>

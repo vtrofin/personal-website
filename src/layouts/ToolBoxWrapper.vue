@@ -3,27 +3,38 @@
     :class="'toolbox-container' + (toolboxActive ? ' ' + 'toolbox-open' : '')"
     @click.self="handleBlur"
   />
-  <nav :class="'toolbox-menu' + (toolboxActive ? ' ' + 'toolbox-open' : '')">
+  <nav
+    :class="'toolbox-menu' + (toolboxActive ? ' ' + 'toolbox-open' : '')"
+    :aria-hidden="!toolboxActive"
+  >
     <section class="profile-container">
-      <div class="profile">
-        <img src="/img_vt.jpg" alt="victor trofin" loading="lazy" width="42" height="42" />
+      <div class="profile" tabindex="0">
+        <img
+          src="/img_vt.jpg"
+          alt="victor trofin's profile image"
+          loading="lazy"
+          width="42"
+          height="42"
+        />
         <span class="caption-text">Victor Trofin</span>
       </div>
-      <div class="toolbox-list">
+      <div class="toolbox-list" tabindex="0">
         <span>Something</span>
         <span>Something Else </span>
         <span>Something New</span>
         <span>Another</span>
         <span>Before</span>
       </div>
-      <div class="toolbox-icons">
-        <fa :icon="['fab', 'js']" class="fa-2x" />
-        <fa :icon="['fab', 'node-js']" class="fa-2x" />
-        <fa :icon="['fab', 'python']" class="fa-2x" />
-        <div id="go" />
+      <div class="toolbox-icons" tabindex="0">
+        <div aria-label="javascript"><fa :icon="['fab', 'js']" class="fa-2x" /></div>
+        <div aria-label="node JS"><fa :icon="['fab', 'node-js']" class="fa-2x" /></div>
+        <div aria-label="python"><fa :icon="['fab', 'python']" class="fa-2x" /></div>
+        <div id="go" aria-label="go lang" />
       </div>
     </section>
-    <button id="close-button" @click.prevent="handleBlur">Close</button>
+    <button id="close-button" @click.prevent="handleBlur" aria-label="Go back to the main page">
+      Close
+    </button>
   </nav>
 
   <div :class="'container' + (toolboxActive ? ' ' + 'toolbox-open' : '')">

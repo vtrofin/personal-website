@@ -1,5 +1,5 @@
 <template>
-  <div class="project-content">
+  <div class="project-content" tabindex="0">
     <h1>This is the project item content h1</h1>
     <h2>This is the project item content h2</h2>
     <h3>This is the project item content h3</h3>
@@ -18,7 +18,7 @@
       tell us which of a set of variations is better at producing a certain effect, encouraging a
       behavior, or achieving a goal.
     </p>
-    <img class="content-image" src="/shipandco_app.png" alt="" loading="lazy" />
+    <img class="content-image" src="/shipandco_app.png" alt="a wacky image" loading="lazy" />
     <br />
     <span class="caption-text"> a caption for my image</span>
     <a

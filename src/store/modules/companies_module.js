@@ -20,7 +20,7 @@ export default {
         // logoClass: `smoothjapan-logo`,
         // backgroundClass: `smoothjapan-background`,
         path: 'https://twitter.com/smoothjapan',
-        ariaLabel: 'Smooth Japan has been shut down.',
+        ariaLabel: 'View Smooth Japan twitter profile.',
       },
     ],
   }),

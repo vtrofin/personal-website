@@ -24,10 +24,10 @@
         </div>
         <div class="ghost-shadow" />
       </div>
-      <div class="text-container">
-        <h2>すみません</h2>
+      <div class="text-container" tabindex="0">
+        <h2 aria-label="Sue Me Ma Sane">すみません</h2>
         <p>I'm sorry, I can't find this page.</p>
-        <router-link to="/" class="content-link not-found">
+        <router-link to="/" class="content-link not-found" aria-label="Go back to the main page">
           <span>Go Back</span>
         </router-link>
       </div>

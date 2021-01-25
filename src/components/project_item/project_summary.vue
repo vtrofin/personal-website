@@ -1,8 +1,8 @@
 <template>
   <div class="summary-container">
-    <h3>Summary</h3>
+    <h3 tabindex="0">Summary</h3>
     <div class="summary">
-      <div class="summary-left">
+      <div class="summary-left" tabindex="0">
         <span class="summary-subtitle">Position</span>
         <ul class="summary-content">
           <li>Full Stack Web Engineer</li>
@@ -16,7 +16,7 @@
           <li>2018-{{ currentYear }}</li>
         </ul>
       </div>
-      <div class="summary-right">
+      <div class="summary-right" tabindex="0">
         <span class="summary-subtitle">Work</span>
         <ul class="summary-content">
           <li>Did this</li>

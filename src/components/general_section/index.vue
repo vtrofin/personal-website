@@ -1,6 +1,6 @@
 <template>
   <section :class="[className, 'general-section']">
-    <h2 class="section-header">{{ title }}</h2>
+    <h2 class="section-header" tabindex="0">{{ title }}</h2>
     <SectionAppLink
       v-for="(options, idx) in data"
       :key="idx"
@@ -14,9 +14,8 @@
       "
     >
       <template #section-link-slot>
-        <Project v-if="options.type === 'project'" :options="options" />
-        <Project v-else-if="options.type === 'work'" :options="options" />
-        <!-- add other sections here -->
+        <Project v-if="options.type === 'project'" :options="options" :idx="idx" />
+        <Project v-else-if="options.type === 'work'" :options="options" :idx="idx" />
       </template>
     </SectionAppLink>
   </section>
@@ -25,7 +24,6 @@
 <script>
 import SectionAppLink from '../SectionAppLink';
 import Project from './Project';
-// import Work from './Work';Work
 import { generalSectionArrayValidator } from '../helpers/validators';
 
 export default {

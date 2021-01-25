@@ -1,19 +1,13 @@
 <template>
   <section class="hero-section">
-    <div class="hero-title">
+    <div class="hero-title" tabindex="0">
       <h1>Hi. I'm Victor. <span class="text-block">A web engineer.</span></h1>
     </div>
-    <div class="hero-subtitle">
+    <div class="hero-subtitle" tabindex="0">
       <p>
         I'm a full-stack web engineer with a passion for bringing products to life. Currently living
         in Kyoto and working at
-        <a
-          class="content-link"
-          target="_blank"
-          rel="noopener"
-          href="https://www.shipandco.com/ja/"
-          aria-label="Visit Ship&co website"
-        >
+        <a class="content-link" target="_blank" rel="noopener" href="https://www.shipandco.com/ja/">
           Ship&co
         </a>
       </p>
@@ -29,8 +23,8 @@
           class="bash-history"
           v-for="(line, i) in animationText"
           :key="i"
-          :aria-label="line"
           :ref="'animationText' + i"
+          tabindex="0"
         >
           <span class="animation-text">{{ line }}</span>
         </div>
@@ -43,7 +37,7 @@
         @click.stop.prevent="refocusActiveTextLine"
         @touchend.stop.prevent="refocusActiveTextLine"
       >
-        <div class="bash-history" v-for="(line, i) in bashHistory" :key="i" :aria-label="line">
+        <div class="bash-history" v-for="(line, i) in bashHistory" :key="i">
           {{ staticText }} <span class="pre-text">{{ line }}</span>
         </div>
         <div class="cli-wrapper">

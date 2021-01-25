@@ -16,7 +16,6 @@
       <template #section-link-slot>
         <Project v-if="options.type === 'project'" :options="options" />
         <Project v-else-if="options.type === 'work'" :options="options" />
-        <!-- add other sections here -->
       </template>
     </SectionAppLink>
   </section>
@@ -25,7 +24,6 @@
 <script>
 import SectionAppLink from '../SectionAppLink';
 import Project from './Project';
-// import Work from './Work';Work
 import { generalSectionArrayValidator } from '../helpers/validators';
 
 export default {

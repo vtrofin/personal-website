@@ -3,7 +3,10 @@
     :class="'toolbox-container' + (toolboxActive ? ' ' + 'toolbox-open' : '')"
     @click.self="handleBlur"
   />
-  <nav :class="'toolbox-menu' + (toolboxActive ? ' ' + 'toolbox-open' : '')">
+  <nav
+    :class="'toolbox-menu' + (toolboxActive ? ' ' + 'toolbox-open' : '')"
+    :aria-hidden="!toolboxActive"
+  >
     <section class="profile-container">
       <div class="profile">
         <img
@@ -15,28 +18,21 @@
         />
         <span class="caption-text">Victor Trofin</span>
       </div>
-      <div class="toolbox-list" aria-label="My skillset and tools i use">
+      <div class="toolbox-list">
         <span>Something</span>
         <span>Something Else </span>
         <span>Something New</span>
         <span>Another</span>
         <span>Before</span>
       </div>
-      <div
-        class="toolbox-icons"
-        aria-label="programming languages i'm proficient in or comfortable with"
-      >
-        <fa :icon="['fab', 'js']" class="fa-2x" aria-label="profficient in javascript" />
-        <fa :icon="['fab', 'node-js']" class="fa-2x" aria-label="profficient in nodejs" />
-        <fa :icon="['fab', 'python']" class="fa-2x" aria-label="comfortable with python" />
-        <div id="go" aria-label="comfortable with go lang" />
+      <div class="toolbox-icons">
+        <fa :icon="['fab', 'js']" class="fa-2x" />
+        <fa :icon="['fab', 'node-js']" class="fa-2x" />
+        <fa :icon="['fab', 'python']" class="fa-2x" />
+        <div id="go" />
       </div>
     </section>
-    <button
-      id="close-button"
-      @click.prevent="handleBlur"
-      aria-label="Go back to the main page content"
-    >
+    <button id="close-button" @click.prevent="handleBlur" aria-label="Go back to the main page">
       Close
     </button>
   </nav>

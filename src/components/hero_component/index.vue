@@ -7,13 +7,7 @@
       <p>
         I'm a full-stack web engineer with a passion for bringing products to life. Currently living
         in Kyoto and working at
-        <a
-          class="content-link"
-          target="_blank"
-          rel="noopener"
-          href="https://www.shipandco.com/ja/"
-          aria-label="Ship&co. Click to view the Ship&co website"
-        >
+        <a class="content-link" target="_blank" rel="noopener" href="https://www.shipandco.com/ja/">
           Ship&co
         </a>
       </p>

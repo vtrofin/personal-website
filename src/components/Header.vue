@@ -4,18 +4,19 @@
       <ul class="nav-links">
         <li><HeaderLogo :modifier-class="classModifiers.linkClass" /></li>
         <li class="mobile-home-button">
-          <router-link to="/" :class="classModifiers.linkClass" aria-label="Go to the Homepage">
+          <router-link
+            to="/"
+            :class="classModifiers.linkClass"
+            aria-label="Go to the Homepage"
+            :aria-hidden="!isMobile"
+          >
             <span :class="classModifiers.spanClass">
               <fa :icon="['fas', 'home']" />
             </span>
           </router-link>
         </li>
-        <li
-          :class="'toolbox' + classModifiers.linkClass"
-          @click.prevent="toggleToolbox"
-          aria-label="View my programming stack and skillset"
-        >
-          <span :class="classModifiers.spanClass">
+        <li :class="'toolbox' + classModifiers.linkClass" @click.prevent="toggleToolbox">
+          <span :class="classModifiers.spanClass" aria-label="My skills">
             <fa :icon="['fas', 'tools']" />
           </span>
         </li>
@@ -67,7 +68,7 @@ export default {
   setup(props, context) {
     const store = useStore();
     const { emit } = context;
-
+    const { isMobile } = store.getters['checkMobile'];
     const classModifiers = computed(() => {
       const linkClass = props.modifier ? props.modifier : '';
       const spanClass = props.modifier ? props.modifier + ' ' + 'nav-link-text' : 'nav-link-text';
@@ -81,7 +82,7 @@ export default {
       emit('toggleToolbox');
     };
 
-    return { classModifiers, toggleToolbox };
+    return { classModifiers, toggleToolbox, isMobile };
   },
 };
 </script>

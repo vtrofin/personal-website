@@ -23,7 +23,13 @@
         <div id="go" />
       </div>
     </section>
-    <button id="close-button" @click.prevent="handleBlur">Close</button>
+    <button
+      id="close-button"
+      @click.prevent="handleBlur"
+      aria-label="Go back to the main page content"
+    >
+      Close
+    </button>
   </nav>
 
   <div :class="'container' + (toolboxActive ? ' ' + 'toolbox-open' : '')">

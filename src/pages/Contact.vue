@@ -3,21 +3,21 @@
     <h1>Contact me</h1>
     <p>Have a project you want to discuss? Leave a message and I'll be in touch with you shortly</p>
     <form method="post" @submit.prevent="handleFormSubmit">
-      <label for="name"> Name </label>
+      <label for="name">Name</label>
       <input id="name" type="text" name="name" />
 
-      <label for="email"> Email* </label>
+      <label for="email">Email*</label>
       <input id="email" type="email" name="email" :required="true" />
       <span class="required-label">*Required</span>
 
-      <label for="subject"> Subject </label>
+      <label for="subject">Subject</label>
       <input id="subject" type="text" name="subject" />
 
-      <label for="message"> Message* </label>
+      <label for="message">Message*</label>
       <textarea id="message" name="message" rows="5" :required="true" />
       <span class="required-label">*Required</span>
 
-      <button type="submit" :disabled="templateData.isLoading">
+      <button type="submit" :disabled="templateData.isLoading" aria-label="Send the email message">
         Submit
       </button>
       <div :class="templateData.messageClass" :v-if="templateData.formSubmitMessage">

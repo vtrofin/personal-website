@@ -1,8 +1,8 @@
 <template>
   <section class="project-header-container">
     <div class="content">
-      <h1>{{ projectTitle }}</h1>
-      <p :v-if="role" class="role-class">{{ role }}</p>
+      <h1 tabindex="0">{{ projectTitle }}</h1>
+      <p :v-if="role" class="role-class" tabindex="0">{{ role }}</p>
       <div :v-if="logoClass" :class="logoClass" />
     </div>
   </section>

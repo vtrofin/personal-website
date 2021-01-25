@@ -1,6 +1,6 @@
 <template>
   <section :class="[className, 'general-section']">
-    <h2 class="section-header">{{ title }}</h2>
+    <h2 class="section-header" tabindex="0">{{ title }}</h2>
     <SectionAppLink
       v-for="(options, idx) in data"
       :key="idx"

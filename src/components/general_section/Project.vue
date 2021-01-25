@@ -13,7 +13,9 @@
   </h3>
   <div v-if="options.logoClass" :class="'item-logo' + ' ' + options.logoClass" />
   <div v-else class="item-divider" />
-  <p class="item-text" :id="options.type + '-description' + '-' + idx">{{ options.excerpt }}</p>
+  <p class="item-text" :id="options.type + '-description' + '-' + idx">
+    {{ options.excerpt }}
+  </p>
 </template>
 
 <script>

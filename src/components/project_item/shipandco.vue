@@ -1,5 +1,5 @@
 <template>
-  <div class="project-content">
+  <div class="project-content" tabindex="0">
     <h1>This is the project item content h1</h1>
     <h2>This is the project item content h2</h2>
     <h3>This is the project item content h3</h3>

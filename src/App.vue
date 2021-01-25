@@ -106,6 +106,18 @@ body {
   width: 100%;
 }
 
+a {
+  outline: none;
+}
+
+[tabindex='0'] {
+  outline: none;
+}
+
+*::-moz-focus-inner {
+  border: 0;
+}
+
 /* the color hack */
 /* * {
   background-color: rgba(255, 0, 0, 0.2);

@@ -8,7 +8,7 @@
     :aria-hidden="!toolboxActive"
   >
     <section class="profile-container">
-      <div class="profile">
+      <div class="profile" tabindex="0">
         <img
           src="/img_vt.jpg"
           alt="victor trofin's profile image"
@@ -18,14 +18,14 @@
         />
         <span class="caption-text">Victor Trofin</span>
       </div>
-      <div class="toolbox-list">
+      <div class="toolbox-list" tabindex="0">
         <span>Something</span>
         <span>Something Else </span>
         <span>Something New</span>
         <span>Another</span>
         <span>Before</span>
       </div>
-      <div class="toolbox-icons">
+      <div class="toolbox-icons" tabindex="0">
         <div aria-label="javascript"><fa :icon="['fab', 'js']" class="fa-2x" /></div>
         <div aria-label="node JS"><fa :icon="['fab', 'node-js']" class="fa-2x" /></div>
         <div aria-label="python"><fa :icon="['fab', 'python']" class="fa-2x" /></div>

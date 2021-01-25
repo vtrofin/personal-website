@@ -15,8 +15,13 @@
             </span>
           </router-link>
         </li>
-        <li :class="'toolbox' + classModifiers.linkClass" @click.prevent="toggleToolbox">
-          <span :class="classModifiers.spanClass" aria-label="My skills">
+        <li
+          :class="'toolbox' + classModifiers.linkClass"
+          @click.prevent="toggleToolbox"
+          tabindex="0"
+          aria-label="My skills"
+        >
+          <span :class="classModifiers.spanClass">
             <fa :icon="['fas', 'tools']" />
           </span>
         </li>

@@ -1,22 +1,22 @@
 import { getFormattedTitle } from '../../helpers';
 
-const getScrollOffset = windowElem => {
-  const offsetX = windowElem.scrollX || windowElem.pageXOffset || 0;
-  const offsetY = windowElem.scrollY || windowElem.pageYOffset || 0;
+const getScrollOffset = () => {
+  const offsetX = window.scrollX || window.pageXOffset || 0;
+  const offsetY = window.scrollY || window.pageYOffset || 0;
   return { offsetX, offsetY };
 };
 
-const getCaretPosition = windowElem => {
-  if (!windowElem) {
+const getCaretPosition = () => {
+  if (!window) {
     return;
   }
 
-  const isSupported = typeof windowElem.getSelection === 'function';
+  const isSupported = typeof window.getSelection === 'function';
   if (!isSupported) {
     throw new Error('Your browser does not support fetching the caret position');
   }
 
-  const selection = windowElem.getSelection();
+  const selection = window.getSelection();
   if (selection.rangeCount === 0) {
     return;
   }
@@ -29,28 +29,22 @@ const getCaretPosition = windowElem => {
     return;
   }
 
-  const { offsetX, offsetY } = getScrollOffset(windowElem);
+  const { offsetX, offsetY } = getScrollOffset();
   return { x: rect.left + offsetX, y: rect.top + offsetY };
 };
 
-const getCaretPositionFromElement = (domElem, windowElem) => {
+const getCaretPositionFromElement = domElem => {
   if (!domElem) {
     return;
   }
   const rect = domElem.getBoundingClientRect();
-  const { offsetX, offsetY } = getScrollOffset(windowElem);
-
-  return {
-    x: rect.right + offsetX,
-    y: rect.top + offsetY,
-  };
+  const { offsetX, offsetY } = getScrollOffset();
+  return { x: rect.right + offsetX, y: rect.top + offsetY };
 };
 
-export const handleCursorReposition = ({ windowElem, domRef, offsetY = 0, store, isSubmit }) => {
+export const handleCursorReposition = ({ domRef, offsetY = 0, store, isSubmit }) => {
   const coordinates =
-    (!isSubmit && getCaretPosition(windowElem)) ||
-    getCaretPositionFromElement(domRef, windowElem) ||
-    {};
+    (!isSubmit && getCaretPosition()) || getCaretPositionFromElement(domRef) || {};
   return store.dispatch({
     type: 'hero/updateCoordinates',
     x: coordinates?.x ?? 0,
@@ -58,10 +52,9 @@ export const handleCursorReposition = ({ windowElem, domRef, offsetY = 0, store,
   });
 };
 
-export const handleCaretReposition = ({ windowElem, domRef, windowDocument }) => {
-  // https://stackoverflow.com/a/6249440
-  const range = windowDocument.createRange();
-  const sel = windowElem.getSelection();
+export const handleCaretReposition = domRef => {
+  const range = document.createRange();
+  const sel = window.getSelection();
   const childElems = domRef.childNodes;
   range.setStart(childElems[childElems.length - 1], childElems[childElems.length - 1].length);
   range.collapse(true);
@@ -70,7 +63,7 @@ export const handleCaretReposition = ({ windowElem, domRef, windowDocument }) =>
 };
 
 export const getProjectData = (vuexProjects, store) => {
-  return vuexProjects.map((project, i) => {
+  return vuexProjects.map(project => {
     const projectData = store.getters[`projects/${project}/getProject`];
     const formatted = getFormattedTitle(project);
     const path = `/projects/${project}`;
@@ -103,4 +96,49 @@ export const getWorkData = vuexCompanies => {
       title: formatted,
     };
   });
+};
+
+export const createAnimationRefs = (refName, maxNumber, ref) => {
+  if (maxNumber === 0 || !maxNumber) {
+    return undefined;
+  }
+
+  const animationRefs = new Array(maxNumber).fill().reduce((acc, val, i) => {
+    acc[refName + i] = ref(null);
+    return acc;
+  }, {});
+
+  return animationRefs;
+};
+
+export const getExplodedContent = (textArr = []) => {
+  const getFormattedLine = (textLine = '', i, self) => {
+    const split = textLine.split('');
+
+    return split.reduce((acc, char, j, arr) => {
+      const isLast = i === self.length - 1 && j === arr.length - 1;
+      acc = acc + `<span class="animation-text">${char}</span>`;
+      if (isLast) {
+        acc = acc + '<div id="animation-blinking-cursor" />';
+      }
+      return acc;
+    }, '');
+  };
+
+  return textArr.filter(Boolean).map(getFormattedLine);
+};
+
+export const getLastNode = parent => {
+  if (!parent) {
+    return;
+  }
+  let ch = parent?.children;
+  while (ch.length) {
+    if (!ch[ch.length - 1].children.length) {
+      return ch[ch.length - 1];
+    }
+    ch = ch[ch.length - 1].children;
+  }
+
+  return ch[ch.length - 1];
 };

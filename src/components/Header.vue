@@ -3,22 +3,39 @@
     <div class="nav-container">
       <ul class="nav-links">
         <li><HeaderLogo :modifier-class="classModifiers.linkClass" /></li>
-        <li :class="'toolbox' + classModifiers.linkClass" @click.prevent="toggleToolbox">
+        <li class="mobile-home-button">
+          <router-link to="/" :class="classModifiers.linkClass" aria-label="See the Homepage">
+            <span :class="classModifiers.spanClass">
+              <fa :icon="['fas', 'home']" />
+            </span>
+          </router-link>
+        </li>
+        <li
+          :class="'toolbox' + classModifiers.linkClass"
+          @click.prevent="toggleToolbox"
+          aria-label="View my programming stack"
+        >
           <span :class="classModifiers.spanClass">
-            ToolBox
             <fa :icon="['fas', 'tools']" />
           </span>
         </li>
         <li>
-          <router-link to="/contact" :class="classModifiers.linkClass">
+          <router-link
+            to="/contact"
+            :class="classModifiers.linkClass"
+            aria-label="Send me a message"
+          >
             <span :class="classModifiers.spanClass">
-              Contact
               <fa :icon="['fas', 'envelope']" />
             </span>
           </router-link>
         </li>
         <li>
-          <a :class="classModifiers.linkClass" href="https://vtrofin.github.io/">
+          <a
+            :class="classModifiers.linkClass"
+            href="https://vtrofin.github.io/"
+            aria-label="View my online Curriculum Vitae"
+          >
             <span :class="classModifiers.spanClass">
               CV
             </span>
@@ -97,8 +114,14 @@ export default {
   min-width: 0;
 }
 
+@media all and (min-width: 600px) {
+  .mobile-home-button {
+    display: none;
+  }
+}
+
 .toolbox {
-  padding: 1.5rem 0.75rem;
+  padding: 1.5rem;
   cursor: pointer;
   font-size: 1.1rem;
   color: var(--black);
@@ -107,12 +130,9 @@ export default {
 .nav-links li.auto-margin {
   margin-left: auto;
 }
-.nav-links li:nth-child(2) a {
-  padding-left: 0px;
-}
 
 .nav-links li a {
-  padding: 1.5rem 0.75rem;
+  padding: 1.5rem;
   display: block;
   position: relative;
   cursor: pointer;
@@ -144,15 +164,5 @@ export default {
 .nav-links li:hover .nav-link-text:before {
   opacity: 1;
   transform: translateZ(0) scale3d(1.1, 1.1, 1.1) rotate(2deg);
-}
-
-.nav-link-text svg {
-  display: none;
-}
-
-@media all and (min-width: 600px) {
-  .nav-link-text svg {
-    display: inline-block;
-  }
 }
 </style>

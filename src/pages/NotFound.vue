@@ -42,10 +42,9 @@ import { setUpAnimation, stopAnimation } from '../components/helpers/animate';
 
 export default {
   name: 'NotFound',
-  setup(props) {
+  setup() {
     let tl;
     onMounted(() => {
-      let test = anime;
       tl = setUpAnimation(anime);
       tl.play();
     });
@@ -79,7 +78,7 @@ export default {
 @media all and (min-width: 600px) {
   .container {
     padding: 5%;
-    background-color: var(--animation-shadow);
+    background-color: transparent;
   }
 }
 
@@ -93,7 +92,7 @@ export default {
   max-height: 600px;
   max-width: 600px;
   background-color: var(--animation-gray);
-  border-radius: calc(var(--base-animation-border) * 4);
+  border-radius: calc(var(--base-animation-border) * 1);
   transform: translate3d(-50%, 0, 0);
 }
 

@@ -2,8 +2,8 @@
   <HeroSection @update-caret-position="updateCaretPosition" />
   <GeneralSection class-name="projects" title="Projects" :data="projectsData" />
   <GeneralSection class-name="work" title="Work" :data="workData" />
-  <!--<Skills /> <Interests /> -->
-  <span id="blinking-cursor" :style="computedStyle" />
+  <!-- hide cli blinking cursor until i have the time to make it interactive -->
+  <!-- <span id="blinking-cursor" :style="computedStyle" /> -->
 </template>
 
 <script>
@@ -40,7 +40,8 @@ export default {
 </script>
 
 <style>
-#blinking-cursor {
+#blinking-cursor,
+#animation-blinking-cursor {
   position: absolute;
   top: 0px;
   left: 0px;
@@ -52,6 +53,11 @@ export default {
   -webkit-animation: cursor-blink 1s step-end infinite;
   animation: cursor-blink 1s step-end infinite;
 }
+#animation-blinking-cursor {
+  position: relative;
+  display: none;
+}
+
 @-webkit-keyframes cursor-blink {
   0% {
     opacity: 0.8;

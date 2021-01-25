@@ -18,158 +18,131 @@
         </a>
       </p>
     </div>
-    <div class="cli-container" ref="cliContainer">
+    <div class="cli-interaction-wrap">
       <div class="cli-buttons">
         <span />
         <span />
         <span />
       </div>
-      <div class="bash-history" v-for="(line, i) in bashHistory" :key="i" :aria-label="line">
-        {{ staticText }} <span class="pre-text">{{ line }}</span>
+      <div class="cli-container" ref="cliContainer">
+        <div
+          class="bash-history"
+          v-for="(line, i) in animationText"
+          :key="i"
+          :aria-label="line"
+          :ref="'animationText' + i"
+        >
+          <span class="animation-text">{{ line }}</span>
+        </div>
       </div>
-      <div class="cli-wrapper" @click.stop.prevent="refocusActiveTextLine">
-        {{ staticText }}
-        <span
-          class="pre-text"
-          ref="cliWrapperActiveText"
-          tabindex="0"
-          @input.prevent="handleInput"
-          @keyup.stop.prevent="handleKeyUp"
-        />
+      <!-- hide cli until i have the time to make it interactive -->
+      <div
+        v-if="false"
+        class="cli-container"
+        ref="cliContainer"
+        @click.stop.prevent="refocusActiveTextLine"
+        @touchend.stop.prevent="refocusActiveTextLine"
+      >
+        <div class="bash-history" v-for="(line, i) in bashHistory" :key="i" :aria-label="line">
+          {{ staticText }} <span class="pre-text">{{ line }}</span>
+        </div>
+        <div class="cli-wrapper">
+          {{ staticText }}
+          <span
+            class="pre-text"
+            ref="cliWrapperActiveText"
+            tabindex="0"
+            @input.prevent="handleInput"
+            @keyup.stop.prevent="handleKeyUp"
+          />
+        </div>
       </div>
+      <!-- end hidden cli  -->
     </div>
   </section>
 </template>
 
 <script>
-import { computed, ref, onMounted, onUnmounted } from 'vue';
+// hiding the cli until i have the time to make it interactive
+// do no clean unused variables in this file
+// N.B. I'm reusing some already defined variables for the animated cli. e.g. cliContainer ref
+import anime from 'animejs/lib/anime.es.js';
+import { computed, ref, onMounted, onUnmounted, reactive } from 'vue';
 import { useStore } from 'vuex';
-import { handleCursorReposition, handleCaretReposition } from '../helpers';
+import { handleCursorReposition, createAnimationRefs, getExplodedContent } from '../helpers';
+import { getCliObserver, getCursorObserver, getAnimationObserver } from '../helpers/intersect';
+import {
+  refocusActiveTextLine,
+  handleResizeEvent,
+  handleKeyUpEvent,
+  handleInputEvent,
+} from '../helpers/event_handlers';
+import { stopAnimation } from '../helpers/animate';
 
 export default {
   emits: {
-    // https://vueschool.io/lessons/defining-custom-events-emits
     'update-caret-position': null,
   },
   setup(props, context) {
     const { emit } = context;
     let cliObserver = null;
+    let cursorObserver = null;
     const store = useStore();
     const bashHistory = computed(() => store.getters['hero/getBashHistory']);
     const staticText = computed(() => store.getters['hero/getStaticText']);
+    const { isMobile, isAndroid } = store.getters['checkMobile'];
     const cliContainer = ref(null);
     const cliWrapperActiveText = ref(null);
-
-    const handleResize = async () => {
-      try {
-        await handleCursorReposition({
-          windowElem: window,
-          domRef: cliWrapperActiveText.value,
-          offsetY: 1,
-          store,
-        });
-        cliWrapperActiveText.value.focus();
-        emit('update-caret-position');
-      } catch (err) {
-        console.log('Failed to update caret position on window resize', err.message);
-      }
-    };
+    const animationText = store.getters['hero/getAnimationText'];
+    const animationTextRefs = createAnimationRefs('animationText', animationText?.length, ref);
+    let staggeredAnimation = ref(null);
 
     onMounted(() => {
-      window.addEventListener('resize', handleResize);
+      // prepare text for animation -> explode into single characters
+      const formattedText = getExplodedContent(animationText);
+      for (let i in formattedText) {
+        animationTextRefs[`animationText${i}`].value.innerHTML = formattedText[i];
+      }
+      //  check that cli is visible & trigger animation
+      cliObserver = getAnimationObserver({ cliContainer, anime, staggeredAnimation });
+
+      /*
+      window.addEventListener('resize', handleResizeEvent(cliWrapperActiveText, store, emit));
       cliWrapperActiveText.value.contentEditable = true;
-      cliWrapperActiveText.value.focus();
-
-      const observeHandler = entries => {
-        try {
-          if (entries?.[0]?.isIntersecting) {
-            if (cliWrapperActiveText.value !== document.activeElement) {
-              cliWrapperActiveText.value.focus();
-            }
-          } else {
-            cliWrapperActiveText.value.blur();
-          }
-        } catch (err) {
-          throw new Error('Intersection Observer Failed on this browser');
-        }
-      };
-
-      cliObserver = new IntersectionObserver(observeHandler, { root: null, threshhold: [0.2] });
-      cliObserver.observe(cliContainer.value);
-
-      return handleCursorReposition({
-        windowElem: window,
-        domRef: cliWrapperActiveText.value,
-        offsetY: 2,
-        store,
-      })
-        .then(() => emit('update-caret-position'))
-        .catch(err => console.log('Failed to update caret position', err.message));
+      cliObserver = getCliObserver({ cliWrapperActiveText, cliContainer, isMobile, isAndroid });
+      cursorObserver = getCursorObserver(cliContainer, cliWrapperActiveText);
+      setTimeout(() => {
+        return handleCursorReposition({
+          domRef: cliWrapperActiveText.value,
+          offsetY: 2,
+          store,
+          isSubmit: true, // force get from Elem
+        })
+          .then(() => emit('update-caret-position'))
+          .catch(err => console.log('Failed to update caret position', err.message));
+      }, 0);
+      */
     });
 
     onUnmounted(() => {
       cliObserver.disconnect();
-      window.removeEventListener('resize', handleResize);
+      stopAnimation(staggeredAnimation.value, anime);
+      /*
+      cursorObserver.disconnect();
+      window.removeEventListener('resize', handleResizeEvent(cliWrapperActiveText, store, emit));
+      */
     });
-
-    const handleInput = async event => {
-      const isSubmit =
-        event?.inputType === 'insertParagraph' ||
-        (event?.data === null && event?.inputType === 'insertText');
-      const isPaste = event?.inputType === 'insertFromPaste';
-      const text = cliWrapperActiveText.value.innerText;
-
-      if (isSubmit) {
-        cliWrapperActiveText.value.innerText = '';
-        const regexp = new RegExp('^(\\r\\n|\\r|\\n)\\1*|(\\r\\n|\\r|\\n)\\2*$', 'gi');
-        const formattedText = text.replace(regexp, '');
-        await store.dispatch({ type: 'hero/pushLine', text: formattedText });
-      }
-
-      if (isPaste) {
-        cliWrapperActiveText.value.innerText = text;
-        handleCaretReposition({
-          windowElem: window,
-          windowDocument: document,
-          domRef: cliWrapperActiveText.value,
-        });
-      }
-
-      return handleCursorReposition({
-        windowElem: window,
-        domRef: cliWrapperActiveText.value,
-        offsetY: isSubmit ? 2 : 1,
-        store,
-        isSubmit,
-      })
-        .then(() => emit('update-caret-position'))
-        .catch(err => console.log('Failed to update caret position', err.message));
-    };
-
-    const handleKeyUp = async event => {
-      const isArrowKey = ['ArrowRight', 'ArrowLeft', 'ArrowUp', 'ArrowDown'].includes(event.key);
-      if (!isArrowKey) {
-        return;
-      }
-      return handleCursorReposition({ windowElem: window, offsetY: 1, store })
-        .then(() => emit('update-caret-position'))
-        .catch(err => console.log('Failed to update caret position', err.message));
-    };
-
-    const refocusActiveTextLine = () => {
-      if (cliWrapperActiveText.value !== document.activeElement) {
-        cliWrapperActiveText.value.focus();
-      }
-    };
 
     return {
       bashHistory,
       staticText,
       cliContainer,
       cliWrapperActiveText,
-      handleInput,
-      handleKeyUp,
-      refocusActiveTextLine,
+      handleInput: handleInputEvent(store, emit, cliWrapperActiveText),
+      handleKeyUp: handleKeyUpEvent(store, emit),
+      refocusActiveTextLine: refocusActiveTextLine(cliWrapperActiveText),
+      animationText,
+      ...animationTextRefs,
     };
   },
 };
@@ -230,26 +203,40 @@ export default {
   }
 }
 
-.hero-section .cli-container {
+.hero-section .cli-interaction-wrap {
   display: flex;
   flex-direction: column;
-  height: 350px;
+  box-sizing: border-box;
+  /* height: 350px; */
   background-color: var(--black);
-  color: var(--white);
   border-radius: var(--base-border);
-  overflow-x: hidden;
-  overflow-y: scroll;
-  font-family: Monaco, Arial, Helvetica, sans-serif;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.hero-section .cli-container {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  margin-bottom: 1rem;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  color: var(--white);
+  font-family: 'Roboto Mono', Courier, Monaco, Arial, Helvetica, sans-serif;
+  font-weight: 500;
   font-size: 1rem;
   line-height: 1.1rem;
   text-align: left;
-  padding: 1rem 0.5rem;
+  word-break: break-all;
   outline: none;
+  /* overflow-x: hidden;
+  overflow-y: scroll; */
+  overflow: hidden;
   scrollbar-width: none;
+  scroll-snap-type: y mandatory;
 }
 
 .hero-section .cli-container::-webkit-scrollbar {
-  /* background: transparent; */
   display: none;
 }
 
@@ -259,6 +246,9 @@ export default {
   padding-left: 2%;
   padding-right: 2%;
   box-sizing: border-box;
+  scroll-snap-align: start;
+  line-height: 1.2em;
+  margin-bottom: 1rem;
 }
 
 .cli-container .cli-wrapper {
@@ -270,12 +260,18 @@ export default {
   padding-right: 2%;
 }
 
-.pre-text {
+.pre-text,
+.animation-text {
   white-space: pre-wrap;
-  word-wrap: break-word;
   outline: none;
   background: inherit;
   color: inherit;
+  letter-spacing: 0.0625em;
+  display: block;
+}
+.animation-text {
+  display: inline-block;
+  opacity: 0;
 }
 
 span.text-block {
@@ -292,7 +288,7 @@ span.text-block {
     grid-column: 1 / 2;
     grid-row: span 2;
   }
-  .hero-section .cli-container {
+  .hero-section .cli-interaction-wrap {
     grid-column: 2 / 3;
     grid-row: 1/ 5;
     height: 550px;
@@ -307,7 +303,8 @@ span.text-block {
 
 .cli-buttons {
   box-sizing: border-box;
-  padding-bottom: 20px;
+  padding: 20px 10px;
+  align-self: flex-start;
 }
 .cli-buttons > span {
   height: 14px;

@@ -2,11 +2,18 @@ export default {
   namespaced: true,
   state: () => ({
     bashHistory: [],
-    staticText: 'Victors-MBP:~ victor$',
+    staticText: '$',
     coordinates: {
       x: null,
       y: null,
     },
+    animationTextLines: [
+      '$ A beautiful line of text describing what i do and what my interests are. Beautiful',
+      '$ A beautiful line of text describing what i do and what my interests are. Beautiful',
+      '$ A beautiful line of text describing what i do and what my interests are. Beautiful',
+      '$ A beautiful line of text describing what i do and what my interests are. Beautiful',
+      '$ A beautiful line of text describing what i do and what my interests are. Beautiful',
+    ],
   }),
   getters: {
     getBashHistory: state => {
@@ -17,6 +24,9 @@ export default {
     },
     getCoordinates: state => {
       return state.coordinates;
+    },
+    getAnimationText: state => {
+      return state.animationTextLines;
     },
   },
   mutations: {

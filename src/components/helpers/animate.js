@@ -1,3 +1,5 @@
+import { getLastNode } from './index';
+
 export const setUpAnimation = anime => {
   // x => translated -50%. translate -80% -> -20%
   // y -> translated 0; translate -70% -> 40%
@@ -51,4 +53,21 @@ const getTargets = ani => {
 export const stopAnimation = (tl, anime) => {
   const allTargets = getTargets(tl);
   return allTargets.map(target => anime.remove(target));
+};
+
+export const animateCliText = ({ cliContainer, anime, staggeredAnimation }) => {
+  staggeredAnimation.value = anime({
+    targets: '.bash-history .animation-text',
+    opacity: [0, 1],
+    round: 1,
+    delay: 25,
+    delay: anime.stagger(25, { start: 350, direction: 'normal', easing: 'linear' }),
+    complete: anim => {
+      // display the blinking cursor after animation finished
+      const cursor = getLastNode(cliContainer.value);
+      cursor.style.display = 'inline-block';
+    },
+  });
+
+  staggeredAnimation.value.play();
 };

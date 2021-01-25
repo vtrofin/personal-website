@@ -23,7 +23,8 @@ export default {
     const toolboxState = reactive({ active: false });
 
     const isMobileDevice = /Mobi/i.test(window.navigator.userAgent);
-    store.dispatch({ type: 'setMobileDevice', isMobile: isMobileDevice });
+    const isAndroid = /Android/i.test(window.navigator.userAgent);
+    store.dispatch({ type: 'setMobileDevice', isMobile: isMobileDevice, isAndroid });
 
     watch(
       () => route.params,
@@ -97,6 +98,7 @@ body {
   font-family: 'Helvetica Neue', 'Source Sans Pro', Arial, sans-serif;
   background-color: var(--purple);
   -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
 }
 
 #app {

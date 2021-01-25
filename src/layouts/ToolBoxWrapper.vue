@@ -26,10 +26,10 @@
         <span>Before</span>
       </div>
       <div class="toolbox-icons">
-        <fa :icon="['fab', 'js']" class="fa-2x" />
-        <fa :icon="['fab', 'node-js']" class="fa-2x" />
-        <fa :icon="['fab', 'python']" class="fa-2x" />
-        <div id="go" />
+        <div aria-label="javascript"><fa :icon="['fab', 'js']" class="fa-2x" /></div>
+        <div aria-label="node JS"><fa :icon="['fab', 'node-js']" class="fa-2x" /></div>
+        <div aria-label="python"><fa :icon="['fab', 'python']" class="fa-2x" /></div>
+        <div id="go" aria-label="go lang" />
       </div>
     </section>
     <button id="close-button" @click.prevent="handleBlur" aria-label="Go back to the main page">

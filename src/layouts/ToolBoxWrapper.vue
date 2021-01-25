@@ -6,21 +6,30 @@
   <nav :class="'toolbox-menu' + (toolboxActive ? ' ' + 'toolbox-open' : '')">
     <section class="profile-container">
       <div class="profile">
-        <img src="/img_vt.jpg" alt="victor trofin" loading="lazy" width="42" height="42" />
+        <img
+          src="/img_vt.jpg"
+          alt="victor trofin's profile image"
+          loading="lazy"
+          width="42"
+          height="42"
+        />
         <span class="caption-text">Victor Trofin</span>
       </div>
-      <div class="toolbox-list">
+      <div class="toolbox-list" aria-label="My skillset and tools i use">
         <span>Something</span>
         <span>Something Else </span>
         <span>Something New</span>
         <span>Another</span>
         <span>Before</span>
       </div>
-      <div class="toolbox-icons">
-        <fa :icon="['fab', 'js']" class="fa-2x" />
-        <fa :icon="['fab', 'node-js']" class="fa-2x" />
-        <fa :icon="['fab', 'python']" class="fa-2x" />
-        <div id="go" />
+      <div
+        class="toolbox-icons"
+        aria-label="programming languages i'm proficient in or comfortable with"
+      >
+        <fa :icon="['fab', 'js']" class="fa-2x" aria-label="profficient in javascript" />
+        <fa :icon="['fab', 'node-js']" class="fa-2x" aria-label="profficient in nodejs" />
+        <fa :icon="['fab', 'python']" class="fa-2x" aria-label="comfortable with python" />
+        <div id="go" aria-label="comfortable with go lang" />
       </div>
     </section>
     <button

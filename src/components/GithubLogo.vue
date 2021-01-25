@@ -1,5 +1,5 @@
 <template>
-  <a href="https://github.com/vtrofin" class="github-link" aria-label="View my GitHub profile">
+  <a href="https://github.com/vtrofin" class="github-link" aria-label="View my github profile">
     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 62 60">
       <path
         :class="modifierClass ? modifierClass : ''"

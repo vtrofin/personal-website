@@ -1,6 +1,6 @@
 <template>
   <div class="brand">
-    <router-link to="/" aria-label="Start page" class="main-link">
+    <router-link to="/" aria-label="Go to the Homepage" class="main-link">
       <div :class="modifierClass ? 'logo' + ' ' + modifierClass : 'logo'">
         <svg viewBox="0 0 200 200" height="50" width="50">
           <path

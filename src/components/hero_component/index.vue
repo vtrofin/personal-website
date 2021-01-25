@@ -12,7 +12,7 @@
           target="_blank"
           rel="noopener"
           href="https://www.shipandco.com/ja/"
-          aria-label="Visit Ship&co website"
+          aria-label="Ship&co. Click to view the Ship&co website"
         >
           Ship&co
         </a>
@@ -29,7 +29,6 @@
           class="bash-history"
           v-for="(line, i) in animationText"
           :key="i"
-          :aria-label="line"
           :ref="'animationText' + i"
         >
           <span class="animation-text">{{ line }}</span>
@@ -43,7 +42,7 @@
         @click.stop.prevent="refocusActiveTextLine"
         @touchend.stop.prevent="refocusActiveTextLine"
       >
-        <div class="bash-history" v-for="(line, i) in bashHistory" :key="i" :aria-label="line">
+        <div class="bash-history" v-for="(line, i) in bashHistory" :key="i">
           {{ staticText }} <span class="pre-text">{{ line }}</span>
         </div>
         <div class="cli-wrapper">

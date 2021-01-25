@@ -4,7 +4,7 @@
       <ul class="nav-links">
         <li><HeaderLogo :modifier-class="classModifiers.linkClass" /></li>
         <li class="mobile-home-button">
-          <router-link to="/" :class="classModifiers.linkClass" aria-label="See the Homepage">
+          <router-link to="/" :class="classModifiers.linkClass" aria-label="Go to the Homepage">
             <span :class="classModifiers.spanClass">
               <fa :icon="['fas', 'home']" />
             </span>
@@ -13,7 +13,7 @@
         <li
           :class="'toolbox' + classModifiers.linkClass"
           @click.prevent="toggleToolbox"
-          aria-label="View my programming stack"
+          aria-label="View my programming stack and skillset"
         >
           <span :class="classModifiers.spanClass">
             <fa :icon="['fas', 'tools']" />
@@ -34,7 +34,7 @@
           <a
             :class="classModifiers.linkClass"
             href="https://vtrofin.github.io/"
-            aria-label="View my online Curriculum Vitae"
+            aria-label="View my curriculum vitae"
           >
             <span :class="classModifiers.spanClass">
               CV

@@ -12,7 +12,7 @@
           href="mailto:#?subject=Hi"
           target="_blank"
           rel="noopener"
-          aria-label="Write me an email"
+          aria-label="Click to write me an email"
         >
           <span>send me a message </span></a
         >.

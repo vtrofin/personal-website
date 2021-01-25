@@ -79,9 +79,11 @@ main .content,
   transform: rotate(1deg);
 }
 
-.content-link:hover:before,
-.contact-link:hover:before {
-  height: 10px;
+@media (hover: hover) {
+  .content-link:hover:before,
+  .contact-link:hover:before {
+    height: 10px;
+  }
 }
 
 .content-image {

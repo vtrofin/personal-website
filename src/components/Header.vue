@@ -161,6 +161,7 @@ export default {
   transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   opacity: 0;
 }
+
 .nav-links li:hover .nav-link-text:before {
   opacity: 1;
   transform: translateZ(0) scale3d(1.1, 1.1, 1.1) rotate(2deg);

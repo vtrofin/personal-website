@@ -42,7 +42,11 @@ export const setUpAnimation = anime => {
 };
 
 const getTargets = ani => {
-  const parentTarget = ani.animatables.map(item => item.target);
+  const parentTarget = (ani?.animatables ?? []).map(item => item.target);
+  if (!parentTarget.length) {
+    return [];
+  }
+
   return ani.children.reduce((allTargets, child) => {
     const childTargets = getTargets(child);
     allTargets = allTargets.concat(childTargets);

@@ -106,31 +106,13 @@ export default {
       //  check that cli is visible & trigger animation
       cliObserver = getAnimationObserver({ cliContainer, anime, staggeredAnimation });
 
-      /*
-      window.addEventListener('resize', handleResizeEvent(cliWrapperActiveText, store, emit));
-      cliWrapperActiveText.value.contentEditable = true;
-      cliObserver = getCliObserver({ cliWrapperActiveText, cliContainer, isMobile, isAndroid });
-      cursorObserver = getCursorObserver(cliContainer, cliWrapperActiveText);
-      setTimeout(() => {
-        return handleCursorReposition({
-          domRef: cliWrapperActiveText.value,
-          offsetY: 2,
-          store,
-          isSubmit: true, // force get from Elem
-        })
-          .then(() => emit('update-caret-position'))
-          .catch(err => console.log('Failed to update caret position', err.message));
-      }, 0);
-      */
+      /* window.addEventListener('resize', handleResizeEvent(cliWrapperActiveText, store, emit)); cliWrapperActiveText.value.contentEditable = true; cliObserver = getCliObserver({ cliWrapperActiveText, cliContainer, isMobile, isAndroid }); cursorObserver = getCursorObserver(cliContainer, cliWrapperActiveText); setTimeout(() => { return handleCursorReposition({ domRef: cliWrapperActiveText.value, offsetY: 2, store, isSubmit: true, // force get from Elem }) .then(() => emit('update-caret-position')) .catch(err => console.log('Failed to update caret position', err.message)); }, 0); */
     });
 
     onUnmounted(() => {
       cliObserver.disconnect();
       stopAnimation(staggeredAnimation.value, anime);
-      /*
-      cursorObserver.disconnect();
-      window.removeEventListener('resize', handleResizeEvent(cliWrapperActiveText, store, emit));
-      */
+      /* cursorObserver.disconnect(); window.removeEventListener('resize', handleResizeEvent(cliWrapperActiveText, store, emit)); */
     });
 
     return {

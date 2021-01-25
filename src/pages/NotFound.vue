@@ -315,8 +315,10 @@ export default {
   bottom: -10px;
   background-color: var(--white);
 }
-.content-link.not-found:hover:before {
-  height: 10px;
+@media (hover: hover) {
+  .content-link.not-found:hover:before {
+    height: 10px;
+  }
 }
 
 @keyframes updown {

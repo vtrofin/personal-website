@@ -155,11 +155,15 @@ textarea {
   min-height: 70px;
 }
 
-input:hover,
 input:focus,
-textarea:hover,
 textarea:focus {
   border-color: var(--black);
+}
+@media (hover: hover) {
+  input:hover,
+  textarea:hover {
+    border-color: var(--black);
+  }
 }
 
 button[type='submit'] {

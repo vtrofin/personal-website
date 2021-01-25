@@ -14,8 +14,8 @@
       "
     >
       <template #section-link-slot>
-        <Project v-if="options.type === 'project'" :options="options" />
-        <Project v-else-if="options.type === 'work'" :options="options" />
+        <Project v-if="options.type === 'project'" :options="options" :idx="idx" />
+        <Project v-else-if="options.type === 'work'" :options="options" :idx="idx" />
       </template>
     </SectionAppLink>
   </section>

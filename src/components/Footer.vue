@@ -12,13 +12,20 @@
         >.
       </p>
     </div>
+    <!-- <span
+      >Stock Photos by
+      <a
+        href="https://unsplash.com/@jadocarts?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText"
+        >Jade Scarlato</a
+      >
+    </span> -->
   </footer>
 </template>
 
 <script>
 export default {
   name: 'Footer',
-  props: { modifier: { type: String, required: false, default: '' } },
+  props: { modifier: { type: String, required: false, default: '' } }
 };
 </script>
 

@@ -15,16 +15,16 @@ export default {
   name: 'MainLayout',
   components: { Header, Footer },
   props: {
-    modifier: { type: String, required: false, default: '' },
+    modifier: { type: String, required: false, default: '' }
   },
   emits: {
-    relayToggleToolbox: null,
+    relayToggleToolbox: null
   },
   setup(props, context) {
     const { emit } = context;
     const relayToggle = () => emit('relayToggleToolbox');
     return { relayToggle };
-  },
+  }
 };
 </script>
 <style>
@@ -101,7 +101,7 @@ main .content,
 .stockandco-active,
 .stockandco-project-active {
   background-color: var(--stockandco);
-  color: var(--black);
+  color: var(--white);
 }
 .staff-active,
 .staff-project-active {
@@ -136,6 +136,12 @@ main .content,
   /* background-size: cover; */
 }
 
+.stockandco-background,
+.stockandco-project-active {
+  background-image: url('/temp_1.jpg');
+  background-size: cover;
+}
+
 .shipandco-logo {
   background-image: url('/logo-shipandco.svg');
 }
@@ -148,7 +154,9 @@ main .content,
 
 /* links modifiers */
 .nav-links li a.utils,
-.nav-links li a.bentoandco {
+.nav-links li a.bentoandco,
+.nav-links li.toolbox.utils,
+.nav-links li.toolbox.bentoandco {
   color: var(--white);
 }
 .nav-link-text.utils:before,

@@ -11,6 +11,7 @@
 <script>
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+
 export default {
   name: 'MainLayout',
   components: { Header, Footer },
@@ -93,6 +94,7 @@ main .content,
 }
 
 /* Modifier classes */
+/* Font and background colors */
 .shipandco-active,
 .shipandco-project-active {
   background-color: var(--shipandco);
@@ -101,7 +103,7 @@ main .content,
 .stockandco-active,
 .stockandco-project-active {
   background-color: var(--stockandco);
-  color: var(--white);
+  color: var(--black);
 }
 .staff-active,
 .staff-project-active {
@@ -131,17 +133,23 @@ main .content,
   transition: background-color 0.3s ease;
 }
 
+/* Backgrounds  */
 .shipandco-background {
   background-image: url('/shipandco_app.png');
   /* background-size: cover; */
 }
 
-.stockandco-background,
-.stockandco-project-active {
-  background-image: url('/temp_1.jpg');
+.stockandco-background {
+  background-image: url('/stockandco_lowres.jpg');
   background-size: cover;
 }
+.stockandco-project-active {
+  background-image: url('/stockandco_highres.jpg');
+  background-size: cover;
+  background-position: center center;
+}
 
+/* Icons and Logos  */
 .shipandco-logo {
   background-image: url('/logo-shipandco.svg');
 }

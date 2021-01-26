@@ -34,8 +34,8 @@ export default {
     title: { type: String, required: true },
     // eslint-disable-next-line
     data: { validator: generalSectionArrayValidator },
-    type: { type: String, required: false, default: 'project' },
-  },
+    type: { type: String, required: false, default: 'project' }
+  }
 };
 </script>
 
@@ -156,6 +156,7 @@ p.item-text {
   transform: translateZ(0);
   transition: transform 0.3s cubic-bezier(0.215, 0.61, 0.355, 1);
   font-size: 1.2rem;
+  font-weight: 500;
 }
 .section-link:hover p.item-text {
   transform: translateY(8px) translateZ(0);

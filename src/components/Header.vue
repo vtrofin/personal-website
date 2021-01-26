@@ -16,7 +16,7 @@
           </router-link>
         </li>
         <li
-          :class="'toolbox' + classModifiers.linkClass"
+          :class="'toolbox' + (classModifiers.linkClass ? ' ' + classModifiers.linkClass : '')"
           @click.prevent="toggleToolbox"
           tabindex="0"
           aria-label="My skills"
@@ -68,7 +68,7 @@ export default {
   components: { HeaderLogo, GithubLogo, ProjectItemHeader },
   props: { modifier: { type: String, required: false, default: '' } },
   emits: {
-    toggleToolbox: null,
+    toggleToolbox: null
   },
   setup(props, context) {
     const store = useStore();
@@ -88,7 +88,7 @@ export default {
     };
 
     return { classModifiers, toggleToolbox, isMobile };
-  },
+  }
 };
 </script>
 

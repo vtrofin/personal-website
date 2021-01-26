@@ -32,7 +32,7 @@ export default {
         return store
           .dispatch({
             type: 'projects/setActiveProject',
-            project: getProjectItem(route),
+            project: getProjectItem(route)
           })
           .then(() => {
             modifier.value = getProjectItem(route);
@@ -52,9 +52,9 @@ export default {
     return {
       modifier,
       toggleAndTranslateBody,
-      toolboxState,
+      toolboxState
     };
-  },
+  }
 };
 </script>
 

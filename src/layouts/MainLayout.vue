@@ -129,15 +129,28 @@ main .content,
   color: var(--black);
 }
 
-.shipandco-project-active {
+/* .shipandco-project-active {
   transition: background-color 0.3s ease;
-}
+} */
 
 /* Backgrounds  */
-.shipandco-background {
-  background-image: url('/shipandco_app.png');
-  /* background-size: cover; */
+.shipandco-background,
+.shipandco-project-active {
+  background-image: url('https://burst.shopifycdn.com/photos/shipping-boxes-on-trolly-close-up.jpg');
+  background-size: cover;
+  background-position: center center;
 }
+/* 
+https://burst.shopify.com/photos/shipping-boxes-on-trolly-close-up?q=delivery
+https://burst.shopify.com/photos/shipping-boxes-on-red-brick?q=delivery
+
+backup
+https://burst.shopify.com/photos/boxes-in-the-process-of-being-packed?q=lunch+box
+https://burst.shopify.com/photos/man-holding-shipping-box-on-red-brick?q=delivery
+doar cu modificari & crop https://burst.shopify.com/photos/signing-shipping-forms-for-large-box?q=delivery
+https://burst.shopify.com/photos/the-final-packages-ready-for-shipment?q=delivery
+https://www.shutterstock.com/image-photo/hand-holding-barcode-label-on-shipping-1520991479
+*/
 
 .stockandco-background {
   background-image: url('/stockandco_lowres.jpg');
@@ -148,6 +161,41 @@ main .content,
   background-size: cover;
   background-position: center center;
 }
+/*
+backup
+https://unsplash.com/photos/UWpGHf8pKwU
+*/
+
+.staff-background {
+  background-image: url('/aaa.jpg');
+  background-size: cover;
+}
+.staff-project-active {
+  background-image: url('/aaa.jpg');
+  background-size: cover;
+  background-position: center center;
+}
+
+/*
+No background for staff  and utils
+https://unsplash.com/photos/PcDGGex9-jA
+https://unsplash.com/photos/unRkg2jH1j0 - to put to the bottom only.
+
+*/
+
+.bentoandco-background,
+.bentoandco-project-active {
+  background-image: url('https://burst.shopifycdn.com/photos/lunch-box-with-cutlery.jpg');
+  background-size: cover;
+  background-position: center center;
+}
+
+/*
+show just bottom part!
+https://burst.shopify.com/photos/lunch-box-with-cutlery?q=lunch+box
+
+
+ */
 
 /* Icons and Logos  */
 .shipandco-logo {

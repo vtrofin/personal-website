@@ -16,16 +16,16 @@ export default {
   name: 'MainLayout',
   components: { Header, Footer },
   props: {
-    modifier: { type: String, required: false, default: '' }
+    modifier: { type: String, required: false, default: '' },
   },
   emits: {
-    relayToggleToolbox: null
+    relayToggleToolbox: null,
   },
   setup(props, context) {
     const { emit } = context;
     const relayToggle = () => emit('relayToggleToolbox');
     return { relayToggle };
-  }
+  },
 };
 </script>
 <style>
@@ -134,12 +134,17 @@ main .content,
 } */
 
 /* Backgrounds  */
-.shipandco-background,
-.shipandco-project-active {
-  background-image: url('https://burst.shopifycdn.com/photos/shipping-boxes-on-trolly-close-up.jpg');
+.shipandco-background {
+  background-image: url('/bertrand_co.png');
   background-size: cover;
-  background-position: center center;
+  background-position: right center;
 }
+.shipandco-project-active {
+  background-image: url('/bertrand_co.png');
+  background-size: cover;
+  background-position: right center;
+}
+
 /* 
 https://burst.shopify.com/photos/shipping-boxes-on-trolly-close-up?q=delivery
 https://burst.shopify.com/photos/shipping-boxes-on-red-brick?q=delivery
@@ -153,7 +158,7 @@ https://www.shutterstock.com/image-photo/hand-holding-barcode-label-on-shipping-
 */
 
 .stockandco-background {
-  background-image: url('/stockandco_lowres.jpg');
+  background-image: url('/stockandco_lowres_edited.jpg');
   background-size: cover;
 }
 .stockandco-project-active {

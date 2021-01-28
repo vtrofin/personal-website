@@ -154,18 +154,6 @@ main .content,
   }
 }
 
-/* 
-https://burst.shopify.com/photos/shipping-boxes-on-trolly-close-up?q=delivery
-https://burst.shopify.com/photos/shipping-boxes-on-red-brick?q=delivery
-
-backup
-https://burst.shopify.com/photos/boxes-in-the-process-of-being-packed?q=lunch+box
-https://burst.shopify.com/photos/man-holding-shipping-box-on-red-brick?q=delivery
-doar cu modificari & crop https://burst.shopify.com/photos/signing-shipping-forms-for-large-box?q=delivery
-https://burst.shopify.com/photos/the-final-packages-ready-for-shipment?q=delivery
-https://www.shutterstock.com/image-photo/hand-holding-barcode-label-on-shipping-1520991479
-*/
-
 .stockandco-background {
   background-image: url('/stockandco_lowres_edited.jpg');
   background-size: cover;

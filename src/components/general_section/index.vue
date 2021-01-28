@@ -34,8 +34,8 @@ export default {
     title: { type: String, required: true },
     // eslint-disable-next-line
     data: { validator: generalSectionArrayValidator },
-    type: { type: String, required: false, default: 'project' }
-  }
+    type: { type: String, required: false, default: 'project' },
+  },
 };
 </script>
 
@@ -165,7 +165,6 @@ p.item-text {
 .item-background {
   position: absolute;
   background-repeat: no-repeat;
-  background-position: center bottom;
   top: 0;
   left: 0;
   right: 0;

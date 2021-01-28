@@ -129,20 +129,18 @@ main .content,
   color: var(--black);
 }
 
-/* .shipandco-project-active {
-  transition: background-color 0.3s ease;
-} */
-
 /* Backgrounds  */
-.shipandco-background {
-  background-image: url('/bertrand_co.png');
-  background-size: cover;
-  background-position: right center;
-}
+.shipandco-background,
 .shipandco-project-active {
-  background-image: url('/bertrand_co.png');
+  background-image: url('/shipandco_lowres.png');
   background-size: cover;
-  background-position: right center;
+  background-position: -150px center;
+}
+@media all and (min-width: 800px) {
+  .shipandco-background,
+  .shipandco-project-active {
+    background-position: center center;
+  }
 }
 
 /* 
@@ -160,7 +158,9 @@ https://www.shutterstock.com/image-photo/hand-holding-barcode-label-on-shipping-
 .stockandco-background {
   background-image: url('/stockandco_lowres_edited.jpg');
   background-size: cover;
+  background-position: center center;
 }
+
 .stockandco-project-active {
   background-image: url('/stockandco_highres.jpg');
   background-size: cover;

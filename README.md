@@ -92,3 +92,17 @@ VUE_APP_CONTACT_TOKEN=
 <fa icon="user-secret" />
 <fa :icon="['fab', 'twitter']" :class="fa-3x" />
 ```
+
+## Git lfs
+
+```
+// Check tracked files
+git lfs ls-files
+
+// Fetch all images
+git lfs fetch --all
+git lfs pull
+
+// Push all images
+git lfs push --all
+```

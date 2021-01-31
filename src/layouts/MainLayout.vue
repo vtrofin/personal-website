@@ -155,55 +155,27 @@ main .content,
 }
 
 .stockandco-background {
-  background-image: url('/stockandco_lowres_edited.jpg');
+  background-image: url('/stockandco_lowres_1.jpg');
   background-size: cover;
   background-position: center center;
 }
 
 .stockandco-project-active {
-  background-image: url('/stockandco_highres.jpg');
+  background-image: url('/stockandco_lowres_1.jpg');
   background-size: cover;
   background-position: center center;
 }
-/*
-backup
-https://unsplash.com/photos/UWpGHf8pKwU
-*/
-
-.staff-background {
-  background-image: url('/aaa.jpg');
-  background-size: cover;
-}
-.staff-project-active {
-  background-image: url('/aaa.jpg');
-  background-size: cover;
-  background-position: center center;
-}
-
-/*
-No background for staff  and utils
-https://unsplash.com/photos/PcDGGex9-jA
-https://unsplash.com/photos/unRkg2jH1j0 - to put to the bottom only.
-
-*/
 
 .bentoandco-background,
 .bentoandco-project-active {
-  background-image: url('https://burst.shopifycdn.com/photos/lunch-box-with-cutlery.jpg');
+  background-image: url('/bentoandco_highres_1.jpg');
   background-size: cover;
-  background-position: center center;
+  background-position: center top;
 }
 
-/*
-show just bottom part!
-https://burst.shopify.com/photos/lunch-box-with-cutlery?q=lunch+box
-
-backup
-https://unsplash.com/photos/IIzny_Qgw-g
-https://unsplash.com/photos/HOZttZsnW48
-https://unsplash.com/photos/2cpx1N7Us5Q
-https://unsplash.com/photos/UQE3rtWMfV4
- */
+.bentoandco-project-active {
+  background-position: center bottom;
+}
 
 /* Icons and Logos  */
 .shipandco-logo {

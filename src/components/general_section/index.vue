@@ -12,6 +12,7 @@
       :exact-active-class="
         'exact-active' + ' ' + options.project ? `${options.project}-active` : 'shipandco-active'
       "
+      :total-items="data.length"
     >
       <template #section-link-slot>
         <Project v-if="options.type === 'project'" :options="options" :idx="idx" />

@@ -20,16 +20,22 @@ export const getSectionLinkClassName = ({
   isActive,
   exactActiveClass,
   activeClass,
+  totalItems,
 }) => {
+  let baseClass = ['section-link'];
+  if (totalItems <= 3) {
+    baseClass = [...baseClass, 'is-half-width'];
+  }
+
   if (isExactActive) {
     const computed = (exactActiveClass.value || '').split(' ');
-    return ['section-link', ...computed];
+    return [...baseClass, ...computed];
   }
   if (isActive) {
     const computed = (activeClass.value || '').split(' ');
-    return ['section-link', ...computed];
+    return [...baseClass, ...computed];
   }
-  return 'section-link';
+  return baseClass;
 };
 
 export const getFormattedTitle = value => {

@@ -163,13 +163,14 @@ main .content,
 
 .bentoandco-background,
 .bentoandco-project-active {
-  background-image: url('/bentoandco.jpg');
+  background-image: url('/bentoandco.png');
   background-size: cover;
-  background-position: center top;
+  background-position: center 450px;
+  background-repeat: no-repeat;
 }
 
 .bentoandco-project-active {
-  background-position: center bottom;
+  background-position: center 450px;
 }
 
 /* Icons and Logos  */

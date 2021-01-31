@@ -12,13 +12,38 @@
         >.
       </p>
     </div>
+    Stock Photos and Icons by:
+    <ul>
+      <li>
+        <a href="https://www.pexels.com/photo/food-healthy-wood-apple-5972008/">Vanessa Loring</a>
+      </li>
+      <li>
+        <a
+          href="https://unsplash.com/@chuttersnap?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText"
+        >
+          CHUTTERSNAP
+        </a>
+      </li>
+      <li>
+        <a
+          href="https://burst.shopify.com/@lightleaksin?utm_campaign=photo_credit&amp;utm_content=Browse+Free+HD+Images+of+Different+Packages+Ready+To+Be+Shipped&amp;utm_medium=referral&amp;utm_source=credit"
+        >
+          Samantha Hurley
+        </a>
+      </li>
+      <li>
+        <a href="https://www.flaticon.com/authors/pixel-perfect" title="Pixel perfect">
+          Pixel perfect
+        </a>
+      </li>
+    </ul>
   </footer>
 </template>
 
 <script>
 export default {
   name: 'Footer',
-  props: { modifier: { type: String, required: false, default: '' } }
+  props: { modifier: { type: String, required: false, default: '' } },
 };
 </script>
 

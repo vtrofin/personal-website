@@ -10,7 +10,7 @@
     <section class="profile-container">
       <div class="profile" tabindex="0">
         <img
-          src="/img_vt.jpg"
+          src="/victor.jpg"
           alt="victor trofin's profile image"
           loading="lazy"
           width="42"

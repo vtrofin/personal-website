@@ -23,7 +23,7 @@ export const getSectionLinkClassName = ({
   totalItems,
 }) => {
   let baseClass = ['section-link'];
-  if (totalItems <= 3) {
+  if (totalItems <= 2) {
     baseClass = [...baseClass, 'is-half-width'];
   }
 

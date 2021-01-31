@@ -132,7 +132,7 @@ main .content,
 /* Backgrounds  */
 .shipandco-background,
 .shipandco-project-active {
-  background-image: url('/shipandco_lowres.png');
+  background-image: url('/shipandco.png');
   background-size: cover;
   background-repeat: no-repeat;
 }
@@ -154,21 +154,16 @@ main .content,
   }
 }
 
-.stockandco-background {
-  background-image: url('/stockandco_lowres_1.jpg');
-  background-size: cover;
-  background-position: center center;
-}
-
+.stockandco-background,
 .stockandco-project-active {
-  background-image: url('/stockandco_lowres_1.jpg');
+  background-image: url('/stockandco.jpg');
   background-size: cover;
   background-position: center center;
 }
 
 .bentoandco-background,
 .bentoandco-project-active {
-  background-image: url('/bentoandco_highres_1.jpg');
+  background-image: url('/bentoandco.jpg');
   background-size: cover;
   background-position: center top;
 }

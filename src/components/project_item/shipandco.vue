@@ -18,24 +18,9 @@
       tell us which of a set of variations is better at producing a certain effect, encouraging a
       behavior, or achieving a goal.
     </p>
-    <device-mockup url="/shipandco_mediumres_1.jpg" alt="a wacky image" type="macbook" />
-    <!-- <div class="device device-macbook">
-      <div class="device-frame">
-        <img class="device-content" src="/shipandco_mediumres_1.jpg" />
-      </div>
-      <div class="device-stripe" />
-      <div class="device-header" />
-      <div class="device-sensors" />
-      <div class="device-btns" />
-      <div class="device-power" />
-    </div> -->
-
-    <!-- <img
-      class="content-image"
-      src="/shipandco_mediumres_1.jpg"
-      alt="a wacky image"
-      loading="lazy"
-    /> -->
+    <div style="width: 350px">
+      <device-mockup url="/shipandco_mediumres_1.jpg" alt="a wacky image" type="macbook" />
+    </div>
     <br />
     <span class="caption-text"> a caption for my image</span>
     <a

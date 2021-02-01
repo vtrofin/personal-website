@@ -12,22 +12,9 @@
 </template>
 <script>
 import './devices.min.css';
-import { computed, ref } from 'vue';
+import { computed } from 'vue';
 
-const devices = [
-  'iphone-x',
-  'iphone-8',
-  'google-pixel-2-xl',
-  'google-pixel',
-  'ipad-pro',
-  'surface-pro',
-  'surface-book',
-  'macbook',
-  'macbook-pro',
-  'imac-pro',
-  'apple-watch',
-  'samsung-galaxy-s8',
-];
+const devices = ['iphone-x', 'iphone-8', 'ipad-pro', 'macbook', 'macbook-pro'];
 export default {
   name: 'DeviceMockup',
 

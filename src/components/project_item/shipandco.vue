@@ -18,12 +18,23 @@
       tell us which of a set of variations is better at producing a certain effect, encouraging a
       behavior, or achieving a goal.
     </p>
-    <img
+    <div class="device device-iphone-x">
+      <div class="device-frame">
+        <img class="device-content" src="/shipandco_mediumres_1.jpg" />
+      </div>
+      <div class="device-stripe"></div>
+      <div class="device-header"></div>
+      <div class="device-sensors"></div>
+      <div class="device-btns"></div>
+      <div class="device-power"></div>
+    </div>
+
+    <!-- <img
       class="content-image"
       src="/shipandco_mediumres_1.jpg"
       alt="a wacky image"
       loading="lazy"
-    />
+    /> -->
     <br />
     <span class="caption-text"> a caption for my image</span>
     <a

@@ -39,7 +39,10 @@ const routes = [
 
 const router = createRouter({
   history: createWebHistory(),
-  routes
+  routes,
+  scrollBehavior: (to, from, savedPosition) => {
+    return savedPosition ? savedPosition : { left: 0, top: 0 };
+  }
 });
 
 const app = createApp(App);

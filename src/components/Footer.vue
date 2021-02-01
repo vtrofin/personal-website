@@ -9,7 +9,12 @@
       </h3>
       <p class="item-text">
         Feel free to
-        <a class="contact-link reversed" href="mailto:#?subject=Hi" target="_blank" rel="noopener">
+        <a
+          class="contact-link reversed"
+          href="mailto:trofin.victor@gmail?subject=Hi"
+          target="_blank"
+          rel="noopener"
+        >
           <span>
             send me a message
           </span>

@@ -20,11 +20,11 @@ export const getSectionLinkClassName = ({
   isActive,
   exactActiveClass,
   activeClass,
-  totalItems,
+  totalItems
 }) => {
   let baseClass = ['section-link'];
   if (totalItems <= 2) {
-    baseClass = [...baseClass, 'is-half-width'];
+    baseClass = [...baseClass, 'force-half-width'];
   }
 
   if (isExactActive) {

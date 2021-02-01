@@ -36,7 +36,7 @@ export default {
     ariaLabel: { type: String, required: false, default: 'View section' },
     // eslint-disable-next-line
     inactiveClass: { type: String, required: false },
-    totalItems: { required: false, type: Number },
+    totalItems: { required: false, type: Number }
   },
   setup(props) {
     const { activeClass, exactActiveClass, totalItems } = toRefs(props);
@@ -50,12 +50,12 @@ export default {
         isActive,
         exactActiveClass,
         activeClass,
-        totalItems: totalItems.value,
+        totalItems: totalItems.value
       })
     );
 
     return { isExternalLink, computedClassName };
-  },
+  }
 };
 </script>
 
@@ -91,8 +91,17 @@ export default {
   .section-link:last-of-type {
     flex-basis: 100%;
   }
-  .section-link.is-half-width {
+  .section-link.force-half-width {
     flex-basis: 50%;
+  }
+
+  .section-link.force-half-width:first-of-type {
+    border-top-right-radius: 0px;
+    border-bottom-left-radius: var(--base-border);
+  }
+  .section-link.force-half-width:last-of-type {
+    border-bottom-left-radius: 0px;
+    border-top-right-radius: var(--base-border);
   }
 }
 </style>

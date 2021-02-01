@@ -2,6 +2,7 @@ import { createApp } from 'vue';
 import { createRouter, createWebHistory } from 'vue-router';
 import store from './store';
 import { FontAwesomeIcon } from '../libs/fa/font_awesome';
+import DeviceMockup from '../libs/devices';
 
 import App from './App.vue';
 import HomePage from './pages/Home.vue';
@@ -16,11 +17,11 @@ const routes = [
     path: '/',
     component: HomePage,
     name: 'homepage',
-    alias: ['/home', '/work']
+    alias: ['/home', '/work'],
   },
   {
     path: '/projects',
-    redirect: { name: 'projectItem', params: { project_item: 'shipandco' } }
+    redirect: { name: 'projectItem', params: { project_item: 'shipandco' } },
   },
   {
     path: '/projects/:project_item',
@@ -28,13 +29,13 @@ const routes = [
     name: 'projectItem',
     beforeEnter: (to, from) => {
       return checkProjectRoute(to?.params);
-    }
+    },
   },
   {
     path: '/contact',
     component: Contact,
-    name: 'contact'
-  }
+    name: 'contact',
+  },
 ];
 
 const router = createRouter({
@@ -42,13 +43,14 @@ const router = createRouter({
   routes,
   scrollBehavior: (to, from, savedPosition) => {
     return savedPosition ? savedPosition : { left: 0, top: 0 };
-  }
+  },
 });
 
 const app = createApp(App);
 app.use(router);
 app.use(store);
 app.component('Fa', FontAwesomeIcon);
+app.component('DeviceMockup', DeviceMockup);
 app.config.productionTip = false;
 
 app.mount('#app');

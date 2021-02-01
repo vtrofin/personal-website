@@ -18,16 +18,17 @@
       tell us which of a set of variations is better at producing a certain effect, encouraging a
       behavior, or achieving a goal.
     </p>
-    <div class="device device-iphone-x">
+    <device-mockup url="/shipandco_mediumres_1.jpg" alt="a wacky image" type="macbook" />
+    <!-- <div class="device device-macbook">
       <div class="device-frame">
         <img class="device-content" src="/shipandco_mediumres_1.jpg" />
       </div>
-      <div class="device-stripe"></div>
-      <div class="device-header"></div>
-      <div class="device-sensors"></div>
-      <div class="device-btns"></div>
-      <div class="device-power"></div>
-    </div>
+      <div class="device-stripe" />
+      <div class="device-header" />
+      <div class="device-sensors" />
+      <div class="device-btns" />
+      <div class="device-power" />
+    </div> -->
 
     <!-- <img
       class="content-image"
@@ -58,7 +59,7 @@ export default {
   name: 'ShipandcoContent',
   components: { ProjectSummary },
   props: {
-    modifier: { type: String, required: false, default: '' }
-  }
+    modifier: { type: String, required: false, default: '' },
+  },
 };
 </script>

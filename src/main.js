@@ -47,5 +47,5 @@ app.use(router);
 app.use(store);
 app.component('Fa', FontAwesomeIcon);
 app.config.productionTip = false;
-//test
+
 app.mount('#app');

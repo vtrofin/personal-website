@@ -16,11 +16,11 @@ const routes = [
     path: '/',
     component: HomePage,
     name: 'homepage',
-    alias: ['/home', '/work'],
+    alias: ['/home', '/work']
   },
   {
     path: '/projects',
-    redirect: { name: 'projectItem', params: { project_item: 'shipandco' } },
+    redirect: { name: 'projectItem', params: { project_item: 'shipandco' } }
   },
   {
     path: '/projects/:project_item',
@@ -28,18 +28,18 @@ const routes = [
     name: 'projectItem',
     beforeEnter: (to, from) => {
       return checkProjectRoute(to?.params);
-    },
+    }
   },
   {
     path: '/contact',
     component: Contact,
-    name: 'contact',
-  },
+    name: 'contact'
+  }
 ];
 
 const router = createRouter({
   history: createWebHistory(),
-  routes,
+  routes
 });
 
 const app = createApp(App);
@@ -47,5 +47,5 @@ app.use(router);
 app.use(store);
 app.component('Fa', FontAwesomeIcon);
 app.config.productionTip = false;
-
+//test
 app.mount('#app');

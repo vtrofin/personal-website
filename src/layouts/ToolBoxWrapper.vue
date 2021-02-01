@@ -13,8 +13,8 @@
           src="/victor.jpg"
           alt="victor trofin's profile image"
           loading="lazy"
-          width="42"
-          height="42"
+          width="80"
+          height="80"
         />
         <span class="caption-text">Victor Trofin</span>
       </div>
@@ -118,7 +118,7 @@ export default {
   box-sizing: border-box;
   z-index: 101;
   width: 320px;
-  height: 320px;
+  height: 360px;
   padding: 2rem;
   background-color: var(--misty-rose);
   color: var(--black);
@@ -176,7 +176,7 @@ export default {
 }
 
 .profile img {
-  border-radius: 50%;
+  border-radius: 42%;
   margin-left: 0;
   margin-right: 1rem;
 }

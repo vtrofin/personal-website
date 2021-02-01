@@ -142,9 +142,9 @@ footer .section-header {
   font-weight: 700;
   margin-right: 0.2rem;
 }
-.thanks li:last-of-type:before {
+.thanks li:nth-last-of-type(2):after {
   content: '.';
-  margin-right: 0.2rem;
+  margin-left: -0.1rem;
 }
 
 .thanks li a {
@@ -161,7 +161,7 @@ footer .section-header {
   .thanks li:first-of-type {
     max-width: 100px;
   }
-  .thanks li:last-of-type:before,
+  .thanks li:nth-last-of-type(2):after,
   .thanks li:after {
     display: none;
   }

@@ -16,16 +16,16 @@ export default {
   name: 'MainLayout',
   components: { Header, Footer },
   props: {
-    modifier: { type: String, required: false, default: '' },
+    modifier: { type: String, required: false, default: '' }
   },
   emits: {
-    relayToggleToolbox: null,
+    relayToggleToolbox: null
   },
   setup(props, context) {
     const { emit } = context;
     const relayToggle = () => emit('relayToggleToolbox');
     return { relayToggle };
-  },
+  }
 };
 </script>
 <style>

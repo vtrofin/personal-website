@@ -40,6 +40,7 @@
             Pixel perfect
           </a>
         </li>
+        <li>Thank you very much!</li>
       </ul>
     </div>
   </footer>
@@ -132,14 +133,20 @@ footer .section-header {
 .thanks li {
   margin-top: 0.3rem;
 }
-.thanks li:not(:first-of-type):not(:last-of-type):after {
+.thanks li:not(:first-of-type):not(:last-of-type):not(:nth-last-of-type(2)):after {
   content: '|';
   margin-left: 0.2rem;
   margin-right: 0.2rem;
 }
 .thanks li:first-of-type {
+  font-weight: 700;
   margin-right: 0.2rem;
 }
+.thanks li:last-of-type:before {
+  content: '.';
+  margin-right: 0.2rem;
+}
+
 .thanks li a {
   cursor: pointer;
   text-decoration: none;
@@ -152,8 +159,9 @@ footer .section-header {
     margin-bottom: 0;
   }
   .thanks li:first-of-type {
-    font-weight: 700;
+    max-width: 100px;
   }
+  .thanks li:last-of-type:before,
   .thanks li:after {
     display: none;
   }

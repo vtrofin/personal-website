@@ -33,7 +33,7 @@ export default {
   setup(props) {
     const currentYear = `${new Date().getFullYear()}`;
     return { currentYear };
-  },
+  }
 };
 </script>
 <style>
@@ -57,7 +57,7 @@ export default {
 .summary {
   display: flex;
   box-sizing: border-box;
-  background-color: var(--french-gray);
+  background-color: var(--red);
   width: 100%;
   padding: 2rem 0.5rem;
   border-radius: var(--base-border);

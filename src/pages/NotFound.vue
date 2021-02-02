@@ -52,7 +52,7 @@ export default {
     onUnmounted(() => {
       stopAnimation(tl, anime);
     });
-  },
+  }
 };
 </script>
 

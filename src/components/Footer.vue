@@ -61,8 +61,7 @@ export default {
 <style>
 footer {
   grid-row-start: -1;
-  background: linear-gradient(39.4deg, var(--magenta) -2.55%, rgba(182, 160, 234, 0) 45.21%),
-    var(--light-magenta);
+  background: var(--light-green);
   color: var(--black);
   width: 100%;
   margin-top: 2.5rem;
@@ -81,7 +80,7 @@ footer .section-header {
   grid-gap: 20px;
   width: 90%;
   max-width: 1280px;
-  color: black;
+  color: var(--white);
   margin: 0 auto;
   padding: 0;
   text-align: left;
@@ -124,6 +123,13 @@ footer .section-header {
   width: auto;
 }
 
+.footer-container .contact-link {
+  color: var(--white);
+}
+.footer-container .contact-link:before {
+  background-color: var(--yellow);
+}
+
 .thanks {
   display: flex;
   flex-direction: row;
@@ -137,6 +143,7 @@ footer .section-header {
 
 .thanks li {
   margin-top: 0.3rem;
+  color: var(--gray);
 }
 .thanks li:not(:first-of-type):not(:last-of-type):not(:nth-last-of-type(2)):after {
   content: '|';
@@ -155,7 +162,7 @@ footer .section-header {
 .thanks li a {
   cursor: pointer;
   text-decoration: none;
-  color: var(--black);
+  color: var(--gray);
 }
 @media all and (min-width: 600px) {
   .thanks {

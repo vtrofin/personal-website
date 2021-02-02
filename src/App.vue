@@ -78,6 +78,14 @@ export default {
   --background-white: #fefaf6;
   --gray: #574b33;
   --black: #232320;
+  /* new colors here  */
+  --yellow: #f6bd60;
+  --light-yellow: #f7ede2;
+  --pink: #f5cac3;
+  --light-green: #84a59d;
+  --red: #f28482;
+  /* end new colors */
+
   --scarlet: #fc2f00;
   --magenta: #b6a0ea;
   --light-magenta: #f1ebff;

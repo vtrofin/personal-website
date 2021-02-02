@@ -16,16 +16,16 @@ export default {
   name: 'MainLayout',
   components: { Header, Footer },
   props: {
-    modifier: { type: String, required: false, default: '' },
+    modifier: { type: String, required: false, default: '' }
   },
   emits: {
-    relayToggleToolbox: null,
+    relayToggleToolbox: null
   },
   setup(props, context) {
     const { emit } = context;
     const relayToggle = () => emit('relayToggleToolbox');
     return { relayToggle };
-  },
+  }
 };
 </script>
 <style>
@@ -70,7 +70,7 @@ main .content,
   bottom: -5px;
   left: 0;
   height: 3px;
-  background-color: var(--scarlet);
+  background-color: var(--red);
   transition: all 0.2s ease-in-out; /* linear */
   transform: rotate(-1deg);
 }
@@ -97,7 +97,7 @@ main .content,
 /* Font and background colors */
 .shipandco-active,
 .shipandco-project-active {
-  background-color: var(--shipandco);
+  background-color: var(--pink);
   color: var(--black);
 }
 .stockandco-active,
@@ -107,25 +107,25 @@ main .content,
 }
 .staff-active,
 .staff-project-active {
-  background-color: var(--staff);
+  background-color: var(--light-yellow);
   color: var(--black);
 }
 .utils-active,
 .utils-project-active {
-  background-color: var(--utils);
+  background-color: var(--red);
   color: var(--white);
 }
 .bentoandco-active,
 .bentoandco-project-active {
-  background-color: var(--bentoandco);
+  background-color: var(--yellow);
   color: var(--white);
 }
-.smoothjapan-active {
-  background-color: var(--smoothjapan);
+.bertrandandco-active {
+  background-color: var(--pink);
   color: var(--black);
 }
-.bertrandandco-active {
-  background-color: var(--bertrandandco);
+.smoothjapan-active {
+  background-color: var(--light-yellow);
   color: var(--black);
 }
 

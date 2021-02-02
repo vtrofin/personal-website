@@ -48,12 +48,12 @@ import { useStore } from 'vuex';
 export default {
   name: 'ToolBoxWrapper',
   props: {
-    toolboxState: { type: Object, required: true },
+    toolboxState: { type: Object, required: true }
   },
   emits: {
     toggleToolboxState: ({ isActive }) => {
       return typeof isActive === 'boolean';
-    },
+    }
   },
   setup(props, context) {
     const { active: toolboxActive } = toRefs(props.toolboxState);
@@ -68,7 +68,7 @@ export default {
     };
 
     return { toolboxActive, handleBlur };
-  },
+  }
 };
 </script>
 <style>

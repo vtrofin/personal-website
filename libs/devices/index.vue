@@ -12,6 +12,7 @@
   <img v-else class="content-image" :src="$props.url" :alt="$props.alt" loading="lazy" />
 </template>
 <script>
+// See more here https://github.com/picturepan2/devices.css
 import './devices.min.css';
 import { computed } from 'vue';
 import { useStore } from 'vuex';
@@ -38,9 +39,6 @@ export default {
   setup(props) {
     const store = useStore();
     const innerWidth = store.getters;
-    // iphone-x 428px
-    // ipad-pro 560px
-    // macbook-pro 740px
 
     const computedModifiers = computed(() => {
       const windowWidth = store.getters['getInnerWidth'];
@@ -53,7 +51,7 @@ export default {
           ? 'iphone-x'
           : windowWidth < 850
           ? 'ipad-pro'
-          : props?.type || props?.type?.value;
+          : props?.type || props?.type?.value || devices[devices.length - 1];
       const color = props?.color || props?.color?.value;
       return props.color ? `device-${color} device-${deviceType}` : `device-${deviceType}`;
     });

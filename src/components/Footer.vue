@@ -54,7 +54,7 @@
 <script>
 export default {
   name: 'Footer',
-  props: { modifier: { type: String, required: false, default: '' } }
+  props: { modifier: { type: String, required: false, default: '' } },
 };
 </script>
 
@@ -80,7 +80,7 @@ footer .section-header {
   grid-gap: 20px;
   width: 90%;
   max-width: 1280px;
-  color: var(--white);
+  color: var(--black);
   margin: 0 auto;
   padding: 0;
   text-align: left;
@@ -124,7 +124,7 @@ footer .section-header {
 }
 
 .footer-container .contact-link {
-  color: var(--white);
+  color: var(--black);
 }
 .footer-container .contact-link:before {
   background-color: var(--yellow);

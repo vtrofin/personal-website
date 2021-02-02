@@ -32,7 +32,7 @@ export default {
         return store
           .dispatch({
             type: 'projects/setActiveProject',
-            project: getProjectItem(route)
+            project: getProjectItem(route),
           })
           .then(() => {
             modifier.value = getProjectItem(route);
@@ -66,9 +66,9 @@ export default {
     return {
       modifier,
       toggleAndTranslateBody,
-      toolboxState
+      toolboxState,
     };
-  }
+  },
 };
 </script>
 
@@ -87,16 +87,7 @@ export default {
   /* end new colors */
 
   --scarlet: #fc2f00;
-  --magenta: #b6a0ea;
-  --light-magenta: #f1ebff;
   --purple: #150042;
-  --shipandco: #e9c46a;
-  --stockandco: #f4a261;
-  --staff: #e76f51;
-  --utils: #2a9d8f;
-  --bentoandco: #264653;
-  --smoothjapan: #fca311;
-  --bertrandandco: #a8dadc;
   --misty-rose: #f0efeb;
   --french-gray: #eddcd2;
   --base-border: 5px;

@@ -195,8 +195,8 @@ export default {
 }
 
 .toolbox-list span {
-  background-color: var(--shipandco);
-  border: 1px solid var(--stockandco);
+  background-color: var(--light-yellow);
+  border: 1px solid var(--brown);
   border-radius: var(--base-border);
   margin: 2px;
   padding: 2px 4px;

@@ -1,12 +1,5 @@
 <template>
-  <img
-    v-if="innerWidth < 500"
-    class="content-image"
-    :src="$props.url"
-    :alt="$props.alt"
-    loading="lazy"
-  />
-  <div v-else :class="'device' + ' ' + computedModifiers">
+  <div v-if="computedModifiers" :class="'device' + ' ' + computedModifiers">
     <div class="device-frame">
       <img class="device-content" :src="$props.url" :alt="$props.alt" loading="lazy" />
     </div>
@@ -16,10 +9,12 @@
     <div class="device-btns" />
     <div class="device-power" />
   </div>
+  <img v-else class="content-image" :src="$props.url" :alt="$props.alt" loading="lazy" />
 </template>
 <script>
 import './devices.min.css';
-import { computed, onMounted, ref, watch } from 'vue';
+import { computed } from 'vue';
+import { useStore } from 'vuex';
 
 const devices = ['iphone-x', 'iphone-8', 'ipad-pro', 'macbook', 'macbook-pro'];
 export default {
@@ -41,23 +36,24 @@ export default {
     color: { type: String, required: false }
   },
   setup(props) {
-    const innerWidth = ref(window.innerWidth);
-    watch(
-      () => window.innerWidth,
-      () => {
-        innerWidth.value = window.innerWidth;
-      }
-    );
+    const store = useStore();
+    const innerWidth = store.getters;
     // iphone-x 428px
     // ipad-pro 560px
     // macbook-pro 740px
 
-    // put window width on the App and save in store
-    // put resize on app on mount and unmount
-    // get window value here and get computedMOdifiers
-
     const computedModifiers = computed(() => {
-      const deviceType = props?.type || props?.type?.value;
+      const windowWidth = store.getters['getInnerWidth'];
+      if (windowWidth < 500) {
+        return null;
+      }
+
+      const deviceType =
+        windowWidth < 650
+          ? 'iphone-x'
+          : windowWidth < 850
+          ? 'ipad-pro'
+          : props?.type || props?.type?.value;
       const color = props?.color || props?.color?.value;
       return props.color ? `device-${color} device-${deviceType}` : `device-${deviceType}`;
     });

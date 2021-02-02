@@ -70,9 +70,12 @@ main .content,
   bottom: -5px;
   left: 0;
   height: 3px;
-  background-color: var(--scarlet);
+  background-color: var(--pink);
   transition: all 0.2s ease-in-out; /* linear */
   transform: rotate(-1deg);
+}
+.contact-link:before {
+  background-color: var(--brown);
 }
 
 .content-link.reversed:before,
@@ -97,35 +100,34 @@ main .content,
 /* Font and background colors */
 .shipandco-active,
 .shipandco-project-active {
-  background-color: var(--shipandco);
+  background-color: var(--light-green);
   color: var(--black);
 }
 .stockandco-active,
 .stockandco-project-active {
-  background-color: var(--stockandco);
   color: var(--black);
 }
 .staff-active,
 .staff-project-active {
-  background-color: var(--staff);
+  background-color: var(--light-yellow);
   color: var(--black);
 }
 .utils-active,
 .utils-project-active {
-  background-color: var(--utils);
-  color: var(--white);
+  background-color: var(--light-red);
+  color: var(--black);
 }
 .bentoandco-active,
 .bentoandco-project-active {
-  background-color: var(--bentoandco);
+  background-color: var(--brown);
   color: var(--white);
 }
-.smoothjapan-active {
-  background-color: var(--smoothjapan);
+.bertrandandco-active {
+  background-color: var(--light-red);
   color: var(--black);
 }
-.bertrandandco-active {
-  background-color: var(--bertrandandco);
+.smoothjapan-active {
+  background-color: var(--light-green);
   color: var(--black);
 }
 

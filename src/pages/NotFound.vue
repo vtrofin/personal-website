@@ -59,7 +59,6 @@ export default {
 <style scoped>
 .container {
   --base-animation-border: 5px;
-  --animation-gray: #574b33;
   --animation-shadow: #695e46;
 
   display: flex;
@@ -91,7 +90,7 @@ export default {
   min-height: 400px;
   max-height: 600px;
   max-width: 600px;
-  background-color: var(--animation-gray);
+  background-color: var(--light-red);
   border-radius: calc(var(--base-animation-border) * 1);
   transform: translate3d(-50%, 0, 0);
 }
@@ -280,7 +279,7 @@ export default {
 }
 
 .text-container {
-  color: var(--white);
+  color: var(--black);
   position: absolute;
   left: 50%;
   bottom: 30px;

@@ -54,15 +54,14 @@
 <script>
 export default {
   name: 'Footer',
-  props: { modifier: { type: String, required: false, default: '' } }
+  props: { modifier: { type: String, required: false, default: '' } },
 };
 </script>
 
 <style>
 footer {
   grid-row-start: -1;
-  background: linear-gradient(39.4deg, var(--magenta) -2.55%, rgba(182, 160, 234, 0) 45.21%),
-    var(--light-magenta);
+  background: var(--light-yellow);
   color: var(--black);
   width: 100%;
   margin-top: 2.5rem;

@@ -48,12 +48,12 @@ import { useStore } from 'vuex';
 export default {
   name: 'ToolBoxWrapper',
   props: {
-    toolboxState: { type: Object, required: true }
+    toolboxState: { type: Object, required: true },
   },
   emits: {
     toggleToolboxState: ({ isActive }) => {
       return typeof isActive === 'boolean';
-    }
+    },
   },
   setup(props, context) {
     const { active: toolboxActive } = toRefs(props.toolboxState);
@@ -68,7 +68,7 @@ export default {
     };
 
     return { toolboxActive, handleBlur };
-  }
+  },
 };
 </script>
 <style>
@@ -195,8 +195,8 @@ export default {
 }
 
 .toolbox-list span {
-  background-color: var(--pink);
-  border: 1px solid var(--pink);
+  background-color: var(--yellow);
+  border: 1px solid var(--yellow);
   border-radius: var(--base-border);
   margin: 2px;
   padding: 2px 4px;

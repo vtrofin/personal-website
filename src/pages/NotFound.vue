@@ -52,7 +52,7 @@ export default {
     onUnmounted(() => {
       stopAnimation(tl, anime);
     });
-  }
+  },
 };
 </script>
 
@@ -91,7 +91,7 @@ export default {
   min-height: 400px;
   max-height: 600px;
   max-width: 600px;
-  background-color: var(--animation-gray);
+  background-color: var(--pink);
   border-radius: calc(var(--base-animation-border) * 1);
   transform: translate3d(-50%, 0, 0);
 }

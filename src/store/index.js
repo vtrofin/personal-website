@@ -7,7 +7,8 @@ const store = createStore({
   state: () => ({
     isMobile: false,
     isAndroid: false,
-    isToolboxActive: false
+    isToolboxActive: false,
+    windowWidth: 0
   }),
   modules: {
     hero: heroModule,
@@ -20,6 +21,9 @@ const store = createStore({
     },
     checkToolBox: state => {
       return state.isToolboxActive;
+    },
+    getInnerWidth: state => {
+      return state.windowWidth;
     }
   },
   mutations: {
@@ -35,6 +39,10 @@ const store = createStore({
         return;
       }
       state.isToolboxActive = payload.isToolboxActive;
+    },
+    updateWindowWidth: (state, payload) => {
+      const { windowWidth } = payload;
+      state.windowWidth = windowWidth;
     }
   },
   actions: {
@@ -43,6 +51,9 @@ const store = createStore({
     },
     setToolBoxState: ({ commit }, payload) => {
       commit('updateToolBoxState', payload);
+    },
+    setWindowWidth: ({ commit }, payload) => {
+      commit('updateWindowWidth', payload);
     }
   }
 });

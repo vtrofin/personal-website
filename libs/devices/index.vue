@@ -19,7 +19,7 @@
 </template>
 <script>
 import './devices.min.css';
-import { computed,  onMounted, ref, watch} from 'vue';
+import { computed, onMounted, ref, watch } from 'vue';
 
 const devices = ['iphone-x', 'iphone-8', 'ipad-pro', 'macbook', 'macbook-pro'];
 export default {
@@ -35,10 +35,10 @@ export default {
           return true;
         }
         return typeof value === 'string' && devices.includes(value);
-      },
+      }
     },
     // eslint-disable-next-line
-    color: { type: String, required: false },
+    color: { type: String, required: false }
   },
   setup(props) {
     const innerWidth = ref(window.innerWidth);
@@ -52,14 +52,9 @@ export default {
     // ipad-pro 560px
     // macbook-pro 740px
 
-// put window widht on the App and save in store
-// put resize on app on mount and unmount
-// get window value here and get computedMOdifiers
-onMounted() {
-  window.addEventListener('resize', () => {
-    this.windowHeight = window.innerHeight
-  })
-}
+    // put window width on the App and save in store
+    // put resize on app on mount and unmount
+    // get window value here and get computedMOdifiers
 
     const computedModifiers = computed(() => {
       const deviceType = props?.type || props?.type?.value;
@@ -68,6 +63,6 @@ onMounted() {
     });
 
     return { computedModifiers, innerWidth };
-  },
+  }
 };
 </script>

@@ -7,7 +7,7 @@
 <script>
 import { useStore } from 'vuex';
 import { useRoute } from 'vue-router';
-import { watch, ref, reactive } from 'vue';
+import { watch, ref, reactive, onMounted, onUnmounted } from 'vue';
 import MainLayout from './layouts/MainLayout';
 import ToolBoxWrapper from './layouts/ToolBoxWrapper';
 
@@ -48,6 +48,20 @@ export default {
       const isActive = store.getters['checkToolBox'];
       toolboxState.active = isActive;
     };
+
+    const resizeHandler = () => {
+      const windowWidth = window.innerWidth;
+      store.dispatch({ type: 'setWindowWidth', windowWidth });
+    };
+
+    onMounted(() => {
+      store.dispatch({ type: 'setWindowWidth', windowWidth: window.innerWidth });
+      window.addEventListener('resize', resizeHandler);
+    });
+
+    onUnmounted(() => {
+      window.removeEventListener('resize', resizeHandler);
+    });
 
     return {
       modifier,

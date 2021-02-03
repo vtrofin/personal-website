@@ -89,12 +89,6 @@ export default {
   --purple: #150042;
   --misty-rose: #f0efeb;
   --base-border: 5px;
-
-  --submit-button-disabled: lime;
-  --submit-button: gray;
-  --submit-button-focus: green;
-  --submit-message-success: green;
-  --submit-message-error: red;
 }
 
 html,

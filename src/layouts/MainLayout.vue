@@ -195,12 +195,14 @@ main .content,
 .nav-link-text.bentoandco:before {
   background: var(--white);
 }
-
-.nav-links li a.staff {
-  color: var(--black);
+.nav-link-text.stockandco:before {
+  background: var(--yellow);
 }
 
-.nav-link-text.staff:before {
-  background: var(--black);
+.nav-links li a.bentoandco {
+  color: var(--white);
+}
+.nav-link-text.bentoandco:before {
+  background: var(--yellow);
 }
 </style>

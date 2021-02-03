@@ -73,7 +73,7 @@ export default {
     const templateData = reactive({
       isLoading: false,
       formSubmitMessage: '',
-      messageClass: 'form-result error',
+      messageClass: 'form-result',
     });
 
     const handleFormSubmit = async event => {

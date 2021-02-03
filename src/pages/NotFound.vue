@@ -163,7 +163,7 @@ export default {
   height: 20px;
   margin: 0 auto;
   border-radius: 50%;
-  box-shadow: 0 30px 15px 5px var(--animation-shadow);
+  box-shadow: 0 40px 15px 5px var(--animation-shadow);
   animation: smallbig 3s ease-in-out infinite;
 }
 
@@ -312,7 +312,7 @@ export default {
 }
 .content-link.not-found:before {
   bottom: -10px;
-  background-color: var(--light-green);
+  background-color: var(--red);
 }
 @media (hover: hover) {
   .content-link.not-found:hover:before {

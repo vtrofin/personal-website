@@ -86,11 +86,10 @@ export default {
   --red: #f28482;
   /* end new colors */
 
-  --scarlet: #fc2f00;
   --purple: #150042;
   --misty-rose: #f0efeb;
-  --french-gray: #eddcd2;
   --base-border: 5px;
+
   --submit-button-disabled: lime;
   --submit-button: gray;
   --submit-button-focus: green;

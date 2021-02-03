@@ -36,19 +36,26 @@ export default {
     ariaLabel: { type: String, required: false, default: 'View section' },
     // eslint-disable-next-line
     inactiveClass: { type: String, required: false },
+    totalItems: { required: false, type: Number }
   },
   setup(props) {
-    const { activeClass, exactActiveClass } = toRefs(props);
+    const { activeClass, exactActiveClass, totalItems } = toRefs(props);
     const path = toRef(props, 'to');
     const { /*navigate, href, route,*/ isActive, isExactActive } = useLink(path);
 
     const isExternalLink = computed(() => checkExternalPath({ path: path.value }));
     const computedClassName = computed(() =>
-      getSectionLinkClassName({ isExactActive, isActive, exactActiveClass, activeClass })
+      getSectionLinkClassName({
+        isExactActive,
+        isActive,
+        exactActiveClass,
+        activeClass,
+        totalItems: totalItems.value
+      })
     );
 
     return { isExternalLink, computedClassName };
-  },
+  }
 };
 </script>
 
@@ -65,9 +72,6 @@ export default {
   text-decoration: none;
   box-sizing: border-box;
   position: relative;
-
-  /* add the background color here */
-  /* add the text color for the box here  */
 }
 .section-link:first-of-type {
   border-top-left-radius: var(--base-border);
@@ -82,10 +86,22 @@ export default {
   .section-link {
     flex-basis: 50%;
   }
-  .section-link:nth-of-type(1),
-  .section-link:nth-of-type(4),
-  .section-link:nth-of-type(7) {
+  .section-link:first-of-type,
+  .section-link:nth-of-type(3n + 1),
+  .section-link:last-of-type {
     flex-basis: 100%;
+  }
+  .section-link.force-half-width {
+    flex-basis: 50%;
+  }
+
+  .section-link.force-half-width:first-of-type {
+    border-top-right-radius: 0px;
+    border-bottom-left-radius: var(--base-border);
+  }
+  .section-link.force-half-width:last-of-type {
+    border-bottom-left-radius: 0px;
+    border-top-right-radius: var(--base-border);
   }
 }
 </style>

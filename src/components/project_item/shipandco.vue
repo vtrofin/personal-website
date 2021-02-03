@@ -18,7 +18,7 @@
       tell us which of a set of variations is better at producing a certain effect, encouraging a
       behavior, or achieving a goal.
     </p>
-    <img class="content-image" src="/shipandco_app.png" alt="a wacky image" loading="lazy" />
+    <device-mockup url="/shipandco_mediumres_1.jpg" alt="a wacky image" type="macbook" />
     <br />
     <span class="caption-text"> a caption for my image</span>
     <a
@@ -42,7 +42,7 @@ export default {
   name: 'ShipandcoContent',
   components: { ProjectSummary },
   props: {
-    modifier: { type: String, required: false, default: '' },
-  },
+    modifier: { type: String, required: false, default: '' }
+  }
 };
 </script>

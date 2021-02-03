@@ -69,13 +69,13 @@ import {
   refocusActiveTextLine,
   handleResizeEvent,
   handleKeyUpEvent,
-  handleInputEvent,
+  handleInputEvent
 } from '../helpers/event_handlers';
 import { stopAnimation } from '../helpers/animate';
 
 export default {
   emits: {
-    'update-caret-position': null,
+    'update-caret-position': null
   },
   setup(props, context) {
     const { emit } = context;
@@ -100,6 +100,7 @@ export default {
       //  check that cli is visible & trigger animation
       cliObserver = getAnimationObserver({ cliContainer, anime, staggeredAnimation });
 
+      // resize handler already moved to App file => put your handler to the main resize event handler! Get the width or whatever is needed directly from the store
       /* window.addEventListener('resize', handleResizeEvent(cliWrapperActiveText, store, emit)); cliWrapperActiveText.value.contentEditable = true; cliObserver = getCliObserver({ cliWrapperActiveText, cliContainer, isMobile, isAndroid }); cursorObserver = getCursorObserver(cliContainer, cliWrapperActiveText); setTimeout(() => { return handleCursorReposition({ domRef: cliWrapperActiveText.value, offsetY: 2, store, isSubmit: true, // force get from Elem }) .then(() => emit('update-caret-position')) .catch(err => console.log('Failed to update caret position', err.message)); }, 0); */
     });
 
@@ -118,9 +119,9 @@ export default {
       handleKeyUp: handleKeyUpEvent(store, emit),
       refocusActiveTextLine: refocusActiveTextLine(cliWrapperActiveText),
       animationText,
-      ...animationTextRefs,
+      ...animationTextRefs
     };
-  },
+  }
 };
 </script>
 

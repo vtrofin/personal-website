@@ -59,8 +59,7 @@ export default {
 <style scoped>
 .container {
   --base-animation-border: 5px;
-  --animation-gray: #574b33;
-  --animation-shadow: #695e46;
+  --animation-shadow: #978c72;
 
   display: flex;
   flex-direction: column;
@@ -91,7 +90,7 @@ export default {
   min-height: 400px;
   max-height: 600px;
   max-width: 600px;
-  background-color: var(--animation-gray);
+  background-color: var(--pink);
   border-radius: calc(var(--base-animation-border) * 1);
   transform: translate3d(-50%, 0, 0);
 }
@@ -157,19 +156,19 @@ export default {
 }
 .ghost-feet-container > div:nth-child(2n) {
   margin: 0;
-  border-top: 10px solid var(--animation-gray);
+  border-top: 10px solid var(--pink);
   background-color: transparent;
 }
 .ghost-shadow {
   height: 20px;
   margin: 0 auto;
   border-radius: 50%;
-  box-shadow: 0 30px 15px 5px var(--animation-shadow);
+  box-shadow: 0 40px 15px 5px var(--animation-shadow);
   animation: smallbig 3s ease-in-out infinite;
 }
 
 .symbol {
-  opacity: 0.2;
+  opacity: 0.4;
   animation-name: shine;
   animation-duration: 4s;
   animation-timing-function: ease-in-out;
@@ -280,7 +279,7 @@ export default {
 }
 
 .text-container {
-  color: var(--white);
+  color: var(--black);
   position: absolute;
   left: 50%;
   bottom: 30px;
@@ -308,12 +307,12 @@ export default {
 }
 
 .content-link.not-found {
-  color: var(--white);
+  color: var(--black);
   font-weight: 500;
 }
 .content-link.not-found:before {
   bottom: -10px;
-  background-color: var(--white);
+  background-color: var(--red);
 }
 @media (hover: hover) {
   .content-link.not-found:hover:before {

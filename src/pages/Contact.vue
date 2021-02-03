@@ -23,10 +23,10 @@
         Submit
       </button>
       <div :class="templateData.messageClass" :v-if="templateData.formSubmitMessage">
-        <Alert width="16px" color="red" v-if="templateData.messageClass.includes('error')" />
+        <Alert width="16px" color="#f28482" v-if="templateData.messageClass.includes('error')" />
         <Tick
           width="16px"
-          color="green"
+          color="#84a59d"
           v-else-if="templateData.messageClass.includes('success')"
         />
         {{ templateData.formSubmitMessage }}
@@ -174,7 +174,7 @@ button[type='submit'] {
   align-self: center;
   font-size: 1.2rem;
   font-weight: 700;
-  background-color: var(--submit-button);
+  background-color: var(--pink);
   color: var(--white);
   border: none;
   border-radius: var(--base-border);
@@ -184,13 +184,14 @@ button[type='submit'] {
   outline: none;
 }
 
-button[type='submit']:hover {
-  background-color: var(--submit-button-focus);
+button[type='submit']:hover,
+button[type='submit']:focus {
+  background-color: var(--yellow);
   transition: all 0.3s ease-in;
 }
 
 button[type='submit']:disabled {
-  background-color: var(--submit-button-disabled);
+  background-color: var(--light-yellow);
   pointer-events: none;
   transition: all 0.3s ease-in;
 }
@@ -204,10 +205,10 @@ button[type='submit']:disabled {
   transition: all 0.3s ease-out;
 }
 .form-result.success {
-  border: 1px solid var(--submit-message-success);
+  border: 1px solid var(--light-green);
 }
 .form-result.error {
-  border: 1px solid var(--submit-message-error);
+  border: 1px solid var(--red);
 }
 
 .form-result svg {

@@ -7,7 +7,7 @@
 <script>
 import { useStore } from 'vuex';
 import { useRoute } from 'vue-router';
-import { watch, ref, reactive } from 'vue';
+import { watch, ref, reactive, onMounted, onUnmounted } from 'vue';
 import MainLayout from './layouts/MainLayout';
 import ToolBoxWrapper from './layouts/ToolBoxWrapper';
 
@@ -49,6 +49,20 @@ export default {
       toolboxState.active = isActive;
     };
 
+    const resizeHandler = () => {
+      const windowWidth = window.innerWidth;
+      store.dispatch({ type: 'setWindowWidth', windowWidth });
+    };
+
+    onMounted(() => {
+      store.dispatch({ type: 'setWindowWidth', windowWidth: window.innerWidth });
+      window.addEventListener('resize', resizeHandler);
+    });
+
+    onUnmounted(() => {
+      window.removeEventListener('resize', resizeHandler);
+    });
+
     return {
       modifier,
       toggleAndTranslateBody,
@@ -64,25 +78,17 @@ export default {
   --background-white: #fefaf6;
   --gray: #574b33;
   --black: #232320;
-  --scarlet: #fc2f00;
-  --magenta: #b6a0ea;
-  --light-magenta: #f1ebff;
+  /* new colors here  */
+  --yellow: #f6bd60;
+  --light-yellow: #f7ede2;
+  --pink: #f5cac3;
+  --light-green: #84a59d;
+  --red: #f28482;
+  /* end new colors */
+
   --purple: #150042;
-  --shipandco: #e9c46a;
-  --stockandco: #f4a261;
-  --staff: #e76f51;
-  --utils: #2a9d8f;
-  --bentoandco: #264653;
-  --smoothjapan: #fca311;
-  --bertrandandco: #a8dadc;
   --misty-rose: #f0efeb;
-  --french-gray: #eddcd2;
   --base-border: 5px;
-  --submit-button-disabled: lime;
-  --submit-button: gray;
-  --submit-button-focus: green;
-  --submit-message-success: green;
-  --submit-message-error: red;
 }
 
 html,

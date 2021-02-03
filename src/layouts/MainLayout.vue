@@ -11,6 +11,7 @@
 <script>
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+
 export default {
   name: 'MainLayout',
   components: { Header, Footer },
@@ -69,7 +70,7 @@ main .content,
   bottom: -5px;
   left: 0;
   height: 3px;
-  background-color: var(--scarlet);
+  background-color: var(--red);
   transition: all 0.2s ease-in-out; /* linear */
   transform: rotate(-1deg);
 }
@@ -93,49 +94,86 @@ main .content,
 }
 
 /* Modifier classes */
+/* Font and background colors */
 .shipandco-active,
 .shipandco-project-active {
-  background-color: var(--shipandco);
+  background-color: var(--pink);
   color: var(--black);
 }
 .stockandco-active,
 .stockandco-project-active {
-  background-color: var(--stockandco);
   color: var(--black);
 }
 .staff-active,
 .staff-project-active {
-  background-color: var(--staff);
+  background-color: var(--light-yellow);
   color: var(--black);
 }
 .utils-active,
 .utils-project-active {
-  background-color: var(--utils);
+  background-color: var(--red);
   color: var(--white);
 }
 .bentoandco-active,
 .bentoandco-project-active {
-  background-color: var(--bentoandco);
+  background-color: var(--light-green);
   color: var(--white);
 }
-.smoothjapan-active {
-  background-color: var(--smoothjapan);
-  color: var(--black);
-}
 .bertrandandco-active {
-  background-color: var(--bertrandandco);
+  background-color: var(--pink);
+  color: var(--black);
+}
+.smoothjapan-active {
+  background-color: var(--light-yellow);
   color: var(--black);
 }
 
+/* Backgrounds  */
+.shipandco-background,
 .shipandco-project-active {
-  transition: background-color 0.3s ease;
+  background-image: url('/shipandco.png');
+  background-size: cover;
+  background-repeat: no-repeat;
 }
-
 .shipandco-background {
-  background-image: url('/shipandco_app.png');
-  /* background-size: cover; */
+  background-position: -150px center;
+}
+.shipandco-project-active {
+  background-position: right center;
+}
+@media all and (min-width: 800px) {
+  .shipandco-background,
+  .shipandco-project-active {
+    background-position: center center;
+  }
+}
+@media all and (min-width: 1400px) {
+  .shipandco-project-active {
+    background-position: center top;
+    background-image: url('/shipandco_highres.png');
+  }
 }
 
+.stockandco-background,
+.stockandco-project-active {
+  background-image: url('/stockandco.jpg');
+  background-size: cover;
+  background-position: center center;
+}
+
+.bentoandco-background,
+.bentoandco-project-active {
+  background-image: url('/bentoandco.png');
+  background-size: cover;
+  background-position: center 450px;
+  background-repeat: no-repeat;
+}
+
+.bentoandco-project-active {
+  background-position: center 450px;
+}
+
+/* Icons and Logos  */
 .shipandco-logo {
   background-image: url('/logo-shipandco.svg');
 }
@@ -148,19 +186,23 @@ main .content,
 
 /* links modifiers */
 .nav-links li a.utils,
-.nav-links li a.bentoandco {
+.nav-links li a.bentoandco,
+.nav-links li.toolbox.utils,
+.nav-links li.toolbox.bentoandco {
   color: var(--white);
 }
 .nav-link-text.utils:before,
 .nav-link-text.bentoandco:before {
   background: var(--white);
 }
-
-.nav-links li a.staff {
-  color: var(--black);
+.nav-link-text.stockandco:before {
+  background: var(--yellow);
 }
 
-.nav-link-text.staff:before {
-  background: var(--black);
+.nav-links li a.bentoandco {
+  color: var(--white);
+}
+.nav-link-text.bentoandco:before {
+  background: var(--yellow);
 }
 </style>

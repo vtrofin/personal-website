@@ -12,6 +12,7 @@
       :exact-active-class="
         'exact-active' + ' ' + options.project ? `${options.project}-active` : 'shipandco-active'
       "
+      :total-items="data.length"
     >
       <template #section-link-slot>
         <Project v-if="options.type === 'project'" :options="options" :idx="idx" />
@@ -156,6 +157,7 @@ p.item-text {
   transform: translateZ(0);
   transition: transform 0.3s cubic-bezier(0.215, 0.61, 0.355, 1);
   font-size: 1.2rem;
+  font-weight: 500;
 }
 .section-link:hover p.item-text {
   transform: translateY(8px) translateZ(0);
@@ -164,7 +166,6 @@ p.item-text {
 .item-background {
   position: absolute;
   background-repeat: no-repeat;
-  background-position: center bottom;
   top: 0;
   left: 0;
   right: 0;

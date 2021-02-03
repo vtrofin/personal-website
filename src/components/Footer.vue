@@ -170,7 +170,8 @@ footer .section-header {
     flex-wrap: nowrap;
     margin-bottom: 0;
   }
-  .thanks li:first-of-type {
+  .thanks li:first-of-type,
+  .thanks li:last-of-type {
     max-width: 100px;
   }
   .thanks li:nth-last-of-type(2):after,

@@ -174,7 +174,7 @@ button[type='submit'] {
   align-self: center;
   font-size: 1.2rem;
   font-weight: 700;
-  background-color: var(--pink);
+  background-color: var(--red);
   color: var(--white);
   border: none;
   border-radius: var(--base-border);

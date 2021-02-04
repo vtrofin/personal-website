@@ -11,13 +11,11 @@
       behavior, or achieving a goal.
       <span class="italic-text" />
     </p>
-    <img
-      class="content-image"
-      src="/shipandco_orders.png"
-      alt="shipandco orders page view"
-      loading="lazy"
+    <ProjectImage
+      alt-text="shipandco orders page view"
+      url="/shipandco_orders.png"
+      caption="Ship&co imports orders from users' ecommerce platforms"
     />
-    <span class="caption-text"> a caption for my image</span>
     <p>
       This is the project item content p A/B-testing is a guiding compass for making product
       decisions. More technically, it’s a method for quantifying the impact of product variations.
@@ -25,8 +23,18 @@
       tell us which of a set of variations is better at producing a certain effect, encouraging a
       behavior, or achieving a goal.
     </p>
-    <!-- <device-mockup url="/shipandco_mediumres_1.jpg" alt="a wacky image" type="macbook" /> -->
-    <br />
+    <ProjectImage
+      alt-text="shipandco order page detailed view with rates displayed"
+      url="/shipandco_order_rates.png"
+      caption="Ship&co makes it easy to choose the cheapest/ fastest shipping method"
+    />
+
+    <ProjectImage
+      alt-text="shipandco shipment label detail view"
+      url="/shipandco_label.png"
+      caption="Ship&co makes it easy to print shipping labels"
+    />
+
     <a
       href="#"
       :class="modifier ? 'content-link reversed' + ' ' + modifier : 'content-link reversed'"
@@ -43,10 +51,11 @@
 
 <script>
 import ProjectSummary from './project_summary';
+import ProjectImage from './project_image';
 
 export default {
   name: 'ShipandcoContent',
-  components: { ProjectSummary },
+  components: { ProjectSummary, ProjectImage },
   props: {
     modifier: { type: String, required: false, default: '' },
   },

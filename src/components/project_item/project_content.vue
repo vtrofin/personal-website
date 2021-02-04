@@ -90,6 +90,10 @@ export default {
   text-align: center;
   font-size: 0.9rem;
   line-height: 150%;
-  margin: 2rem auto;
+  margin: 0 auto 2rem;
+}
+.content-image {
+  width: 100%;
+  margin: -10% auto;
 }
 </style>

@@ -11,6 +11,13 @@
       behavior, or achieving a goal.
       <span class="italic-text" />
     </p>
+    <img
+      class="content-image"
+      src="/shipandco_orders.png"
+      alt="shipandco orders page view"
+      loading="lazy"
+    />
+    <span class="caption-text"> a caption for my image</span>
     <p>
       This is the project item content p A/B-testing is a guiding compass for making product
       decisions. More technically, it’s a method for quantifying the impact of product variations.
@@ -18,9 +25,8 @@
       tell us which of a set of variations is better at producing a certain effect, encouraging a
       behavior, or achieving a goal.
     </p>
-    <device-mockup url="/shipandco_mediumres_1.jpg" alt="a wacky image" type="macbook" />
+    <!-- <device-mockup url="/shipandco_mediumres_1.jpg" alt="a wacky image" type="macbook" /> -->
     <br />
-    <span class="caption-text"> a caption for my image</span>
     <a
       href="#"
       :class="modifier ? 'content-link reversed' + ' ' + modifier : 'content-link reversed'"
@@ -42,7 +48,7 @@ export default {
   name: 'ShipandcoContent',
   components: { ProjectSummary },
   props: {
-    modifier: { type: String, required: false, default: '' }
-  }
+    modifier: { type: String, required: false, default: '' },
+  },
 };
 </script>

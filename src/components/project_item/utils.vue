@@ -8,14 +8,20 @@
       tell us which of a set of variations is better at producing a certain effect, encouraging a
       behavior, or achieving a goal.
     </p>
+    <ProjectImage
+      alt-text="view of available tools for testing ecommerce integrations in Ship&Co"
+      url="/utils.png"
+      caption="A tool for developers to test ecommerce integrations"
+    />
     <ProjectSummary />
   </div>
 </template>
 
 <script>
 import ProjectSummary from './project_summary';
+import ProjectImage from './project_image';
 export default {
   name: 'UtilsContent',
-  components: { ProjectSummary },
+  components: { ProjectSummary, ProjectImage },
 };
 </script>

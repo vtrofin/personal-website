@@ -13,6 +13,8 @@
       url="/utils.png"
       caption="A tool for developers to test ecommerce integrations"
     />
+  </div>
+  <div class="project-content">
     <ProjectSummary />
   </div>
 </template>
@@ -22,6 +24,6 @@ import ProjectSummary from './project_summary';
 import ProjectImage from './project_image';
 export default {
   name: 'UtilsContent',
-  components: { ProjectSummary, ProjectImage },
+  components: { ProjectSummary, ProjectImage }
 };
 </script>

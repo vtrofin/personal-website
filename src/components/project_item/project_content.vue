@@ -18,7 +18,7 @@ export default {
     StockandcoContent,
     UtilsContent,
     StaffContent,
-    BentoandcoContent,
+    BentoandcoContent
   },
   setup(props) {
     const route = useRoute();
@@ -39,9 +39,9 @@ export default {
 
     return {
       projectContentComponent,
-      modifierClass,
+      modifierClass
     };
-  },
+  }
 };
 </script>
 <style>
@@ -49,12 +49,23 @@ export default {
   text-align: initial;
   max-width: 800px;
   margin: 0 auto;
+}
+.project-content:first-of-type {
   padding-top: 10vh;
+}
+.project-content:last-of-type {
   padding-bottom: 20vh;
 }
+
 @media all and (min-width: 600px) {
   .project-content {
+    padding-top: 3rem;
+  }
+  .project-content:first-of-type {
     padding-top: 5rem;
+  }
+
+  .project-content:last-of-type {
     padding-bottom: 10rem;
   }
 }
@@ -92,8 +103,14 @@ export default {
   line-height: 150%;
   margin: 0 auto 2rem;
 }
+
 .content-image {
   width: 100%;
   margin: -10% auto;
+}
+@media all and (min-width: 1280px) {
+  .content-image {
+    margin: -20% auto;
+  }
 }
 </style>

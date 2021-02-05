@@ -14,7 +14,7 @@
           @focus="toggleInputFocus"
           @blur="toggleInputFocus"
         />
-        <span class="input-label">Name</span>
+        <span class="input-label" @click.prevent="handleSpanFocus">Name</span>
       </div>
       <label for="email">Email</label>
       <div :class="getClassName('input-container', 'email')">
@@ -92,6 +92,21 @@ const readForm = formTarget => {
   return data;
 };
 
+const toggleFocus = (target, templateData, eventType) => {
+  const value = target?.value;
+  const targetName = target?.name;
+
+  if (!targetName) {
+    throw new Error('Failed to get target input');
+  }
+
+  const localState = templateData?.inputModifierClass?.[targetName];
+  if (typeof localState !== 'string') {
+    throw new Error('Failed to get input class');
+  }
+  templateData.inputModifierClass[targetName] = localState === 'focused' && !value ? '' : 'focused';
+};
+
 export default {
   name: 'Contact',
   components: { Tick, Alert },
@@ -132,19 +147,21 @@ export default {
 
     const toggleInputFocus = event => {
       const target = event?.target;
-      const value = target?.value;
-      const targetName = target?.name;
+      toggleFocus(target, templateData, event?.type);
+    };
 
-      if (!targetName) {
-        throw new Error('Failed to get target input');
+    const handleSpanFocus = event => {
+      const target = event?.currentTarget;
+      const parentEl = target?.parentNode || target?.parentElement;
+      const inputEl = target?.previousSibling || target?.previousElementSibling;
+
+      if (typeof parentEl?.className !== 'string') {
+        throw new Error('Failed to get span element class');
       }
 
-      const localState = templateData?.inputModifierClass?.[targetName];
-      if (typeof localState !== 'string') {
-        throw new Error('Failed to get input class');
+      if (!parentEl.className.includes('focused')) {
+        setTimeout(() => inputEl.focus(), 0);
       }
-      templateData.inputModifierClass[targetName] =
-        localState === 'focused' && !value ? '' : 'focused';
     };
 
     const getClassName = (baseClass, modifier) => {
@@ -160,6 +177,7 @@ export default {
       handleFormSubmit,
       templateData,
       toggleInputFocus,
+      handleSpanFocus,
       getClassName,
     };
   },

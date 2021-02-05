@@ -211,8 +211,12 @@ label {
 .input-container.focused .input-label {
   color: var(--red);
   font-size: 0.7rem;
-  top: 10%;
-  transform: translateY(0);
+  top: 0%;
+  transform: translateY(0%);
+}
+
+.input-container.focused input {
+  padding-top: 0.8rem;
 }
 
 input,

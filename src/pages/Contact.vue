@@ -6,14 +6,41 @@
     </p>
     <form method="post" @submit.prevent="handleFormSubmit">
       <label for="name">Name</label>
-      <input id="name" type="text" name="name" />
-
-      <label for="email">Email*</label>
-      <input id="email" type="email" name="email" :required="true" />
+      <div :class="getClassName('input-container', 'name')">
+        <input
+          id="name"
+          type="text"
+          name="name"
+          @focus="toggleInputFocus"
+          @blur="toggleInputFocus"
+        />
+        <span class="input-label">Name</span>
+      </div>
+      <label for="email">Email</label>
+      <div :class="getClassName('input-container', 'email')">
+        <input
+          id="email"
+          type="email"
+          name="email"
+          :required="true"
+          @focus="toggleInputFocus"
+          @blur="toggleInputFocus"
+        />
+        <span class="input-label">Email</span>
+      </div>
       <span class="required-label">*Required</span>
 
       <label for="subject">Subject</label>
-      <input id="subject" type="text" name="subject" />
+      <div :class="getClassName('input-container', 'subject')">
+        <input
+          id="subject"
+          type="text"
+          name="subject"
+          @focus="toggleInputFocus"
+          @blur="toggleInputFocus"
+        />
+        <span class="input-label">Subject</span>
+      </div>
 
       <label for="message">Message*</label>
       <textarea id="message" name="message" rows="5" :required="true" />
@@ -74,6 +101,7 @@ export default {
       isLoading: false,
       formSubmitMessage: '',
       messageClass: 'form-result',
+      inputModifierClass: { name: '', email: '', subject: '', message: '' }
     });
 
     const handleFormSubmit = async event => {
@@ -85,9 +113,9 @@ export default {
         const response = await fetch(url, {
           method: 'POST',
           headers: {
-            'Content-Type': 'application/json',
+            'Content-Type': 'application/json'
           },
-          body: JSON.stringify(data),
+          body: JSON.stringify(data)
         });
         const res = await response.json();
         templateData.formSubmitMessage = res.message || '';
@@ -102,11 +130,38 @@ export default {
       }
     };
 
+    const toggleInputFocus = event => {
+      const targetName = event?.target?.name || event?.target?.id;
+      if (!targetName) {
+        return;
+      }
+
+      const localState = templateData?.inputModifierClass?.[targetName];
+      if (typeof localState !== 'string') {
+        if (!templateData.inputModifierClass) {
+          templateData.inputModifierClass = {};
+        }
+        templateData.inputModifierClass[targetName] = '';
+      }
+      templateData.inputModifierClass[targetName] = localState === 'focused' ? '' : 'focused';
+    };
+
+    const getClassName = (baseClass, modifier) => {
+      return (
+        baseClass +
+        (templateData?.inputModifierClass?.[modifier]
+          ? ' ' + templateData.inputModifierClass[modifier]
+          : '')
+      );
+    };
+
     return {
       handleFormSubmit,
       templateData,
+      toggleInputFocus,
+      getClassName
     };
-  },
+  }
 };
 </script>
 <style scoped>
@@ -117,12 +172,12 @@ form {
   margin: 3rem auto;
 }
 label,
-input {
+.input-container {
   flex-grow: 1;
   flex-basis: 100%;
 }
-
 label {
+  display: none;
   text-align: left;
   font-size: 0.9rem;
 }
@@ -130,6 +185,34 @@ label {
   font-size: 0.8rem;
   color: var(--gray);
   text-align: left;
+}
+
+.input-container {
+  position: relative;
+  margin-top: 0.5rem;
+  margin-bottom: 1rem;
+}
+.input-container input {
+  width: 100%;
+  box-sizing: border-box;
+  line-height: 1.2rem;
+}
+.input-container .input-label {
+  position: absolute;
+  color: rgb(91, 112, 131);
+  top: 50%;
+  left: 10px;
+  transform: translateY(-50%);
+  font-size: 1rem;
+  font-weight: 400;
+  transition: all 150ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.input-container.focused .input-label {
+  color: var(--red);
+  font-size: 0.7rem;
+  top: 10%;
+  transform: translateY(0);
 }
 
 input,
@@ -142,11 +225,11 @@ textarea {
   appearance: none;
   font-weight: 500;
   color: var(--black);
-  margin-top: 0.5rem;
-  margin-bottom: 1rem;
+  /* margin-top: 0.5rem;
+  margin-bottom: 1rem; */
 }
 
-input + .required-label,
+.input-container + .required-label,
 textarea + .required-label {
   margin-top: -0.7rem;
   margin-bottom: 1rem;

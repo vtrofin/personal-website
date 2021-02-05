@@ -101,7 +101,7 @@ export default {
       isLoading: false,
       formSubmitMessage: '',
       messageClass: 'form-result',
-      inputModifierClass: { name: '', email: '', subject: '', message: '' }
+      inputModifierClass: { name: '', email: '', subject: '', message: '' },
     });
 
     const handleFormSubmit = async event => {
@@ -113,9 +113,9 @@ export default {
         const response = await fetch(url, {
           method: 'POST',
           headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
           },
-          body: JSON.stringify(data)
+          body: JSON.stringify(data),
         });
         const res = await response.json();
         templateData.formSubmitMessage = res.message || '';
@@ -131,19 +131,20 @@ export default {
     };
 
     const toggleInputFocus = event => {
-      const targetName = event?.target?.name || event?.target?.id;
+      const target = event?.target;
+      const value = target?.value;
+      const targetName = target?.name;
+
       if (!targetName) {
-        return;
+        throw new Error('Failed to get target input');
       }
 
       const localState = templateData?.inputModifierClass?.[targetName];
       if (typeof localState !== 'string') {
-        if (!templateData.inputModifierClass) {
-          templateData.inputModifierClass = {};
-        }
-        templateData.inputModifierClass[targetName] = '';
+        throw new Error('Failed to get input class');
       }
-      templateData.inputModifierClass[targetName] = localState === 'focused' ? '' : 'focused';
+      templateData.inputModifierClass[targetName] =
+        localState === 'focused' && !value ? '' : 'focused';
     };
 
     const getClassName = (baseClass, modifier) => {
@@ -159,9 +160,9 @@ export default {
       handleFormSubmit,
       templateData,
       toggleInputFocus,
-      getClassName
+      getClassName,
     };
-  }
+  },
 };
 </script>
 <style scoped>

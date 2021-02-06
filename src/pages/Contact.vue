@@ -26,7 +26,7 @@
           @focus="toggleInputFocus"
           @blur="toggleInputFocus"
         />
-        <span class="input-label">Email</span>
+        <span class="input-label" @click.stop.prevent="handleSpanFocus">Email</span>
       </div>
       <span class="required-label">*Required</span>
 
@@ -39,7 +39,7 @@
           @focus="toggleInputFocus"
           @blur="toggleInputFocus"
         />
-        <span class="input-label">Subject</span>
+        <span class="input-label" @click.stop.prevent="handleSpanFocus">Subject</span>
       </div>
 
       <label for="message">Message*</label>
@@ -225,11 +225,10 @@ label {
   font-size: 1rem;
   font-weight: 400;
   transition: all 150ms cubic-bezier(0.4, 0, 0.2, 1);
-  border: 1px solid red;
 }
 
 .input-container.focused .input-label {
-  color: var(--red);
+  color: var(--black);
   font-size: 0.7rem;
   top: 0%;
   transform: translateY(0%);

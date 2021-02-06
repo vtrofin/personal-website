@@ -19,11 +19,7 @@
         <span class="caption-text">Victor Trofin</span>
       </div>
       <div class="toolbox-list" tabindex="0">
-        <span>Something</span>
-        <span>Something Else </span>
-        <span>Something New</span>
-        <span>Another</span>
-        <span>Before</span>
+        <span v-for="(tool, i) in tools" :key="i">{{ tool }}</span>
       </div>
       <div class="toolbox-icons" tabindex="0">
         <div aria-label="javascript"><fa :icon="['fab', 'js']" class="fa-2x" /></div>
@@ -59,6 +55,7 @@ export default {
     const { active: toolboxActive } = toRefs(props.toolboxState);
     const { emit } = context;
     const store = useStore();
+    const tools = store.getters['tools/getAllTools'];
 
     const handleBlur = e => {
       if (toolboxActive) {
@@ -67,7 +64,7 @@ export default {
       }
     };
 
-    return { toolboxActive, handleBlur };
+    return { toolboxActive, handleBlur, tools };
   },
 };
 </script>

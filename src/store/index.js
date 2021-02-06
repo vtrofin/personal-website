@@ -2,18 +2,20 @@ import { createStore } from 'vuex';
 import heroModule from './modules/hero_module';
 import projectsModule from './modules/projects_module';
 import companiesModule from './modules/companies_module';
+import toolsModule from './modules/tools_module';
 
 const store = createStore({
   state: () => ({
     isMobile: false,
     isAndroid: false,
     isToolboxActive: false,
-    windowWidth: 0
+    windowWidth: 0,
   }),
   modules: {
     hero: heroModule,
     projects: projectsModule,
-    companies: companiesModule
+    companies: companiesModule,
+    tools: toolsModule,
   },
   getters: {
     checkMobile: state => {
@@ -24,7 +26,7 @@ const store = createStore({
     },
     getInnerWidth: state => {
       return state.windowWidth;
-    }
+    },
   },
   mutations: {
     updateMobileStatus: (state, payload) => {
@@ -43,7 +45,7 @@ const store = createStore({
     updateWindowWidth: (state, payload) => {
       const { windowWidth } = payload;
       state.windowWidth = windowWidth;
-    }
+    },
   },
   actions: {
     setMobileDevice: ({ commit }, payload) => {
@@ -54,8 +56,8 @@ const store = createStore({
     },
     setWindowWidth: ({ commit }, payload) => {
       commit('updateWindowWidth', payload);
-    }
-  }
+    },
+  },
 });
 
 export default store;

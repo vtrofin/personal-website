@@ -14,7 +14,7 @@
           @focus="toggleInputFocus"
           @blur="toggleInputFocus"
         />
-        <span class="input-label" @click.prevent="handleSpanFocus">Name</span>
+        <span class="input-label" @click.stop.prevent="handleSpanFocus">Name</span>
       </div>
       <label for="email">Email</label>
       <div :class="getClassName('input-container', 'email')">
@@ -225,6 +225,7 @@ label {
   font-size: 1rem;
   font-weight: 400;
   transition: all 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  border: 1px solid red;
 }
 
 .input-container.focused .input-label {
@@ -232,6 +233,7 @@ label {
   font-size: 0.7rem;
   top: 0%;
   transform: translateY(0%);
+  pointer-events: none;
 }
 
 .input-container.focused input {

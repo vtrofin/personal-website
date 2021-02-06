@@ -1,13 +1,14 @@
 export default {
   namespaced: true,
   state: () => ({
-    frontEnd: ['React', 'Vuejs'],
-    backEnd: ['express'],
-    other: [],
+    frontEnd: ['React', 'Vue.js', 'Handlebars', 'CSS'],
+    backEnd: ['Express', 'Fastify', 'Meteor', 'Feathers JS', 'Vercel serverless'],
+    staticSiteGens: ['Gatsby', 'Next.js'],
+    other: ['GraphQL', 'MongoDB', 'SQL'],
   }),
   getters: {
     getAllTools: state => {
-      return [...state.frontEnd, ...state.backEnd, ...state.other];
+      return [...state.frontEnd, ...state.staticSiteGens, ...state.backEnd, ...state.other];
     },
   },
 };

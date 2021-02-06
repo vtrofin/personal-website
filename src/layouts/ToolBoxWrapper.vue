@@ -115,7 +115,7 @@ export default {
   box-sizing: border-box;
   z-index: 101;
   width: 320px;
-  height: 360px;
+  height: 405px;
   padding: 2rem;
   background-color: var(--misty-rose);
   color: var(--black);

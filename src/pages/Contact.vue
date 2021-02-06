@@ -226,6 +226,7 @@ label {
   width: 100%;
   box-sizing: border-box;
   line-height: 1.2rem;
+  font-family: inherit;
 }
 .input-container .input-label {
   position: absolute;
@@ -294,7 +295,7 @@ button[type='submit'] {
   align-self: center;
   font-size: 1.2rem;
   font-weight: 700;
-  background-color: var(--red);
+  background-color: var(--yellow);
   color: var(--white);
   border: none;
   border-radius: var(--base-border);
@@ -306,7 +307,7 @@ button[type='submit'] {
 
 button[type='submit']:hover,
 button[type='submit']:focus {
-  background-color: var(--yellow);
+  filter: brightness(0.9);
   transition: all 0.3s ease-in;
 }
 

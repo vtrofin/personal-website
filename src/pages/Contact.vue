@@ -43,7 +43,17 @@
       </div>
 
       <label for="message">Message*</label>
-      <textarea id="message" name="message" rows="5" :required="true" />
+      <div :class="getClassName('input-container', 'message')">
+        <textarea
+          id="message"
+          name="message"
+          rows="5"
+          :required="true"
+          @focus="toggleInputFocus"
+          @blur="toggleInputFocus"
+        />
+        <span class="input-label" @click.stop.prevent="handleSpanFocus">Message</span>
+      </div>
       <span class="required-label">*Required</span>
 
       <button type="submit" :disabled="templateData.isLoading" aria-label="Send the email message">
@@ -211,7 +221,8 @@ label {
   margin-top: 0.5rem;
   margin-bottom: 1rem;
 }
-.input-container input {
+.input-container input,
+.input-container textarea {
   width: 100%;
   box-sizing: border-box;
   line-height: 1.2rem;
@@ -226,6 +237,9 @@ label {
   font-weight: 400;
   transition: all 150ms cubic-bezier(0.4, 0, 0.2, 1);
 }
+.input-container textarea + .input-label {
+  top: 1rem;
+}
 
 .input-container.focused .input-label {
   color: var(--black);
@@ -235,7 +249,8 @@ label {
   pointer-events: none;
 }
 
-.input-container.focused input {
+.input-container.focused input,
+.input-container.focused textarea {
   padding-top: 0.8rem;
 }
 
@@ -249,8 +264,6 @@ textarea {
   appearance: none;
   font-weight: 500;
   color: var(--black);
-  /* margin-top: 0.5rem;
-  margin-bottom: 1rem; */
 }
 
 .input-container + .required-label,

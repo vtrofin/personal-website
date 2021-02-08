@@ -39,7 +39,10 @@ export const getSectionLinkClassName = ({
 };
 
 export const getFormattedTitle = value => {
-  return value.charAt(0).toUpperCase() + value.substring(1);
+  const sentenceCase = value.charAt(0).toUpperCase() + value.substring(1);
+  const cpyRegexp = /^Bertrand/gi;
+  const isBertrand = cpyRegexp.test(sentenceCase);
+  return isBertrand ? sentenceCase : sentenceCase.replace(/andco/, '&Co');
 };
 
 export const checkProjectPage = (store, route) => {

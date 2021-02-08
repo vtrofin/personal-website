@@ -12,8 +12,8 @@ export default {
       '$ I follow industry-recognized best practices in web development',
       `$ While the tech stack at Ship&Co consists of javascript and node.js, I'm also interested in working with python and go`,
       `$ I'm excited about the intersection of code and math, looking to complement my coding skills with knowledge of machine learning`,
-      `$ I'm doing my best work when closely collaborating with clients, designers and other web engineers`,
-      `$ I'm open to full-time offers in Japan. Available to take on freelance opportunities worldwide`
+      `$ I'm doing my best work when closely collaborating with clients, designers and other web engineers`
+      // `$ I'm open to full-time offers in Japan. Available to take on freelance opportunities worldwide`
     ]
   }),
   getters: {

@@ -3,30 +3,25 @@ export default {
   state: () => ({
     companies: [
       {
-        project: 'bertrandandco',
+        project: 'bertrandco',
         type: 'work',
-        item_title: 'Cocos - i work at Bento&co',
-        excerpt: 'I did some work here ',
-        // logoClass: `bentoandco-logo`,
-        // backgroundClass: `bentoandco-background`,
+        excerpt:
+          'Working as a full-stack web engineer to build features that vastly improve shipping and logistics ',
         path: 'https://bertrandco.com/',
-        ariaLabel: 'View Bertrand&co website',
+        ariaLabel: 'View Bertrand Co website'
       },
       {
         project: 'smoothjapan',
         type: 'work',
-        item_title: 'Ananas - i work at Bento&co',
         excerpt: 'I did a little bit of work here ',
-        // logoClass: `smoothjapan-logo`,
-        // backgroundClass: `smoothjapan-background`,
         path: 'https://twitter.com/smoothjapan',
-        ariaLabel: 'View Smooth Japan twitter profile.',
-      },
-    ],
+        ariaLabel: 'View Smooth Japan twitter profile.'
+      }
+    ]
   }),
   getters: {
     getAllCompanies: state => {
       return state.companies;
-    },
-  },
+    }
+  }
 };

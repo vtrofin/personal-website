@@ -7,7 +7,7 @@ export default {
         type: 'work',
         item_title: '',
         excerpt:
-          'Working as a full-stack web engineer to build features that vastly improve shipping and logistics ',
+          'Working as a full-stack web engineer to build features that improve shipping and logistics ',
         path: 'https://bertrandco.com/',
         ariaLabel: 'View Bertrand Co website',
       },

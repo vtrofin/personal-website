@@ -3,7 +3,7 @@ export default {
   state: () => ({
     project: {
       excerpt:
-        'Some random text about this project. Nobody likes to wait… but you can make it less of a pain. I have created. An open-source collection of loading spinners animated with CSS.',
+        'Internal dashboard to monitor operations in Ship&co. Complete with KPIs, Analytics and Data visualization',
       description: ['a longer text describing what you did for that project'],
       // logoClass: `shipandco-logo`,
       // backgroundClass: `shipandco-background`,

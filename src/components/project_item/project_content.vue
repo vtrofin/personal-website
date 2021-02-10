@@ -18,7 +18,7 @@ export default {
     StockandcoContent,
     UtilsContent,
     StaffContent,
-    BentoandcoContent
+    BentoandcoContent,
   },
   setup(props) {
     const route = useRoute();
@@ -39,9 +39,9 @@ export default {
 
     return {
       projectContentComponent,
-      modifierClass
+      modifierClass,
     };
-  }
+  },
 };
 </script>
 <style>
@@ -90,6 +90,11 @@ export default {
   scroll-margin-top: 1em;
   line-height: 1.5rem;
 }
+.project-content ul.content-list li {
+  margin: 1.5rem auto 1rem;
+  font-size: 1.2rem;
+  line-height: 1.5rem;
+}
 
 .project-content span.italic-text {
   font-style: italic;
@@ -108,7 +113,7 @@ export default {
   width: 100%;
   margin: -10% auto;
 }
-@media all and (min-width: 1280px) {
+@media all and (min-width: 1024px) {
   .content-image {
     margin: -20% auto;
   }

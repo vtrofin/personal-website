@@ -5,23 +5,25 @@
       <div class="summary-left" tabindex="0">
         <span class="summary-subtitle">Position</span>
         <ul class="summary-content">
-          <li>Full Stack Web Engineer</li>
+          <li>{{ $props.options.position }}</li>
         </ul>
         <span class="summary-subtitle">Organization</span>
         <ul class="summary-content">
-          <li>Bento&Co</li>
+          <li>{{ $props.options.organization }}</li>
         </ul>
         <span class="summary-subtitle">Year(s)</span>
         <ul class="summary-content">
-          <li>2018-{{ currentYear }}</li>
+          <li>{{ $props.options.years }}</li>
         </ul>
       </div>
       <div class="summary-right" tabindex="0">
+        <span class="summary-subtitle">Stack</span>
+        <ul class="summary-content">
+          <li v-for="(stackItem, i) in $props.options.stack" :key="i">{{ stackItem }}</li>
+        </ul>
         <span class="summary-subtitle">Work</span>
         <ul class="summary-content">
-          <li>Did this</li>
-          <li>Did that</li>
-          <li>Did that other thing</li>
+          <li v-for="(workItem, j) in $props.options.work" :key="j">{{ workItem }}</li>
         </ul>
       </div>
     </div>
@@ -30,6 +32,7 @@
 <script>
 export default {
   name: 'ProjectSummary',
+  props: { options: { type: Object, required: true } },
   setup(props) {
     const currentYear = `${new Date().getFullYear()}`;
     return { currentYear };

@@ -2,14 +2,13 @@ export default {
   namespaced: true,
   state: () => ({
     project: {
-      excerpt:
-        'Shopify online store selling bento boxes, from Kyoto. The main reason why Ship&co exists today',
-      description: ['a longer text describing what you did for that project'],
+      type: 'project',
       logoClass: `bentoandco-logo`,
       backgroundClass: 'bentoandco-background',
-      type: 'project',
-      item_title: 'A long title for the project description', // will not overwrite the homepage short title
-      role: 'Front-End bug fixes and enhancements',
+      excerpt:
+        'Shopify online store selling bento boxes, from Kyoto. The main reason why Ship&co exists today',
+      item_title: 'Bento&Co Shopify stores', // will not overwrite the homepage short title
+      role: '',
     },
   }),
   getters: {

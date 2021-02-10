@@ -1,12 +1,28 @@
 <template>
   <div class="project-content">
-    <h3>This is the project item content h3</h3>
     <p>
-      This is the project item content p A/B-testing is a guiding compass for making product
-      decisions. More technically, it’s a method for quantifying the impact of product variations.
-      The process can’t tell us if one variation is unequivocally “better” than another, but it can
-      tell us which of a set of variations is better at producing a certain effect, encouraging a
-      behavior, or achieving a goal.
+      <a
+        href="https://www.bentoandco.com/"
+        :class="
+          $props.modifier
+            ? 'content-link reversed' + ' ' + $props.modifier
+            : 'content-link reversed'
+        "
+        target="_blank"
+        rel="noopener"
+        aria-label="Click to see this awesome url"
+      >
+        <span>Bento&Co</span>
+      </a>
+      sells bento boxes online, from Kyoto. It operates a series of Shopify stores, in English,
+      French and Japanese and an additional store for enterprise customers.
+    </p>
+
+    <h2>Contribution</h2>
+    <p>
+      The Shop UI implements third party themes built using Liquid, Shopify’s proprietary template
+      language. I helped debug and correct issues within these themes and shipped light
+      enhancements.
     </p>
     <ProjectSummary :modifier="$props.modifier" :options="summary" />
   </div>
@@ -22,8 +38,8 @@ export default {
     const summary = {
       position: 'Web engineer',
       organization: 'Bertrandco',
-      work: ['Front-end dev'],
-      stack: ['Shopify'],
+      work: ['Support dev work'],
+      stack: ['Shopify', 'Liquid'],
       years: '2018 –',
     };
     return { summary };

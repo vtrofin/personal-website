@@ -8,7 +8,7 @@
       tell us which of a set of variations is better at producing a certain effect, encouraging a
       behavior, or achieving a goal.
     </p>
-    <ProjectSummary />
+    <ProjectSummary :modifier="$props.modifier" :options="summary" />
   </div>
 </template>
 
@@ -17,5 +17,16 @@ import ProjectSummary from './project_summary';
 export default {
   name: 'BentoandcoContent',
   components: { ProjectSummary },
+  props: { modifier: { type: String, required: false, default: '' } },
+  setup(props) {
+    const summary = {
+      position: 'Web engineer',
+      organization: 'Bertrandco',
+      work: ['Front-end dev'],
+      stack: ['Shopify'],
+      years: '2018 –',
+    };
+    return { summary };
+  },
 };
 </script>

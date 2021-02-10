@@ -84,6 +84,10 @@
         used to compress the data, which required me to build a custom queue by sequencing data
         streams.
       </li>
+      <li>
+        Currently preparing the complete rewrite and transition of the app from Meteor JS to Vue3 +
+        Fastify
+      </li>
     </ul>
   </div>
 
@@ -93,7 +97,7 @@
     caption="Ship&co makes it easy to print shipping labels"
   />
   <div class="project-content" tabindex="0">
-    <ProjectSummary :modifier="modifier" :options="summary" />
+    <ProjectSummary :modifier="$props.modifier" :options="summary" />
   </div>
 </template>
 

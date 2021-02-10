@@ -32,7 +32,10 @@
 <script>
 export default {
   name: 'ProjectSummary',
-  props: { options: { type: Object, required: true } },
+  props: {
+    options: { type: Object, required: true },
+    modifier: { type: String, required: false, default: '' },
+  },
   setup(props) {
     const currentYear = `${new Date().getFullYear()}`;
     return { currentYear };

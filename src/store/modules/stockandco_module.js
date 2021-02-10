@@ -2,13 +2,12 @@ export default {
   namespaced: true,
   state: () => ({
     project: {
-      excerpt:
-        'Shopify app that syncs inventory levels across multiple Shopify stores in real time',
-      description: ['a longer text describing what you did for that project'],
+      type: 'project',
       logoClass: `stockandco-logo`,
       backgroundClass: `stockandco-background`,
-      type: 'project',
-      item_title: '', // will not overwrite the homepage short title
+      excerpt: 'Shopify app to sync inventory levels in real time across multiple Shopify stores',
+      item_title: 'Stock&Co',
+      role: 'Full-stack web engineer',
     },
   }),
   getters: {

@@ -8,14 +8,14 @@
       tell us which of a set of variations is better at producing a certain effect, encouraging a
       behavior, or achieving a goal.
     </p>
-    <ProjectImage
-      alt-text="view of available tools for testing ecommerce integrations in Ship&Co"
-      url="/utils.png"
-      caption="A tool for developers to test ecommerce integrations"
-    />
   </div>
+  <ProjectImage
+    alt-text="view of available tools for testing ecommerce integrations in Ship&Co"
+    url="/utils.png"
+    caption="A tool for developers to test ecommerce integrations"
+  />
   <div class="project-content">
-    <ProjectSummary />
+    <ProjectSummary :modifier="$props.modifier" :options="summary" />
   </div>
 </template>
 
@@ -24,6 +24,17 @@ import ProjectSummary from './project_summary';
 import ProjectImage from './project_image';
 export default {
   name: 'UtilsContent',
-  components: { ProjectSummary, ProjectImage }
+  components: { ProjectSummary, ProjectImage },
+  props: { modifier: { type: String, required: false, default: '' } },
+  setup(props) {
+    const summary = {
+      position: 'Web engineer',
+      organization: 'Bertrandco',
+      work: ['Full-stack dev'],
+      stack: ['Handlebars', 'Node.js'],
+      years: '2018 –',
+    };
+    return { summary };
+  },
 };
 </script>

@@ -57,8 +57,8 @@
       <span class="required-label">*Required</span>
 
       <button type="submit" :disabled="templateData.isLoading" aria-label="Send the email message">
-        <!-- <span>Submit</span> -->
-        <Spinner text="Sending..." />
+        <Spinner text="Sending..." v-if="loading" />
+        <span v-else>Submit</span>
       </button>
       <div :class="templateData.messageClass" :v-if="templateData.formSubmitMessage">
         <Alert width="16px" color="#f28482" v-if="templateData.messageClass.includes('error')" />
@@ -76,7 +76,7 @@
 </template>
 
 <script>
-import { reactive } from 'vue';
+import { reactive, ref } from 'vue';
 import Tick from '../components/contact/tick.vue';
 import Alert from '../components/contact/alert.vue';
 import Spinner from '../components/spinner';
@@ -130,8 +130,10 @@ export default {
       messageClass: 'form-result',
       inputModifierClass: { name: '', email: '', subject: '', message: '' },
     });
+    const loading = ref(false);
 
     const handleFormSubmit = async event => {
+      loading.value = true;
       const data = readForm(event.target);
 
       try {
@@ -149,11 +151,13 @@ export default {
         templateData.messageClass = `form-result ${
           res && res.response === 'error' ? 'error' : 'success'
         }`;
-        setTimeout(timeOutHandler(templateData), timeoutVal);
+        loading.value = false;
+        setTimeout(timeOutHandler(templateData, loading), timeoutVal);
       } catch (err) {
         templateData.formSubmitMessage = `Error: ${err.message}`;
         templateData.messageClass = 'form-result error';
-        setTimeout(timeOutHandler(templateData), timeoutVal);
+        loading.value = false;
+        setTimeout(timeOutHandler(templateData, loading), timeoutVal);
       }
     };
 
@@ -191,6 +195,7 @@ export default {
       toggleInputFocus,
       handleSpanFocus,
       getClassName,
+      loading,
     };
   },
 };
@@ -314,7 +319,7 @@ button[type='submit']:focus {
 }
 
 button[type='submit']:disabled {
-  background-color: var(--light-yellow);
+  filter: brightness(1.1);
   pointer-events: none;
   transition: all 0.3s ease-in;
 }

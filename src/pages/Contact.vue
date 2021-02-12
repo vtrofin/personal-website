@@ -57,7 +57,8 @@
       <span class="required-label">*Required</span>
 
       <button type="submit" :disabled="templateData.isLoading" aria-label="Send the email message">
-        Submit
+        <!-- <span>Submit</span> -->
+        <Spinner text="Sending..." />
       </button>
       <div :class="templateData.messageClass" :v-if="templateData.formSubmitMessage">
         <Alert width="16px" color="#f28482" v-if="templateData.messageClass.includes('error')" />
@@ -78,6 +79,7 @@
 import { reactive } from 'vue';
 import Tick from '../components/contact/tick.vue';
 import Alert from '../components/contact/alert.vue';
+import Spinner from '../components/spinner';
 
 const timeOutHandler = reactiveVal => {
   return () => {
@@ -119,7 +121,7 @@ const toggleFocus = (target, templateData, eventType) => {
 
 export default {
   name: 'Contact',
-  components: { Tick, Alert },
+  components: { Tick, Alert, Spinner },
   setup() {
     const timeoutVal = (process.env.NODE_ENV === 'development' ? 3 : 30) * 1000;
     const templateData = reactive({

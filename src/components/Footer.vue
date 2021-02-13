@@ -11,7 +11,7 @@
         Feel free to
         <a
           class="contact-link reversed"
-          href="mailto:trofin.victor@gmail?subject=Hi"
+          href="mailto:trofin.victor@gmail.com?subject=Hi"
           target="_blank"
           rel="noopener"
         >

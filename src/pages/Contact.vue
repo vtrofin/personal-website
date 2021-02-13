@@ -2,7 +2,7 @@
   <section>
     <h1>Contact me</h1>
     <p tabindex="0">
-      Have a project you want to discuss? Leave a message and I'll be in touch with you shortly
+      Have a project you want to discuss? Leave a message and I'll be in touch with you shortly.
     </p>
     <form method="post" @submit.prevent="handleFormSubmit">
       <label for="name">Name</label>

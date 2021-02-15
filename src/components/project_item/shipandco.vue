@@ -86,9 +86,14 @@
       </li>
       <li>
         Currently preparing the complete rewrite and transition of the app from Meteor JS to Vue3 +
-        Fastify
+        Fastify.
       </li>
     </ul>
+    <p>
+      Major logistics APIs I worked with: DHL, FedeEx, UPS, DHL eCommerce, Sagawa, Yamato, and Japan
+      Post.<br /><br />Major ecommerce APIs I worked with include: Shopify, eBay, Prestashop,
+      WooCommerce, QuickBooks Commerce, Base, Next Engine, ColorMe and Yahoo! Shoppping Japan.
+    </p>
   </div>
 
   <ProjectImage
@@ -109,7 +114,7 @@ export default {
   name: 'ShipandcoContent',
   components: { ProjectSummary, ProjectImage },
   props: {
-    modifier: { type: String, required: false, default: '' },
+    modifier: { type: String, required: false, default: '' }
   },
   setup() {
     const summary = {
@@ -117,10 +122,10 @@ export default {
       organization: 'Bertrandco',
       work: ['Full-stack dev'],
       stack: ['Handlebars', 'Meteor', 'Express', 'MongoDB'],
-      years: '2018 –',
+      years: '2018 –'
     };
 
     return { summary };
-  },
+  }
 };
 </script>

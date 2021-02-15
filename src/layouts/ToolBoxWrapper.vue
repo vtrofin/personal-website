@@ -18,12 +18,7 @@
         />
         <div class="about-text">
           <span class="caption-text">Victor Trofin</span>
-          <span class="caption-text-small"
-            >I'm {{ currentAge }} years old. I'm married, with 1 child.</span
-          >
-          <span class="caption-text-small"
-            >I can communicate in Romanian, English, Italian and basic Japanese.</span
-          >
+          <span class="caption-text-small">My toolbox: </span>
         </div>
       </div>
       <div class="toolbox-list" tabindex="0">
@@ -49,24 +44,15 @@
 import { toRefs } from 'vue';
 import { useStore } from 'vuex';
 
-const getAge = () => {
-  const today = new Date();
-  const year = today.getFullYear();
-  const month = today.getMonth() + 1;
-  const day = today.getDate();
-  const diff = year - 1984;
-  const age = month >= 9 && day >= 5 ? diff : diff - 1;
-  return age;
-};
 export default {
   name: 'ToolBoxWrapper',
   props: {
-    toolboxState: { type: Object, required: true }
+    toolboxState: { type: Object, required: true },
   },
   emits: {
     toggleToolboxState: ({ isActive }) => {
       return typeof isActive === 'boolean';
-    }
+    },
   },
   setup(props, context) {
     const { active: toolboxActive } = toRefs(props.toolboxState);
@@ -81,8 +67,8 @@ export default {
       }
     };
 
-    return { toolboxActive, handleBlur, tools, currentAge: getAge() };
-  }
+    return { toolboxActive, handleBlur, tools };
+  },
 };
 </script>
 <style>
@@ -132,7 +118,7 @@ export default {
   box-sizing: border-box;
   z-index: 101;
   width: 320px;
-  height: 500px;
+  /* height: 500px; */
   padding: 2rem;
   background-color: var(--misty-rose);
   color: var(--black);
@@ -186,7 +172,7 @@ export default {
   font-weight: 700;
   margin-left: 0;
   display: flex;
-  align-items: flex-start;
+  align-items: center;
 }
 
 .profile img {

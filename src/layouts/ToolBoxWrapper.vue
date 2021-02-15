@@ -197,6 +197,9 @@ export default {
   font-weight: 400;
   line-height: 1.1rem;
 }
+.caption-text-small:not(:last-of-type) {
+  padding-bottom: 0.4rem;
+}
 .toolbox-list,
 .toolbox-icons {
   display: flex;

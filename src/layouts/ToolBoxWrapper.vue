@@ -18,7 +18,9 @@
         />
         <div class="about-text">
           <span class="caption-text">Victor Trofin</span>
-          <span class="caption-text-small">Web engineer at Ship&co.</span>
+          <span class="caption-text-small"
+            >I'm {{ currentAge }} years old. I'm married, with 1 child.</span
+          >
           <span class="caption-text-small"
             >I can communicate in Romanian, English, Italian and basic Japanese.</span
           >
@@ -47,6 +49,15 @@
 import { toRefs } from 'vue';
 import { useStore } from 'vuex';
 
+const getAge = () => {
+  const today = new Date();
+  const year = today.getFullYear();
+  const month = today.getMonth() + 1;
+  const day = today.getDate();
+  const diff = year - 1984;
+  const age = month >= 9 && day >= 5 ? diff : diff - 1;
+  return age;
+};
 export default {
   name: 'ToolBoxWrapper',
   props: {
@@ -70,7 +81,7 @@ export default {
       }
     };
 
-    return { toolboxActive, handleBlur, tools };
+    return { toolboxActive, handleBlur, tools, currentAge: getAge() };
   }
 };
 </script>
@@ -121,7 +132,7 @@ export default {
   box-sizing: border-box;
   z-index: 101;
   width: 320px;
-  height: 450px;
+  height: 500px;
   padding: 2rem;
   background-color: var(--misty-rose);
   color: var(--black);
@@ -193,7 +204,6 @@ export default {
   font-size: 1.2rem;
 }
 .caption-text-small {
-  font-size: 0.8rem;
   font-weight: 400;
   line-height: 1.1rem;
 }

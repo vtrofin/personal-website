@@ -16,7 +16,13 @@
           width="80"
           height="80"
         />
-        <span class="caption-text">Victor Trofin</span>
+        <div class="about-text">
+          <span class="caption-text">Victor Trofin</span>
+          <span class="caption-text-small">Web engineer at Ship&co.</span>
+          <span class="caption-text-small"
+            >I can communicate in Romanian, English, Italian and basic Japanese.</span
+          >
+        </div>
       </div>
       <div class="toolbox-list" tabindex="0">
         <span v-for="(tool, i) in tools" :key="i">{{ tool }}</span>
@@ -44,12 +50,12 @@ import { useStore } from 'vuex';
 export default {
   name: 'ToolBoxWrapper',
   props: {
-    toolboxState: { type: Object, required: true },
+    toolboxState: { type: Object, required: true }
   },
   emits: {
     toggleToolboxState: ({ isActive }) => {
       return typeof isActive === 'boolean';
-    },
+    }
   },
   setup(props, context) {
     const { active: toolboxActive } = toRefs(props.toolboxState);
@@ -65,7 +71,7 @@ export default {
     };
 
     return { toolboxActive, handleBlur, tools };
-  },
+  }
 };
 </script>
 <style>
@@ -115,7 +121,7 @@ export default {
   box-sizing: border-box;
   z-index: 101;
   width: 320px;
-  height: 425px;
+  height: 450px;
   padding: 2rem;
   background-color: var(--misty-rose);
   color: var(--black);
@@ -169,7 +175,7 @@ export default {
   font-weight: 700;
   margin-left: 0;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
 }
 
 .profile img {
@@ -178,8 +184,18 @@ export default {
   margin-right: 1rem;
 }
 
-.profile span {
+.about-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.caption-text {
   font-size: 1.2rem;
+}
+.caption-text-small {
+  font-size: 0.8rem;
+  font-weight: 400;
+  line-height: 1.1rem;
 }
 .toolbox-list,
 .toolbox-icons {

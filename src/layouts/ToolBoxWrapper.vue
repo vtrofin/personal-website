@@ -16,14 +16,13 @@
           width="80"
           height="80"
         />
-        <span class="caption-text">Victor Trofin</span>
+        <div class="about-text">
+          <span class="caption-text">Victor Trofin</span>
+          <span class="caption-text-small">My toolbox: </span>
+        </div>
       </div>
       <div class="toolbox-list" tabindex="0">
-        <span>Something</span>
-        <span>Something Else </span>
-        <span>Something New</span>
-        <span>Another</span>
-        <span>Before</span>
+        <span v-for="(tool, i) in tools" :key="i">{{ tool }}</span>
       </div>
       <div class="toolbox-icons" tabindex="0">
         <div aria-label="javascript"><fa :icon="['fab', 'js']" class="fa-2x" /></div>
@@ -59,6 +58,7 @@ export default {
     const { active: toolboxActive } = toRefs(props.toolboxState);
     const { emit } = context;
     const store = useStore();
+    const tools = store.getters['tools/getAllTools'];
 
     const handleBlur = e => {
       if (toolboxActive) {
@@ -67,7 +67,7 @@ export default {
       }
     };
 
-    return { toolboxActive, handleBlur };
+    return { toolboxActive, handleBlur, tools };
   },
 };
 </script>
@@ -118,7 +118,7 @@ export default {
   box-sizing: border-box;
   z-index: 101;
   width: 320px;
-  height: 360px;
+  /* height: 500px; */
   padding: 2rem;
   background-color: var(--misty-rose);
   color: var(--black);
@@ -181,8 +181,20 @@ export default {
   margin-right: 1rem;
 }
 
-.profile span {
+.about-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.caption-text {
   font-size: 1.2rem;
+}
+.caption-text-small {
+  font-weight: 400;
+  line-height: 1.1rem;
+}
+.caption-text-small:not(:last-of-type) {
+  padding-bottom: 0.4rem;
 }
 .toolbox-list,
 .toolbox-icons {

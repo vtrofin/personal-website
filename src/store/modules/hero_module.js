@@ -8,11 +8,13 @@ export default {
       y: null,
     },
     animationTextLines: [
-      '$ A beautiful line of text describing what i do and what my interests are. Beautiful',
-      '$ A beautiful line of text describing what i do and what my interests are. Beautiful',
-      '$ A beautiful line of text describing what i do and what my interests are. Beautiful',
-      '$ A beautiful line of text describing what i do and what my interests are. Beautiful',
-      '$ A beautiful line of text describing what i do and what my interests are. Beautiful',
+      '$ whoami',
+      `I shape ideas into practical software focusing on accessibility and performance.`,
+      'I follow industry-recognized best practices in web development.',
+      `My current tech stack consists of javascript and node.js. I'm also proficient with python and go.`,
+      `I'm excited about the intersection of code and math, looking to complement my coding skills with knowledge of machine learning.`,
+      `I'm doing my best work when closely collaborating with clients, designers and other web engineers.`,
+      // `$ I'm open to full-time offers in Japan. Available to take on freelance opportunities worldwide`
     ],
   }),
   getters: {

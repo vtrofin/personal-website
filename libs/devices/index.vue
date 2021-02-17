@@ -13,6 +13,8 @@
 </template>
 <script>
 // See more here https://github.com/picturepan2/devices.css
+// how to use it in app
+// <!-- <device-mockup url="/shipandco_mediumres_1.jpg" alt="a wacky image" type="macbook" /> -->
 import './devices.min.css';
 import { computed } from 'vue';
 import { useStore } from 'vuex';
@@ -31,10 +33,10 @@ export default {
           return true;
         }
         return typeof value === 'string' && devices.includes(value);
-      }
+      },
     },
     // eslint-disable-next-line
-    color: { type: String, required: false }
+    color: { type: String, required: false },
   },
   setup(props) {
     const store = useStore();
@@ -57,6 +59,6 @@ export default {
     });
 
     return { computedModifiers, innerWidth };
-  }
+  },
 };
 </script>

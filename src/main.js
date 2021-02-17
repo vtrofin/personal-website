@@ -10,19 +10,23 @@ import ProjectItem from './pages/ProjectItem.vue';
 import NotFound from './pages/NotFound.vue';
 import Contact from './pages/Contact.vue';
 import { checkProjectRoute } from './helpers';
+import { handleMetaTags, metaTags } from './helpers/meta_tags';
 
 const routes = [
-  { path: '/:pathMatch(.*)*', component: NotFound, name: 'not-found' },
+  {
+    path: '/:pathMatch(.*)*',
+    component: NotFound,
+    name: 'not-found',
+    meta: { title: 'Victor Trofin - Page not found', metaTags: metaTags.notFound },
+  },
   {
     path: '/',
     component: HomePage,
     name: 'homepage',
     alias: ['/home', '/work'],
+    meta: { title: 'Victor Trofin - Web Engineer in Kyoto', metaTags: metaTags.homePage },
   },
-  {
-    path: '/projects',
-    redirect: { name: 'projectItem', params: { project_item: 'shipandco' } },
-  },
+  { path: '/projects', redirect: { name: 'projectItem', params: { project_item: 'shipandco' } } },
   {
     path: '/projects/:project_item',
     component: ProjectItem,
@@ -30,11 +34,16 @@ const routes = [
     beforeEnter: (to, from) => {
       return checkProjectRoute(to?.params);
     },
+    meta: route => ({
+      title: `Victor Trofin - Checkout my work on ${route?.params?.project_item ?? 'this'} project`,
+      metaTags: metaTags.project(route),
+    }),
   },
   {
     path: '/contact',
     component: Contact,
     name: 'contact',
+    meta: { title: 'Victor Trofin - Contact me', metaTags: metaTags.contact },
   },
 ];
 
@@ -45,6 +54,7 @@ const router = createRouter({
     return savedPosition ? savedPosition : { left: 0, top: 0 };
   },
 });
+router.beforeEach(handleMetaTags);
 
 const app = createApp(App);
 app.use(router);

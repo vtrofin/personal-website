@@ -2,25 +2,63 @@
   <section>
     <h1>Contact me</h1>
     <p tabindex="0">
-      Have a project you want to discuss? Leave a message and I'll be in touch with you shortly
+      Have a project you want to discuss? Leave a message and I'll be in touch with you shortly.
     </p>
     <form method="post" @submit.prevent="handleFormSubmit">
       <label for="name">Name</label>
-      <input id="name" type="text" name="name" />
-
-      <label for="email">Email*</label>
-      <input id="email" type="email" name="email" :required="true" />
+      <div :class="getClassName('input-container', 'name')">
+        <input
+          id="name"
+          type="text"
+          name="name"
+          @focus="toggleInputFocus"
+          @blur="toggleInputFocus"
+        />
+        <span class="input-label" @click.stop.prevent="handleSpanFocus">Name</span>
+      </div>
+      <label for="email">Email</label>
+      <div :class="getClassName('input-container', 'email')">
+        <input
+          id="email"
+          type="email"
+          name="email"
+          :required="true"
+          @focus="toggleInputFocus"
+          @blur="toggleInputFocus"
+        />
+        <span class="input-label" @click.stop.prevent="handleSpanFocus">Email</span>
+      </div>
       <span class="required-label">*Required</span>
 
       <label for="subject">Subject</label>
-      <input id="subject" type="text" name="subject" />
+      <div :class="getClassName('input-container', 'subject')">
+        <input
+          id="subject"
+          type="text"
+          name="subject"
+          @focus="toggleInputFocus"
+          @blur="toggleInputFocus"
+        />
+        <span class="input-label" @click.stop.prevent="handleSpanFocus">Subject</span>
+      </div>
 
       <label for="message">Message*</label>
-      <textarea id="message" name="message" rows="5" :required="true" />
+      <div :class="getClassName('input-container', 'message')">
+        <textarea
+          id="message"
+          name="message"
+          rows="5"
+          :required="true"
+          @focus="toggleInputFocus"
+          @blur="toggleInputFocus"
+        />
+        <span class="input-label" @click.stop.prevent="handleSpanFocus">Message</span>
+      </div>
       <span class="required-label">*Required</span>
 
       <button type="submit" :disabled="templateData.isLoading" aria-label="Send the email message">
-        Submit
+        <Spinner text="Sending..." v-if="loading" />
+        <span v-else>Submit</span>
       </button>
       <div :class="templateData.messageClass" :v-if="templateData.formSubmitMessage">
         <Alert width="16px" color="#f28482" v-if="templateData.messageClass.includes('error')" />
@@ -38,9 +76,10 @@
 </template>
 
 <script>
-import { reactive } from 'vue';
+import { reactive, ref } from 'vue';
 import Tick from '../components/contact/tick.vue';
 import Alert from '../components/contact/alert.vue';
+import Spinner from '../components/spinner';
 
 const timeOutHandler = reactiveVal => {
   return () => {
@@ -65,18 +104,36 @@ const readForm = formTarget => {
   return data;
 };
 
+const toggleFocus = (target, templateData, eventType) => {
+  const value = target?.value;
+  const targetName = target?.name;
+
+  if (!targetName) {
+    throw new Error('Failed to get target input');
+  }
+
+  const localState = templateData?.inputModifierClass?.[targetName];
+  if (typeof localState !== 'string') {
+    throw new Error('Failed to get input class');
+  }
+  templateData.inputModifierClass[targetName] = localState === 'focused' && !value ? '' : 'focused';
+};
+
 export default {
   name: 'Contact',
-  components: { Tick, Alert },
+  components: { Tick, Alert, Spinner },
   setup() {
     const timeoutVal = (process.env.NODE_ENV === 'development' ? 3 : 30) * 1000;
     const templateData = reactive({
       isLoading: false,
       formSubmitMessage: '',
       messageClass: 'form-result',
+      inputModifierClass: { name: '', email: '', subject: '', message: '' },
     });
+    const loading = ref(false);
 
     const handleFormSubmit = async event => {
+      loading.value = true;
       const data = readForm(event.target);
 
       try {
@@ -94,17 +151,51 @@ export default {
         templateData.messageClass = `form-result ${
           res && res.response === 'error' ? 'error' : 'success'
         }`;
-        setTimeout(timeOutHandler(templateData), timeoutVal);
+        loading.value = false;
+        setTimeout(timeOutHandler(templateData, loading), timeoutVal);
       } catch (err) {
         templateData.formSubmitMessage = `Error: ${err.message}`;
         templateData.messageClass = 'form-result error';
-        setTimeout(timeOutHandler(templateData), timeoutVal);
+        loading.value = false;
+        setTimeout(timeOutHandler(templateData, loading), timeoutVal);
       }
+    };
+
+    const toggleInputFocus = event => {
+      const target = event?.target;
+      toggleFocus(target, templateData, event?.type);
+    };
+
+    const handleSpanFocus = event => {
+      const target = event?.currentTarget;
+      const parentEl = target?.parentNode || target?.parentElement;
+      const inputEl = target?.previousSibling || target?.previousElementSibling;
+
+      if (typeof parentEl?.className !== 'string') {
+        throw new Error('Failed to get span element class');
+      }
+
+      if (!parentEl.className.includes('focused')) {
+        setTimeout(() => inputEl.focus(), 0);
+      }
+    };
+
+    const getClassName = (baseClass, modifier) => {
+      return (
+        baseClass +
+        (templateData?.inputModifierClass?.[modifier]
+          ? ' ' + templateData.inputModifierClass[modifier]
+          : '')
+      );
     };
 
     return {
       handleFormSubmit,
       templateData,
+      toggleInputFocus,
+      handleSpanFocus,
+      getClassName,
+      loading,
     };
   },
 };
@@ -117,12 +208,12 @@ form {
   margin: 3rem auto;
 }
 label,
-input {
+.input-container {
   flex-grow: 1;
   flex-basis: 100%;
 }
-
 label {
+  display: none;
   text-align: left;
   font-size: 0.9rem;
 }
@@ -130,6 +221,45 @@ label {
   font-size: 0.8rem;
   color: var(--gray);
   text-align: left;
+}
+
+.input-container {
+  position: relative;
+  margin-top: 0.5rem;
+  margin-bottom: 1rem;
+}
+.input-container input,
+.input-container textarea {
+  width: 100%;
+  box-sizing: border-box;
+  line-height: 1.2rem;
+  font-family: inherit;
+}
+.input-container .input-label {
+  position: absolute;
+  color: rgb(91, 112, 131);
+  top: 50%;
+  left: 10px;
+  transform: translateY(-50%);
+  font-size: 1rem;
+  font-weight: 400;
+  transition: all 150ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+.input-container textarea + .input-label {
+  top: 1rem;
+}
+
+.input-container.focused .input-label {
+  color: var(--black);
+  font-size: 0.7rem;
+  top: 0%;
+  transform: translateY(0%);
+  pointer-events: none;
+}
+
+.input-container.focused input,
+.input-container.focused textarea {
+  padding-top: 0.8rem;
 }
 
 input,
@@ -142,11 +272,9 @@ textarea {
   appearance: none;
   font-weight: 500;
   color: var(--black);
-  margin-top: 0.5rem;
-  margin-bottom: 1rem;
 }
 
-input + .required-label,
+.input-container + .required-label,
 textarea + .required-label {
   margin-top: -0.7rem;
   margin-bottom: 1rem;
@@ -174,7 +302,7 @@ button[type='submit'] {
   align-self: center;
   font-size: 1.2rem;
   font-weight: 700;
-  background-color: var(--red);
+  background-color: var(--yellow);
   color: var(--white);
   border: none;
   border-radius: var(--base-border);
@@ -186,12 +314,12 @@ button[type='submit'] {
 
 button[type='submit']:hover,
 button[type='submit']:focus {
-  background-color: var(--yellow);
+  filter: brightness(0.9);
   transition: all 0.3s ease-in;
 }
 
 button[type='submit']:disabled {
-  background-color: var(--light-yellow);
+  filter: brightness(1.1);
   pointer-events: none;
   transition: all 0.3s ease-in;
 }

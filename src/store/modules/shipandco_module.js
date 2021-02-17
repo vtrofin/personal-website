@@ -2,19 +2,18 @@ export default {
   namespaced: true,
   state: () => ({
     project: {
-      excerpt:
-        'Some random text about this project. Nobody likes to wait… but you can make it less of a pain. I have created. An open-source collection of loading spinners animated with CSS.',
-      description: ['a longer text describing what you did for that project'],
+      type: 'project',
       logoClass: `shipandco-logo`,
       backgroundClass: `shipandco-background`,
-      type: 'project',
-      item_title: 'A long title for the project description', // will not overwrite the homepage short title
-      role: 'Full Stack * Optimizations/ Add new Features'
-    }
+      excerpt: 'Shipping management solution for eCommerce',
+      // 'SaaS tool that helps online sellers automate shipping: get shipping quotes, make shipping labels and fulfill orders',
+      item_title: 'Ship&Co',
+      role: 'Full-stack web engineer',
+    },
   }),
   getters: {
     getProject: state => {
       return state.project;
-    }
-  }
+    },
+  },
 };

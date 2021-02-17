@@ -22,7 +22,7 @@
           aria-label="My skills"
         >
           <span :class="classModifiers.spanClass">
-            <fa :icon="['fas', 'tools']" />
+            <fa :icon="['fas', 'user']" />
           </span>
         </li>
         <li>
@@ -68,7 +68,7 @@ export default {
   components: { HeaderLogo, GithubLogo, ProjectItemHeader },
   props: { modifier: { type: String, required: false, default: '' } },
   emits: {
-    toggleToolbox: null
+    toggleToolbox: null,
   },
   setup(props, context) {
     const store = useStore();
@@ -88,7 +88,7 @@ export default {
     };
 
     return { classModifiers, toggleToolbox, isMobile };
-  }
+  },
 };
 </script>
 

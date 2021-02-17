@@ -21,6 +21,7 @@
     "got": "^11.8.1",
     "lodash.get": "^4.4.2",
     "nodemailer": "^6.4.17",
+    "spin.js": "^4.1.0",
     "vue": "^3.0.0",
     "vue-router": "^4.0.0-rc.3",
     "vuex": "^4.0.0-rc.1"

@@ -67,7 +67,7 @@ main .content,
   content: '';
   width: 100%;
   position: absolute;
-  bottom: -5px;
+  bottom: -3px;
   left: 0;
   height: 3px;
   background-color: var(--red);
@@ -119,7 +119,7 @@ main .content,
   background-color: var(--light-green);
   color: var(--white);
 }
-.bertrandandco-active {
+.bertrandco-active {
   background-color: var(--pink);
   color: var(--black);
 }

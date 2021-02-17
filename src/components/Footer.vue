@@ -11,7 +11,7 @@
         Feel free to
         <a
           class="contact-link reversed"
-          href="mailto:trofin.victor@gmail?subject=Hi"
+          href="mailto:trofin.victor@gmail.com?subject=Hi"
           target="_blank"
           rel="noopener"
         >
@@ -135,9 +135,8 @@ footer .section-header {
   flex-direction: row;
   flex-wrap: wrap;
   list-style-type: none;
-  margin: 0;
   padding: 0;
-  margin: 1.5rem 0;
+  margin: 0 0 1.5rem;
   font-size: 0.8rem;
 }
 
@@ -169,6 +168,7 @@ footer .section-header {
     flex-direction: column;
     flex-wrap: nowrap;
     margin-bottom: 0;
+    margin: 1.5rem 0;
   }
   .thanks li:first-of-type,
   .thanks li:last-of-type {

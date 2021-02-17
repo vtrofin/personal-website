@@ -49,12 +49,23 @@ export default {
   text-align: initial;
   max-width: 800px;
   margin: 0 auto;
+}
+.project-content:first-of-type {
   padding-top: 10vh;
+}
+.project-content:last-of-type {
   padding-bottom: 20vh;
 }
+
 @media all and (min-width: 600px) {
   .project-content {
+    padding-top: 3rem;
+  }
+  .project-content:first-of-type {
     padding-top: 5rem;
+  }
+
+  .project-content:last-of-type {
     padding-bottom: 10rem;
   }
 }
@@ -79,6 +90,11 @@ export default {
   scroll-margin-top: 1em;
   line-height: 1.5rem;
 }
+.project-content ul.content-list li {
+  margin: 1.5rem auto 1rem;
+  font-size: 1.2rem;
+  line-height: 1.5rem;
+}
 
 .project-content span.italic-text {
   font-style: italic;
@@ -90,6 +106,16 @@ export default {
   text-align: center;
   font-size: 0.9rem;
   line-height: 150%;
-  margin: 2rem auto;
+  margin: 0 auto 2rem;
+}
+
+.content-image {
+  width: 100%;
+  margin: -10% auto;
+}
+@media all and (min-width: 1024px) {
+  .content-image {
+    margin: -20% auto;
+  }
 }
 </style>

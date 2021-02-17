@@ -170,6 +170,10 @@ p.item-text {
   left: 0;
   right: 0;
   bottom: 0;
+  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+.item-background:hover {
+  transform: scale3D(1.04, 1.04, 1);
 }
 
 .item-logo {

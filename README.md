@@ -106,3 +106,7 @@ git lfs pull
 // Push all images
 git lfs push --all
 ```
+
+## Add meta tags
+
+- Check out `main.js` and `meta_tag.js` files

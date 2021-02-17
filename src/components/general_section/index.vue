@@ -172,7 +172,7 @@ p.item-text {
   bottom: 0;
   transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
-.item-background:hover {
+a:hover .item-background {
   transform: scale3D(1.04, 1.04, 1);
 }
 

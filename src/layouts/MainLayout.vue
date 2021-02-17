@@ -165,7 +165,7 @@ main .content,
 .bentoandco-project-active {
   background-image: url('/bentoandco.png');
   background-size: cover;
-  background-position: center 450px;
+  background-position: center 420px;
   background-repeat: no-repeat;
 }
 

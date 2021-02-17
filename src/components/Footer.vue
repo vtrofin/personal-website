@@ -21,18 +21,6 @@
         </a>
         .
       </p>
-      <ul class="thanks inspiration">
-        <li>Design inspiration:</li>
-        <li>
-          <a href="https://tobiasahlin.com/">Tobias Ahlin Bjerrome</a>
-        </li>
-        <li>
-          <a href="https://www.seanhalpin.design/">
-            Sean Halpin
-          </a>
-        </li>
-        <li />
-      </ul>
       <ul class="thanks">
         <li>Stock photos and icons by:</li>
         <li>
@@ -99,7 +87,7 @@ footer .section-header {
 }
 @media all and (min-width: 600px) {
   .footer-container {
-    grid-template-columns: 5fr 1fr 1fr;
+    grid-template-columns: 5fr 1fr;
     grid-template-rows: repeat(2 auto);
     margin-bottom: 3rem;
   }
@@ -110,10 +98,6 @@ footer .section-header {
     grid-column: 1/2;
   }
   .thanks {
-    grid-column: 3/4;
-    grid-row: 1/-3;
-  }
-  .thanks.inspiration {
     grid-column: 2/3;
     grid-row: 1/-3;
   }
@@ -154,9 +138,6 @@ footer .section-header {
   padding: 0;
   margin: 0 0 1.5rem;
   font-size: 0.8rem;
-}
-.thanks.inspiration {
-  margin-bottom: 0;
 }
 
 .thanks li {

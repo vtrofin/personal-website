@@ -1,4 +1,4 @@
-# My personal website
+# Trofin.me
 
 ## Project setup
 
@@ -51,10 +51,6 @@ Just use regular old Launch Chrome configuration
 },
 ```
 
-### Nodemailer
-
-Mailing app done with user testmaa33@gmail.com. See the app details [here](https://console.developers.google.com/apis/credentials?project=send-email-from-web-form)
-
 ### Env variables
 
 ```
@@ -69,6 +65,13 @@ VUE_APP_CONTACT_TOKEN=
 
 - Set up Vercel production env variables [here](https://vercel.com/victortrofin/personal-website/settings/environment-variables)
 - Notes about [VueJS and env variables](https://cli.vuejs.org/guide/mode-and-env.html#example-staging-mode)
+
+## Contact form
+
+- [App page](https://console.developers.google.com/apis/credentials?project=send-email-from-web-form) (testmaa33@gmail.com)
+- Get refresh token [here](https://developers.google.com/oauthplayground/) => Settings => Use your own OAuth credentials
+- Add refresh token to .env file for dev.
+- Add refresh token to [secret](https://vercel.com/docs/cli#commands/secrets). Link secret to [prod env](https://vercel.com/docs/environment-variables#)
 
 ### Vercel docs:
 
@@ -93,7 +96,13 @@ VUE_APP_CONTACT_TOKEN=
 <fa :icon="['fab', 'twitter']" :class="fa-3x" />
 ```
 
+## Add meta tags
+
+- Check out `main.js` and `meta_tag.js` files
+
 ## Git lfs
+
+Vercel does not work with git lfs. Git lfs Removed.
 
 ```
 // Check tracked files
@@ -106,7 +115,3 @@ git lfs pull
 // Push all images
 git lfs push --all
 ```
-
-## Add meta tags
-
-- Check out `main.js` and `meta_tag.js` files

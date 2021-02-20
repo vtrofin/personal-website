@@ -63,16 +63,16 @@ export const metaTags = {
       name: 'keywords',
       content: 'React, Vue.js, Node.js, full stack, web engineer, developer, Kyoto, Japan',
     },
-    { name: 'og:title', content: 'My name is Victor. I am a web engineer in Kyoto' },
+    { property: 'og:title', content: 'My name is Victor. I am a web engineer in Kyoto' },
     {
-      name: 'og:description',
+      property: 'og:description',
       content:
         'My area of expertise lies in building systems for e-commerce and logistics. I work at Ship&co, building a shipping management solution for e-commerce.',
     },
-    { name: 'og:url', content: 'https://trofin.me' },
-    { name: 'og:site_name', content: `Victor Trofin's portfolio` },
-    { name: 'og:type', content: 'website' },
-    { name: 'og:image', content: 'https://trofin.me/og_image.jpg' },
+    { property: 'og:url', content: 'https://trofin.me' },
+    { property: 'og:site_name', content: `Victor Trofin's portfolio` },
+    { property: 'og:type', content: 'website' },
+    { property: 'og:image', content: 'https://trofin.me/og_image.jpg' },
   ],
   project: route => {
     return [

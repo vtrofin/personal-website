@@ -119,11 +119,11 @@ main .content,
   background-color: var(--light-green);
   color: var(--white);
 }
-.bertrandco-active {
+.scoville-active {
   background-color: var(--pink);
   color: var(--black);
 }
-.smoothjapan-active {
+.bertrandco-active {
   background-color: var(--light-yellow);
   color: var(--black);
 }

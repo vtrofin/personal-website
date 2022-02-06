@@ -34,7 +34,7 @@ export default {
   name: 'BentoandcoContent',
   components: { ProjectSummary },
   props: { modifier: { type: String, required: false, default: '' } },
-  setup(props) {
+  setup() {
     const summary = {
       position: 'Web engineer',
       organization: 'Bertrandco',

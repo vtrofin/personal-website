@@ -2,8 +2,6 @@ import { createApp } from 'vue';
 import { createRouter, createWebHistory } from 'vue-router';
 import store from './store';
 import { FontAwesomeIcon } from '../libs/fa/font_awesome';
-import DeviceMockup from '../libs/devices';
-
 import App from './App.vue';
 import HomePage from './pages/Home.vue';
 import ProjectItem from './pages/ProjectItem.vue';
@@ -31,7 +29,7 @@ const routes = [
     path: '/projects/:project_item',
     component: ProjectItem,
     name: 'projectItem',
-    beforeEnter: (to, from) => {
+    beforeEnter: to => {
       return checkProjectRoute(to?.params);
     },
     meta: route => ({
@@ -60,7 +58,6 @@ const app = createApp(App);
 app.use(router);
 app.use(store);
 app.component('Fa', FontAwesomeIcon);
-app.component('DeviceMockup', DeviceMockup);
 app.config.productionTip = false;
 
 app.mount('#app');

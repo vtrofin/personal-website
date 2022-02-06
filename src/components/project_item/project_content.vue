@@ -20,7 +20,7 @@ export default {
     StaffContent,
     BentoandcoContent,
   },
-  setup(props) {
+  setup() {
     const route = useRoute();
     const modifierClass = ref('');
     if (route?.params?.project_item) {

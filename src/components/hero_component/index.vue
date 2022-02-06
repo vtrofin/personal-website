@@ -7,8 +7,8 @@
       <p>
         I'm a full-stack web engineer with a passion for bringing products to life. Currently living
         in Kyoto and working at
-        <a class="content-link" target="_blank" rel="noopener" href="https://www.shipandco.com/ja/">
-          Ship&co
+        <a class="content-link" target="_blank" rel="noopener" href="https://scoville.jp/">
+          Scoville
         </a>
       </p>
     </div>
@@ -61,30 +61,27 @@
 // do no clean unused variables in this file
 // N.B. I'm reusing some already defined variables for the animated cli. e.g. cliContainer ref
 import anime from 'animejs/lib/anime.es.js';
-import { computed, ref, onMounted, onUnmounted, reactive } from 'vue';
+import { computed, ref, onMounted, onUnmounted } from 'vue';
 import { useStore } from 'vuex';
-import { handleCursorReposition, createAnimationRefs, getExplodedContent } from '../helpers';
-import { getCliObserver, getCursorObserver, getAnimationObserver } from '../helpers/intersect';
+import { createAnimationRefs, getExplodedContent } from '../helpers';
+import { getAnimationObserver } from '../helpers/intersect';
 import {
   refocusActiveTextLine,
-  handleResizeEvent,
   handleKeyUpEvent,
-  handleInputEvent
+  handleInputEvent,
 } from '../helpers/event_handlers';
 import { stopAnimation } from '../helpers/animate';
 
 export default {
   emits: {
-    'update-caret-position': null
+    'update-caret-position': null,
   },
   setup(props, context) {
     const { emit } = context;
     let cliObserver = null;
-    let cursorObserver = null;
     const store = useStore();
     const bashHistory = computed(() => store.getters['hero/getBashHistory']);
     const staticText = computed(() => store.getters['hero/getStaticText']);
-    const { isMobile, isAndroid } = store.getters['checkMobile'];
     const cliContainer = ref(null);
     const cliWrapperActiveText = ref(null);
     const animationText = store.getters['hero/getAnimationText'];
@@ -119,9 +116,9 @@ export default {
       handleKeyUp: handleKeyUpEvent(store, emit),
       refocusActiveTextLine: refocusActiveTextLine(cliWrapperActiveText),
       animationText,
-      ...animationTextRefs
+      ...animationTextRefs,
     };
-  }
+  },
 };
 </script>
 

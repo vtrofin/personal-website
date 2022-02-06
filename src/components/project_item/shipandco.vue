@@ -30,7 +30,7 @@
     caption="Ship&co makes it easy to choose the cheapest/ fastest shipping method"
   />
   <div class="project-content" tabindex="0">
-    <br />
+    <br>
     <h2>Contribution</h2>
     <p>
       As a growing app, Ship&co constantly requires enhancements and new features to adapt to
@@ -91,7 +91,7 @@
     </ul>
     <p>
       Major logistics APIs I worked with: DHL, FedeEx, UPS, DHL eCommerce, Sagawa, Yamato, and Japan
-      Post.<br /><br />Major ecommerce APIs I worked with include: Shopify, eBay, Prestashop,
+      Post.<br><br>Major ecommerce APIs I worked with include: Shopify, eBay, Prestashop,
       WooCommerce, QuickBooks Commerce, Base, Next Engine, ColorMe and Yahoo! Shoppping Japan.
     </p>
   </div>

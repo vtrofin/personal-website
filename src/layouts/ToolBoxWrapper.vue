@@ -15,7 +15,7 @@
           loading="lazy"
           width="80"
           height="80"
-        />
+        >
         <div class="about-text">
           <span class="caption-text">Victor Trofin</span>
           <span class="caption-text-small">My toolbox: </span>
@@ -60,7 +60,7 @@ export default {
     const store = useStore();
     const tools = store.getters['tools/getAllTools'];
 
-    const handleBlur = e => {
+    const handleBlur = () => {
       if (toolboxActive) {
         store.dispatch({ type: 'setToolBoxState', isToolboxActive: false });
         emit('toggleToolboxState', { isActive: false });

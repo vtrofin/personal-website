@@ -3,10 +3,9 @@ export default {
   state: () => ({
     project: {
       type: 'project',
-      logoClass: `shipandco-logo`,
-      backgroundClass: `shipandco-background`,
-      excerpt: 'Shipping management solution for eCommerce',
-      item_title: 'Ship&Co',
+      backgroundClass: `ats-background`, // TODO: add class to CSS
+      excerpt: 'Applicant tracking system for handling job applications and hiring',
+      item_title: 'Bluum Hire',
       role: 'Full-stack web engineer',
     },
   }),

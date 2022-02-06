@@ -36,7 +36,7 @@ export default {
     options: { type: Object, required: true },
     modifier: { type: String, required: false, default: '' },
   },
-  setup(props) {
+  setup() {
     const currentYear = `${new Date().getFullYear()}`;
     return { currentYear };
   },

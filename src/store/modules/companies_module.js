@@ -3,21 +3,20 @@ export default {
   state: () => ({
     companies: [
       {
+        project: 'scoville',
+        type: 'work',
+        item_title: '',
+        excerpt: 'Full-stack web engineer for an applicant tracking system',
+        path: 'https://scoville.jp/',
+        ariaLabel: "View Scoville's website",
+      },
+      {
         project: 'bertrandco',
         type: 'work',
         item_title: '',
-        excerpt:
-          'Working as a full-stack web engineer to build features that improve shipping and logistics ',
+        excerpt: 'Full-stack web engineer for a shipping management solution',
         path: 'https://bertrandco.com/',
         ariaLabel: 'View Bertrand Co website',
-      },
-      {
-        project: 'smoothjapan',
-        type: 'work',
-        item_title: '',
-        excerpt: 'Started my professional career by doing markup for Wordpress websites',
-        path: 'https://twitter.com/smoothjapan',
-        ariaLabel: 'View Smooth Japan twitter profile.',
       },
     ],
   }),

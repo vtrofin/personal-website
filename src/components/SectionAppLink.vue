@@ -36,7 +36,7 @@ export default {
     ariaLabel: { type: String, required: false, default: 'View section' },
     // eslint-disable-next-line
     inactiveClass: { type: String, required: false },
-    totalItems: { required: false, type: Number }
+    totalItems: { required: false, type: Number, default: 0 },
   },
   setup(props) {
     const { activeClass, exactActiveClass, totalItems } = toRefs(props);
@@ -50,12 +50,12 @@ export default {
         isActive,
         exactActiveClass,
         activeClass,
-        totalItems: totalItems.value
+        totalItems: totalItems.value,
       })
     );
 
     return { isExternalLink, computedClassName };
-  }
+  },
 };
 </script>
 

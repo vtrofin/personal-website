@@ -72,7 +72,7 @@ export default {
   name: 'StaffContent',
   components: { ProjectSummary, ProjectImage },
   props: { modifier: { type: String, required: false, default: '' } },
-  setup(props) {
+  setup() {
     const summary = {
       position: 'Web engineer',
       organization: 'Bertrandco',

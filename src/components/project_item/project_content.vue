@@ -10,6 +10,7 @@ import StockandcoContent from './stockandco';
 import UtilsContent from './utils';
 import StaffContent from './staff';
 import BentoandcoContent from './bentoandco';
+import AtsContent from './ats.vue';
 
 export default {
   name: 'ProjectItemContent',
@@ -19,6 +20,7 @@ export default {
     UtilsContent,
     StaffContent,
     BentoandcoContent,
+    AtsContent,
   },
   setup() {
     const route = useRoute();

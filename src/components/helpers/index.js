@@ -68,16 +68,12 @@ export const getProjectData = (vuexProjects, store) => {
     const formatted = getFormattedTitle(project);
     const path = `/projects/${project}`;
 
-    /* dev only */
     const baseData = {
       path,
       ariaLabel: `View ${formatted} project`,
       callToAction: 'View Project',
       title: formatted,
-      excerpt:
-        'Some random text about this project. Nobody likes to wait… but you can make it less of a pain. I have created. An open-source collection of loading spinners animated with CSS.',
-      // logoClass: `${project}-logo`,
-      // backgroundClass: `${project}-background`,
+      excerpt: 'Some random text about this project.',
       type: 'project',
       project,
     };

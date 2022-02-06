@@ -40,7 +40,7 @@ export default {
       organization: 'Bertrandco',
       work: ['Support dev work'],
       stack: ['Shopify', 'Liquid'],
-      years: '2018 –',
+      years: '2018 – 2021',
     };
     return { summary };
   },

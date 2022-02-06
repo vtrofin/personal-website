@@ -47,7 +47,7 @@ export default {
       organization: 'Bertrandco',
       work: ['Full-stack dev'],
       stack: ['Handlebars', 'Node.js', 'Bulma'],
-      years: '2018 –',
+      years: '2018 – 2021',
     };
     return { summary };
   },

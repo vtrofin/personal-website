@@ -29,55 +29,23 @@
           <span class="animation-text">{{ line }}</span>
         </div>
       </div>
-      <!-- hide cli until i have the time to make it interactive -->
-      <div
-        v-if="false"
-        class="cli-container"
-        ref="cliContainer"
-        @click.stop.prevent="refocusActiveTextLine"
-        @touchend.stop.prevent="refocusActiveTextLine"
-      >
-        <div class="bash-history" v-for="(line, i) in bashHistory" :key="i">
-          {{ staticText }} <span class="pre-text">{{ line }}</span>
-        </div>
-        <div class="cli-wrapper">
-          {{ staticText }}
-          <span
-            class="pre-text"
-            ref="cliWrapperActiveText"
-            tabindex="0"
-            @input.prevent="handleInput"
-            @keyup.stop.prevent="handleKeyUp"
-          />
-        </div>
-      </div>
-      <!-- end hidden cli  -->
     </div>
   </section>
 </template>
 
 <script>
-// hiding the cli until i have the time to make it interactive
-// do no clean unused variables in this file
-// N.B. I'm reusing some already defined variables for the animated cli. e.g. cliContainer ref
 import anime from 'animejs/lib/anime.es.js';
 import { computed, ref, onMounted, onUnmounted } from 'vue';
 import { useStore } from 'vuex';
 import { createAnimationRefs, getExplodedContent } from '../helpers';
 import { getAnimationObserver } from '../helpers/intersect';
-import {
-  refocusActiveTextLine,
-  handleKeyUpEvent,
-  handleInputEvent,
-} from '../helpers/event_handlers';
 import { stopAnimation } from '../helpers/animate';
 
 export default {
   emits: {
     'update-caret-position': null,
   },
-  setup(props, context) {
-    const { emit } = context;
+  setup() {
     let cliObserver = null;
     const store = useStore();
     const bashHistory = computed(() => store.getters['hero/getBashHistory']);
@@ -96,15 +64,11 @@ export default {
       }
       //  check that cli is visible & trigger animation
       cliObserver = getAnimationObserver({ cliContainer, anime, staggeredAnimation });
-
-      // resize handler already moved to App file => put your handler to the main resize event handler! Get the width or whatever is needed directly from the store
-      /* window.addEventListener('resize', handleResizeEvent(cliWrapperActiveText, store, emit)); cliWrapperActiveText.value.contentEditable = true; cliObserver = getCliObserver({ cliWrapperActiveText, cliContainer, isMobile, isAndroid }); cursorObserver = getCursorObserver(cliContainer, cliWrapperActiveText); setTimeout(() => { return handleCursorReposition({ domRef: cliWrapperActiveText.value, offsetY: 2, store, isSubmit: true, // force get from Elem }) .then(() => emit('update-caret-position')) .catch(err => console.log('Failed to update caret position', err.message)); }, 0); */
     });
 
     onUnmounted(() => {
       cliObserver.disconnect();
       stopAnimation(staggeredAnimation.value, anime);
-      /* cursorObserver.disconnect(); window.removeEventListener('resize', handleResizeEvent(cliWrapperActiveText, store, emit)); */
     });
 
     return {
@@ -112,9 +76,6 @@ export default {
       staticText,
       cliContainer,
       cliWrapperActiveText,
-      handleInput: handleInputEvent(store, emit, cliWrapperActiveText),
-      handleKeyUp: handleKeyUpEvent(store, emit),
-      refocusActiveTextLine: refocusActiveTextLine(cliWrapperActiveText),
       animationText,
       ...animationTextRefs,
     };

@@ -41,7 +41,7 @@ export default {
   setup(props) {
     const { activeClass, exactActiveClass, totalItems } = toRefs(props);
     const path = toRef(props, 'to');
-    const { /*navigate, href, route,*/ isActive, isExactActive } = useLink(path);
+    const { isActive, isExactActive } = useLink(path);
 
     const isExternalLink = computed(() => checkExternalPath({ path: path.value }));
     const computedClassName = computed(() =>
@@ -77,8 +77,10 @@ export default {
   border-top-left-radius: var(--base-border);
   border-top-right-radius: var(--base-border);
 }
-.section-link:last-of-type {
+.section-link:nth-last-child(2) {
   border-bottom-left-radius: var(--base-border);
+}
+.section-link:last-of-type {
   border-bottom-right-radius: var(--base-border);
 }
 
@@ -87,8 +89,7 @@ export default {
     flex-basis: 50%;
   }
   .section-link:first-of-type,
-  .section-link:nth-of-type(3n + 1),
-  .section-link:last-of-type {
+  .section-link:nth-of-type(3n + 1) {
     flex-basis: 100%;
   }
   .section-link.force-half-width {

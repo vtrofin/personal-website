@@ -120,8 +120,6 @@ h3.item-title {
   z-index: 10;
   transform: translateZ(0);
   transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  /* line-height: 2.5rem;
-  letter-spacing: -0.3px; */
 }
 .section-link:hover h3.item-title {
   transform: translateY(-6px) translateZ(0);
@@ -139,7 +137,6 @@ h3.item-title {
   height: 3px;
   background-color: currentColor;
   width: 60px;
-  /* right: 0; */
   margin: 3.2rem auto 2.2rem;
   transform: scaleX(0.8);
   transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);

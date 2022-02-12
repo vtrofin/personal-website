@@ -25,10 +25,13 @@ export default {
   setup() {
     const route = useRoute();
     const modifierClass = ref('');
+
     if (route?.params?.project_item) {
       modifierClass.value = route.params.project_item;
     }
 
+    // eslint will complain about the side effect in the computed property.
+    // consider adding a watch for the modifierClass value
     const projectContentComponent = computed(() => {
       const current = route?.params?.project_item;
       if (!current) {

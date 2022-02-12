@@ -4,7 +4,6 @@
     <p>Cococs.</p>
     <p>Haplea fructaliu.</p>
   </div>
-  <!-- TODO: Change image -->
   <ProjectImage
     alt-text="view of available tools for testing ecommerce integrations in Ship&Co"
     url="/utils.png"

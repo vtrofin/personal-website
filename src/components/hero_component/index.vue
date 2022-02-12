@@ -142,7 +142,6 @@ export default {
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
-  /* height: 350px; */
   background-color: var(--black);
   border-radius: var(--base-border);
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
@@ -164,8 +163,6 @@ export default {
   text-align: left;
   word-break: break-all;
   outline: none;
-  /* overflow-x: hidden;
-  overflow-y: scroll; */
   overflow: hidden;
   scrollbar-width: none;
   scroll-snap-type: y mandatory;

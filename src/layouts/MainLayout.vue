@@ -95,6 +95,11 @@ main .content,
 
 /* Modifier classes */
 /* Font and background colors */
+.ats-active,
+.ats-project-active {
+  background-color: var(--yellow);
+  color: var(--black);
+}
 .shipandco-active,
 .shipandco-project-active {
   background-color: var(--pink);

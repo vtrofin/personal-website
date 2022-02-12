@@ -15,7 +15,7 @@
           loading="lazy"
           width="80"
           height="80"
-        >
+        />
         <div class="about-text">
           <span class="caption-text">Victor Trofin</span>
           <span class="caption-text-small">My toolbox: </span>
@@ -26,9 +26,10 @@
       </div>
       <div class="toolbox-icons" tabindex="0">
         <div aria-label="javascript"><fa :icon="['fab', 'js']" class="fa-2x" /></div>
-        <div aria-label="node JS"><fa :icon="['fab', 'node-js']" class="fa-2x" /></div>
-        <div aria-label="python"><fa :icon="['fab', 'python']" class="fa-2x" /></div>
-        <div id="go" aria-label="go lang" />
+        <div id="ts" aria-label="typescript" />
+        <div id="rescript" aria-label="rescript" />
+        <div aria-label="swift"><fa :icon="['fab', 'swift']" class="fa-2x" /></div>
+        <!-- <div id="go" aria-label="go lang" /> -->
       </div>
     </section>
     <button id="close-button" @click.prevent="handleBlur" aria-label="Go back to the main page">
@@ -118,11 +119,9 @@ export default {
   box-sizing: border-box;
   z-index: 101;
   width: 320px;
-  /* height: 500px; */
   padding: 2rem;
   background-color: var(--misty-rose);
   color: var(--black);
-  /* fix transition! */
   transform: translate3d(-320px, -320px, 0);
   transition: transform 0.3s;
 }
@@ -234,5 +233,11 @@ export default {
 
 .toolbox-icons #go {
   background-image: url('/go_logo.svg');
+}
+.toolbox-icons #rescript {
+  background-image: url('/rescript_logo.svg');
+}
+.toolbox-icons #ts {
+  background-image: url('/ts_logo.svg');
 }
 </style>

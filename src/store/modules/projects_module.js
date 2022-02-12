@@ -7,7 +7,7 @@ import atsModule from './ats_module';
 
 export default {
   state: () => ({
-    projects: ['ats', 'shipandco', 'staff', 'utils', 'stockandco', 'bentoandco'],
+    projects: ['ats', 'staff', 'stockandco', 'shipandco', 'utils', 'bentoandco'],
     activeProject: '',
   }),
   namespaced: true,

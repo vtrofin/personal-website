@@ -219,11 +219,9 @@ export default {
 }
 
 .toolbox-icons > div {
-  height: 28px;
   width: 28px;
   background-repeat: no-repeat;
   background-position: center;
-  margin: 5px;
   flex-grow: 1;
 }
 .toolbox-icons > svg {
@@ -236,8 +234,10 @@ export default {
 }
 .toolbox-icons #rescript {
   background-image: url('/rescript_logo.svg');
+  background-position-x: 0%;
 }
 .toolbox-icons #ts {
   background-image: url('/ts_logo.svg');
+  background-position-x: 58%;
 }
 </style>

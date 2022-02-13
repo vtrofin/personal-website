@@ -188,6 +188,9 @@ main .content,
 .bentoandco-logo {
   background-image: url('/logo-bentoandco.svg');
 }
+.scoville-logo {
+  background-image: url('/logo-scoville.svg');
+}
 
 /* links modifiers */
 .nav-links li a.utils,

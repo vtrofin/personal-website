@@ -4,7 +4,7 @@ export default {
     frontEnd: ['React', 'Vue.js', 'CSS', 'Tailwind'],
     backEnd: ['Fastify', 'Express'],
     staticSiteGens: ['Next.js', 'Gatsby'],
-    other: ['GraphQL', 'MongoDB', 'SQL', 'Prisma'],
+    other: ['GraphQL', 'MongoDB', 'SQL', 'Prisma', 'SwiftUI'],
     compiled: ['TypeScript', 'ReScript'],
   }),
   getters: {

@@ -6,6 +6,7 @@ export default {
         project: 'scoville',
         type: 'work',
         item_title: '',
+        logoClass: `scoville-logo`,
         excerpt: 'Full-stack web engineer for an applicant tracking system',
         path: 'https://scoville.jp/',
         ariaLabel: "View Scoville's website",

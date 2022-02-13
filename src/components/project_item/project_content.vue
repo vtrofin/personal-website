@@ -116,11 +116,5 @@ export default {
 
 .content-image {
   width: 100%;
-  margin: -10% auto;
-}
-@media all and (min-width: 1024px) {
-  .content-image {
-    margin: -20% auto;
-  }
 }
 </style>

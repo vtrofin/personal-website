@@ -91,6 +91,9 @@ main .content,
   width: 100%;
   filter: drop-shadow(0 52px 74px rgba(0, 21, 64, 0.14));
   border-radius: var(--base-border);
+  user-select: none;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
 }
 
 /* Modifier classes */

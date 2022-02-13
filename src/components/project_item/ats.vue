@@ -6,8 +6,8 @@
   </div>
   <ProjectImage
     alt-text="view of available tools for testing ecommerce integrations in Ship&Co"
-    url="/utils.png"
-    caption="A tool for developers to test ecommerce integrations"
+    url="/ats_candidates.png"
+    caption="Applicant tracking system"
   />
   <div class="project-content">
     <h2>Contribution</h2>
@@ -31,7 +31,7 @@ export default {
       position: 'Web engineer',
       organization: 'Scoville',
       work: ['Full-stack dev'],
-      stack: ['Rescript', 'React', 'TypeScript', 'Fastify', 'GraphQL', 'Tailwind CSS'],
+      stack: ['Rescript', 'Next.js', 'TypeScript', 'Fastify', 'GraphQL', 'Tailwind CSS'],
       years: '2021 –',
     };
     return { summary };

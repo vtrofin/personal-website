@@ -84,10 +84,6 @@
         used to compress the data, which required me to build a custom queue by sequencing data
         streams.
       </li>
-      <li>
-        Currently preparing the complete rewrite and transition of the app from Meteor JS to Vue3 +
-        Fastify.
-      </li>
     </ul>
     <p>
       Major logistics APIs I worked with: DHL, FedeEx, UPS, DHL eCommerce, Sagawa, Yamato, and Japan

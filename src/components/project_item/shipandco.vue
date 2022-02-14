@@ -30,12 +30,10 @@
     caption="Ship&co makes it easy to choose the cheapest/ fastest shipping method"
   />
   <div class="project-content" tabindex="0">
-    <br />
     <h2>Contribution</h2>
     <p>
-      As a growing app, Ship&co constantly requires enhancements and new features to adapt to
-      customer’s changing needs. I’ve worked on all sides of the app on tasks ranging from the
-      smallest bug fixes to major feature releases. Some of my major contributions include:
+      I’ve worked on all sides of the app on tasks ranging from the smallest bug fixes to major
+      feature releases. Some of my major contributions include:
     </p>
     <ul class="content-list">
       <li>
@@ -53,12 +51,12 @@
 
       <li>
         Enhancements for the DHL XML API integration. DHL is the most popular international carrier
-        in Ship&Co and I am the go-to person for feature request related to this API. Just to
+        in Ship&Co and I was the go-to person for feature request related to this API. Just to
         mention a few, I've implemented the electronic invoice flow, return labels and pick-ups.
       </li>
 
       <li>
-        Schedule parcel pick-ups in Ship&co. This is a major feature release, unifying into a single
+        Schedule parcel pick-ups in Ship&co. This was a major feature, unifying into a single
         section carriers offering shipping reports (e.g. Japan Post) with carriers offering pick-up
         scheduling through their api (DHL). This task allowed me to introduce modern CSS features
         such as css grid at the font-end.
@@ -75,18 +73,18 @@
       </li>
 
       <li>
-        Implement GDPR requirements. This feature entails adding user data exportation endpoints and
-        deleting of user data. The main challenge for this task was the large amounts of user data
-        that can be queried and exported at once. To overcome this I used node streams to query and
+        Implement GDPR requirements. This feature entailed adding endpoints for exporting and
+        deleting user data. The main challenge for this task was the large amount of user data that
+        can be queried and exported at once. To overcome this I used node streams to query and
         format the data and I implemented an async queue combined with Sendgrid transactional emails
-        to notify users of the progress. e.g. send emails with a download link once the user data
+        to notify users of the progress, e.g. send emails with a download link once the user data
         has been uploaded to the Google cloud. Another challenge was a broken queue in the package
-        used to compress the data, which required me to build a custom queue by sequencing data
+        used to compress the data which required me to build a custom queue by sequencing data
         streams.
       </li>
     </ul>
     <p>
-      Major logistics APIs I worked with: DHL, FedeEx, UPS, DHL eCommerce, Sagawa, Yamato, and Japan
+      Major logistics APIs I worked with: DHL, FedEx, UPS, DHL eCommerce, Sagawa, Yamato and Japan
       Post.<br /><br />Major ecommerce APIs I worked with include: Shopify, eBay, Prestashop,
       WooCommerce, QuickBooks Commerce, Base, Next Engine, ColorMe and Yahoo! Shoppping Japan.
     </p>

@@ -15,7 +15,7 @@
         <span>Bento&Co</span>
       </a>
       sells bento boxes online, from Kyoto. It operates a series of Shopify stores, in English,
-      French and Japanese and an additional store for enterprise customers.
+      French and Japanese.
     </p>
 
     <h2>Contribution</h2>

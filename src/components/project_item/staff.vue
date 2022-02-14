@@ -2,7 +2,7 @@
   <div class="project-content">
     <h2>The Project</h2>
     <p>
-      This app is for internal use only, acting as a dashboard and analytics platform supporting
+      This app is for internal use only, acting as a dashboard and analytics platform to support
       management decisions and operations within
       <a
         href="https://www.shipandco.com/"
@@ -13,9 +13,8 @@
       >
         <span>Ship&co</span>
       </a>
-      . It comes with sections to manage users, user shipments and it features a KPI and analytics
+      . It comes with sections to manage users and shipments and it also features an analytics
       section.
-      <!-- <span class="italic-text" /> -->
     </p>
   </div>
   <ProjectImage
@@ -29,7 +28,7 @@
     <p>
       Built before starting my employment at Ship&Co using React, FeathersJS and Bulma, I was the
       main contributor to maintaining and shipping new features for this app. Some of the tasks I’ve
-      shipped along the three years so far, include:
+      shipped include:
     </p>
     <ul class="content-list">
       <li>Improvements to the data visualizations and KPIs using VictoryChart and Bulma</li>
@@ -40,19 +39,19 @@
       </li>
 
       <li>
-        Performance optimizations, such as: replace multiple MongoDB query inefficiencies with
-        aggregations ($lookup), leverage server side caching, set up query parameters for
-        client-side routing
+        Performance optimizations, such as replacing inefficient MongoDB queries with aggregations
+        ($lookup), leveraging server side caching, setting up query parameters for client-side
+        routing
       </li>
 
       <li>
-        Operations management and monitoring in Ship&co. For example, block fraudulent users, data
-        searching and filtering
+        Operations management and monitoring in Ship&co: blocking fraudulent users, data searching
+        and filtering
       </li>
 
-      <li>Exporting KPI data to files</li>
+      <li>Export KPI data to files</li>
 
-      <li>Set up server side logging with Logentries</li>
+      <li>Server side logging with Logentries</li>
     </ul>
   </div>
   <ProjectImage

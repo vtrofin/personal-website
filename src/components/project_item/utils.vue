@@ -2,13 +2,13 @@
   <div class="project-content">
     <h2>The Project</h2>
     <p>
-      Started for fun, as a learning project, by two talented interns at Ship&Co, it became quite a
-      useful tool for creating test orders for the day to day development work. It features multiple
-      integrations such as Shopify, Magento, Base and more. It features an integration with the
-      GitHub API to create a way for non-devs to access GitHub issues without an account.
+      Started as a learning project by two talented interns at Ship&Co, it became a useful tool for
+      creating test orders for the day to day development work. It features multiple integrations
+      such as Shopify, Magento and Base. It features an integration with the GitHub API enabling
+      marketing staff to access GitHub issues without an account.
     </p>
     <p>
-      Built on a standard Node.js server with Handlebars on the front-end, it features server side
+      Built on a Node.js server and with Handlebars on the front-end, it features server side
       rendering and data reactivity with Socket.io.
     </p>
   </div>
@@ -20,12 +20,12 @@
   <div class="project-content">
     <h2>Contribution</h2>
     <p>
-      I implemented a module to create and delete test orders and shipments in a staging QuickBooks
+      I implemented a module to create and delete orders and shipments in a staging QuickBooks
       Commerce account. It’s a straightforward implementation using the official QB Commerce REST
-      API and with basic API requests throttling to keep within API request limits.
+      API, with basic API requests throttling to keep within API request limits.
     </p>
     <p>
-      I fixed throttling issue in the Shopify integration after Shopify drastically reduced API
+      I fixed the throttling issues in the Shopify integration after Shopify drastically reduced API
       calling limits for development stores.
     </p>
   </div>

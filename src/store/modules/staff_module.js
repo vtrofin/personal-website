@@ -3,8 +3,7 @@ export default {
   state: () => ({
     project: {
       type: 'project',
-      excerpt:
-        'Internal dashboard to monitor operations in Ship&co. Complete with KPIs, Analytics and Data visualization',
+      excerpt: 'Internal dashboard to monitor operations in Ship&co',
       item_title: 'Staff Dashboard',
       role: 'Full-stack web engineer',
     },

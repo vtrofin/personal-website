@@ -61,7 +61,7 @@ export default {
       organization: 'Scoville',
       work: ['Full-stack dev'],
       stack: [
-        'Rescript',
+        'ReScript',
         'Next.js',
         'Tailwind CSS',
         'TypeScript',

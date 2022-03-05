@@ -16,7 +16,7 @@ import { getProjectData, getWorkData } from '../components/helpers';
 export default {
   name: 'HomePage',
   components: { GeneralSection, HeroSection },
-  setup(props) {
+  setup() {
     const store = useStore();
     const computedStyle = ref({});
     const allProjects = store.getters['projects/getAllProjects'];

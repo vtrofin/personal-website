@@ -6,7 +6,6 @@ export default {
       logoClass: `shipandco-logo`,
       backgroundClass: `shipandco-background`,
       excerpt: 'Shipping management solution for eCommerce',
-      // 'SaaS tool that helps online sellers automate shipping: get shipping quotes, make shipping labels and fulfill orders',
       item_title: 'Ship&Co',
       role: 'Full-stack web engineer',
     },

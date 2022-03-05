@@ -8,13 +8,12 @@ module.exports = async (req, res) => {
   if (req.method !== 'POST') {
     return res.status(400).json({
       message: `${req.method} method not available. Try a POST request`,
-      response: 'error'
+      response: 'error',
     });
   }
 
-  // don't spend too much time on this. if someone gets the token from the code so be it
-  const dumbAssToken = get(req, 'query.token', '');
-  if (dumbAssToken !== process.env.VUE_APP_CONTACT_TOKEN) {
+  const contactToken = get(req, 'query.token', '');
+  if (contactToken !== process.env.VUE_APP_CONTACT_TOKEN) {
     return res.status(401).json({ message: 'Not authorized', response: 'error' });
   }
 
@@ -29,7 +28,7 @@ module.exports = async (req, res) => {
   oAuth2Client.setCredentials({ refresh_token: refreshToken });
   const transport = {
     service: 'Gmail',
-    auth: { type: 'OAuth2', user: sender, clientId, clientSecret: secret, refreshToken }
+    auth: { type: 'OAuth2', user: sender, clientId, clientSecret: secret, refreshToken },
   };
   const mailer = nodemailer.createTransport(transport);
 
@@ -69,7 +68,7 @@ module.exports = async (req, res) => {
     html: `
     <p>From: ${senderName} &lt;${senderEmail}&gt;</p>
     <p>Message: ${formMessage}</p> 
-    `
+    `,
   };
 
   try {

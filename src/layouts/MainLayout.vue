@@ -91,10 +91,19 @@ main .content,
   width: 100%;
   filter: drop-shadow(0 52px 74px rgba(0, 21, 64, 0.14));
   border-radius: var(--base-border);
+  user-select: none;
+  margin: 2rem auto 1rem;
+  max-width: 1000px;
+  display: block;
 }
 
 /* Modifier classes */
 /* Font and background colors */
+.ats-active,
+.ats-project-active {
+  background-color: var(--yellow);
+  color: var(--black);
+}
 .shipandco-active,
 .shipandco-project-active {
   background-color: var(--pink);
@@ -119,11 +128,11 @@ main .content,
   background-color: var(--light-green);
   color: var(--white);
 }
-.bertrandco-active {
+.scoville-active {
   background-color: var(--pink);
   color: var(--black);
 }
-.smoothjapan-active {
+.bertrandco-active {
   background-color: var(--light-yellow);
   color: var(--black);
 }
@@ -182,6 +191,9 @@ main .content,
 }
 .bentoandco-logo {
   background-image: url('/logo-bentoandco.svg');
+}
+.scoville-logo {
+  background-image: url('/logo-scoville.svg');
 }
 
 /* links modifiers */

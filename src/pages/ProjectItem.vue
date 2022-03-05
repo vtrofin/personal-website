@@ -10,8 +10,8 @@ import { checkProjectRoute } from '../helpers';
 export default {
   name: 'ProjectItem',
   components: { ProjectItemContent },
-  setup(props) {
-    onBeforeRouteUpdate((to, from) => {
+  setup() {
+    onBeforeRouteUpdate((to) => {
       const params = to?.params;
       const pathRedirect = checkProjectRoute(params);
       return pathRedirect;

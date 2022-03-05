@@ -3,8 +3,7 @@ export default {
   state: () => ({
     project: {
       type: 'project',
-      excerpt:
-        'A set of developer tools to create test data for development shops: customers, products and orders',
+      excerpt: 'A set of developer tools to create test data',
       item_title: 'Ship&Co Utils',
       role: '',
     },

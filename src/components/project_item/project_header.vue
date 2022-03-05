@@ -10,7 +10,7 @@
 
 <script>
 import { useStore } from 'vuex';
-import { reactive, computed, onBeforeUpdate } from 'vue';
+import { reactive, onBeforeUpdate } from 'vue';
 import { getFormattedTitle } from '../../helpers';
 
 const setLocalState = (localState, projectData, props) => {

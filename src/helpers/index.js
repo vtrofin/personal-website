@@ -1,4 +1,4 @@
-const projects = ['shipandco', 'stockandco', 'staff', 'utils', 'bentoandco'];
+const projects = ['ats', 'shipandco', 'stockandco', 'staff', 'utils', 'bentoandco'];
 
 export const checkProjectRoute = (params = {}) => {
   const { project_item } = params;
@@ -20,7 +20,7 @@ export const getSectionLinkClassName = ({
   isActive,
   exactActiveClass,
   activeClass,
-  totalItems
+  totalItems,
 }) => {
   let baseClass = ['section-link'];
   if (totalItems <= 2) {
@@ -39,6 +39,9 @@ export const getSectionLinkClassName = ({
 };
 
 export const getFormattedTitle = value => {
+  if (value === 'ats') {
+    return 'Bluum Hire';
+  }
   const sentenceCase = value.charAt(0).toUpperCase() + value.substring(1);
   const cpyRegexp = /^Bertrand/gi;
   const isBertrand = cpyRegexp.test(sentenceCase);

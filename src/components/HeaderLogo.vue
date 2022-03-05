@@ -62,10 +62,6 @@ export default {
   margin: 0 0 0 17px;
 }
 
-/* svg {
-  width: var(--logo-size);
-  height: var(--logo-size);
-} */
 svg path {
   position: absolute;
   fill: none;

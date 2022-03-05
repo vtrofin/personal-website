@@ -3,10 +3,9 @@ export default {
   state: () => ({
     project: {
       type: 'project',
-      logoClass: `stockandco-logo`,
-      backgroundClass: `stockandco-background`,
-      excerpt: 'Sync inventory in real time across multiple Shopify stores',
-      item_title: 'Stock&Co',
+      backgroundClass: `ats-background`,
+      excerpt: 'Applicant tracking system for handling job applications and hiring',
+      item_title: 'Bluum Hire',
       role: 'Full-stack web engineer',
     },
   }),

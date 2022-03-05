@@ -66,7 +66,7 @@ export const animateCliText = ({ cliContainer, anime, staggeredAnimation }) => {
     round: 1,
     delay: 25,
     delay: anime.stagger(25, { start: 350, direction: 'normal', easing: 'linear' }),
-    complete: anim => {
+    complete: () => {
       // display the blinking cursor after animation finished
       const cursor = getLastNode(cliContainer.value);
       cursor.style.display = 'inline-block';

@@ -11,7 +11,7 @@ import { onMounted, onUnmounted, ref } from 'vue';
 export default {
   name: 'Spinner',
   props: { text: { type: String, required: false, default: 'Loading...' } },
-  setup(props) {
+  setup() {
     let spinner;
     const spinnerRef = ref(null);
 
@@ -37,7 +37,6 @@ export default {
     };
 
     onMounted(() => {
-      // console.log('spinner ref -> ', spinnerRef.value);
       spinner = new Spinner(options);
       spinner.spin(spinnerRef.value);
     });

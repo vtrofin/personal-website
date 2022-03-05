@@ -7,7 +7,7 @@ import {
   faInfoCircle,
   faUser,
 } from '@fortawesome/free-solid-svg-icons';
-import { faPython, faJs, faNodeJs, faGithub } from '@fortawesome/free-brands-svg-icons';
+import { faJs, faGithub, faSwift, faRust } from '@fortawesome/free-brands-svg-icons';
 import { far } from '@fortawesome/free-regular-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 
@@ -15,9 +15,9 @@ const importedIcons = [
   fas,
   far,
   faEnvelope,
-  faPython,
+  faSwift,
   faJs,
-  faNodeJs,
+  faRust,
   faGithub,
   faTools,
   faHome,

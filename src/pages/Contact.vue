@@ -13,7 +13,7 @@
           name="name"
           @focus="toggleInputFocus"
           @blur="toggleInputFocus"
-        />
+        >
         <span class="input-label" @click.stop.prevent="handleSpanFocus">Name</span>
       </div>
       <label for="email">Email</label>
@@ -25,7 +25,7 @@
           :required="true"
           @focus="toggleInputFocus"
           @blur="toggleInputFocus"
-        />
+        >
         <span class="input-label" @click.stop.prevent="handleSpanFocus">Email</span>
       </div>
       <span class="required-label">*Required</span>
@@ -38,7 +38,7 @@
           name="subject"
           @focus="toggleInputFocus"
           @blur="toggleInputFocus"
-        />
+        >
         <span class="input-label" @click.stop.prevent="handleSpanFocus">Subject</span>
       </div>
 
@@ -81,7 +81,7 @@ import Tick from '../components/contact/tick.vue';
 import Alert from '../components/contact/alert.vue';
 import Spinner from '../components/spinner';
 
-const timeOutHandler = reactiveVal => {
+const timeOutHandler = (reactiveVal) => {
   return () => {
     reactiveVal.isLoading = false;
     reactiveVal.messageClass = 'form-result';
@@ -89,7 +89,7 @@ const timeOutHandler = reactiveVal => {
   };
 };
 
-const readForm = formTarget => {
+const readForm = (formTarget) => {
   let data = {};
   let div = document.createElement('div');
 
@@ -104,7 +104,7 @@ const readForm = formTarget => {
   return data;
 };
 
-const toggleFocus = (target, templateData, eventType) => {
+const toggleFocus = (target, templateData) => {
   const value = target?.value;
   const targetName = target?.name;
 
@@ -132,7 +132,7 @@ export default {
     });
     const loading = ref(false);
 
-    const handleFormSubmit = async event => {
+    const handleFormSubmit = async (event) => {
       loading.value = true;
       const data = readForm(event.target);
 
@@ -161,12 +161,12 @@ export default {
       }
     };
 
-    const toggleInputFocus = event => {
+    const toggleInputFocus = (event) => {
       const target = event?.target;
       toggleFocus(target, templateData, event?.type);
     };
 
-    const handleSpanFocus = event => {
+    const handleSpanFocus = (event) => {
       const target = event?.currentTarget;
       const parentEl = target?.parentNode || target?.parentElement;
       const inputEl = target?.previousSibling || target?.previousElementSibling;

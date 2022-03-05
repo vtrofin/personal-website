@@ -15,7 +15,7 @@
         <span>Bento&Co</span>
       </a>
       sells bento boxes online, from Kyoto. It operates a series of Shopify stores, in English,
-      French and Japanese and an additional store for enterprise customers.
+      French and Japanese.
     </p>
 
     <h2>Contribution</h2>
@@ -34,13 +34,13 @@ export default {
   name: 'BentoandcoContent',
   components: { ProjectSummary },
   props: { modifier: { type: String, required: false, default: '' } },
-  setup(props) {
+  setup() {
     const summary = {
       position: 'Web engineer',
       organization: 'Bertrandco',
       work: ['Support dev work'],
       stack: ['Shopify', 'Liquid'],
-      years: '2018 –',
+      years: '2018 – 2021',
     };
     return { summary };
   },

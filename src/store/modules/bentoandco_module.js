@@ -5,8 +5,7 @@ export default {
       type: 'project',
       logoClass: `bentoandco-logo`,
       backgroundClass: 'bentoandco-background',
-      excerpt:
-        'Shopify online store selling bento boxes, from Kyoto. The main reason why Ship&co exists today',
+      excerpt: 'Shopify online store selling bento boxes from Kyoto',
       item_title: 'Bento&Co Shopify stores', // will not overwrite the homepage short title
       role: '',
     },

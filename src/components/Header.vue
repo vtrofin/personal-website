@@ -42,12 +42,21 @@
             href="https://vtrofin.github.io/"
             aria-label="View my curriculum vitae"
           >
-            <span :class="classModifiers.spanClass">
-              CV
-            </span>
+            <span :class="classModifiers.spanClass"> CV </span>
           </a>
         </li>
         <li class="auto-margin">
+          <a
+            :class="classModifiers.linkClass"
+            href="https://dev.to/vtrofin"
+            aria-label="View my profile on dev.to"
+          >
+            <span :class="classModifiers.spanClass">
+              <fa :icon="['fas', 'pen-nib']" />
+            </span>
+          </a>
+        </li>
+        <li>
           <GithubLogo :modifier-class="classModifiers.linkClass" />
         </li>
       </ul>

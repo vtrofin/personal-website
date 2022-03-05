@@ -10,6 +10,7 @@ import StockandcoContent from './stockandco';
 import UtilsContent from './utils';
 import StaffContent from './staff';
 import BentoandcoContent from './bentoandco';
+import AtsContent from './ats.vue';
 
 export default {
   name: 'ProjectItemContent',
@@ -19,14 +20,18 @@ export default {
     UtilsContent,
     StaffContent,
     BentoandcoContent,
+    AtsContent,
   },
-  setup(props) {
+  setup() {
     const route = useRoute();
     const modifierClass = ref('');
+
     if (route?.params?.project_item) {
       modifierClass.value = route.params.project_item;
     }
 
+    // eslint will complain about the side effect in the computed property.
+    // consider adding a watch for the modifierClass value
     const projectContentComponent = computed(() => {
       const current = route?.params?.project_item;
       if (!current) {
@@ -111,11 +116,5 @@ export default {
 
 .content-image {
   width: 100%;
-  margin: -10% auto;
-}
-@media all and (min-width: 1024px) {
-  .content-image {
-    margin: -20% auto;
-  }
 }
 </style>

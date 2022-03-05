@@ -75,6 +75,21 @@ export const metaTags = {
     { property: 'og:image', content: 'https://trofin.me/og_image.jpg' },
   ],
   project: route => {
+    if (route?.params?.project_item === 'ats') {
+      return [
+        {
+          name: 'description',
+          content:
+            'Full stack web engineer for an applicant tracking system with Next.js, GraphQL, ReScript and TypeScript',
+        },
+        {
+          name: 'keywords',
+          content:
+            'Scoville, ReScript, TypeScript, Fastify, GraphQL, Next.js, Prisma.io, Tailwind, web engineer',
+        },
+      ];
+    }
+
     return [
       {
         name: 'description',

@@ -15,7 +15,7 @@
           loading="lazy"
           width="80"
           height="80"
-        />
+        >
         <div class="about-text">
           <span class="caption-text">Victor Trofin</span>
           <span class="caption-text-small">My toolbox: </span>

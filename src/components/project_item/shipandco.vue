@@ -85,7 +85,7 @@
     </ul>
     <p>
       Major logistics APIs I worked with: DHL, FedEx, UPS, DHL eCommerce, Sagawa, Yamato and Japan
-      Post.<br /><br />Major ecommerce APIs I worked with include: Shopify, eBay, Prestashop,
+      Post.<br><br>Major ecommerce APIs I worked with include: Shopify, eBay, Prestashop,
       WooCommerce, QuickBooks Commerce, Base, Next Engine, ColorMe and Yahoo! Shoppping Japan.
     </p>
   </div>

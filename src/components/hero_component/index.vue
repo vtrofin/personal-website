@@ -23,7 +23,7 @@
           class="bash-history"
           v-for="(line, i) in animationText"
           :key="i"
-          :ref="'animationText' + i"
+          :ref="(el) => animationTextRefs.push(el)"
           tabindex="0"
         >
           <span class="animation-text">{{ line }}</span>
@@ -37,7 +37,7 @@
 import anime from 'animejs/lib/anime.es.js';
 import { computed, ref, onMounted, onUnmounted } from 'vue';
 import { useStore } from 'vuex';
-import { createAnimationRefs, getExplodedContent } from '../helpers';
+import { getExplodedContent } from '../helpers';
 import { getAnimationObserver } from '../helpers/intersect';
 import { stopAnimation } from '../helpers/animate';
 
@@ -53,14 +53,18 @@ export default {
     const cliContainer = ref(null);
     const cliWrapperActiveText = ref(null);
     const animationText = store.getters['hero/getAnimationText'];
-    const animationTextRefs = createAnimationRefs('animationText', animationText?.length, ref);
+    // Using a function ref in the HTML above because of the bug documented here:
+    // https://github.com/vuejs/core/issues/5525#issuecomment-1059855276
+    // function ref working while regular v-for ref is failing
+    // https://stackblitz.com/edit/vitejs-vite-h42vi4?file=src/App.vue
+    const animationTextRefs = ref([]);
     let staggeredAnimation = ref(null);
 
     onMounted(() => {
       // prepare text for animation -> explode into single characters
       const formattedText = getExplodedContent(animationText);
       for (let i in formattedText) {
-        animationTextRefs[`animationText${i}`].value.innerHTML = formattedText[i];
+        animationTextRefs.value[i].innerHTML = formattedText[i];
       }
       //  check that cli is visible & trigger animation
       cliObserver = getAnimationObserver({ cliContainer, anime, staggeredAnimation });
@@ -77,7 +81,7 @@ export default {
       cliContainer,
       cliWrapperActiveText,
       animationText,
-      ...animationTextRefs,
+      animationTextRefs,
     };
   },
 };

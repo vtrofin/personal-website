@@ -64,7 +64,6 @@ export const animateCliText = ({ cliContainer, anime, staggeredAnimation }) => {
     targets: '.bash-history .animation-text',
     opacity: [0, 1],
     round: 1,
-    delay: 25,
     delay: anime.stagger(25, { start: 350, direction: 'normal', easing: 'linear' }),
     complete: () => {
       // display the blinking cursor after animation finished

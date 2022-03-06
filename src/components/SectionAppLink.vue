@@ -41,7 +41,7 @@ export default {
   setup(props) {
     const { activeClass, exactActiveClass, totalItems } = toRefs(props);
     const path = toRef(props, 'to');
-    const { isActive, isExactActive } = useLink(path);
+    const { isActive, isExactActive } = useLink(props);
 
     const isExternalLink = computed(() => checkExternalPath({ path: path.value }));
     const computedClassName = computed(() =>

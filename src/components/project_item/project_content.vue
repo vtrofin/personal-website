@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import { computed, ref } from 'vue';
+import { computed, ref, watch } from 'vue';
 import { useRoute } from 'vue-router';
 import ShipandcoContent from './shipandco';
 import StockandcoContent from './stockandco';
@@ -26,19 +26,23 @@ export default {
     const route = useRoute();
     const modifierClass = ref('');
 
-    if (route?.params?.project_item) {
-      modifierClass.value = route.params.project_item;
-    }
+    watch(
+      () => route?.params?.project_item,
+      (projectItem) => {
+        if (!projectItem) {
+          modifierClass.value = '';
+        } else {
+          modifierClass.value = `${projectItem}-link`;
+        }
+      }
+    );
 
-    // eslint will complain about the side effect in the computed property.
-    // consider adding a watch for the modifierClass value
     const projectContentComponent = computed(() => {
       const current = route?.params?.project_item;
       if (!current) {
-        modifierClass.value = '';
         return undefined;
       }
-      modifierClass.value = `${route.params.project_item}-link`;
+
       return `${route.params.project_item}-content`;
     });
 

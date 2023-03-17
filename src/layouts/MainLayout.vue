@@ -1,29 +1,29 @@
 <template>
-  <Header :modifier="modifier" @toggle-toolbox="relayToggle" />
+  <HeaderComponent :modifier="modifier" @toggle-toolbox="relayToggle" />
   <main>
     <div class="content">
       <router-view />
     </div>
   </main>
-  <Footer :modifier="modifier" />
+  <FooterComponent :modifier="modifier" />
 </template>
 
 <script>
-import Header from '../components/Header';
-import Footer from '../components/Footer';
+import HeaderComponent from "../components/Header";
+import FooterComponent from "../components/Footer";
 
 export default {
-  name: 'MainLayout',
-  components: { Header, Footer },
+  name: "MainLayout",
+  components: { HeaderComponent, FooterComponent },
   props: {
-    modifier: { type: String, required: false, default: '' },
+    modifier: { type: String, required: false, default: "" },
   },
   emits: {
     relayToggleToolbox: null,
   },
   setup(props, context) {
     const { emit } = context;
-    const relayToggle = () => emit('relayToggleToolbox');
+    const relayToggle = () => emit("relayToggleToolbox");
     return { relayToggle };
   },
 };
@@ -64,7 +64,7 @@ main .content,
 .contact-link:before {
   display: block;
   z-index: 5;
-  content: '';
+  content: "";
   width: 100%;
   position: absolute;
   bottom: -3px;
@@ -140,7 +140,7 @@ main .content,
 /* Backgrounds  */
 .shipandco-background,
 .shipandco-project-active {
-  background-image: url('/shipandco.png');
+  background-image: url("/public/shipandco.png");
   background-size: cover;
   background-repeat: no-repeat;
 }
@@ -159,20 +159,20 @@ main .content,
 @media all and (min-width: 1400px) {
   .shipandco-project-active {
     background-position: center top;
-    background-image: url('/shipandco_highres.png');
+    background-image: url("/public/shipandco_highres.png");
   }
 }
 
 .stockandco-background,
 .stockandco-project-active {
-  background-image: url('/stockandco.jpg');
+  background-image: url("/public/stockandco.jpg");
   background-size: cover;
   background-position: center center;
 }
 
 .bentoandco-background,
 .bentoandco-project-active {
-  background-image: url('/bentoandco.png');
+  background-image: url("/public/bentoandco.png");
   background-size: cover;
   background-position: center 420px;
   background-repeat: no-repeat;
@@ -184,16 +184,16 @@ main .content,
 
 /* Icons and Logos  */
 .shipandco-logo {
-  background-image: url('/logo-shipandco.svg');
+  background-image: url("/public/logo-shipandco.svg");
 }
 .stockandco-logo {
-  background-image: url('/logo-stockandco.svg');
+  background-image: url("/public/logo-stockandco.svg");
 }
 .bentoandco-logo {
-  background-image: url('/logo-bentoandco.svg');
+  background-image: url("/public/logo-bentoandco.svg");
 }
 .scoville-logo {
-  background-image: url('/logo-scoville.svg');
+  background-image: url("/public/logo-scoville.svg");
 }
 
 /* links modifiers */

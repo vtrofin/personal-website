@@ -11,7 +11,10 @@
   <h3 class="item-title" :id="options.type + '-title' + '-' + idx">
     {{ options.title || options.item_title }}
   </h3>
-  <div v-if="options.logoClass" :class="'item-logo' + ' ' + options.logoClass" />
+  <div
+    v-if="options.logoClass"
+    :class="'item-logo' + ' ' + options.logoClass"
+  />
   <div v-else class="item-divider" />
   <p class="item-text" :id="options.type + '-description' + '-' + idx">
     {{ options.excerpt }}
@@ -20,7 +23,7 @@
 
 <script>
 export default {
-  name: 'Project',
+  name: "ProjectComponent",
   props: {
     options: {
       type: Object,

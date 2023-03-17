@@ -16,7 +16,10 @@
           </router-link>
         </li>
         <li
-          :class="'toolbox' + (classModifiers.linkClass ? ' ' + classModifiers.linkClass : '')"
+          :class="
+            'toolbox' +
+            (classModifiers.linkClass ? ' ' + classModifiers.linkClass : '')
+          "
           @click.prevent="toggleToolbox"
           tabindex="0"
           aria-label="My skills"
@@ -66,34 +69,36 @@
 </template>
 
 <script>
-import { computed } from 'vue';
-import { useStore } from 'vuex';
-import HeaderLogo from './HeaderLogo';
-import GithubLogo from './GithubLogo';
-import ProjectItemHeader from './project_item/project_header.vue';
+import { computed } from "vue";
+import { useStore } from "vuex";
+import HeaderLogo from "./HeaderLogo";
+import GithubLogo from "./GithubLogo";
+import ProjectItemHeader from "./project_item/project_header.vue";
 
 export default {
-  name: 'Header',
+  name: "HeaderComponent",
   components: { HeaderLogo, GithubLogo, ProjectItemHeader },
-  props: { modifier: { type: String, required: false, default: '' } },
+  props: { modifier: { type: String, required: false, default: "" } },
   emits: {
     toggleToolbox: null,
   },
   setup(props, context) {
     const store = useStore();
     const { emit } = context;
-    const { isMobile } = store.getters['checkMobile'];
+    const { isMobile } = store.getters["checkMobile"];
     const classModifiers = computed(() => {
-      const linkClass = props.modifier ? props.modifier : '';
-      const spanClass = props.modifier ? props.modifier + ' ' + 'nav-link-text' : 'nav-link-text';
-      const navClass = props.modifier ? props.modifier + '-project-active' : '';
+      const linkClass = props.modifier ? props.modifier : "";
+      const spanClass = props.modifier
+        ? props.modifier + " " + "nav-link-text"
+        : "nav-link-text";
+      const navClass = props.modifier ? props.modifier + "-project-active" : "";
       return { linkClass, spanClass, navClass };
     });
 
     const toggleToolbox = () => {
-      const isActive = store.getters['checkToolBox'];
-      store.dispatch({ type: 'setToolBoxState', isToolboxActive: !isActive });
-      emit('toggleToolbox');
+      const isActive = store.getters["checkToolBox"];
+      store.dispatch({ type: "setToolBoxState", isToolboxActive: !isActive });
+      emit("toggleToolbox");
     };
 
     return { classModifiers, toggleToolbox, isMobile };
@@ -164,7 +169,7 @@ export default {
 
 .nav-link-text:before {
   z-index: 5;
-  content: '';
+  content: "";
   width: 100%;
   position: absolute;
   bottom: -10px;

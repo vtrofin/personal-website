@@ -15,7 +15,7 @@
           loading="lazy"
           width="80"
           height="80"
-        >
+        />
         <div class="about-text">
           <span class="caption-text">Victor Trofin</span>
           <span class="caption-text-small">My toolbox: </span>
@@ -25,14 +25,22 @@
         <span v-for="(tool, i) in tools" :key="i">{{ tool }}</span>
       </div>
       <div class="toolbox-icons" tabindex="0">
-        <div aria-label="javascript"><fa :icon="['fab', 'js']" class="fa-2x" /></div>
+        <div aria-label="javascript">
+          <fa :icon="['fab', 'js']" class="fa-2x" />
+        </div>
         <div id="ts" aria-label="typescript" />
         <div id="rescript" aria-label="rescript" />
-        <div aria-label="swift"><fa :icon="['fab', 'swift']" class="fa-2x" /></div>
+        <div aria-label="swift">
+          <fa :icon="['fab', 'swift']" class="fa-2x" />
+        </div>
         <!-- <div id="go" aria-label="go lang" /> -->
       </div>
     </section>
-    <button id="close-button" @click.prevent="handleBlur" aria-label="Go back to the main page">
+    <button
+      id="close-button"
+      @click.prevent="handleBlur"
+      aria-label="Go back to the main page"
+    >
       Close
     </button>
   </nav>
@@ -42,29 +50,29 @@
   </div>
 </template>
 <script>
-import { toRefs } from 'vue';
-import { useStore } from 'vuex';
+import { toRefs } from "vue";
+import { useStore } from "vuex";
 
 export default {
-  name: 'ToolBoxWrapper',
+  name: "ToolBoxWrapper",
   props: {
     toolboxState: { type: Object, required: true },
   },
   emits: {
     toggleToolboxState: ({ isActive }) => {
-      return typeof isActive === 'boolean';
+      return typeof isActive === "boolean";
     },
   },
   setup(props, context) {
     const { active: toolboxActive } = toRefs(props.toolboxState);
     const { emit } = context;
     const store = useStore();
-    const tools = store.getters['tools/getAllTools'];
+    const tools = store.getters["tools/getAllTools"];
 
     const handleBlur = () => {
-      if (toolboxActive) {
-        store.dispatch({ type: 'setToolBoxState', isToolboxActive: false });
-        emit('toggleToolboxState', { isActive: false });
+      if (toolboxActive.value) {
+        store.dispatch({ type: "setToolBoxState", isToolboxActive: false });
+        emit("toggleToolboxState", { isActive: false });
       }
     };
 
@@ -85,7 +93,11 @@ export default {
 }
 
 #app > .toolbox-open:nth-child(3) {
-  transform: translate3d(var(--base-translate-unit), var(--base-translate-unit), 0);
+  transform: translate3d(
+    var(--base-translate-unit),
+    var(--base-translate-unit),
+    0
+  );
   transition: transform 0.3s;
 }
 @media all and (min-width: 600px) {
@@ -145,7 +157,7 @@ export default {
 }
 #close-button:before,
 #close-button:after {
-  content: '';
+  content: "";
   position: absolute;
   width: 2px;
   height: 100%;
@@ -230,14 +242,14 @@ export default {
 }
 
 .toolbox-icons #go {
-  background-image: url('/go_logo.svg');
+  background-image: url("/public/go_logo.svg");
 }
 .toolbox-icons #rescript {
-  background-image: url('/rescript_logo.svg');
+  background-image: url("/public/rescript_logo.svg");
   background-position-x: 0%;
 }
 .toolbox-icons #ts {
-  background-image: url('/ts_logo.svg');
+  background-image: url("/public/ts_logo.svg");
   background-position-x: 58%;
 }
 </style>

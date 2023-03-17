@@ -7,35 +7,47 @@
       :to="options.path"
       :aria-label="options.ariaLabel"
       :active-class="
-        'active' + ' ' + options.project ? `${options.projects}-active` : 'shipandco-active'
+        'active' + ' ' + options.project
+          ? `${options.projects}-active`
+          : 'shipandco-active'
       "
       :exact-active-class="
-        'exact-active' + ' ' + options.project ? `${options.project}-active` : 'shipandco-active'
+        'exact-active' + ' ' + options.project
+          ? `${options.project}-active`
+          : 'shipandco-active'
       "
       :total-items="data.length"
     >
       <template #section-link-slot>
-        <Project v-if="options.type === 'project'" :options="options" :idx="idx" />
-        <Project v-else-if="options.type === 'work'" :options="options" :idx="idx" />
+        <ProjectComponent
+          v-if="options.type === 'project'"
+          :options="options"
+          :idx="idx"
+        />
+        <ProjectComponent
+          v-else-if="options.type === 'work'"
+          :options="options"
+          :idx="idx"
+        />
       </template>
     </SectionAppLink>
   </section>
 </template>
 
 <script>
-import SectionAppLink from '../SectionAppLink';
-import Project from './Project';
-import { generalSectionArrayValidator } from '../helpers/validators';
+import SectionAppLink from "../SectionAppLink";
+import ProjectComponent from "./Project";
+import { generalSectionArrayValidator } from "../helpers/validators";
 
 export default {
-  name: 'GeneralSection',
-  components: { SectionAppLink, Project },
+  name: "GeneralSection",
+  components: { SectionAppLink, ProjectComponent },
   props: {
-    className: { type: String, required: false, default: '' },
+    className: { type: String, required: false, default: "" },
     title: { type: String, required: true },
     // eslint-disable-next-line
     data: { validator: generalSectionArrayValidator },
-    type: { type: String, required: false, default: 'project' },
+    type: { type: String, required: false, default: "project" },
   },
 };
 </script>

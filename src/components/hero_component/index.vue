@@ -5,9 +5,14 @@
     </div>
     <div class="hero-subtitle" tabindex="0">
       <p>
-        I'm a full-stack web engineer with a passion for bringing products to life. Currently living
-        in Kyoto and working at
-        <a class="content-link" target="_blank" rel="noopener" href="https://scoville.jp/">
+        I'm a full-stack web engineer with a passion for bringing products to
+        life. Currently living in Kyoto and working at
+        <a
+          class="content-link"
+          target="_blank"
+          rel="noopener"
+          href="https://scoville.jp/"
+        >
           Scoville
         </a>
       </p>
@@ -34,25 +39,26 @@
 </template>
 
 <script>
-import anime from 'animejs/lib/anime.es.js';
-import { computed, ref, onMounted, onUnmounted } from 'vue';
-import { useStore } from 'vuex';
-import { getExplodedContent } from '../helpers';
-import { getAnimationObserver } from '../helpers/intersect';
-import { stopAnimation } from '../helpers/animate';
+import anime from "animejs/lib/anime.es.js";
+import { computed, ref, onMounted, onUnmounted } from "vue";
+import { useStore } from "vuex";
+import { getExplodedContent } from "../helpers";
+import { getAnimationObserver } from "../helpers/intersect";
+import { stopAnimation } from "../helpers/animate";
 
 export default {
+  name: "HeroSection",
   emits: {
-    'update-caret-position': null,
+    "update-caret-position": null,
   },
   setup() {
     let cliObserver = null;
     const store = useStore();
-    const bashHistory = computed(() => store.getters['hero/getBashHistory']);
-    const staticText = computed(() => store.getters['hero/getStaticText']);
+    const bashHistory = computed(() => store.getters["hero/getBashHistory"]);
+    const staticText = computed(() => store.getters["hero/getStaticText"]);
     const cliContainer = ref(null);
     const cliWrapperActiveText = ref(null);
-    const animationText = store.getters['hero/getAnimationText'];
+    const animationText = store.getters["hero/getAnimationText"];
     // Using a function ref in the HTML above because of the bug documented here:
     // https://github.com/vuejs/core/issues/5525#issuecomment-1059855276
     // function ref working while regular v-for ref is failing
@@ -67,7 +73,11 @@ export default {
         animationTextRefs.value[i].innerHTML = formattedText[i];
       }
       //  check that cli is visible & trigger animation
-      cliObserver = getAnimationObserver({ cliContainer, anime, staggeredAnimation });
+      cliObserver = getAnimationObserver({
+        cliContainer,
+        anime,
+        staggeredAnimation,
+      });
     });
 
     onUnmounted(() => {
@@ -160,7 +170,7 @@ export default {
   padding-left: 0.5rem;
   padding-right: 0.5rem;
   color: var(--white);
-  font-family: 'Roboto Mono', Courier, Monaco, Arial, Helvetica, sans-serif;
+  font-family: "Roboto Mono", Courier, Monaco, Arial, Helvetica, sans-serif;
   font-weight: 500;
   font-size: 1rem;
   line-height: 1.1rem;

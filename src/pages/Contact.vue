@@ -2,7 +2,8 @@
   <section>
     <h1>Contact me</h1>
     <p tabindex="0">
-      Have a project you want to discuss? Leave a message and I'll be in touch with you shortly.
+      Have a project you want to discuss? Leave a message and I'll be in touch
+      with you shortly.
     </p>
     <form method="post" @submit.prevent="handleFormSubmit">
       <label for="name">Name</label>
@@ -13,8 +14,10 @@
           name="name"
           @focus="toggleInputFocus"
           @blur="toggleInputFocus"
+        />
+        <span class="input-label" @click.stop.prevent="handleSpanFocus"
+          >Name</span
         >
-        <span class="input-label" @click.stop.prevent="handleSpanFocus">Name</span>
       </div>
       <label for="email">Email</label>
       <div :class="getClassName('input-container', 'email')">
@@ -25,8 +28,10 @@
           :required="true"
           @focus="toggleInputFocus"
           @blur="toggleInputFocus"
+        />
+        <span class="input-label" @click.stop.prevent="handleSpanFocus"
+          >Email</span
         >
-        <span class="input-label" @click.stop.prevent="handleSpanFocus">Email</span>
       </div>
       <span class="required-label">*Required</span>
 
@@ -38,8 +43,10 @@
           name="subject"
           @focus="toggleInputFocus"
           @blur="toggleInputFocus"
+        />
+        <span class="input-label" @click.stop.prevent="handleSpanFocus"
+          >Subject</span
         >
-        <span class="input-label" @click.stop.prevent="handleSpanFocus">Subject</span>
       </div>
 
       <label for="message">Message*</label>
@@ -52,17 +59,30 @@
           @focus="toggleInputFocus"
           @blur="toggleInputFocus"
         />
-        <span class="input-label" @click.stop.prevent="handleSpanFocus">Message</span>
+        <span class="input-label" @click.stop.prevent="handleSpanFocus"
+          >Message</span
+        >
       </div>
       <span class="required-label">*Required</span>
 
-      <button type="submit" :disabled="templateData.isLoading" aria-label="Send the email message">
-        <Spinner text="Sending..." v-if="loading" />
+      <button
+        type="submit"
+        :disabled="templateData.isLoading"
+        aria-label="Send the email message"
+      >
+        <SpinnerComponent text="Sending..." v-if="loading" />
         <span v-else>Submit</span>
       </button>
-      <div :class="templateData.messageClass" :v-if="templateData.formSubmitMessage">
-        <Alert width="16px" color="#f28482" v-if="templateData.messageClass.includes('error')" />
-        <Tick
+      <div
+        :class="templateData.messageClass"
+        :v-if="templateData.formSubmitMessage"
+      >
+        <AlertComponent
+          width="16px"
+          color="#f28482"
+          v-if="templateData.messageClass.includes('error')"
+        />
+        <TickComponent
           width="16px"
           color="#84a59d"
           v-else-if="templateData.messageClass.includes('success')"
@@ -76,22 +96,22 @@
 </template>
 
 <script>
-import { reactive, ref } from 'vue';
-import Tick from '../components/contact/tick.vue';
-import Alert from '../components/contact/alert.vue';
-import Spinner from '../components/spinner';
+import { reactive, ref } from "vue";
+import TickComponent from "../components/contact/tick.vue";
+import AlertComponent from "../components/contact/alert.vue";
+import SpinnerComponent from "../components/spinner";
 
 const timeOutHandler = (reactiveVal) => {
   return () => {
     reactiveVal.isLoading = false;
-    reactiveVal.messageClass = 'form-result';
-    reactiveVal.formSubmitMessage = '';
+    reactiveVal.messageClass = "form-result";
+    reactiveVal.formSubmitMessage = "";
   };
 };
 
 const readForm = (formTarget) => {
   let data = {};
-  let div = document.createElement('div');
+  let div = document.createElement("div");
 
   // sanitize the form data
   for (let elem of formTarget) {
@@ -109,26 +129,27 @@ const toggleFocus = (target, templateData) => {
   const targetName = target?.name;
 
   if (!targetName) {
-    throw new Error('Failed to get target input');
+    throw new Error("Failed to get target input");
   }
 
   const localState = templateData?.inputModifierClass?.[targetName];
-  if (typeof localState !== 'string') {
-    throw new Error('Failed to get input class');
+  if (typeof localState !== "string") {
+    throw new Error("Failed to get input class");
   }
-  templateData.inputModifierClass[targetName] = localState === 'focused' && !value ? '' : 'focused';
+  templateData.inputModifierClass[targetName] =
+    localState === "focused" && !value ? "" : "focused";
 };
 
 export default {
-  name: 'Contact',
-  components: { Tick, Alert, Spinner },
+  name: "ContactPage",
+  components: { TickComponent, AlertComponent, SpinnerComponent },
   setup() {
-    const timeoutVal = (process.env.NODE_ENV === 'development' ? 3 : 30) * 1000;
+    const timeoutVal = (process.env.NODE_ENV === "development" ? 3 : 30) * 1000;
     const templateData = reactive({
       isLoading: false,
-      formSubmitMessage: '',
-      messageClass: 'form-result',
-      inputModifierClass: { name: '', email: '', subject: '', message: '' },
+      formSubmitMessage: "",
+      messageClass: "form-result",
+      inputModifierClass: { name: "", email: "", subject: "", message: "" },
     });
     const loading = ref(false);
 
@@ -140,22 +161,22 @@ export default {
         templateData.isLoading = true;
         const url = `/api/contact?token=${process.env.VUE_APP_CONTACT_TOKEN}`;
         const response = await fetch(url, {
-          method: 'POST',
+          method: "POST",
           headers: {
-            'Content-Type': 'application/json',
+            "Content-Type": "application/json",
           },
           body: JSON.stringify(data),
         });
         const res = await response.json();
-        templateData.formSubmitMessage = res.message || '';
+        templateData.formSubmitMessage = res.message || "";
         templateData.messageClass = `form-result ${
-          res && res.response === 'error' ? 'error' : 'success'
+          res && res.response === "error" ? "error" : "success"
         }`;
         loading.value = false;
         setTimeout(timeOutHandler(templateData, loading), timeoutVal);
       } catch (err) {
         templateData.formSubmitMessage = `Error: ${err.message}`;
-        templateData.messageClass = 'form-result error';
+        templateData.messageClass = "form-result error";
         loading.value = false;
         setTimeout(timeOutHandler(templateData, loading), timeoutVal);
       }
@@ -171,11 +192,11 @@ export default {
       const parentEl = target?.parentNode || target?.parentElement;
       const inputEl = target?.previousSibling || target?.previousElementSibling;
 
-      if (typeof parentEl?.className !== 'string') {
-        throw new Error('Failed to get span element class');
+      if (typeof parentEl?.className !== "string") {
+        throw new Error("Failed to get span element class");
       }
 
-      if (!parentEl.className.includes('focused')) {
+      if (!parentEl.className.includes("focused")) {
         setTimeout(() => inputEl.focus(), 0);
       }
     };
@@ -184,8 +205,8 @@ export default {
       return (
         baseClass +
         (templateData?.inputModifierClass?.[modifier]
-          ? ' ' + templateData.inputModifierClass[modifier]
-          : '')
+          ? " " + templateData.inputModifierClass[modifier]
+          : "")
       );
     };
 
@@ -296,7 +317,7 @@ textarea:focus {
   }
 }
 
-button[type='submit'] {
+button[type="submit"] {
   padding: 0.75rem 1.5rem;
   margin-top: 1rem;
   align-self: center;
@@ -312,13 +333,13 @@ button[type='submit'] {
   outline: none;
 }
 
-button[type='submit']:hover,
-button[type='submit']:focus {
+button[type="submit"]:hover,
+button[type="submit"]:focus {
   filter: brightness(0.9);
   transition: all 0.3s ease-in;
 }
 
-button[type='submit']:disabled {
+button[type="submit"]:disabled {
   filter: brightness(1.1);
   pointer-events: none;
   transition: all 0.3s ease-in;

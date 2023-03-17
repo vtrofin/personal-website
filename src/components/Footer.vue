@@ -4,9 +4,7 @@
       <h2 class="section-header">Connect</h2>
     </div>
     <div class="footer-container">
-      <h3 class="item-title" tabindex="0">
-        Want to hire me?
-      </h3>
+      <h3 class="item-title" tabindex="0">Want to hire me?</h3>
       <p class="item-text">
         Feel free to
         <a
@@ -15,9 +13,7 @@
           target="_blank"
           rel="noopener"
         >
-          <span>
-            send me a message
-          </span>
+          <span> send me a message </span>
         </a>
         .
       </p>
@@ -41,7 +37,10 @@
           </a>
         </li>
         <li>
-          <a href="https://www.flaticon.com/authors/pixel-perfect" title="Pixel perfect">
+          <a
+            href="https://www.flaticon.com/authors/pixel-perfect"
+            title="Pixel perfect"
+          >
             Pixel perfect
           </a>
         </li>
@@ -53,8 +52,8 @@
 
 <script>
 export default {
-  name: 'Footer',
-  props: { modifier: { type: String, required: false, default: '' } },
+  name: "FooterComponent",
+  props: { modifier: { type: String, required: false, default: "" } },
 };
 </script>
 
@@ -144,8 +143,9 @@ footer .section-header {
   margin-top: 0.3rem;
   color: var(--gray);
 }
-.thanks li:not(:first-of-type):not(:last-of-type):not(:nth-last-of-type(2)):after {
-  content: '|';
+.thanks
+  li:not(:first-of-type):not(:last-of-type):not(:nth-last-of-type(2)):after {
+  content: "|";
   margin-left: 0.2rem;
   margin-right: 0.2rem;
 }
@@ -154,7 +154,7 @@ footer .section-header {
   margin-right: 0.2rem;
 }
 .thanks li:nth-last-of-type(2):after {
-  content: '.';
+  content: ".";
   margin-left: -0.1rem;
 }
 

@@ -9,6 +9,9 @@ import NotFound from "./pages/NotFound.vue";
 import ContactPage from "./pages/Contact.vue";
 import { checkProjectRoute } from "./helpers";
 import { handleMetaTags, metaTags } from "./helpers/meta_tags";
+import { inject } from "@vercel/analytics";
+
+inject();
 
 const routes = [
   {

@@ -72,6 +72,7 @@ VUE_APP_CONTACT_TOKEN=
 - Get refresh token [here](https://developers.google.com/oauthplayground/) => Settings => Use your own OAuth credentials
 - Add refresh token to .env file for dev.
 - Add refresh token to [secret](https://vercel.com/docs/cli#commands/secrets). Link secret to [prod env](https://vercel.com/docs/environment-variables#)
+- If you ever have an `Error: unauthorized_client` when sending email, make sure that you've added the oauth clientid oauth client secret in the playground's [settings](https://github.com/nodemailer/nodemailer/issues/564#issuecomment-763905865)
 
 ### Vercel docs:
 

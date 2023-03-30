@@ -2,34 +2,34 @@ export default {
   namespaced: true,
   state: () => ({
     bashHistory: [],
-    staticText: '$',
+    staticText: "$",
     coordinates: {
       x: null,
       y: null,
     },
     animationTextLines: [
-      '$ whoami',
-      'I shape ideas into practical software focusing on accessibility and performance.',
-      'I follow industry-recognized best practices.',
-      'My tech stack: ReScript, TypeScript and Node.js.',
-      "I'm also proficient with Swift UI.",
-      "I'm learning Rust and iOS development in my spare time.",
+      "$ whoami",
+      "I shape ideas into practical software focusing on accessibility and performance.",
+      "I follow industry-recognized best practices.",
+      "My tech stack: ReScript, TypeScript and Node.js.",
+      "Proficient with Swift UI.",
+      "Learning Rust and iOS development in my spare time.",
       "I'm doing my best work when closely collaborating with clients, designers and other web engineers.",
       // `I'm excited about the intersection of code and math, looking to complement my coding skills with knowledge of machine learning.`,
-      // `$ I'm open to full-time offers in Japan. Available to take on freelance opportunities worldwide`
+      `Open to full-time offers in Japan. Available to take on freelance opportunities worldwide.`,
     ],
   }),
   getters: {
-    getBashHistory: state => {
+    getBashHistory: (state) => {
       return state.bashHistory;
     },
-    getStaticText: state => {
+    getStaticText: (state) => {
       return state.staticText;
     },
-    getCoordinates: state => {
+    getCoordinates: (state) => {
       return state.coordinates;
     },
-    getAnimationText: state => {
+    getAnimationText: (state) => {
       return state.animationTextLines;
     },
   },
@@ -48,10 +48,10 @@ export default {
   },
   actions: {
     pushLine({ commit }, payload) {
-      commit('pushToHistory', payload);
+      commit("pushToHistory", payload);
     },
     updateCoordinates({ commit }, payload) {
-      commit('updateCoords', payload);
+      commit("updateCoords", payload);
     },
   },
 };

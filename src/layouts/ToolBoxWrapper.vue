@@ -93,6 +93,7 @@ export default {
   transform: translate3d(0, 0, 0);
   transition: transform 0.3s;
   background-color: var(--background-white);
+  justify-content: center;
 }
 
 #app > .toolbox-open:nth-child(3) {

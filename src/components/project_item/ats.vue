@@ -63,7 +63,7 @@
         Terraform
       </li>
       <li>
-        Refactored existing CircleCI pipelines and transition to Github Actions
+        Refactor existing CircleCI pipelines and transition to Github Actions
       </li>
       <li>Set-up new CI/CD pipelines with Github Actions</li>
     </ul>

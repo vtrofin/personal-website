@@ -33,6 +33,9 @@
         <div aria-label="swift">
           <fa :icon="['fab', 'swift']" class="fa-2x" />
         </div>
+        <div aria-label="rust">
+          <fa :icon="['fab', 'rust']" class="fa-2x" />
+        </div>
         <!-- <div id="go" aria-label="go lang" /> -->
       </div>
     </section>
@@ -250,6 +253,6 @@ export default {
 }
 .toolbox-icons #ts {
   background-image: url("/public/ts_logo.svg");
-  background-position-x: 58%;
+  background-position-x: 54%;
 }
 </style>

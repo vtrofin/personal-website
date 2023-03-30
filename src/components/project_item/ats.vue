@@ -38,9 +38,10 @@
       app, initially focusing on the front-end side while getting familiar with
       type systems (ReScript and TypeScript) and subsequently transitioning to a
       full-stack role. The highlight for me has been the contribution towards
-      provisioning the production environment using AWS and Terraform. This
-      milestone marked the transition from an experienced developer role to a
-      more senior web engineer role. Some of my contributions include:
+      provisioning the production environment using AWS and Terraform. Gaining
+      essential DevOps skills marked my transition from an experienced developer
+      role to that of a more senior web engineer. Some of my contributions
+      include:
     </p>
     <ul class="content-list">
       <li>

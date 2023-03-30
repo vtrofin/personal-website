@@ -2,7 +2,7 @@
   <div class="project-content">
     <h2>The Project</h2>
     <p>
-      BluumHire is an applicant tracking system built using a modern tech stack
+      Bluum Hire is an applicant tracking system built using a modern tech stack
       with emphasis on type safety, flexibility and performance. The first
       iteration of the app leveraged Next.js and ReScript to create a server
       side rendered app while guaranteeing type safety and fast compile times.
@@ -40,8 +40,7 @@
       full-stack role. The highlight for me has been the contribution towards
       provisioning the production environment using AWS and Terraform. Gaining
       essential DevOps skills marked my transition from an experienced developer
-      role to that of a more senior web engineer. Some of my contributions
-      include:
+      role to that of a senior web engineer. Some of my contributions include:
     </p>
     <ul class="content-list">
       <li>

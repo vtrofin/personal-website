@@ -62,7 +62,7 @@ footer {
   grid-row-start: -1;
   background: var(--light-green);
   color: var(--black);
-  width: 100vw;
+  width: 100%;
   margin-top: 2.5rem;
 }
 .section-header-container {

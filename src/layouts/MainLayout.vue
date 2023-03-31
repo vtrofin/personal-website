@@ -32,6 +32,12 @@ export default {
 main {
   width: 100%;
 }
+/* Fix scolling lag in Safari: only the body is painted while scrolling. Content is painted with a delay
+https://stackoverflow.com/a/26682113/20296910
+*/
+main * {
+  -webkit-transform: translate3d(0, 0, 0);
+}
 
 main .content,
 .project-header-container .content {

@@ -19,11 +19,15 @@
       <div class="summary-right" tabindex="0">
         <span class="summary-subtitle">Stack</span>
         <ul class="summary-content">
-          <li v-for="(stackItem, i) in $props.options.stack" :key="i">{{ stackItem }}</li>
+          <li v-for="(stackItem, i) in $props.options.stack" :key="i">
+            {{ stackItem }}
+          </li>
         </ul>
         <span class="summary-subtitle">Work</span>
         <ul class="summary-content">
-          <li v-for="(workItem, j) in $props.options.work" :key="j">{{ workItem }}</li>
+          <li v-for="(workItem, j) in $props.options.work" :key="j">
+            {{ workItem }}
+          </li>
         </ul>
       </div>
     </div>
@@ -31,10 +35,10 @@
 </template>
 <script>
 export default {
-  name: 'ProjectSummary',
+  name: "ProjectSummary",
   props: {
     options: { type: Object, required: true },
-    modifier: { type: String, required: false, default: '' },
+    modifier: { type: String, required: false, default: "" },
   },
   setup() {
     const currentYear = `${new Date().getFullYear()}`;
@@ -53,6 +57,7 @@ export default {
   font-weight: 500;
   line-height: 0.5em;
   font-size: 8vmin;
+  position: relative;
 }
 @media all and (min-width: 600px) {
   .project-content .summary-container h3 {

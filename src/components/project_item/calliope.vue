@@ -2,13 +2,7 @@
   <div class="project-content">
     <h2>The Project</h2>
     <p>
-      Bluum Hire is an applicant tracking system built using a modern tech stack
-      with emphasis on type safety, flexibility and performance. The first
-      iteration of the app leveraged Next.js and ReScript to create a server
-      side rendered app while guaranteeing type safety and fast compile times.
-      It also featured an identity provider service leveraging Next.js,
-      TypeScript and ORY Hydra to implement the OAuth 2.0 authorization
-      framework.
+      Calliope
     </p>
     <p>
       The app has since been refactored into a Single Page Application
@@ -77,29 +71,21 @@
 import ProjectSummary from "./project_summary";
 import ProjectImage from "./project_image";
 export default {
-  name: "AtsContent",
+  name: "CalliopeContent",
   components: { ProjectSummary, ProjectImage },
   props: { modifier: { type: String, required: false, default: "" } },
   setup() {
     const summary = {
       position: "Web engineer",
       organization: "Scoville",
-      work: ["Full-stack dev"],
+      work: ["Front-end dev"],
       stack: [
-        "ReScript",
         "TypeScript",
-        "Next.js",
         "Tailwind CSS",
-        "Fastify",
-        "Apollo Server",
-        "Prisma",
-        "PostgreSQL",
-        "AWS",
+        "Amazon Connect",
         "Terraform",
-        "Github Actions",
-        "CircleCI",
       ],
-      years: "2021 - 2023",
+      years: "2023 -",
     };
     return { summary };
   },

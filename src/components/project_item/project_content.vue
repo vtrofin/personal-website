@@ -10,7 +10,8 @@ import StockandcoContent from './stockandco';
 import UtilsContent from './utils';
 import StaffContent from './staff';
 import BentoandcoContent from './bentoandco';
-import AtsContent from './ats.vue';
+import AtsContent from './ats';
+import CalliopeContent from './calliope';
 
 export default {
   name: 'ProjectItemContent',
@@ -21,6 +22,7 @@ export default {
     StaffContent,
     BentoandcoContent,
     AtsContent,
+    CalliopeContent,
   },
   setup() {
     const route = useRoute();
@@ -29,6 +31,8 @@ export default {
     watch(
       () => route?.params?.project_item,
       (projectItem) => {
+        console.log("projectItem -->", projectItem)
+
         if (!projectItem) {
           modifierClass.value = '';
         } else {

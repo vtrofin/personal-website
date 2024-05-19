@@ -1,14 +1,22 @@
-import shipandcoModule from './shipandco_module';
-import stockandcoModule from './stockandco_module';
-import staffModule from './staff_module';
-import utilsModule from './utils_module';
-import bentoandcoModule from './bentoandco_module';
-import atsModule from './ats_module';
+import shipandcoModule from "./shipandco_module";
+import stockandcoModule from "./stockandco_module";
+import staffModule from "./staff_module";
+import utilsModule from "./utils_module";
+import bentoandcoModule from "./bentoandco_module";
+import atsModule from "./ats_module";
 
 export default {
   state: () => ({
-    projects: ['ats', 'staff', 'stockandco', 'shipandco', 'utils', 'bentoandco'],
-    activeProject: '',
+    projects: [
+      "calliope",
+      "ats",
+      "staff",
+      "stockandco",
+      "shipandco",
+      "utils",
+      "bentoandco",
+    ],
+    activeProject: "",
   }),
   namespaced: true,
   modules: {
@@ -20,22 +28,22 @@ export default {
     bentoandco: bentoandcoModule,
   },
   getters: {
-    getAllProjects: state => {
+    getAllProjects: (state) => {
       return state.projects;
     },
-    getActiveProject: state => {
+    getActiveProject: (state) => {
       return state.activeProject;
     },
   },
   mutations: {
     setActiveProject: (state, payload) => {
       const { project } = payload;
-      state.activeProject = project ? project : '';
+      state.activeProject = project ? project : "";
     },
   },
   actions: {
     setActiveProject: ({ commit }, payload) => {
-      commit('setActiveProject', payload);
+      commit("setActiveProject", payload);
     },
   },
 };

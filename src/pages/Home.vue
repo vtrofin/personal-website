@@ -19,9 +19,11 @@ export default {
   setup() {
     const store = useStore();
     const computedStyle = ref({});
-    const allProjects = store.getters['projects/getAllProjects'];
+    const _allProjects = store.getters['projects/getAllProjects'];
+    const mainProjects = ["ats","calliope","shipandco"]
+
     const allCompanies = store.getters['companies/getAllCompanies'];
-    const projectsData = getProjectData(allProjects, store);
+    const projectsData = getProjectData(mainProjects, store); // _allProjects
     const workData = getWorkData(allCompanies);
     const updateCaretPosition = () => {
       const { x, y } = store.getters['hero/getCoordinates'];

@@ -105,6 +105,11 @@ main .content,
 
 /* Modifier classes */
 /* Font and background colors */
+.calliope-active,
+.calliope-project-active {
+  background-color: var(--light-yellow);
+  color: var(--black);
+}
 .ats-active,
 .ats-project-active {
   background-color: var(--yellow);

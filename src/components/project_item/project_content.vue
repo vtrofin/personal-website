@@ -31,8 +31,6 @@ export default {
     watch(
       () => route?.params?.project_item,
       (projectItem) => {
-        console.log("projectItem -->", projectItem)
-
         if (!projectItem) {
           modifierClass.value = '';
         } else {

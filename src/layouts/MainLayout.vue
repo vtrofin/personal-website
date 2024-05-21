@@ -107,8 +107,8 @@ main .content,
 /* Font and background colors */
 .calliope-active,
 .calliope-project-active {
-  background-color: var(--yellow);
-  color: var(--black);
+  background-color: var(--red);
+  color: var(--white);
 }
 .ats-active,
 .ats-project-active {
@@ -144,7 +144,7 @@ main .content,
   color: var(--black);
 }
 .bertrandco-active {
-  background-color: var(--light-yellow);
+  background-color: var(--yellow);
   color: var(--black);
 }
 

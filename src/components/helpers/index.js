@@ -1,7 +1,7 @@
-import { getFormattedTitle } from '../../helpers';
+import { getFormattedTitle } from "../../helpers";
 
 export const getProjectData = (vuexProjects, store) => {
-  return vuexProjects.map(project => {
+  return vuexProjects.map((project) => {
     const projectData = store.getters[`projects/${project}/getProject`];
     const formatted = getFormattedTitle(project);
     const path = `/projects/${project}`;
@@ -9,10 +9,10 @@ export const getProjectData = (vuexProjects, store) => {
     const baseData = {
       path,
       ariaLabel: `View ${formatted} project`,
-      callToAction: 'View Project',
+      callToAction: "View Project",
       title: formatted,
-      excerpt: 'Some random text about this project.',
-      type: 'project',
+      excerpt: "Some random text about this project.",
+      type: "project",
       project,
     };
 
@@ -20,21 +20,21 @@ export const getProjectData = (vuexProjects, store) => {
   });
 };
 
-export const getWorkData = vuexCompanies => {
-  return vuexCompanies.map(work => {
+export const getWorkData = (vuexCompanies) => {
+  return vuexCompanies.map((work) => {
     const formatted = getFormattedTitle(work.project);
 
     return {
       ...work,
-      callToAction: 'View Company',
+      callToAction: "View Company",
       title: formatted,
     };
   });
 };
 
 export const getExplodedContent = (textArr = []) => {
-  const getFormattedLine = (textLine = '', i, self) => {
-    const split = textLine.split('');
+  const getFormattedLine = (textLine = "", i, self) => {
+    const split = textLine.split("");
 
     return split.reduce((acc, char, j, arr) => {
       const isLast = i === self.length - 1 && j === arr.length - 1;
@@ -43,13 +43,13 @@ export const getExplodedContent = (textArr = []) => {
         acc = acc + '<div id="animation-blinking-cursor" />';
       }
       return acc;
-    }, '');
+    }, "");
   };
 
   return textArr.filter(Boolean).map(getFormattedLine);
 };
 
-export const getLastNode = parent => {
+export const getLastNode = (parent) => {
   if (!parent) {
     return;
   }

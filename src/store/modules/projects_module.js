@@ -4,6 +4,7 @@ import staffModule from "./staff_module";
 import utilsModule from "./utils_module";
 import bentoandcoModule from "./bentoandco_module";
 import atsModule from "./ats_module";
+import calliopeModule from "./calliope_module";
 
 export default {
   state: () => ({
@@ -26,6 +27,7 @@ export default {
     staff: staffModule,
     utils: utilsModule,
     bentoandco: bentoandcoModule,
+    calliope: calliopeModule,
   },
   getters: {
     getAllProjects: (state) => {

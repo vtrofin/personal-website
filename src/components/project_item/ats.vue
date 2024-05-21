@@ -24,7 +24,7 @@
     </p>
   </div>
   <ProjectImage
-    alt-text="view of available tools for testing ecommerce integrations in Ship&Co"
+    alt-text="view the applicant tracking system dashboard"
     url="/ats_candidates.png"
     caption="Applicant tracking system"
   />

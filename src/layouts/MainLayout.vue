@@ -107,12 +107,12 @@ main .content,
 /* Font and background colors */
 .calliope-active,
 .calliope-project-active {
-  background-color: var(--light-yellow);
+  background-color: var(--yellow);
   color: var(--black);
 }
 .ats-active,
 .ats-project-active {
-  background-color: var(--yellow);
+  background-color: var(--light-yellow);
   color: var(--black);
 }
 .shipandco-active,

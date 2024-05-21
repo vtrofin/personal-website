@@ -20,7 +20,7 @@ export default {
     const store = useStore();
     const computedStyle = ref({});
     const _allProjects = store.getters['projects/getAllProjects'];
-    const mainProjects = ["ats","calliope","shipandco"]
+    const mainProjects = ["calliope","ats","shipandco"]
 
     const allCompanies = store.getters['companies/getAllCompanies'];
     const projectsData = getProjectData(mainProjects, store); // _allProjects

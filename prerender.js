@@ -14,7 +14,10 @@ class PrerenderSPAPlugin {
       (_compilation) => {
         const prerenderer = new Prerenderer({
           staticDir: path.join(__dirname, "dist"),
-          renderer: new PuppeteerRenderer({ headless: true }),
+          renderer: new PuppeteerRenderer({
+            headless: true,
+            args: ["--no-sandbox", "--disable-setuid-sandbox"],
+          }),
           postProcess: (renderedRoute) => {
             renderedRoute.html = renderedRoute.html
               .replace(/http:/gi, "https:")

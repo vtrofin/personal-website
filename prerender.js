@@ -16,7 +16,6 @@ class PrerenderSPAPlugin {
           staticDir: path.join(__dirname, "dist"),
           renderer: new PuppeteerRenderer({
             headless: true,
-            args: ["--no-sandbox", "--disable-setuid-sandbox"],
           }),
           postProcess: (renderedRoute) => {
             renderedRoute.html = renderedRoute.html

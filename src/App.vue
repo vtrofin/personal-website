@@ -4,16 +4,16 @@
   </ToolBoxWrapper>
 </template>
 
-<script>
+<script lang="ts">
 import { useStore } from 'vuex';
 import { useRoute } from 'vue-router';
-import { watch, ref, reactive, onMounted, onUnmounted } from 'vue';
+import { watch, ref, reactive, onMounted, onUnmounted, defineComponent } from 'vue';
 import MainLayout from './layouts/MainLayout';
 import ToolBoxWrapper from './layouts/ToolBoxWrapper';
 
 const getProjectItem = route => route?.params?.project_item ?? '';
 
-export default {
+const App = defineComponent({
   name: 'App',
   components: { MainLayout, ToolBoxWrapper },
   setup() {
@@ -28,19 +28,18 @@ export default {
 
     watch(
       () => route.params,
-      () => {
-        return store
-          .dispatch({
+      async () => {
+        try {
+          await store.dispatch({
             type: 'projects/setActiveProject',
             project: getProjectItem(route),
           })
-          .then(() => {
-            modifier.value = getProjectItem(route);
-          })
-          .catch(err => {
-            console.error('Failed to set current project', err.message);
-            modifier.value = '';
-          });
+
+          modifier.value = getProjectItem(route);
+        } catch (err) {
+          console.error('Failed to set current project', err.message);
+          modifier.value = '';
+        }
       }
     );
 
@@ -69,7 +68,9 @@ export default {
       toolboxState,
     };
   },
-};
+});
+
+export default App
 </script>
 
 <style>

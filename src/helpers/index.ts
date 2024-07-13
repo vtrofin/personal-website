@@ -1,4 +1,6 @@
-const projects = [
+import type { ProjectsModuleState } from "@store/modules/module_types";
+
+const projects: ProjectsModuleState["projects"] = [
   "calliope",
   "ats",
   "shipandco",

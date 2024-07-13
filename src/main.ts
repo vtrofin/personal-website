@@ -1,7 +1,7 @@
 import { createApp } from "vue";
 import { createRouter, createWebHistory } from "vue-router";
 import store from "./store";
-import { FontAwesomeIcon } from "../libs/fa/font_awesome";
+import { FontAwesomeIcon } from "@libs/fa/font_awesome";
 import App from "./App.vue";
 import HomePage from "@pages/Home.vue";
 import ProjectItem from "./pages/ProjectItem.vue";

@@ -50,11 +50,11 @@
   </footer>
 </template>
 
-<script>
-export default {
+<script lang="ts">
+import { defineComponent } from "vue";
+export default defineComponent({
   name: "FooterComponent",
-  props: { modifier: { type: String, required: false, default: "" } },
-};
+});
 </script>
 
 <style>
@@ -65,15 +65,18 @@ footer {
   width: 100%;
   margin-top: 2.5rem;
 }
+
 .section-header-container {
   background-color: var(--background-white);
 }
+
 footer .section-header {
   width: 90%;
   max-width: 1280px;
   margin: 0 auto;
   line-height: 0.5em;
 }
+
 .footer-container {
   display: grid;
   grid-gap: 20px;
@@ -84,18 +87,22 @@ footer .section-header {
   padding: 0;
   text-align: left;
 }
+
 @media all and (min-width: 600px) {
   .footer-container {
     grid-template-columns: 5fr 1fr;
     grid-template-rows: repeat(2 auto);
     margin-bottom: 3rem;
   }
+
   .footer-container h3.item-title {
     grid-column: 1/2;
   }
+
   .footer-container p.item-text {
     grid-column: 1/2;
   }
+
   .thanks {
     grid-column: 2/3;
     grid-row: 1/-3;
@@ -109,11 +116,13 @@ footer .section-header {
   margin-bottom: 0;
   word-break: normal;
 }
+
 @media all and (min-width: 600px) {
   .footer-container h3.item-title {
     font-size: 1.8rem;
   }
 }
+
 .footer-container p.item-text {
   max-width: 100%;
   padding-bottom: 1rem;
@@ -125,6 +134,7 @@ footer .section-header {
 .footer-container .contact-link {
   color: var(--black);
 }
+
 .footer-container .contact-link:before {
   background-color: var(--yellow);
 }
@@ -143,16 +153,18 @@ footer .section-header {
   margin-top: 0.3rem;
   color: var(--gray);
 }
-.thanks
-  li:not(:first-of-type):not(:last-of-type):not(:nth-last-of-type(2)):after {
+
+.thanks li:not(:first-of-type):not(:last-of-type):not(:nth-last-of-type(2)):after {
   content: "|";
   margin-left: 0.2rem;
   margin-right: 0.2rem;
 }
+
 .thanks li:first-of-type {
   font-weight: 700;
   margin-right: 0.2rem;
 }
+
 .thanks li:nth-last-of-type(2):after {
   content: ".";
   margin-left: -0.1rem;
@@ -163,6 +175,7 @@ footer .section-header {
   text-decoration: none;
   color: var(--gray);
 }
+
 @media all and (min-width: 600px) {
   .thanks {
     flex-direction: column;
@@ -170,10 +183,12 @@ footer .section-header {
     margin-bottom: 0;
     margin: 1.5rem 0;
   }
+
   .thanks li:first-of-type,
   .thanks li:last-of-type {
     max-width: 100px;
   }
+
   .thanks li:nth-last-of-type(2):after,
   .thanks li:after {
     display: none;

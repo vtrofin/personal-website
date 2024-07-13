@@ -35,8 +35,8 @@
 </template>
 
 <script lang="ts">
-import ProjectSummary from './project_summary';
-import ProjectImage from './project_image';
+import ProjectSummary from '@components/project_item/project_summary.vue';
+import ProjectImage from '@components/project_item/project_image.vue';
 import { defineComponent } from 'vue';
 
 export default defineComponent({

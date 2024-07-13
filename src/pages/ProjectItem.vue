@@ -4,8 +4,8 @@
 
 <script lang="ts">
 import { onBeforeRouteUpdate } from 'vue-router';
-import ProjectItemContent from '../components/project_item/project_content.vue';
-import { checkProjectRoute } from '../helpers';
+import ProjectItemContent from '@components/project_item/project_content.vue';
+import { checkProjectRoute } from '@helpers/index';
 import { defineComponent } from 'vue';
 
 export default defineComponent({

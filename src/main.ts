@@ -3,16 +3,17 @@ import {
   createRouter,
   createWebHistory,
   type RouteRecordRaw,
+  type RouteRecordNormalized,
 } from "vue-router";
 import { key, store } from "@store/index";
 import { FontAwesomeIcon } from "@libs/fa/font_awesome";
 import App from "./App.vue";
 import HomePage from "@pages/Home.vue";
-import ProjectItem from "./pages/ProjectItem.vue";
-import NotFound from "./pages/NotFound.vue";
-import ContactPage from "./pages/Contact.vue";
-import { checkProjectRoute } from "./helpers";
-import { handleMetaTags, metaTags } from "./helpers/meta_tags";
+import ProjectItem from "@pages/ProjectItem.vue";
+import NotFound from "@pages/NotFound.vue";
+import ContactPage from "@pages/Contact.vue";
+import { checkProjectRoute } from "@helpers/index";
+import { handleMetaTags, metaTags } from "@helpers/meta_tags";
 import { inject } from "@vercel/analytics";
 
 inject();
@@ -48,7 +49,8 @@ const routes: Readonly<RouteRecordRaw[]> = [
     beforeEnter: (to) => {
       return checkProjectRoute(to?.params);
     },
-    meta: (route) => ({
+    // @ts-expect-error I've put a function meta even though the meta is typed as interface RouteMeta record
+    meta: (route: RouteRecordNormalized | RouteLocationNormalizedLoaded) => ({
       title: `Victor Trofin - Checkout my work on ${
         route?.params?.project_item ?? "this"
       } project`,

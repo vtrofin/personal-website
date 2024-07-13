@@ -12,10 +12,7 @@ import { useStore } from '@store/index'
 import HeroSection from '@components/hero_component/index.vue';
 import GeneralSection from '@components/general_section/index.vue';
 import { getProjectData, getWorkData } from '@components/helpers';
-import type {
-  HeroModuleState, CompaniesModuleState,
-  // ProjectsModuleState
-} from '@store/modules/module_types';
+import type { HeroModuleState, CompaniesModuleState } from '@store/modules/module_types';
 
 export default defineComponent({
   name: 'HomePage',

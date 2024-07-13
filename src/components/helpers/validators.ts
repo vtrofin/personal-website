@@ -1,4 +1,4 @@
-export function generalSectionArrayValidator(value) {
+export function generalSectionArrayValidator(value: unknown): boolean {
   if (!Array.isArray(value)) {
     return false;
   }

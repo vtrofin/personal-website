@@ -44,7 +44,7 @@ import { computed, ref, onMounted, onUnmounted, defineComponent } from "vue";
 import { useStore } from '@store/index'
 import { getExplodedContent } from "@components/helpers";
 import { getAnimationObserver } from "@components/helpers/intersect";
-import { stopAnimation } from "../helpers/animate";
+import { stopAnimation } from "@components/helpers/animate";
 import type { HeroModuleState } from "@/store/modules/module_types";
 
 export default defineComponent({
@@ -53,7 +53,7 @@ export default defineComponent({
     "update-caret-position": null,
   },
   setup() {
-    let cliObserver = null;
+    let cliObserver: IntersectionObserver | null = null;
     const store = useStore();
     const bashHistory = computed(() => store.getters["hero/getBashHistory"] as HeroModuleState["bashHistory"]);
     const staticText = computed(() => store.getters["hero/getStaticText"] as HeroModuleState["staticText"]);
@@ -82,7 +82,7 @@ export default defineComponent({
     });
 
     onUnmounted(() => {
-      cliObserver.disconnect();
+      cliObserver?.disconnect();
       stopAnimation(staggeredAnimation.value, anime);
     });
 

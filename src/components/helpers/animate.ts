@@ -1,4 +1,5 @@
-import { getLastNode } from "./index";
+import { getLastNode } from "@components/helpers/index";
+import {} from "animejs";
 
 export const setUpAnimation = (anime) => {
   // x => translated -50%. translate -80% -> -20%

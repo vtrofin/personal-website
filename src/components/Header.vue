@@ -16,10 +16,9 @@
           </router-link>
         </li>
         <li
-          :class="
-            'toolbox' +
+          :class="'toolbox' +
             (classModifiers.linkClass ? ' ' + classModifiers.linkClass : '')
-          "
+            "
           @click.prevent="toggleToolbox"
           tabindex="0"
           aria-label="My skills"
@@ -68,14 +67,15 @@
   </nav>
 </template>
 
-<script>
-import { computed } from "vue";
+<script lang="ts">
+import { computed, defineComponent } from "vue";
 import { useStore } from "vuex";
-import HeaderLogo from "./HeaderLogo";
-import GithubLogo from "./GithubLogo";
-import ProjectItemHeader from "./project_item/project_header.vue";
+import HeaderLogo from "@components/HeaderLogo.vue";
+import GithubLogo from "@components/GithubLogo.vue";
+import ProjectItemHeader from "@components/project_item/project_header.vue";
+import type { RootState } from "@/store/modules/module_types";
 
-export default {
+export default defineComponent({
   name: "HeaderComponent",
   components: { HeaderLogo, GithubLogo, ProjectItemHeader },
   props: { modifier: { type: String, required: false, default: "" } },
@@ -103,7 +103,7 @@ export default {
 
     return { classModifiers, toggleToolbox, isMobile };
   },
-};
+});
 </script>
 
 <style>
@@ -161,6 +161,7 @@ export default {
   font-size: 1.1rem;
   transition: color 0.2s linear;
 }
+
 .nav-link-text {
   position: relative;
   z-index: 10;

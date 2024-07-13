@@ -8,9 +8,9 @@
   </section>
 </template>
 
-<script>
+<script lang="ts">
 import { useStore } from 'vuex';
-import { reactive, onBeforeUpdate } from 'vue';
+import { reactive, onBeforeUpdate, defineComponent } from 'vue';
 import { getFormattedTitle } from '../../helpers';
 
 const setLocalState = (localState, projectData, props) => {
@@ -22,7 +22,7 @@ const setLocalState = (localState, projectData, props) => {
   localState.role = projectData.role;
 };
 
-export default {
+export default defineComponent({
   name: 'ProjectItemHeader',
   props: {
     modifier: { type: String, required: false, default: '' },
@@ -41,7 +41,7 @@ export default {
 
     return localState;
   },
-};
+});
 </script>
 
 <style>
@@ -59,6 +59,7 @@ export default {
   line-height: 1.2em;
   margin: auto;
 }
+
 @media all and (min-width: 600px) {
   .project-header-container h1 {
     font-size: 4rem;

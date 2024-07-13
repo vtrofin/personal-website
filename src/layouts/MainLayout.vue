@@ -8,11 +8,12 @@
   <FooterComponent />
 </template>
 
-<script>
-import HeaderComponent from "../components/Header";
-import FooterComponent from "@components/Footer";
+<script lang="ts">
+import HeaderComponent from "@components/Header.vue";
+import FooterComponent from "@components/Footer.vue";
+import { defineComponent } from "vue";
 
-export default {
+export default defineComponent({
   name: "MainLayout",
   components: { HeaderComponent, FooterComponent },
   props: {
@@ -26,7 +27,7 @@ export default {
     const relayToggle = () => emit("relayToggleToolbox");
     return { relayToggle };
   },
-};
+});
 </script>
 <style>
 main {

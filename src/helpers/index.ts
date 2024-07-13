@@ -3,7 +3,10 @@ import type {
   RootState,
 } from "@store/modules/module_types";
 import { Store } from "vuex";
-import { type RouteLocationNormalizedLoaded } from "vue-router";
+import type {
+  RouteLocationNormalizedLoaded,
+  RouteParamsGeneric,
+} from "vue-router";
 
 const projects: ProjectsModuleState["projects"] = [
   "calliope",
@@ -15,13 +18,17 @@ const projects: ProjectsModuleState["projects"] = [
   "bentoandco",
 ];
 
-export const checkProjectRoute = (params = {}) => {
+export const checkProjectRoute = (params: RouteParamsGeneric = {}) => {
   const { project_item } = params;
-  const isValidProject = projects.find((proj) => proj === project_item);
+  const routeProject = Array.isArray(project_item)
+    ? project_item[0]
+    : project_item;
+
+  const isValidProject = projects.find((proj) => proj === routeProject);
   if (!isValidProject) {
     return {
       name: "not-found",
-      params: { pathMatch: ["projects", project_item] },
+      params: { pathMatch: ["projects", routeProject] },
     };
   }
 
@@ -39,6 +46,10 @@ export const getSectionLinkClassName = ({
   exactActiveClass,
   activeClass,
   totalItems,
+}: {
+  isExactActive: boolean;
+  isActive: boolean;
+  totalItems: number;
 }) => {
   let baseClass = ["section-link"];
   if (totalItems <= 2) {

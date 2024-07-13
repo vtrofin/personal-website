@@ -1,3 +1,43 @@
+export interface RootState {
+  isMobile: boolean;
+  isAndroid: boolean;
+  isToolboxActive: boolean;
+  windowWidth: number;
+}
+
+export interface HeroModuleState {
+  bashHistory: string[];
+  staticText: string;
+  coordinates: {
+    x: number | null;
+    y: number | null;
+  };
+  animationTextLines: string[];
+}
+
+export interface ToolsModuleState {
+  frontEnd: string[];
+  backEnd: string[];
+  staticSiteGens: string[];
+  other: string[];
+  compiled: string[];
+  devops: string[];
+}
+
+interface Company {
+  project: string;
+  type: string;
+  item_title: string;
+  logoClass?: string;
+  excerpt: string;
+  path: string;
+  ariaLabel: string;
+}
+
+export interface CompaniesModuleState {
+  companies: Company[];
+}
+
 export interface Project {
   type: string;
   backgroundClass?: string;
@@ -6,11 +46,8 @@ export interface Project {
   role: string;
 }
 
-export interface RootState {
-  isMobile: boolean;
-  isAndroid: boolean;
-  isToolboxActive: boolean;
-  windowWidth: number;
+export interface ProjectState {
+  project: Project;
 }
 
 export interface ProjectsRootState {
@@ -23,8 +60,4 @@ export interface ProjectsRootState {
   // utils: Project;
   // bentoandco: Project;
   // calliope: Project;
-}
-
-export interface ProjectState {
-  project: Project;
 }

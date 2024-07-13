@@ -1,4 +1,7 @@
-export default {
+import type { Module } from "vuex";
+import type { RootState, HeroModuleState } from "@store/modules/module_types";
+
+const heroModule: Module<HeroModuleState, RootState> = {
   namespaced: true,
   state: () => ({
     bashHistory: [],
@@ -52,3 +55,5 @@ export default {
     },
   },
 };
+
+export default heroModule;

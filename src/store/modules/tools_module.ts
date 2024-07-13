@@ -1,4 +1,7 @@
-export default {
+import type { Module } from "vuex";
+import type { ToolsModuleState, RootState } from "@store/modules/module_types";
+
+const toolsModule: Module<ToolsModuleState, RootState> = {
   namespaced: true,
   state: () => ({
     frontEnd: ["React", "Vue.js", "CSS", "Tailwind"],
@@ -21,3 +24,5 @@ export default {
     },
   },
 };
+
+export default toolsModule;

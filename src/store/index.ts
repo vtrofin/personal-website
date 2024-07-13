@@ -1,13 +1,14 @@
 import { createStore, Store } from "vuex";
-import heroModule from "./modules/hero_module";
-import projectsModule from "./modules/projects_module";
-import companiesModule from "./modules/companies_module";
-import toolsModule from "./modules/tools_module";
+import heroModule from "@store/modules/hero_module";
+import projectsModule from "@store/modules/projects_module";
+import companiesModule from "@store/modules/companies_module";
+import toolsModule from "@store/modules/tools_module";
+import type { RootState } from "@store/modules/module_types";
 
 // Deprecate for Pinia. Still maintained but not improved. I love the Vue ecosystem.
 // Makes it more difficult to keep up to changes that in React.
 // https://www.npmjs.com/package/vuex
-const store = createStore({
+const store = createStore<RootState>({
   state: () => ({
     isMobile: false,
     isAndroid: false,

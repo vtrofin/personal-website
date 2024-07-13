@@ -62,7 +62,7 @@ export default defineComponent({
     toolboxState: { type: Object, required: true },
   },
   emits: {
-    toggleToolboxState: ({ isActive }) => {
+    toggleToolboxState: ({ isActive }: { isActive: boolean }) => {
       return typeof isActive === "boolean";
     },
   },
@@ -70,7 +70,7 @@ export default defineComponent({
     const { active: toolboxActive } = toRefs(props.toolboxState);
     const { emit } = context;
     const store = useStore();
-    const tools = store.getters["tools/getAllTools"];
+    const tools = store.getters["tools/getAllTools"] as string[];
 
     const handleBlur = () => {
       if (toolboxActive.value) {

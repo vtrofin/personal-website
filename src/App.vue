@@ -10,7 +10,7 @@ import { useRoute, type RouteLocationNormalizedLoaded } from 'vue-router';
 import { watch, ref, reactive, onMounted, onUnmounted, defineComponent } from 'vue';
 import MainLayout from '@layouts/MainLayout.vue';
 import ToolBoxWrapper from '@layouts/ToolBoxWrapper.vue';
-
+import { type RootState } from '@store/modules/module_types';
 const getProjectItem = (route: RouteLocationNormalizedLoaded): string => {
   const project = route?.params?.project_item
   if (!project) {
@@ -55,7 +55,7 @@ const App = defineComponent({
     );
 
     const toggleAndTranslateBody = () => {
-      const isActive = store.getters['checkToolBox'];
+      const isActive = store.getters['checkToolBox'] as RootState["isToolboxActive"];
       toolboxState.active = isActive;
     };
 

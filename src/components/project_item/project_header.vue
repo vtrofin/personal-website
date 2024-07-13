@@ -10,8 +10,9 @@
 
 <script lang="ts">
 import { useStore } from '@store/index'
+import { type Project } from '@store/modules/module_types';
 import { reactive, onBeforeUpdate, defineComponent } from 'vue';
-import { getFormattedTitle } from '../../helpers';
+import { getFormattedTitle } from '@helpers/index';
 
 const setLocalState = (localState, projectData, props) => {
   localState.logoClass = projectData?.logoClass
@@ -30,12 +31,12 @@ export default defineComponent({
   setup(props) {
     const store = useStore();
     const localState = reactive({ logoClass: '', projectTitle: '', excerpt: '', role: '' });
-    const projectData = store.getters[`projects/${props.modifier}/getProject`] || {};
+    const projectData = (store.getters[`projects/${props.modifier}/getProject`] as Project) || {};
     setLocalState(localState, projectData, props);
 
     onBeforeUpdate(() => {
       const getterPath = `projects/${props.modifier}/getProject`;
-      const newProjData = store.getters[getterPath];
+      const newProjData = store.getters[getterPath] as Project;
       setLocalState(localState, newProjData, props);
     });
 

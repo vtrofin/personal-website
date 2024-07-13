@@ -45,6 +45,7 @@ import { useStore } from '@store/index'
 import { getExplodedContent } from "@components/helpers";
 import { getAnimationObserver } from "@components/helpers/intersect";
 import { stopAnimation } from "../helpers/animate";
+import type { HeroModuleState } from "@/store/modules/module_types";
 
 export default defineComponent({
   name: "HeroSection",
@@ -54,11 +55,11 @@ export default defineComponent({
   setup() {
     let cliObserver = null;
     const store = useStore();
-    const bashHistory = computed(() => store.getters["hero/getBashHistory"]);
-    const staticText = computed(() => store.getters["hero/getStaticText"]);
-    const cliContainer = ref(null);
+    const bashHistory = computed(() => store.getters["hero/getBashHistory"] as HeroModuleState["bashHistory"]);
+    const staticText = computed(() => store.getters["hero/getStaticText"] as HeroModuleState["staticText"]);
+    const cliContainer = ref<HTMLDivElement | null>(null);
     const cliWrapperActiveText = ref(null);
-    const animationText = store.getters["hero/getAnimationText"];
+    const animationText = store.getters["hero/getAnimationText"] as HeroModuleState["animationTextLines"];
     // Using a function ref in the HTML above because of the bug documented here:
     // https://github.com/vuejs/core/issues/5525#issuecomment-1059855276
     // function ref working while regular v-for ref is failing

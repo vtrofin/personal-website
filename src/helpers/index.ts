@@ -66,9 +66,14 @@ export const checkProjectPage = (store, route) => {
     throw new Error("missing arguments store");
   }
 
-  const projects = store.getters["projects/getAllProjects"] || [];
+  const projects = (store.getters["projects/getAllProjects"] ||
+    []) as ProjectsModuleState["projects"];
+
   const project =
-    route?.params?.project_item || store.getters["projects/getActiveProject"];
+    route?.params?.project_item ||
+    (store.getters[
+      "projects/getActiveProject"
+    ] as ProjectsModuleState["activeProject"]);
 
   if (!projects.length || !project) {
     return false;

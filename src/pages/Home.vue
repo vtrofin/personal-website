@@ -12,7 +12,10 @@ import { useStore } from '@store/index'
 import HeroSection from '@components/hero_component/index.vue';
 import GeneralSection from '@components/general_section/index.vue';
 import { getProjectData, getWorkData } from '@components/helpers';
-import type { HeroModuleState, CompaniesModuleState } from '@store/modules/module_types';
+import type {
+  HeroModuleState, CompaniesModuleState,
+  // ProjectsModuleState
+} from '@store/modules/module_types';
 
 export default defineComponent({
   name: 'HomePage',
@@ -20,7 +23,7 @@ export default defineComponent({
   setup() {
     const store = useStore();
     const computedStyle = ref<Record<string, string>>({});
-    // const _allProjects = store.getters['projects/getAllProjects'];
+    // const _allProjects = store.getters['projects/getAllProjects'] as ProjectsModuleState["projects"];
     const mainProjects = ["calliope", "ats", "shipandco"]
 
     const allCompanies = store.getters['companies/getAllCompanies'] as CompaniesModuleState["companies"];

@@ -85,7 +85,11 @@ export default defineComponent({
   setup(props, context) {
     const store = useStore();
     const { emit } = context;
-    const { isMobile } = store.getters["checkMobile"];
+    const { isMobile }: {
+      isMobile: RootState["isMobile"],
+      isAndroid: RootState["isAndroid"]
+    } = store.getters["checkMobile"];
+
     const classModifiers = computed(() => {
       const linkClass = props.modifier ? props.modifier : "";
       const spanClass = props.modifier
@@ -96,7 +100,8 @@ export default defineComponent({
     });
 
     const toggleToolbox = () => {
-      const isActive = store.getters["checkToolBox"];
+      const isActive = store.getters["checkToolBox"] as RootState["isToolboxActive"];
+
       store.dispatch({ type: "setToolBoxState", isToolboxActive: !isActive });
       emit("toggleToolbox");
     };

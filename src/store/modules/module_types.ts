@@ -17,7 +17,7 @@ export interface ToolsModuleState {
   devops: string[];
 }
 
-interface Company {
+export interface Company {
   project: string;
   type: string;
   item_title: string;

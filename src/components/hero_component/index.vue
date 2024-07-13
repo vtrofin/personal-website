@@ -42,8 +42,8 @@
 import anime from "animejs/lib/anime.es.js";
 import { computed, ref, onMounted, onUnmounted, defineComponent } from "vue";
 import { useStore } from '@store/index'
-import { getExplodedContent } from "../helpers";
-import { getAnimationObserver } from "../helpers/intersect";
+import { getExplodedContent } from "@components/helpers";
+import { getAnimationObserver } from "@components/helpers/intersect";
 import { stopAnimation } from "../helpers/animate";
 
 export default defineComponent({

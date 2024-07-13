@@ -6,12 +6,23 @@
 
 <script lang="ts">
 import { useStore } from '@store/index'
-import { useRoute } from 'vue-router';
+import { useRoute, type RouteLocationNormalizedLoaded } from 'vue-router';
 import { watch, ref, reactive, onMounted, onUnmounted, defineComponent } from 'vue';
 import MainLayout from '@layouts/MainLayout.vue';
 import ToolBoxWrapper from '@layouts/ToolBoxWrapper.vue';
 
-const getProjectItem = route => route?.params?.project_item ?? '';
+const getProjectItem = (route: RouteLocationNormalizedLoaded): string => {
+  const project = route?.params?.project_item
+  if (!project) {
+    return ''
+  }
+
+  if (Array.isArray(project)) {
+    return project[0]
+  }
+
+  return project
+}
 
 const App = defineComponent({
   name: 'App',
@@ -37,7 +48,7 @@ const App = defineComponent({
 
           modifier.value = getProjectItem(route);
         } catch (err) {
-          console.error('Failed to set current project', err.message);
+          console.error('Failed to set current project', err instanceof Error ? err.message : err);
           modifier.value = '';
         }
       }

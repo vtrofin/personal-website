@@ -26,7 +26,7 @@ const heroModule: Module<HeroModuleState, RootState> = {
     getStaticText: (state) => {
       return state.staticText;
     },
-    getCoordinates: (state) => {
+    getCoordinates: (state): HeroModuleState["coordinates"] => {
       return state.coordinates;
     },
     getAnimationText: (state) => {

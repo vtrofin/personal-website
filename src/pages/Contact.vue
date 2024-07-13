@@ -97,9 +97,9 @@
 
 <script lang="ts">
 import { reactive, ref, defineComponent } from "vue";
-import TickComponent from "../components/contact/tick.vue";
-import AlertComponent from "../components/contact/alert.vue";
-import SpinnerComponent from "../components/spinner";
+import TickComponent from "@components/contact/tick.vue";
+import AlertComponent from "@components/contact/alert.vue";
+import SpinnerComponent from "@components/spinner/index.vue";
 
 const timeOutHandler = (reactiveVal) => {
   return () => {

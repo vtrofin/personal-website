@@ -1,6 +1,6 @@
 import { createApp } from "vue";
 import { createRouter, createWebHistory } from "vue-router";
-import store from "./store";
+import { key, store } from "@store/index";
 import { FontAwesomeIcon } from "@libs/fa/font_awesome";
 import App from "./App.vue";
 import HomePage from "@pages/Home.vue";
@@ -70,9 +70,9 @@ router.beforeEach(handleMetaTags);
 
 const app = createApp(App);
 app.use(router);
-app.use(store);
+app.use(store, key);
 // eslint-disable-next-line
 app.component("Fa", FontAwesomeIcon);
-app.config.productionTip = false;
+// app.config.productionTip = false;
 
 app.mount("#app");

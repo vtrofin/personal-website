@@ -67,8 +67,8 @@ const store = createStore<RootState>({
 
 const key: InjectionKey<Store<RootState>> = Symbol();
 
-export const useStore = () => {
+const useStore = () => {
   return baseUseStore(key);
 };
 
-export default store;
+export { store, key, useStore };

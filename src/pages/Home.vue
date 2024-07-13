@@ -9,24 +9,26 @@
 <script lang="ts">
 import { ref, defineComponent } from 'vue';
 import { useStore } from '@store/index'
-import HeroSection from '../components/hero_component';
-import GeneralSection from '../components/general_section';
-import { getProjectData, getWorkData } from '../components/helpers';
+import HeroSection from '@components/hero_component/index.vue';
+import GeneralSection from '@components/general_section/index.vue';
+import { getProjectData, getWorkData } from '@components/helpers';
+import type { HeroModuleState, CompaniesModuleState } from '@store/modules/module_types';
 
 export default defineComponent({
   name: 'HomePage',
   components: { GeneralSection, HeroSection },
   setup() {
     const store = useStore();
-    const computedStyle = ref({});
-    const _allProjects = store.getters['projects/getAllProjects'];
+    const computedStyle = ref<Record<string, string>>({});
+    // const _allProjects = store.getters['projects/getAllProjects'];
     const mainProjects = ["calliope", "ats", "shipandco"]
 
-    const allCompanies = store.getters['companies/getAllCompanies'];
+    const allCompanies = store.getters['companies/getAllCompanies'] as CompaniesModuleState["companies"];
     const projectsData = getProjectData(mainProjects, store); // _allProjects
     const workData = getWorkData(allCompanies);
     const updateCaretPosition = () => {
-      const { x, y } = store.getters['hero/getCoordinates'];
+      // sad but true; getters are not type safe
+      const { x, y } = store.getters['hero/getCoordinates'] as HeroModuleState["coordinates"];
       computedStyle.value.left = `${x}px`;
       computedStyle.value.top = `${y}px`;
     };

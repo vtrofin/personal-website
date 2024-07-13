@@ -1,5 +1,9 @@
 import { createApp } from "vue";
-import { createRouter, createWebHistory } from "vue-router";
+import {
+  createRouter,
+  createWebHistory,
+  type RouteRecordRaw,
+} from "vue-router";
 import { key, store } from "@store/index";
 import { FontAwesomeIcon } from "@libs/fa/font_awesome";
 import App from "./App.vue";
@@ -13,7 +17,7 @@ import { inject } from "@vercel/analytics";
 
 inject();
 
-const routes = [
+const routes: Readonly<RouteRecordRaw[]> = [
   {
     path: "/:pathMatch(.*)*",
     component: NotFound,

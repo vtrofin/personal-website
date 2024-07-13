@@ -1,4 +1,9 @@
-import type { ProjectsModuleState } from "@store/modules/module_types";
+import type {
+  ProjectsModuleState,
+  RootState,
+} from "@store/modules/module_types";
+import { Store } from "vuex";
+import { type RouteLocationNormalizedLoaded } from "vue-router";
 
 const projects: ProjectsModuleState["projects"] = [
   "calliope",
@@ -51,17 +56,22 @@ export const getSectionLinkClassName = ({
   return baseClass;
 };
 
-export const getFormattedTitle = (value) => {
+export const getFormattedTitle = (value: string) => {
   if (value === "ats") {
     return "Bluum Hire";
   }
+
   const sentenceCase = value.charAt(0).toUpperCase() + value.substring(1);
   const cpyRegexp = /^Bertrand/gi;
   const isBertrand = cpyRegexp.test(sentenceCase);
+
   return isBertrand ? sentenceCase : sentenceCase.replace(/andco/, "&Co");
 };
 
-export const checkProjectPage = (store, route) => {
+export const checkProjectPage = (
+  store: Store<RootState>,
+  route: RouteLocationNormalizedLoaded,
+) => {
   if (!store) {
     throw new Error("missing arguments store");
   }
@@ -69,11 +79,15 @@ export const checkProjectPage = (store, route) => {
   const projects = (store.getters["projects/getAllProjects"] ||
     []) as ProjectsModuleState["projects"];
 
-  const project =
-    route?.params?.project_item ||
-    (store.getters[
-      "projects/getActiveProject"
-    ] as ProjectsModuleState["activeProject"]);
+  const paramProject = Array.isArray(route?.params?.project_item)
+    ? route?.params?.project_item[0]
+    : route?.params?.project_item;
+
+  const storeProject = store.getters[
+    "projects/getActiveProject"
+  ] as ProjectsModuleState["activeProject"];
+
+  const project = paramProject || storeProject;
 
   if (!projects.length || !project) {
     return false;

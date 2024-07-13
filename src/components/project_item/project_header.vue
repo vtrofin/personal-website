@@ -14,7 +14,14 @@ import { type Project } from '@store/modules/module_types';
 import { reactive, onBeforeUpdate, defineComponent } from 'vue';
 import { getFormattedTitle } from '@helpers/index';
 
-const setLocalState = (localState, projectData, props) => {
+type LocalState = {
+  logoClass: string;
+  projectTitle: string;
+  excerpt: string;
+  role: string;
+}
+
+const setLocalState = (localState: LocalState, projectData: Project, props: { modifier: string }) => {
   localState.logoClass = projectData?.logoClass
     ? 'item-logo' + ' ' + projectData.logoClass
     : 'item-divider';
@@ -30,7 +37,7 @@ export default defineComponent({
   },
   setup(props) {
     const store = useStore();
-    const localState = reactive({ logoClass: '', projectTitle: '', excerpt: '', role: '' });
+    const localState = reactive<LocalState>({ logoClass: '', projectTitle: '', excerpt: '', role: '' });
     const projectData = (store.getters[`projects/${props.modifier}/getProject`] as Project) || {};
     setLocalState(localState, projectData, props);
 

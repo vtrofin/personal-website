@@ -34,6 +34,7 @@ export interface CompaniesModuleState {
 export interface Project {
   type: string;
   backgroundClass?: string;
+  logoClass?: string;
   excerpt: string;
   item_title: string;
   role: string;

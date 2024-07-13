@@ -8,10 +8,10 @@ import calliopeModule from "@store/modules/calliope_module";
 import type { Module } from "vuex";
 import type {
   ProjectsRootState,
-  ProjectState,
+  ProjectsState,
 } from "@store/modules/module_types";
 
-const projectsModule: Module<ProjectState, ProjectsRootState> = {
+const projectsModule: Module<ProjectsState, ProjectsRootState> = {
   state: () => ({
     projects: [
       "calliope",

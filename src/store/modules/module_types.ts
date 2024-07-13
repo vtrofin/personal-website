@@ -50,14 +50,17 @@ export interface ProjectState {
   project: Project;
 }
 
-export interface ProjectsRootState {
+export interface ProjectsRootState extends RootState {
+  ats: Project;
+  shipandco: Project;
+  stockandco: Project;
+  staff: Project;
+  utils: Project;
+  bentoandco: Project;
+  calliope: Project;
+}
+
+export interface ProjectsState {
   projects: string[];
   activeProject: string;
-  // ats: Project;
-  // shipandco: Project;
-  // stockandco: Project;
-  // staff: Project;
-  // utils: Project;
-  // bentoandco: Project;
-  // calliope: Project;
 }

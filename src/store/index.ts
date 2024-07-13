@@ -1,4 +1,4 @@
-import { createStore, Store } from "vuex";
+import { createStore } from "vuex";
 import heroModule from "@store/modules/hero_module";
 import projectsModule from "@store/modules/projects_module";
 import companiesModule from "@store/modules/companies_module";

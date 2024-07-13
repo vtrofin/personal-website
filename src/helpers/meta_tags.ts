@@ -7,7 +7,7 @@ import type {
 
 const matchTitle = (route: RouteRecordNormalized) => {
   const meta = route?.meta;
-
+  // @ts-expect-error - Some hacky way i've added a meta function to the route
   return typeof meta === "function" ? meta(route)?.title : meta?.title;
 };
 
@@ -16,7 +16,8 @@ const getMeta = (
   to: RouteLocationNormalizedGeneric,
 ) => {
   return typeof nearestWithTitle?.meta === "function"
-    ? nearestWithTitle?.meta(to)
+    ? // @ts-expect-error - Some hacky way i've added a meta function to the route
+      nearestWithTitle?.meta(to)
     : nearestWithTitle?.meta ?? {};
 };
 

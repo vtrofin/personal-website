@@ -6,7 +6,9 @@ import { Store } from "vuex";
 import type {
   RouteLocationNormalizedLoaded,
   RouteParamsGeneric,
+  UseLinkReturn,
 } from "vue-router";
+import { type Ref } from "vue";
 
 const projects: ProjectsModuleState["projects"] = [
   "calliope",
@@ -47,8 +49,10 @@ export const getSectionLinkClassName = ({
   activeClass,
   totalItems,
 }: {
-  isExactActive: boolean;
-  isActive: boolean;
+  isExactActive: UseLinkReturn["isExactActive"];
+  isActive: UseLinkReturn["isActive"];
+  exactActiveClass: Ref<string>;
+  activeClass: Ref<string>;
   totalItems: number;
 }) => {
   let baseClass = ["section-link"];

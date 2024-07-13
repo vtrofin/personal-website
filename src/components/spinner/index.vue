@@ -8,11 +8,12 @@
 <script lang="ts">
 import { Spinner } from "spin.js";
 import { onMounted, onUnmounted, ref, defineComponent } from "vue";
+
 export default defineComponent({
   name: "SpinnerComponent",
   props: { text: { type: String, required: false, default: "Loading..." } },
   setup() {
-    let spinner;
+    let spinner: Spinner;
     const spinnerRef = ref(null);
 
     const options = {
@@ -26,22 +27,22 @@ export default defineComponent({
       color: "#fff",
       speed: 1.2,
       trail: 60,
-      shadow: false,
+      // shadow: false,
       hwaccel: true,
       zIndex: 2e9,
       scale: 0.55,
       animation: "spinner-line-fade-quick",
       fadeColor: "transparent",
       shadow: "0 0 1px transparent",
-      left: 0,
+      left: "0%", // TODO: Validate that this works. It used to be a type number == 0; See https://spin.js.org/
     };
 
     onMounted(() => {
       spinner = new Spinner(options);
-      spinner.spin(spinnerRef.value);
+      spinner.spin(spinnerRef.value ?? undefined);
     });
     onUnmounted(() => {
-      spinner.stop();
+      spinner?.stop();
     });
     return { spinnerRef };
   },

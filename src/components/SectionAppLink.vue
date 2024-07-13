@@ -32,15 +32,19 @@ import { checkExternalPath, getSectionLinkClassName } from '../helpers';
 export default defineComponent({
   name: 'SectionAppLink',
   props: {
+    // @ts-expect-error - Some hacky thing i did in JS. 
     ...RouterLink.props,
     ariaLabel: { type: String, required: false, default: 'View section' },
     // eslint-disable-next-line
     inactiveClass: { type: String, required: false },
     totalItems: { required: false, type: Number, default: 0 },
+    activeClass: { type: String, required: true },
+    exactActiveClass: { type: String, required: true },
   },
   setup(props) {
     const { activeClass, exactActiveClass, totalItems } = toRefs(props);
     const path = toRef(props, 'to');
+    // @ts-expect-error - Some hacky thing i did in JS with the props.
     const { isActive, isExactActive } = useLink(props);
 
     const isExternalLink = computed(() => checkExternalPath({ path: path.value }));

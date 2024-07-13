@@ -49,7 +49,8 @@ const routes: Readonly<RouteRecordRaw[]> = [
     beforeEnter: (to) => {
       return checkProjectRoute(to?.params);
     },
-    // @ts-expect-error I've put a function meta even though the meta is typed as interface RouteMeta record
+    // @ts-expect-error - Some hacky way I've put a function meta
+    // even though the meta is typed as interface RouteMeta record
     meta: (route: RouteRecordNormalized | RouteLocationNormalizedLoaded) => ({
       title: `Victor Trofin - Checkout my work on ${
         route?.params?.project_item ?? "this"

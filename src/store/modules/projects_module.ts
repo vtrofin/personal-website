@@ -7,11 +7,11 @@ import atsModule from "@store/modules/ats_module";
 import calliopeModule from "@store/modules/calliope_module";
 import type { Module } from "vuex";
 import type {
-  ProjectsRootState,
-  ProjectsState,
+  ProjectsModuleState,
+  RootState,
 } from "@store/modules/module_types";
 
-const projectsModule: Module<ProjectsState, ProjectsRootState> = {
+const projectsModule: Module<ProjectsModuleState, RootState> = {
   state: () => ({
     projects: [
       "calliope",

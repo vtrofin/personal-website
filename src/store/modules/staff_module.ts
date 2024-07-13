@@ -1,10 +1,7 @@
 import type { Module } from "vuex";
-import type {
-  ProjectState,
-  ProjectsRootState,
-} from "@store/modules/module_types";
+import type { ProjectState, RootState } from "@store/modules/module_types";
 
-const staffModule: Module<ProjectState, ProjectsRootState> = {
+const staffModule: Module<ProjectState, RootState> = {
   namespaced: true,
   state: () => ({
     project: {

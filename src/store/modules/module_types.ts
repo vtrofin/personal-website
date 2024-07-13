@@ -1,10 +1,3 @@
-export interface RootState {
-  isMobile: boolean;
-  isAndroid: boolean;
-  isToolboxActive: boolean;
-  windowWidth: number;
-}
-
 export interface HeroModuleState {
   bashHistory: string[];
   staticText: string;
@@ -50,17 +43,14 @@ export interface ProjectState {
   project: Project;
 }
 
-export interface ProjectsRootState extends RootState {
-  ats: Project;
-  shipandco: Project;
-  stockandco: Project;
-  staff: Project;
-  utils: Project;
-  bentoandco: Project;
-  calliope: Project;
-}
-
-export interface ProjectsState {
+export interface ProjectsModuleState {
   projects: string[];
   activeProject: string;
+}
+
+export interface RootState {
+  isMobile: boolean;
+  isAndroid: boolean;
+  isToolboxActive: boolean;
+  windowWidth: number;
 }

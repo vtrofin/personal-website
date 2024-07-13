@@ -54,7 +54,7 @@
 </template>
 <script lang="ts">
 import { toRefs, defineComponent } from "vue";
-import { useStore } from "vuex";
+import { useStore } from '@store/index'
 
 export default defineComponent({
   name: "ToolBoxWrapper",

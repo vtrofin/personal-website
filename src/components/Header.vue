@@ -69,7 +69,7 @@
 
 <script lang="ts">
 import { computed, defineComponent } from "vue";
-import { useStore } from "vuex";
+import { useStore } from '@store/index'
 import HeaderLogo from "@components/HeaderLogo.vue";
 import GithubLogo from "@components/GithubLogo.vue";
 import ProjectItemHeader from "@components/project_item/project_header.vue";

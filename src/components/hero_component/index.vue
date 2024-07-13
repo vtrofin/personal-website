@@ -41,7 +41,7 @@
 <script>
 import anime from "animejs/lib/anime.es.js";
 import { computed, ref, onMounted, onUnmounted } from "vue";
-import { useStore } from "vuex";
+import { useStore } from '@store/index'
 import { getExplodedContent } from "../helpers";
 import { getAnimationObserver } from "../helpers/intersect";
 import { stopAnimation } from "../helpers/animate";
@@ -141,11 +141,13 @@ export default {
   text-align: left;
   color: var(--gray);
 }
+
 @media all and (min-width: 600px) {
   .hero-section .hero-title h1 {
     font-size: 4rem;
   }
 }
+
 @media all and (min-width: 1000px) {
   .hero-section .hero-subtitle p {
     padding-right: 3.5rem;
@@ -215,6 +217,7 @@ export default {
   letter-spacing: 0.0625em;
   display: block;
 }
+
 .animation-text {
   display: inline-block;
   opacity: 0;
@@ -229,11 +232,13 @@ span.text-block {
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: repeat(4, auto);
   }
+
   .hero-section .hero-title,
   .hero-section .hero-subtitle {
     grid-column: 1 / 2;
     grid-row: span 2;
   }
+
   .hero-section .cli-interaction-wrap {
     grid-column: 2 / 3;
     grid-row: 1/ 5;
@@ -252,7 +257,8 @@ span.text-block {
   padding: 20px 10px;
   align-self: flex-start;
 }
-.cli-buttons > span {
+
+.cli-buttons>span {
   height: 14px;
   width: 14px;
   display: inline-block;
@@ -261,13 +267,15 @@ span.text-block {
   margin-right: 5px;
 }
 
-.cli-buttons > span:first-child {
+.cli-buttons>span:first-child {
   background-color: #ef4444;
 }
-.cli-buttons > span:nth-child(2) {
+
+.cli-buttons>span:nth-child(2) {
   background-color: #facc15;
 }
-.cli-buttons > span:last-child {
+
+.cli-buttons>span:last-child {
   background-color: #22c55e;
 }
 </style>

@@ -1,9 +1,10 @@
-import { createStore } from "vuex";
+import { createStore, Store, useStore as baseUseStore } from "vuex";
 import heroModule from "@store/modules/hero_module";
 import projectsModule from "@store/modules/projects_module";
 import companiesModule from "@store/modules/companies_module";
 import toolsModule from "@store/modules/tools_module";
 import type { RootState } from "@store/modules/module_types";
+import type { InjectionKey } from "vue";
 
 // Deprecate for Pinia. Still maintained but not improved. I love the Vue ecosystem.
 // Makes it more difficult to keep up to changes that in React.
@@ -63,5 +64,11 @@ const store = createStore<RootState>({
     },
   },
 });
+
+const key: InjectionKey<Store<RootState>> = Symbol();
+
+export const useStore = () => {
+  return baseUseStore(key);
+};
 
 export default store;

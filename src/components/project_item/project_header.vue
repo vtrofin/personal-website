@@ -9,7 +9,7 @@
 </template>
 
 <script lang="ts">
-import { useStore } from 'vuex';
+import { useStore } from '@store/index'
 import { reactive, onBeforeUpdate, defineComponent } from 'vue';
 import { getFormattedTitle } from '../../helpers';
 

@@ -8,7 +8,7 @@
 
 <script>
 import { ref, defineComponent } from 'vue';
-import { useStore } from 'vuex';
+import { useStore } from '@store/index'
 import HeroSection from '../components/hero_component';
 import GeneralSection from '../components/general_section';
 import { getProjectData, getWorkData } from '../components/helpers';
@@ -20,7 +20,7 @@ export default defineComponent({
     const store = useStore();
     const computedStyle = ref({});
     const _allProjects = store.getters['projects/getAllProjects'];
-    const mainProjects = ["calliope","ats","shipandco"]
+    const mainProjects = ["calliope", "ats", "shipandco"]
 
     const allCompanies = store.getters['companies/getAllCompanies'];
     const projectsData = getProjectData(mainProjects, store); // _allProjects
@@ -55,6 +55,7 @@ export default defineComponent({
   -webkit-animation: cursor-blink 1s step-end infinite;
   animation: cursor-blink 1s step-end infinite;
 }
+
 #animation-blinking-cursor {
   position: relative;
   display: none;
@@ -64,20 +65,25 @@ export default defineComponent({
   0% {
     opacity: 0.8;
   }
+
   50% {
     opacity: 0;
   }
+
   100% {
     opacity: 0.8;
   }
 }
+
 @keyframes cursor-blink {
   0% {
     opacity: 0.8;
   }
+
   50% {
     opacity: 0;
   }
+
   100% {
     opacity: 0.8;
   }

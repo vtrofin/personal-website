@@ -5,7 +5,7 @@
 </template>
 
 <script lang="ts">
-import { useStore } from 'vuex';
+import { useStore } from '@store/index'
 import { useRoute } from 'vue-router';
 import { watch, ref, reactive, onMounted, onUnmounted, defineComponent } from 'vue';
 import MainLayout from '@layouts/MainLayout.vue';

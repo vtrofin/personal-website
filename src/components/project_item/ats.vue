@@ -73,10 +73,11 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import ProjectSummary from "./project_summary";
 import ProjectImage from "./project_image";
-export default {
+import { defineComponent } from "vue";
+export default defineComponent({
   name: "AtsContent",
   components: { ProjectSummary, ProjectImage },
   props: { modifier: { type: String, required: false, default: "" } },
@@ -103,5 +104,5 @@ export default {
     };
     return { summary };
   },
-};
+});
 </script>

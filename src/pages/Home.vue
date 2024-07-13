@@ -6,7 +6,7 @@
   <!-- <span id="blinking-cursor" :style="computedStyle" /> -->
 </template>
 
-<script>
+<script lang="ts">
 import { ref, defineComponent } from 'vue';
 import { useStore } from '@store/index'
 import HeroSection from '../components/hero_component';

@@ -3,11 +3,10 @@
     <p>
       <a
         href="https://www.bentoandco.com/"
-        :class="
-          $props.modifier
-            ? 'content-link reversed' + ' ' + $props.modifier
-            : 'content-link reversed'
-        "
+        :class="$props.modifier
+          ? 'content-link reversed' + ' ' + $props.modifier
+          : 'content-link reversed'
+          "
         target="_blank"
         rel="noopener"
         aria-label="Click to see this awesome url"
@@ -28,9 +27,11 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import ProjectSummary from './project_summary';
-export default {
+import { defineComponent } from 'vue';
+
+export default defineComponent({
   name: 'BentoandcoContent',
   components: { ProjectSummary },
   props: { modifier: { type: String, required: false, default: '' } },
@@ -44,5 +45,5 @@ export default {
     };
     return { summary };
   },
-};
+});
 </script>

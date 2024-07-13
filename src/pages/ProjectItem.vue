@@ -2,12 +2,13 @@
   <ProjectItemContent />
 </template>
 
-<script>
+<script lang="ts">
 import { onBeforeRouteUpdate } from 'vue-router';
 import ProjectItemContent from '../components/project_item/project_content.vue';
 import { checkProjectRoute } from '../helpers';
+import { defineComponent } from 'vue';
 
-export default {
+export default defineComponent({
   name: 'ProjectItem',
   components: { ProjectItemContent },
   setup() {
@@ -18,7 +19,7 @@ export default {
     });
     return {};
   },
-};
+});
 </script>
 
 <style></style>

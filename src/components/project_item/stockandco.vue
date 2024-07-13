@@ -31,11 +31,12 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import ProjectSummary from './project_summary';
 import ProjectImage from './project_image';
+import { defineComponent } from 'vue';
 
-export default {
+export default defineComponent({
   name: 'StockandcoContent',
   components: { ProjectSummary, ProjectImage },
   props: { modifier: { type: String, required: false, default: '' } },
@@ -50,5 +51,5 @@ export default {
 
     return { summary };
   },
-};
+});
 </script>

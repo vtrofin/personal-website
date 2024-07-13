@@ -38,15 +38,15 @@
   </section>
 </template>
 
-<script>
+<script lang="ts">
 import anime from "animejs/lib/anime.es.js";
-import { computed, ref, onMounted, onUnmounted } from "vue";
+import { computed, ref, onMounted, onUnmounted, defineComponent } from "vue";
 import { useStore } from '@store/index'
 import { getExplodedContent } from "../helpers";
 import { getAnimationObserver } from "../helpers/intersect";
 import { stopAnimation } from "../helpers/animate";
 
-export default {
+export default defineComponent({
   name: "HeroSection",
   emits: {
     "update-caret-position": null,
@@ -94,7 +94,7 @@ export default {
       animationTextRefs,
     };
   },
-};
+});
 </script>
 
 <style>

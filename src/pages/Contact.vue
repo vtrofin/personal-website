@@ -95,8 +95,8 @@
   </section>
 </template>
 
-<script>
-import { reactive, ref } from "vue";
+<script lang="ts">
+import { reactive, ref, defineComponent } from "vue";
 import TickComponent from "../components/contact/tick.vue";
 import AlertComponent from "../components/contact/alert.vue";
 import SpinnerComponent from "../components/spinner";
@@ -140,7 +140,7 @@ const toggleFocus = (target, templateData) => {
     localState === "focused" && !value ? "" : "focused";
 };
 
-export default {
+export default defineComponent({
   name: "ContactPage",
   components: { TickComponent, AlertComponent, SpinnerComponent },
   setup() {
@@ -169,9 +169,8 @@ export default {
         });
         const res = await response.json();
         templateData.formSubmitMessage = res.message || "";
-        templateData.messageClass = `form-result ${
-          res && res.response === "error" ? "error" : "success"
-        }`;
+        templateData.messageClass = `form-result ${res && res.response === "error" ? "error" : "success"
+          }`;
         loading.value = false;
         setTimeout(timeOutHandler(templateData, loading), timeoutVal);
       } catch (err) {
@@ -219,7 +218,7 @@ export default {
       loading,
     };
   },
-};
+});
 </script>
 <style scoped>
 form {
@@ -228,16 +227,19 @@ form {
   flex-direction: column;
   margin: 3rem auto;
 }
+
 label,
 .input-container {
   flex-grow: 1;
   flex-basis: 100%;
 }
+
 label {
   display: none;
   text-align: left;
   font-size: 0.9rem;
 }
+
 .required-label {
   font-size: 0.8rem;
   color: var(--gray);
@@ -249,6 +251,7 @@ label {
   margin-top: 0.5rem;
   margin-bottom: 1rem;
 }
+
 .input-container input,
 .input-container textarea {
   width: 100%;
@@ -256,6 +259,7 @@ label {
   line-height: 1.2rem;
   font-family: inherit;
 }
+
 .input-container .input-label {
   position: absolute;
   color: rgb(91, 112, 131);
@@ -266,7 +270,8 @@ label {
   font-weight: 400;
   transition: all 150ms cubic-bezier(0.4, 0, 0.2, 1);
 }
-.input-container textarea + .input-label {
+
+.input-container textarea+.input-label {
   top: 1rem;
 }
 
@@ -295,8 +300,8 @@ textarea {
   color: var(--black);
 }
 
-.input-container + .required-label,
-textarea + .required-label {
+.input-container+.required-label,
+textarea+.required-label {
   margin-top: -0.7rem;
   margin-bottom: 1rem;
 }
@@ -310,7 +315,9 @@ input:focus,
 textarea:focus {
   border-color: var(--black);
 }
+
 @media (hover: hover) {
+
   input:hover,
   textarea:hover {
     border-color: var(--black);
@@ -353,9 +360,11 @@ button[type="submit"]:disabled {
   text-align: left;
   transition: all 0.3s ease-out;
 }
+
 .form-result.success {
   border: 1px solid var(--light-green);
 }
+
 .form-result.error {
   border: 1px solid var(--red);
 }

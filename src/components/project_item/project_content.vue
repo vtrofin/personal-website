@@ -2,8 +2,8 @@
   <component :is="projectContentComponent" :modifier="modifierClass" />
 </template>
 
-<script>
-import { computed, ref, watch } from 'vue';
+<script lang="ts">
+import { computed, ref, watch, defineComponent } from 'vue';
 import { useRoute } from 'vue-router';
 import ShipandcoContent from './shipandco';
 import StockandcoContent from './stockandco';
@@ -13,7 +13,7 @@ import BentoandcoContent from './bentoandco';
 import AtsContent from './ats';
 import CalliopeContent from './calliope';
 
-export default {
+export default defineComponent({
   name: 'ProjectItemContent',
   components: {
     ShipandcoContent,
@@ -53,7 +53,7 @@ export default {
       modifierClass,
     };
   },
-};
+});
 </script>
 <style>
 .project-content {
@@ -61,9 +61,11 @@ export default {
   max-width: 800px;
   margin: 0 auto;
 }
+
 .project-content:first-of-type {
   padding-top: 10vh;
 }
+
 .project-content:last-of-type {
   padding-bottom: 20vh;
 }
@@ -72,6 +74,7 @@ export default {
   .project-content {
     padding-top: 3rem;
   }
+
   .project-content:first-of-type {
     padding-top: 5rem;
   }
@@ -101,6 +104,7 @@ export default {
   scroll-margin-top: 1em;
   line-height: 1.5rem;
 }
+
 .project-content ul.content-list li {
   margin: 1.5rem auto 1rem;
   font-size: 1.2rem;

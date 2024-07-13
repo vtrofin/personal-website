@@ -1,12 +1,17 @@
-import shipandcoModule from "./shipandco_module";
-import stockandcoModule from "./stockandco_module";
-import staffModule from "./staff_module";
-import utilsModule from "./utils_module";
-import bentoandcoModule from "./bentoandco_module";
-import atsModule from "./ats_module";
-import calliopeModule from "./calliope_module";
+import shipandcoModule from "@store/modules/shipandco_module";
+import stockandcoModule from "@store/modules/stockandco_module";
+import staffModule from "@store/modules/staff_module";
+import utilsModule from "@store/modules/utils_module";
+import bentoandcoModule from "@store/modules/bentoandco_module";
+import atsModule from "@store/modules/ats_module";
+import calliopeModule from "@store/modules/calliope_module";
+import type { Module } from "vuex";
+import type {
+  ProjectsRootState,
+  ProjectState,
+} from "@store/modules/module_types";
 
-export default {
+const projectsModule: Module<ProjectState, ProjectsRootState> = {
   state: () => ({
     projects: [
       "calliope",
@@ -49,3 +54,5 @@ export default {
     },
   },
 };
+
+export default projectsModule;

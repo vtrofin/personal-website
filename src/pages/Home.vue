@@ -7,13 +7,13 @@
 </template>
 
 <script>
-import { ref } from 'vue';
+import { ref, defineComponent } from 'vue';
 import { useStore } from 'vuex';
 import HeroSection from '../components/hero_component';
 import GeneralSection from '../components/general_section';
 import { getProjectData, getWorkData } from '../components/helpers';
 
-export default {
+export default defineComponent({
   name: 'HomePage',
   components: { GeneralSection, HeroSection },
   setup() {
@@ -38,7 +38,7 @@ export default {
       updateCaretPosition,
     };
   },
-};
+});
 </script>
 
 <style>

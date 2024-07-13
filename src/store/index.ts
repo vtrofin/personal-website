@@ -1,9 +1,12 @@
-import { createStore } from 'vuex';
-import heroModule from './modules/hero_module';
-import projectsModule from './modules/projects_module';
-import companiesModule from './modules/companies_module';
-import toolsModule from './modules/tools_module';
+import { createStore, Store } from "vuex";
+import heroModule from "./modules/hero_module";
+import projectsModule from "./modules/projects_module";
+import companiesModule from "./modules/companies_module";
+import toolsModule from "./modules/tools_module";
 
+// Deprecate for Pinia. Still maintained but not improved. I love the Vue ecosystem.
+// Makes it more difficult to keep up to changes that in React.
+// https://www.npmjs.com/package/vuex
 const store = createStore({
   state: () => ({
     isMobile: false,
@@ -18,13 +21,13 @@ const store = createStore({
     tools: toolsModule,
   },
   getters: {
-    checkMobile: state => {
+    checkMobile: (state) => {
       return { isMobile: state.isMobile, isAndroid: state.isAndroid };
     },
-    checkToolBox: state => {
+    checkToolBox: (state) => {
       return state.isToolboxActive;
     },
-    getInnerWidth: state => {
+    getInnerWidth: (state) => {
       return state.windowWidth;
     },
   },
@@ -32,12 +35,12 @@ const store = createStore({
     updateMobileStatus: (state, payload) => {
       const { isMobile, isAndroid } = payload;
       state.isMobile = isMobile;
-      if (typeof isAndroid === 'boolean') {
+      if (typeof isAndroid === "boolean") {
         state.isAndroid = isAndroid;
       }
     },
     updateToolBoxState: (state, payload = {}) => {
-      if (typeof payload.isToolboxActive !== 'boolean') {
+      if (typeof payload.isToolboxActive !== "boolean") {
         return;
       }
       state.isToolboxActive = payload.isToolboxActive;
@@ -49,13 +52,13 @@ const store = createStore({
   },
   actions: {
     setMobileDevice: ({ commit }, payload) => {
-      commit('updateMobileStatus', payload);
+      commit("updateMobileStatus", payload);
     },
     setToolBoxState: ({ commit }, payload) => {
-      commit('updateToolBoxState', payload);
+      commit("updateToolBoxState", payload);
     },
     setWindowWidth: ({ commit }, payload) => {
-      commit('updateWindowWidth', payload);
+      commit("updateWindowWidth", payload);
     },
   },
 });

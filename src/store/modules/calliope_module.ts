@@ -1,4 +1,10 @@
-export default {
+import type { Module } from "vuex";
+import type {
+  ProjectState,
+  ProjectsRootState,
+} from "@store/modules/module_types";
+
+const calliopeModule: Module<ProjectState, ProjectsRootState> = {
   namespaced: true,
   state: () => ({
     project: {
@@ -15,3 +21,5 @@ export default {
     },
   },
 };
+
+export default calliopeModule;

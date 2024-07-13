@@ -35,12 +35,12 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import anime from 'animejs/lib/anime.es.js';
-import { onMounted, onUnmounted } from 'vue';
-import { setUpAnimation, stopAnimation } from '../components/helpers/animate';
+import { onMounted, onUnmounted, defineComponent } from 'vue';
+import { setUpAnimation, stopAnimation } from '@components/helpers/animate';
 
-export default {
+export default defineComponent({
   name: 'NotFound',
   setup() {
     let tl;
@@ -53,7 +53,7 @@ export default {
       stopAnimation(tl, anime);
     });
   },
-};
+});
 </script>
 
 <style scoped>
@@ -74,6 +74,7 @@ export default {
   height: 100%;
   margin: auto;
 }
+
 @media all and (min-width: 600px) {
   .container {
     padding: 5%;
@@ -131,9 +132,11 @@ export default {
   margin: 0 10px;
   position: absolute;
 }
+
 .ghost-eyes-container .eye:first-child {
   left: 0;
 }
+
 .ghost-eyes-container .eye:last-child {
   right: 0;
 }
@@ -146,7 +149,7 @@ export default {
   display: flex;
 }
 
-.ghost-feet-container > div {
+.ghost-feet-container>div {
   flex-grow: 1;
   position: relative;
   top: -10px;
@@ -154,11 +157,13 @@ export default {
   background-color: var(--white);
   border-radius: 100%;
 }
-.ghost-feet-container > div:nth-child(2n) {
+
+.ghost-feet-container>div:nth-child(2n) {
   margin: 0;
   border-top: 10px solid var(--pink);
   background-color: transparent;
 }
+
 .ghost-shadow {
   height: 20px;
   margin: 0 auto;
@@ -175,6 +180,7 @@ export default {
   animation-delay: 3s;
   animation-iteration-count: infinite;
 }
+
 .symbol:before,
 .symbol:after {
   content: '';
@@ -196,14 +202,17 @@ export default {
   border-color: var(--white);
   animation-delay: 1.3s;
 }
+
 .symbol:nth-of-type(3) {
   animation-duration: 3s;
   animation-delay: 0.5s;
 }
+
 .symbol:nth-of-type(4) {
   animation-duration: 6s;
   animation-delay: 1.6s;
 }
+
 .symbol:nth-of-type(5) {
   position: absolute;
   right: 5px;
@@ -216,6 +225,7 @@ export default {
   animation-duration: 1.7s;
   animation-delay: 7s;
 }
+
 .symbol:nth-of-type(6) {
   animation-duration: 2s;
   animation-delay: 6s;
@@ -226,9 +236,11 @@ export default {
   bottom: 65px;
   left: 0;
 }
+
 .symbol:first-of-type:before {
   transform: rotate(45deg);
 }
+
 .symbol:first-of-type::after {
   transform: rotate(-45deg);
 }
@@ -245,9 +257,11 @@ export default {
   top: 5px;
   left: 40px;
 }
+
 .symbol:nth-of-type(3):before {
   transform: rotate(90deg);
 }
+
 .symbol:nth-of-type(3):after {
   transform: rotate(180deg);
 }
@@ -258,9 +272,11 @@ export default {
   top: 10px;
   right: 30px;
 }
+
 .symbol:nth-of-type(4):before {
   transform: rotate(45deg);
 }
+
 .symbol:nth-of-type(4)::after {
   transform: rotate(-45deg);
 }
@@ -271,9 +287,11 @@ export default {
   bottom: 65px;
   right: -5px;
 }
+
 .symbol:nth-of-type(6):before {
   transform: rotate(90deg);
 }
+
 .symbol:nth-of-type(6)::after {
   transform: rotate(180deg);
 }
@@ -294,12 +312,14 @@ export default {
   line-height: 1.2em;
   margin: auto;
 }
+
 .text-container p {
   margin: 1rem auto;
   padding: 0;
   font-size: 1.2rem;
   line-height: 1.5;
 }
+
 @media all and (min-width: 600px) {
   .text-container h2 {
     font-size: 2.5rem;
@@ -310,10 +330,12 @@ export default {
   color: var(--black);
   font-weight: 500;
 }
+
 .content-link.not-found:before {
   bottom: -10px;
   background-color: var(--red);
 }
+
 @media (hover: hover) {
   .content-link.not-found:hover:before {
     height: 10px;
@@ -324,9 +346,11 @@ export default {
   0% {
     transform: translateY(5px);
   }
+
   50% {
     transform: translateY(15px);
   }
+
   100% {
     transform: translateY(5px);
   }
@@ -336,6 +360,7 @@ export default {
   0% {
     width: 90px;
   }
+
   50% {
     width: 100px;
   }
@@ -349,12 +374,15 @@ export default {
   0% {
     opacity: 0.2;
   }
+
   25% {
     opacity: 0.1;
   }
+
   50% {
     opacity: 0.2;
   }
+
   100% {
     opacity: 0.2;
   }

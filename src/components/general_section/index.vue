@@ -6,16 +6,14 @@
       :key="idx"
       :to="options.path"
       :aria-label="options.ariaLabel"
-      :active-class="
-        'active' + ' ' + options.project
-          ? `${options.projects}-active`
-          : 'shipandco-active'
-      "
-      :exact-active-class="
-        'exact-active' + ' ' + options.project
-          ? `${options.project}-active`
-          : 'shipandco-active'
-      "
+      :active-class="'active' + ' ' + options.project
+        ? `${options.projects}-active`
+        : 'shipandco-active'
+        "
+      :exact-active-class="'exact-active' + ' ' + options.project
+        ? `${options.project}-active`
+        : 'shipandco-active'
+        "
       :total-items="data.length"
     >
       <template #section-link-slot>
@@ -34,12 +32,13 @@
   </section>
 </template>
 
-<script>
-import SectionAppLink from "../SectionAppLink";
-import ProjectComponent from "./Project";
-import { generalSectionArrayValidator } from "../helpers/validators";
+<script lang="ts">
+import { defineComponent } from "vue";
+import SectionAppLink from "@components/SectionAppLink.vue";
+import ProjectComponent from "@components/general_section/Project.vue";
+import { generalSectionArrayValidator } from "@components/helpers/validators";
 
-export default {
+export default defineComponent({
   name: "GeneralSection",
   components: { SectionAppLink, ProjectComponent },
   props: {
@@ -49,7 +48,7 @@ export default {
     data: { validator: generalSectionArrayValidator },
     type: { type: String, required: false, default: "project" },
   },
-};
+});
 </script>
 
 <style>
@@ -78,6 +77,7 @@ export default {
   vertical-align: baseline;
   border: 0;
 }
+
 @media all and (min-width: 600px) {
   .section-header {
     font-size: 4rem;
@@ -104,13 +104,14 @@ span.item-button {
 }
 
 @media (hover: none) {
+
   /* https://www.w3schools.com/cssref/sel_link.asp || https://developer.mozilla.org/en-US/docs/Web/CSS/@media/hover  */
   .section-link:link span.item-button {
     opacity: 0;
   }
 }
 
-span > .item-button-label {
+span>.item-button-label {
   display: block;
   opacity: 0;
   transform: translateY(-15px);
@@ -118,7 +119,7 @@ span > .item-button-label {
     opacity 0.35s cubic-bezier(0.19, 1, 0.22, 1) 0.1s;
 }
 
-.section-link:hover span > .item-button-label {
+.section-link:hover span>.item-button-label {
   transform: translateY(0);
   opacity: 1;
 }
@@ -133,6 +134,7 @@ h3.item-title {
   transform: translateZ(0);
   transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
+
 .section-link:hover h3.item-title {
   transform: translateY(-6px) translateZ(0);
 }
@@ -153,6 +155,7 @@ h3.item-title {
   transform: scaleX(0.8);
   transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
+
 .section-link:hover .item-divider {
   transform: scaleX(1) translateY(6px);
 }
@@ -168,6 +171,7 @@ p.item-text {
   font-size: 1.2rem;
   font-weight: 500;
 }
+
 .section-link:hover p.item-text {
   transform: translateY(8px) translateZ(0);
 }
@@ -181,6 +185,7 @@ p.item-text {
   bottom: 0;
   transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
+
 a:hover .item-background {
   transform: scale3D(1.04, 1.04, 1);
 }
@@ -196,6 +201,7 @@ a:hover .item-background {
   transform: translateZ(0);
   transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
+
 .item-logo.bentoandco-logo {
   width: 128px;
 }

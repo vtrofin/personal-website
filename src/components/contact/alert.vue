@@ -23,13 +23,15 @@
     />
   </svg>
 </template>
-<script>
-export default {
+<script lang="ts">
+import { defineComponent } from "vue";
+
+export default defineComponent({
   name: "AlertComponent",
   props: {
     width: { type: String, required: false, default: "24px" },
     color: { type: String, required: false, default: "red" },
   },
-};
+});
 </script>
 <style scoped></style>

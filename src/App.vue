@@ -8,8 +8,8 @@
 import { useStore } from 'vuex';
 import { useRoute } from 'vue-router';
 import { watch, ref, reactive, onMounted, onUnmounted, defineComponent } from 'vue';
-import MainLayout from './layouts/MainLayout';
-import ToolBoxWrapper from './layouts/ToolBoxWrapper';
+import MainLayout from '@layouts/MainLayout.vue';
+import ToolBoxWrapper from '@layouts/ToolBoxWrapper.vue';
 
 const getProjectItem = route => route?.params?.project_item ?? '';
 

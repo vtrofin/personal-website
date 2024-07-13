@@ -8,7 +8,7 @@ export function generalSectionArrayValidator(value) {
       !val.path ||
       !val.callToAction ||
       !val.title ||
-      (!val.excerpt && val.type === 'project')
+      (!val.excerpt && val.type === "project")
     ) {
       return false;
     }

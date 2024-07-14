@@ -101,7 +101,19 @@ import TickComponent from "@components/contact/tick.vue";
 import AlertComponent from "@components/contact/alert.vue";
 import SpinnerComponent from "@components/spinner/index.vue";
 
-const timeOutHandler = (reactiveVal) => {
+type TemplateData = {
+  isLoading: boolean;
+  formSubmitMessage: string;
+  messageClass: string;
+  inputModifierClass: {
+    name: string;
+    email: string;
+    subject: string;
+    message: string;
+  };
+}
+
+const timeOutHandler = (reactiveVal: TemplateData) => {
   return () => {
     reactiveVal.isLoading = false;
     reactiveVal.messageClass = "form-result";
@@ -109,24 +121,31 @@ const timeOutHandler = (reactiveVal) => {
   };
 };
 
-const readForm = (formTarget) => {
-  let data = {};
+const readForm = (formTarget: HTMLFormElement | null) => {
+  let data: { [key: string]: string } = {};
   let div = document.createElement("div");
+
+  if (!formTarget) {
+    return data
+  }
+
 
   // sanitize the form data
   for (let elem of formTarget) {
-    div.innerText = elem.value;
-    if (elem.name) {
-      data[elem.name] = div.innerHTML;
+    const inputElement = elem as HTMLInputElement
+
+    div.innerText = inputElement.value;
+    if (inputElement.name) {
+      data[inputElement.name] = div.innerHTML;
     }
   }
 
   return data;
 };
 
-const toggleFocus = (target, templateData) => {
+const toggleFocus = (target: HTMLInputElement | HTMLTextAreaElement, templateData: TemplateData) => {
   const value = target?.value;
-  const targetName = target?.name;
+  const targetName = target?.name as keyof TemplateData['inputModifierClass'];
 
   if (!targetName) {
     throw new Error("Failed to get target input");
@@ -145,7 +164,7 @@ export default defineComponent({
   components: { TickComponent, AlertComponent, SpinnerComponent },
   setup() {
     const timeoutVal = (process.env.NODE_ENV === "development" ? 3 : 30) * 1000;
-    const templateData = reactive({
+    const templateData = reactive<TemplateData>({
       isLoading: false,
       formSubmitMessage: "",
       messageClass: "form-result",
@@ -153,9 +172,9 @@ export default defineComponent({
     });
     const loading = ref(false);
 
-    const handleFormSubmit = async (event) => {
+    const handleFormSubmit = async (event: Event) => {
       loading.value = true;
-      const data = readForm(event.target);
+      const data = readForm(event.target as HTMLFormElement);
 
       try {
         templateData.isLoading = true;
@@ -172,24 +191,24 @@ export default defineComponent({
         templateData.messageClass = `form-result ${res && res.response === "error" ? "error" : "success"
           }`;
         loading.value = false;
-        setTimeout(timeOutHandler(templateData, loading), timeoutVal);
+        setTimeout(timeOutHandler(templateData), timeoutVal);
       } catch (err) {
-        templateData.formSubmitMessage = `Error: ${err.message}`;
+        templateData.formSubmitMessage = `Error: ${err instanceof Error ? err.message : err}`;
         templateData.messageClass = "form-result error";
         loading.value = false;
-        setTimeout(timeOutHandler(templateData, loading), timeoutVal);
+        setTimeout(timeOutHandler(templateData), timeoutVal);
       }
     };
 
-    const toggleInputFocus = (event) => {
-      const target = event?.target;
-      toggleFocus(target, templateData, event?.type);
+    const toggleInputFocus = (event: FocusEvent) => {
+      const target = event?.target as HTMLInputElement | HTMLTextAreaElement;
+      toggleFocus(target, templateData);
     };
 
-    const handleSpanFocus = (event) => {
-      const target = event?.currentTarget;
-      const parentEl = target?.parentNode || target?.parentElement;
-      const inputEl = target?.previousSibling || target?.previousElementSibling;
+    const handleSpanFocus = (event: MouseEvent) => {
+      const target = event?.currentTarget as HTMLElement;
+      const parentEl = (target?.parentNode || target?.parentElement) as HTMLElement;
+      const inputEl = (target?.previousSibling || target?.previousElementSibling) as HTMLElement;
 
       if (typeof parentEl?.className !== "string") {
         throw new Error("Failed to get span element class");
@@ -200,7 +219,7 @@ export default defineComponent({
       }
     };
 
-    const getClassName = (baseClass, modifier) => {
+    const getClassName = (baseClass: string, modifier: keyof TemplateData['inputModifierClass']) => {
       return (
         baseClass +
         (templateData?.inputModifierClass?.[modifier]

@@ -39,7 +39,7 @@
 </template>
 
 <script lang="ts">
-import anime from "animejs/lib/anime.es.js";
+import anime from "animejs";
 import animeNamespace from "animejs"
 import { computed, ref, onMounted, onUnmounted, defineComponent } from "vue";
 import { useStore } from '@store/index'

@@ -33,9 +33,15 @@ const App = defineComponent({
     const modifier = ref('');
     const toolboxState = reactive({ active: false });
 
-    const isMobileDevice = /Mobi/i.test(window.navigator.userAgent);
-    const isAndroid = /Android/i.test(window.navigator.userAgent);
-    store.dispatch({ type: 'setMobileDevice', isMobile: isMobileDevice, isAndroid });
+    const hasWindow = typeof window !== 'undefined';
+    const isMobileDevice = hasWindow ? /Mobi/i.test(window.navigator.userAgent) : false
+    const isAndroid = hasWindow ? /Android/i.test(window.navigator.userAgent) : false
+
+    store.dispatch({
+      type: 'setMobileDevice',
+      isMobile: isMobileDevice,
+      isAndroid
+    });
 
     watch(
       () => route.params,
@@ -60,17 +66,28 @@ const App = defineComponent({
     };
 
     const resizeHandler = () => {
-      const windowWidth = window.innerWidth;
+      const hasWindow = typeof window !== 'undefined';
+      const windowWidth = hasWindow ? window.innerWidth : 0
+
       store.dispatch({ type: 'setWindowWidth', windowWidth });
     };
 
     onMounted(() => {
-      store.dispatch({ type: 'setWindowWidth', windowWidth: window.innerWidth });
-      window.addEventListener('resize', resizeHandler);
+      const hasWindow = typeof window !== 'undefined';
+      const windowWidth = hasWindow ? window.innerWidth : 0
+      store.dispatch({ type: 'setWindowWidth', windowWidth });
+
+      if (hasWindow) {
+        window.addEventListener('resize', resizeHandler)
+      };
     });
 
     onUnmounted(() => {
-      window.removeEventListener('resize', resizeHandler);
+      const hasWindow = typeof window !== 'undefined';
+
+      if (hasWindow) {
+        window.removeEventListener('resize', resizeHandler);
+      }
     });
 
     return {

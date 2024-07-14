@@ -36,7 +36,7 @@
 </template>
 
 <script lang="ts">
-import anime from 'animejs/lib/anime.es.js';
+import anime from 'animejs';
 import animeNamespace from 'animejs';
 import { onMounted, onUnmounted, defineComponent } from 'vue';
 import { setUpAnimation, stopAnimation } from '@components/helpers/animate';

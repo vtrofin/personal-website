@@ -1,7 +1,7 @@
-import { createApp } from "vue";
 import {
   createRouter,
   createWebHistory,
+  createMemoryHistory,
   type RouteRecordRaw,
   type RouteRecordNormalized,
 } from "vue-router";
@@ -15,6 +15,7 @@ import ContactPage from "@pages/Contact.vue";
 import { checkProjectRoute } from "@helpers/index";
 import { handleMetaTags, metaTags } from "@helpers/meta_tags";
 import { inject } from "@vercel/analytics";
+import { ViteSSG } from "vite-ssg";
 
 inject();
 
@@ -67,19 +68,23 @@ const routes: Readonly<RouteRecordRaw[]> = [
 ];
 
 const router = createRouter({
-  history: createWebHistory(),
+  history: import.meta.env.SSR ? createMemoryHistory() : createWebHistory(),
   routes,
-  scrollBehavior: (to, from, savedPosition) => {
+  scrollBehavior: (_to, _from, savedPosition) => {
     return savedPosition ? savedPosition : { left: 0, top: 0 };
   },
 });
 router.beforeEach(handleMetaTags);
 
-const app = createApp(App);
-app.use(router);
-app.use(store, key);
-// eslint-disable-next-line
-app.component("Fa", FontAwesomeIcon);
-// app.config.productionTip = false;
-
-app.mount("#app");
+export const createApp = ViteSSG(
+  App,
+  { routes },
+  ({ app, router, routes, isClient, initialState }) => {
+    // install plugins etc.
+    app.use(router);
+    app.use(store, key);
+    // eslint-disable-next-line
+    app.component("Fa", FontAwesomeIcon);
+    // app.mount("#app");
+  },
+);

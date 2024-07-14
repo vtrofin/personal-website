@@ -4,12 +4,10 @@ import tsconfigPaths from "vite-tsconfig-paths";
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [
-    vue(),
-    tsconfigPaths({
-      loose: true,
-    }),
-  ],
+  plugins: [vue(), tsconfigPaths({ loose: true })],
+  build: {
+    outDir: "dist",
+  },
   resolve: {
     extensions: [".mjs", ".js", ".ts", ".jsx", ".tsx", ".json", ".vue"],
   },

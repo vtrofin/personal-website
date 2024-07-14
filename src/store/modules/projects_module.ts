@@ -10,18 +10,10 @@ import type {
   ProjectsModuleState,
   RootState,
 } from "@store/modules/module_types";
-
+import { allProjects } from "src/globals";
 const projectsModule: Module<ProjectsModuleState, RootState> = {
   state: () => ({
-    projects: [
-      "calliope",
-      "ats",
-      "staff",
-      "stockandco",
-      "shipandco",
-      "utils",
-      "bentoandco",
-    ],
+    projects: allProjects,
     activeProject: "",
   }),
   namespaced: true,

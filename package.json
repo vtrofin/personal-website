@@ -10,7 +10,7 @@
     "build:ssg": "rm -rf dist && vite-ssg build",
     "serve": "vite preview",
     "lint": "eslint --ext .ts,.vue,.js --ignore-path .gitignore --fix src",
-    "tsc:check": "tsc --noEmit"
+    "ts:check": "tsc --noEmit"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.5.2",
@@ -35,7 +35,6 @@
     "@prerenderer/renderer-puppeteer": "^1.2.4",
     "@types/animejs": "^3.1.12",
     "@types/node": "^20.14.10",
-    "@unhead/vue": "^1.9.15",
     "@vitejs/plugin-vue": "^5.0.5",
     "@vue/compiler-sfc": "^3.4.31",
     "eslint": "8.57.0",

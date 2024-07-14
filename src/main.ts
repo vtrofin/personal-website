@@ -80,7 +80,6 @@ export const createApp = ViteSSG(
   App,
   { routes },
   ({ app, router, routes, isClient, initialState }) => {
-    // install plugins etc.
     app.use(router);
     app.use(store, key);
     // eslint-disable-next-line

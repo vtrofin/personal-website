@@ -69,9 +69,6 @@ importers:
       '@types/node':
         specifier: ^20.14.10
         version: 20.14.10
-      '@unhead/vue':
-        specifier: ^1.9.15
-        version: 1.9.15(vue@3.4.31(typescript@5.5.3))
       '@vitejs/plugin-vue':
         specifier: ^5.0.5
         version: 5.0.5(vite@5.3.3(@types/node@20.14.10)(terser@5.31.2))(vue@3.4.31(typescript@5.5.3))

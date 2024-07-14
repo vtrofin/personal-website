@@ -20,11 +20,10 @@ export default defineComponent({
   setup() {
     const store = useStore();
     const computedStyle = ref<Record<string, string>>({});
-    // const _allProjects = store.getters['projects/getAllProjects'] as ProjectsModuleState["projects"];
     const mainProjects = ["calliope", "ats", "shipandco"]
 
     const allCompanies = store.getters['companies/getAllCompanies'] as CompaniesModuleState["companies"];
-    const projectsData = getProjectData(mainProjects, store); // _allProjects
+    const projectsData = getProjectData(mainProjects, store);
     const workData = getWorkData(allCompanies);
     const updateCaretPosition = () => {
       // sad but true; getters are not type safe

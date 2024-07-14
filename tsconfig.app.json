@@ -33,6 +33,12 @@
       "@libs/*": ["libs/*"]
     }
   },
-  "include": ["src/**/*.ts", "src/**/*.tsx", "src/**/*.vue", "src/**/*.d.ts"],
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.tsx",
+    "src/**/*.vue",
+    "src/**/*.d.ts",
+    "libs/**/*.ts"
+  ],
   "exclude": ["node_modules"]
 }

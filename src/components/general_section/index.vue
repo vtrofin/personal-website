@@ -6,14 +6,8 @@
       :key="idx"
       :to="options.path"
       :aria-label="options.ariaLabel"
-      :active-class="'active' + ' ' + options.project
-        ? `${options.projects}-active`
-        : 'shipandco-active'
-        "
-      :exact-active-class="'exact-active' + ' ' + options.project
-        ? `${options.project}-active`
-        : 'shipandco-active'
-        "
+      :active-class="'active' + ' ' + (options.project ? `${options.project}-active` : 'shipandco-active')"
+      :exact-active-class="'exact-active' + ' ' + (options.project ? `${options.project}-active` : 'shipandco-active')"
       :total-items="data.length"
     >
       <template #section-link-slot>
@@ -37,6 +31,7 @@ import { defineComponent } from "vue";
 import SectionAppLink from "@components/SectionAppLink.vue";
 import ProjectComponent from "@components/general_section/Project.vue";
 import { generalSectionArrayValidator } from "@components/helpers/validators";
+import { getProjectData, getWorkData } from "@components/helpers/index";
 
 export default defineComponent({
   name: "GeneralSection",
@@ -45,7 +40,10 @@ export default defineComponent({
     className: { type: String, required: false, default: "" },
     title: { type: String, required: true },
     // eslint-disable-next-line
-    data: { validator: generalSectionArrayValidator },
+    data: {
+      validator: generalSectionArrayValidator,
+      required: true, type: Array as () => ReturnType<typeof getProjectData | typeof getWorkData>
+    },
     type: { type: String, required: false, default: "project" },
   },
 });

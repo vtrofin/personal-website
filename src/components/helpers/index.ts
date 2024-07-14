@@ -64,6 +64,7 @@ export const getLastNode = (parent: HTMLElement): Element | undefined => {
   if (!parent) {
     return;
   }
+
   let ch = parent?.children;
   while (ch.length) {
     if (!ch[ch.length - 1].children.length) {

@@ -1,5 +1,5 @@
 import { animateCliText } from "@components/helpers/animate";
-import type { AnimeParams, AnimeInstance } from "animejs";
+import animeNamespace from "animejs";
 import { type Ref } from "vue";
 
 export const getAnimationObserver = ({
@@ -8,7 +8,8 @@ export const getAnimationObserver = ({
   staggeredAnimation,
 }: {
   cliContainer: Ref<HTMLDivElement | null>;
-  anime: (params: AnimeParams) => AnimeInstance;
+  anime: typeof animeNamespace;
+  staggeredAnimation: Ref<ReturnType<typeof animeNamespace> | null>;
 }): IntersectionObserver => {
   const handler: IntersectionObserverCallback = (entries, observer) => {
     try {
@@ -25,7 +26,10 @@ export const getAnimationObserver = ({
     root: null,
     threshold: [0.5],
   });
-  animationObserver.observe(cliContainer.value);
+
+  if (cliContainer.value) {
+    animationObserver.observe(cliContainer.value);
+  }
 
   return animationObserver;
 };

@@ -1,7 +1,8 @@
 import { getLastNode } from "@components/helpers/index";
-import {} from "animejs";
+import animeNamespace from "animejs";
+import type { Ref } from "vue";
 
-export const setUpAnimation = (anime) => {
+export const setUpAnimation = (anime: typeof animeNamespace) => {
   // x => translated -50%. translate -80% -> -20%
   // y -> translated 0; translate -70% -> 40%
   anime.set(".ghost-eyes-container", {
@@ -15,7 +16,7 @@ export const setUpAnimation = (anime) => {
     loop: true,
   });
 
-  const moves = {
+  const moves: { [key: string]: Record<string, unknown> } = {
     eyesLeft: { translateX: "-80%", duration: 3000, delay: 2500 },
     eyesUp: { translateY: "-50%", duration: 600 },
     eyesBottom: { translateY: "30%", duration: 800, delay: 1500 },
@@ -47,25 +48,40 @@ export const setUpAnimation = (anime) => {
   }, tl);
 };
 
-const getTargets = (ani) => {
+const getTargets = (ani: animeNamespace.AnimeInstance): HTMLElement[] => {
   const parentTarget = (ani?.animatables ?? []).map((item) => item.target);
   if (!parentTarget.length) {
     return [];
   }
 
-  return ani.children.reduce((allTargets, child) => {
-    const childTargets = getTargets(child);
-    allTargets = allTargets.concat(childTargets);
-    return allTargets;
-  }, parentTarget);
+  // @ts-expect-error - hacky way to get ann animating texts
+  return (ani.children as animeNamespace.AnimeInstance[]).reduce<HTMLElement[]>(
+    (allTargets, child) => {
+      const childTargets = getTargets(child);
+      allTargets = allTargets.concat(childTargets);
+      return allTargets;
+    },
+    parentTarget,
+  );
 };
 
-export const stopAnimation = (tl, anime) => {
+export const stopAnimation = (
+  tl: animeNamespace.AnimeInstance,
+  anime: typeof animeNamespace,
+) => {
   const allTargets = getTargets(tl);
   return allTargets.map((target) => anime.remove(target));
 };
 
-export const animateCliText = ({ cliContainer, anime, staggeredAnimation }) => {
+export const animateCliText = ({
+  cliContainer,
+  anime,
+  staggeredAnimation,
+}: {
+  cliContainer: Ref<HTMLDivElement | null>;
+  anime: typeof animeNamespace;
+  staggeredAnimation: Ref<ReturnType<typeof animeNamespace> | null>;
+}) => {
   staggeredAnimation.value = anime({
     targets: ".bash-history .animation-text",
     opacity: [0, 1],
@@ -77,10 +93,12 @@ export const animateCliText = ({ cliContainer, anime, staggeredAnimation }) => {
     }),
     complete: () => {
       // display the blinking cursor after animation finished
-      const cursor = getLastNode(cliContainer.value);
-      cursor.style.display = "inline-block";
+      if (cliContainer.value) {
+        // Type cast unfortunately
+        const cursor = getLastNode(cliContainer.value) as HTMLDivElement;
+        cursor.style.display = "inline-block";
+      }
     },
   });
-
   staggeredAnimation.value.play();
 };

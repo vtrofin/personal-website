@@ -28,7 +28,7 @@
           class="bash-history"
           v-for="(line, i) in animationText"
           :key="i"
-          :ref="(el) => animationTextRefs.push(el)"
+          :ref="(el) => animationTextRefs.push(el as HTMLElement)"
           tabindex="0"
         >
           <span class="animation-text">{{ line }}</span>
@@ -40,6 +40,7 @@
 
 <script lang="ts">
 import anime from "animejs/lib/anime.es.js";
+import animeNamespace from "animejs"
 import { computed, ref, onMounted, onUnmounted, defineComponent } from "vue";
 import { useStore } from '@store/index'
 import { getExplodedContent } from "@components/helpers";
@@ -53,7 +54,7 @@ export default defineComponent({
     "update-caret-position": null,
   },
   setup() {
-    let cliObserver: IntersectionObserver | null = null;
+    let cliObserver: IntersectionObserver | undefined
     const store = useStore();
     const bashHistory = computed(() => store.getters["hero/getBashHistory"] as HeroModuleState["bashHistory"]);
     const staticText = computed(() => store.getters["hero/getStaticText"] as HeroModuleState["staticText"]);
@@ -64,8 +65,9 @@ export default defineComponent({
     // https://github.com/vuejs/core/issues/5525#issuecomment-1059855276
     // function ref working while regular v-for ref is failing
     // https://stackblitz.com/edit/vitejs-vite-h42vi4?file=src/App.vue
-    const animationTextRefs = ref([]);
-    let staggeredAnimation = ref(null);
+    // Type assertion to HTMLElement[] because if ain't broke, don't fix it
+    const animationTextRefs = ref<HTMLElement[]>([]);
+    let staggeredAnimation = ref<ReturnType<typeof animeNamespace> | null>(null);
 
     onMounted(() => {
       // prepare text for animation -> explode into single characters
@@ -83,7 +85,10 @@ export default defineComponent({
 
     onUnmounted(() => {
       cliObserver?.disconnect();
-      stopAnimation(staggeredAnimation.value, anime);
+
+      if (staggeredAnimation.value) {
+        stopAnimation(staggeredAnimation.value, anime)
+      };
     });
 
     return {

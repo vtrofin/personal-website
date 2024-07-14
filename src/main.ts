@@ -72,14 +72,15 @@ const router = createRouter({
   routes,
   scrollBehavior: (to, from, savedPosition) => {
     if (to.fullPath !== from.fullPath) {
-      return { top: 0, behavior: "smooth" };
+      return { top: 0, left: 0 };
     }
+
     return savedPosition ? savedPosition : { left: 0, top: 0 };
   },
 });
 router.beforeEach((to, from, next) => {
-  window.scrollTo(0, 0);
   handleMetaTags(to, from);
+
   return next();
 });
 

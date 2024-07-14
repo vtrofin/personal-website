@@ -70,7 +70,10 @@ const routes: Readonly<RouteRecordRaw[]> = [
 const router = createRouter({
   history: import.meta.env.SSR ? createMemoryHistory() : createWebHistory(),
   routes,
-  scrollBehavior: (_to, _from, savedPosition) => {
+  scrollBehavior: (to, from, savedPosition) => {
+    if (to.fullPath !== from.fullPath) {
+      return { top: 0, behavior: "smooth" };
+    }
     return savedPosition ? savedPosition : { left: 0, top: 0 };
   },
 });

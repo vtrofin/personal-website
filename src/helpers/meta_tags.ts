@@ -1,6 +1,6 @@
 import type {
   RouteLocationNormalizedLoaded,
-  NavigationGuardWithThis,
+  RouteLocationNormalized,
   RouteRecordNormalized,
   RouteLocationNormalizedGeneric,
 } from "vue-router";
@@ -18,14 +18,13 @@ const getMeta = (
   return typeof nearestWithTitle?.meta === "function"
     ? // @ts-expect-error - Some hacky way i've added a meta function to the route
       nearestWithTitle?.meta(to)
-    : nearestWithTitle?.meta ?? {};
+    : (nearestWithTitle?.meta ?? {});
 };
 
-export const handleMetaTags: NavigationGuardWithThis<undefined> = (
-  to,
-  from,
-  next,
-) => {
+export const handleMetaTags = (
+  to: RouteLocationNormalized,
+  from: RouteLocationNormalizedLoaded,
+): void => {
   const nearestWithTitle = (to?.matched ?? [])
     .slice()
     .reverse()
@@ -38,13 +37,13 @@ export const handleMetaTags: NavigationGuardWithThis<undefined> = (
   }
 
   if (!nearestWithTitle) {
-    return next();
+    return;
   }
 
   // put new meta
   const { metaTags = [], title } = getMeta(nearestWithTitle, to);
   if (!title || !metaTags.length) {
-    return next();
+    return;
   }
   document.title = title;
   for (let metaTag of metaTags) {
@@ -55,8 +54,6 @@ export const handleMetaTags: NavigationGuardWithThis<undefined> = (
     tag.setAttribute("data-vue-router-controlled", "");
     document.head.appendChild(tag);
   }
-
-  return next();
 };
 
 export const metaTags = {

@@ -71,14 +71,17 @@ const router = createRouter({
   history: import.meta.env.SSR ? createMemoryHistory() : createWebHistory(),
   routes,
   scrollBehavior: (to, from, savedPosition) => {
-    return { left: 0, top: 0 };
-    // if (to.fullPath !== from.fullPath) {
-    //   return { top: 0, behavior: "smooth" };
-    // }
-    // return savedPosition ? savedPosition : { left: 0, top: 0 };
+    if (to.fullPath !== from.fullPath) {
+      return { top: 0, behavior: "smooth" };
+    }
+    return savedPosition ? savedPosition : { left: 0, top: 0 };
   },
 });
-router.beforeEach(handleMetaTags);
+router.beforeEach((to, from, next) => {
+  window.scrollTo(0, 0);
+  handleMetaTags(to, from);
+  return next();
+});
 
 export const createApp = ViteSSG(
   App,

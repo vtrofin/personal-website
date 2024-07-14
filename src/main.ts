@@ -72,8 +72,6 @@ const router = createRouter({
   history: import.meta.env.SSR ? createMemoryHistory() : createWebHistory(),
   routes,
   scrollBehavior: (to, from, savedPosition) => {
-    console.log("1. called -->", to, from, savedPosition);
-
     if (to.fullPath !== from.fullPath) {
       return { top: 0, left: 0 };
     }
@@ -82,7 +80,6 @@ const router = createRouter({
   },
 });
 router.beforeEach((to, from, next) => {
-  console.log("2. called -->");
   handleMetaTags(to, from);
 
   return next();

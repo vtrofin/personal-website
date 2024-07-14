@@ -6,8 +6,8 @@
   "scripts": {
     "dev": "vite",
     "serve_api": "vercel dev --listen 3002",
-    "build": "rm -rf dist && vite build",
-    "build:ssg": "rm -rf dist && vite-ssg build",
+    "build:spa": "rm -rf dist && vite build",
+    "build": "rm -rf dist && vite-ssg build",
     "serve": "vite preview",
     "lint": "eslint --ext .ts,.vue,.js --ignore-path .gitignore --fix src",
     "ts:check": "tsc --noEmit"

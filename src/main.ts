@@ -7,7 +7,7 @@ import {
 } from "vue-router";
 import { key, store } from "@store/index";
 import { FontAwesomeIcon } from "@libs/fa/font_awesome";
-import App from "./App.vue";
+import VueApp from "./App.vue";
 import HomePage from "@pages/Home.vue";
 import ProjectItem from "@pages/ProjectItem.vue";
 import NotFound from "@pages/NotFound.vue";
@@ -15,7 +15,8 @@ import ContactPage from "@pages/Contact.vue";
 import { checkProjectRoute } from "@helpers/index";
 import { handleMetaTags, metaTags } from "@helpers/meta_tags";
 import { inject } from "@vercel/analytics";
-import { ViteSSG } from "vite-ssg";
+import { ViteSSG as createViteSSG } from "vite-ssg";
+import { createApp as createVueSPA, type App } from "vue";
 
 inject();
 
@@ -87,14 +88,31 @@ router.beforeEach((to, from, next) => {
   return next();
 });
 
-export const createApp = ViteSSG(
-  App,
-  { routes },
-  ({ app, router, routes, isClient, initialState }) => {
-    app.use(router);
-    app.use(store, key);
-    // eslint-disable-next-line
-    app.component("Fa", FontAwesomeIcon);
-    // app.mount("#app");
-  },
-);
+const initAppPlugins = (app: App<Element>) => {
+  app.use(router);
+  app.use(store, key);
+  // eslint-disable-next-line
+  app.component("Fa", FontAwesomeIcon);
+};
+
+const initApp = async () => {
+  const isSSG = import.meta.env.VUE_APP_SSG;
+
+  if (isSSG) {
+    const ssgApp = createViteSSG(
+      VueApp,
+      { routes },
+      ({ app, router, routes, isClient, initialState }) => {
+        initAppPlugins(app);
+      },
+    );
+
+    return ssgApp;
+  }
+
+  const app = createVueSPA(VueApp);
+  initAppPlugins(app);
+  app.mount("#app");
+};
+
+export const app = initApp();

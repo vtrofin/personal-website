@@ -9,6 +9,5 @@
   "routes": [
     { "handle": "filesystem" },
     { "src": "/projects/(.*)", "dest": "/projects/$1.html" }
-    // { "src": "/(.*)", "dest": "/index.html" }
   ]
 }

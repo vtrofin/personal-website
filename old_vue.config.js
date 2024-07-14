@@ -1,4 +1,4 @@
-const PrerenderSPAPlugin = require("./prerender");
+const PrerenderSPAPlugin = require("./old_prerender");
 import pluginChecker from "vite-plugin-checker";
 import TsconfigPathsPlugin from "tsconfig-paths-webpack-plugin";
 import vue from "@vitejs/plugin-vue";

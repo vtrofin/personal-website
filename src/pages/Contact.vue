@@ -163,7 +163,7 @@ export default defineComponent({
   name: "ContactPage",
   components: { TickComponent, AlertComponent, SpinnerComponent },
   setup() {
-    const timeoutVal = (process.env.NODE_ENV === "development" ? 3 : 30) * 1000;
+    const timeoutVal = (import.meta.env.NODE_ENV === "development" ? 3 : 30) * 1000;
     const templateData = reactive<TemplateData>({
       isLoading: false,
       formSubmitMessage: "",
@@ -178,7 +178,7 @@ export default defineComponent({
 
       try {
         templateData.isLoading = true;
-        const url = `/api/contact?token=${process.env.VUE_APP_CONTACT_TOKEN}`;
+        const url = `/api/contact?token=${import.meta.env.VUE_APP_CONTACT_TOKEN}`;
         const response = await fetch(url, {
           method: "POST",
           headers: {

@@ -95,13 +95,25 @@
   </section>
 </template>
 
-<script>
-import { reactive, ref } from "vue";
-import TickComponent from "../components/contact/tick.vue";
-import AlertComponent from "../components/contact/alert.vue";
-import SpinnerComponent from "../components/spinner";
+<script lang="ts">
+import { reactive, ref, defineComponent } from "vue";
+import TickComponent from "@components/contact/tick.vue";
+import AlertComponent from "@components/contact/alert.vue";
+import SpinnerComponent from "@components/spinner/index.vue";
 
-const timeOutHandler = (reactiveVal) => {
+type TemplateData = {
+  isLoading: boolean;
+  formSubmitMessage: string;
+  messageClass: string;
+  inputModifierClass: {
+    name: string;
+    email: string;
+    subject: string;
+    message: string;
+  };
+}
+
+const timeOutHandler = (reactiveVal: TemplateData) => {
   return () => {
     reactiveVal.isLoading = false;
     reactiveVal.messageClass = "form-result";
@@ -109,24 +121,31 @@ const timeOutHandler = (reactiveVal) => {
   };
 };
 
-const readForm = (formTarget) => {
-  let data = {};
+const readForm = (formTarget: HTMLFormElement | null) => {
+  let data: { [key: string]: string } = {};
   let div = document.createElement("div");
+
+  if (!formTarget) {
+    return data
+  }
+
 
   // sanitize the form data
   for (let elem of formTarget) {
-    div.innerText = elem.value;
-    if (elem.name) {
-      data[elem.name] = div.innerHTML;
+    const inputElement = elem as HTMLInputElement
+
+    div.innerText = inputElement.value;
+    if (inputElement.name) {
+      data[inputElement.name] = div.innerHTML;
     }
   }
 
   return data;
 };
 
-const toggleFocus = (target, templateData) => {
+const toggleFocus = (target: HTMLInputElement | HTMLTextAreaElement, templateData: TemplateData) => {
   const value = target?.value;
-  const targetName = target?.name;
+  const targetName = target?.name as keyof TemplateData['inputModifierClass'];
 
   if (!targetName) {
     throw new Error("Failed to get target input");
@@ -140,12 +159,12 @@ const toggleFocus = (target, templateData) => {
     localState === "focused" && !value ? "" : "focused";
 };
 
-export default {
+export default defineComponent({
   name: "ContactPage",
   components: { TickComponent, AlertComponent, SpinnerComponent },
   setup() {
-    const timeoutVal = (process.env.NODE_ENV === "development" ? 3 : 30) * 1000;
-    const templateData = reactive({
+    const timeoutVal = (import.meta.env.NODE_ENV === "development" ? 3 : 30) * 1000;
+    const templateData = reactive<TemplateData>({
       isLoading: false,
       formSubmitMessage: "",
       messageClass: "form-result",
@@ -153,13 +172,13 @@ export default {
     });
     const loading = ref(false);
 
-    const handleFormSubmit = async (event) => {
+    const handleFormSubmit = async (event: Event) => {
       loading.value = true;
-      const data = readForm(event.target);
+      const data = readForm(event.target as HTMLFormElement);
 
       try {
         templateData.isLoading = true;
-        const url = `/api/contact?token=${process.env.VUE_APP_CONTACT_TOKEN}`;
+        const url = `/api/contact?token=${import.meta.env.VUE_APP_CONTACT_TOKEN}`;
         const response = await fetch(url, {
           method: "POST",
           headers: {
@@ -169,28 +188,27 @@ export default {
         });
         const res = await response.json();
         templateData.formSubmitMessage = res.message || "";
-        templateData.messageClass = `form-result ${
-          res && res.response === "error" ? "error" : "success"
-        }`;
+        templateData.messageClass = `form-result ${res && res.response === "error" ? "error" : "success"
+          }`;
         loading.value = false;
-        setTimeout(timeOutHandler(templateData, loading), timeoutVal);
+        setTimeout(timeOutHandler(templateData), timeoutVal);
       } catch (err) {
-        templateData.formSubmitMessage = `Error: ${err.message}`;
+        templateData.formSubmitMessage = `Error: ${err instanceof Error ? err.message : err}`;
         templateData.messageClass = "form-result error";
         loading.value = false;
-        setTimeout(timeOutHandler(templateData, loading), timeoutVal);
+        setTimeout(timeOutHandler(templateData), timeoutVal);
       }
     };
 
-    const toggleInputFocus = (event) => {
-      const target = event?.target;
-      toggleFocus(target, templateData, event?.type);
+    const toggleInputFocus = (event: FocusEvent) => {
+      const target = event?.target as HTMLInputElement | HTMLTextAreaElement;
+      toggleFocus(target, templateData);
     };
 
-    const handleSpanFocus = (event) => {
-      const target = event?.currentTarget;
-      const parentEl = target?.parentNode || target?.parentElement;
-      const inputEl = target?.previousSibling || target?.previousElementSibling;
+    const handleSpanFocus = (event: MouseEvent) => {
+      const target = event?.currentTarget as HTMLElement;
+      const parentEl = (target?.parentNode || target?.parentElement) as HTMLElement;
+      const inputEl = (target?.previousSibling || target?.previousElementSibling) as HTMLElement;
 
       if (typeof parentEl?.className !== "string") {
         throw new Error("Failed to get span element class");
@@ -201,7 +219,7 @@ export default {
       }
     };
 
-    const getClassName = (baseClass, modifier) => {
+    const getClassName = (baseClass: string, modifier: keyof TemplateData['inputModifierClass']) => {
       return (
         baseClass +
         (templateData?.inputModifierClass?.[modifier]
@@ -219,7 +237,7 @@ export default {
       loading,
     };
   },
-};
+});
 </script>
 <style scoped>
 form {
@@ -228,16 +246,19 @@ form {
   flex-direction: column;
   margin: 3rem auto;
 }
+
 label,
 .input-container {
   flex-grow: 1;
   flex-basis: 100%;
 }
+
 label {
   display: none;
   text-align: left;
   font-size: 0.9rem;
 }
+
 .required-label {
   font-size: 0.8rem;
   color: var(--gray);
@@ -249,6 +270,7 @@ label {
   margin-top: 0.5rem;
   margin-bottom: 1rem;
 }
+
 .input-container input,
 .input-container textarea {
   width: 100%;
@@ -256,6 +278,7 @@ label {
   line-height: 1.2rem;
   font-family: inherit;
 }
+
 .input-container .input-label {
   position: absolute;
   color: rgb(91, 112, 131);
@@ -266,7 +289,8 @@ label {
   font-weight: 400;
   transition: all 150ms cubic-bezier(0.4, 0, 0.2, 1);
 }
-.input-container textarea + .input-label {
+
+.input-container textarea+.input-label {
   top: 1rem;
 }
 
@@ -295,8 +319,8 @@ textarea {
   color: var(--black);
 }
 
-.input-container + .required-label,
-textarea + .required-label {
+.input-container+.required-label,
+textarea+.required-label {
   margin-top: -0.7rem;
   margin-bottom: 1rem;
 }
@@ -310,7 +334,9 @@ input:focus,
 textarea:focus {
   border-color: var(--black);
 }
+
 @media (hover: hover) {
+
   input:hover,
   textarea:hover {
     border-color: var(--black);
@@ -353,9 +379,11 @@ button[type="submit"]:disabled {
   text-align: left;
   transition: all 0.3s ease-out;
 }
+
 .form-result.success {
   border: 1px solid var(--light-green);
 }
+
 .form-result.error {
   border: 1px solid var(--red);
 }

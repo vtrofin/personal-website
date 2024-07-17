@@ -52,17 +52,17 @@
     <slot />
   </div>
 </template>
-<script>
-import { toRefs } from "vue";
-import { useStore } from "vuex";
+<script lang="ts">
+import { toRefs, defineComponent } from "vue";
+import { useStore } from '@store/index'
 
-export default {
+export default defineComponent({
   name: "ToolBoxWrapper",
   props: {
     toolboxState: { type: Object, required: true },
   },
   emits: {
-    toggleToolboxState: ({ isActive }) => {
+    toggleToolboxState: ({ isActive }: { isActive: boolean }) => {
       return typeof isActive === "boolean";
     },
   },
@@ -70,7 +70,7 @@ export default {
     const { active: toolboxActive } = toRefs(props.toolboxState);
     const { emit } = context;
     const store = useStore();
-    const tools = store.getters["tools/getAllTools"];
+    const tools = store.getters["tools/getAllTools"] as string[];
 
     const handleBlur = () => {
       if (toolboxActive.value) {
@@ -81,10 +81,10 @@ export default {
 
     return { toolboxActive, handleBlur, tools };
   },
-};
+});
 </script>
 <style>
-#app > .container {
+#app>.container {
   --base-translate-unit: 50px;
   min-height: 100vh;
   display: grid;
@@ -94,28 +94,26 @@ export default {
   transition: transform 0.3s;
   background-color: var(--background-white);
 }
+
 /* Fix for unequal margin-left margin-right in ios */
 @media all and (max-width: 500px) {
-  #app > .container {
+  #app>.container {
     justify-content: center;
   }
 }
 
-#app > .toolbox-open:nth-child(3) {
-  transform: translate3d(
-    var(--base-translate-unit),
-    var(--base-translate-unit),
-    0
-  );
+#app>.toolbox-open:nth-child(3) {
+  transform: translate3d(var(--base-translate-unit),
+      var(--base-translate-unit),
+      0);
   transition: transform 0.3s;
 }
+
 @media all and (min-width: 600px) {
-  #app > .toolbox-open:nth-child(2) {
-    transform: translate3d(
-      calc(1.5 * var(--base-translate-unit)),
-      calc(1.5 * var(--base-translate-unit)),
-      0
-    );
+  #app>.toolbox-open:nth-child(2) {
+    transform: translate3d(calc(1.5 * var(--base-translate-unit)),
+        calc(1.5 * var(--base-translate-unit)),
+        0);
   }
 }
 
@@ -126,11 +124,13 @@ export default {
   z-index: 100;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.3); /* transparent */
+  background-color: rgba(0, 0, 0, 0.3);
+  /* transparent */
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
+
 .toolbox-container.toolbox-open {
   display: block;
 }
@@ -146,6 +146,7 @@ export default {
   transform: translate3d(-320px, -320px, 0);
   transition: transform 0.3s;
 }
+
 .toolbox-menu.toolbox-open {
   transform: translate3d(0, 0, 0);
 }
@@ -164,6 +165,7 @@ export default {
   color: transparent;
   outline: none;
 }
+
 #close-button:before,
 #close-button:after {
   content: "";
@@ -178,14 +180,17 @@ export default {
 #close-button:before {
   transform: rotate(45deg);
 }
+
 #close-button:after {
   transform: rotate(-45deg);
 }
+
 .profile-container {
   display: block;
   box-sizing: border-box;
   text-align: left;
 }
+
 .profile {
   line-height: 42px;
   margin-bottom: 1rem;
@@ -209,13 +214,16 @@ export default {
 .caption-text {
   font-size: 1.2rem;
 }
+
 .caption-text-small {
   font-weight: 400;
   line-height: 1.1rem;
 }
+
 .caption-text-small:not(:last-of-type) {
   padding-bottom: 0.4rem;
 }
+
 .toolbox-list,
 .toolbox-icons {
   display: flex;
@@ -239,13 +247,14 @@ export default {
   justify-content: space-evenly;
 }
 
-.toolbox-icons > div {
+.toolbox-icons>div {
   width: 28px;
   background-repeat: no-repeat;
   background-position: center;
   flex-grow: 1;
 }
-.toolbox-icons > svg {
+
+.toolbox-icons>svg {
   margin: 5px;
   flex-grow: 1;
 }
@@ -253,10 +262,12 @@ export default {
 .toolbox-icons #go {
   background-image: url("/public/go_logo.svg");
 }
+
 .toolbox-icons #rescript {
   background-image: url("/public/rescript_logo.svg");
   background-position-x: 0%;
 }
+
 .toolbox-icons #ts {
   background-image: url("/public/ts_logo.svg");
   background-position-x: 54%;

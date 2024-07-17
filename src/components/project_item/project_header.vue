@@ -8,12 +8,20 @@
   </section>
 </template>
 
-<script>
-import { useStore } from 'vuex';
-import { reactive, onBeforeUpdate } from 'vue';
-import { getFormattedTitle } from '../../helpers';
+<script lang="ts">
+import { useStore } from '@store/index'
+import { type Project } from '@store/modules/module_types';
+import { reactive, onBeforeUpdate, defineComponent } from 'vue';
+import { getFormattedTitle } from '@helpers/index';
 
-const setLocalState = (localState, projectData, props) => {
+type LocalState = {
+  logoClass: string;
+  projectTitle: string;
+  excerpt: string;
+  role: string;
+}
+
+const setLocalState = (localState: LocalState, projectData: Project, props: { modifier: string }) => {
   localState.logoClass = projectData?.logoClass
     ? 'item-logo' + ' ' + projectData.logoClass
     : 'item-divider';
@@ -22,26 +30,26 @@ const setLocalState = (localState, projectData, props) => {
   localState.role = projectData.role;
 };
 
-export default {
+export default defineComponent({
   name: 'ProjectItemHeader',
   props: {
     modifier: { type: String, required: false, default: '' },
   },
   setup(props) {
     const store = useStore();
-    const localState = reactive({ logoClass: '', projectTitle: '', excerpt: '', role: '' });
-    const projectData = store.getters[`projects/${props.modifier}/getProject`] || {};
+    const localState = reactive<LocalState>({ logoClass: '', projectTitle: '', excerpt: '', role: '' });
+    const projectData = (store.getters[`projects/${props.modifier}/getProject`] as Project) || {};
     setLocalState(localState, projectData, props);
 
     onBeforeUpdate(() => {
       const getterPath = `projects/${props.modifier}/getProject`;
-      const newProjData = store.getters[getterPath];
+      const newProjData = store.getters[getterPath] as Project;
       setLocalState(localState, newProjData, props);
     });
 
     return localState;
   },
-};
+});
 </script>
 
 <style>
@@ -59,6 +67,7 @@ export default {
   line-height: 1.2em;
   margin: auto;
 }
+
 @media all and (min-width: 600px) {
   .project-header-container h1 {
     font-size: 4rem;

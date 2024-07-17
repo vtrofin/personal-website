@@ -16,11 +16,13 @@
     </router-link>
   </div>
 </template>
-<script>
-export default {
+<script lang="ts">
+import { defineComponent } from 'vue';
+
+export default defineComponent({
   name: 'HeaderLogo',
   props: { modifierClass: { type: String, default: '', required: false } },
-};
+});
 </script>
 <style scoped>
 .brand {
@@ -34,6 +36,7 @@ export default {
   bottom: -15px;
   transform: translate3d(-50%, 0, 0);
 }
+
 @media all and (min-width: 600px) {
   .main-link {
     display: block;
@@ -44,6 +47,7 @@ export default {
   position: relative;
   transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
+
 @media (hover: hover) {
   .logo:hover {
     transform: rotate(10deg) scale(1.1);

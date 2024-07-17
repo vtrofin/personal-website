@@ -16,10 +16,9 @@
           </router-link>
         </li>
         <li
-          :class="
-            'toolbox' +
+          :class="'toolbox' +
             (classModifiers.linkClass ? ' ' + classModifiers.linkClass : '')
-          "
+            "
           @click.prevent="toggleToolbox"
           tabindex="0"
           aria-label="My skills"
@@ -68,14 +67,15 @@
   </nav>
 </template>
 
-<script>
-import { computed } from "vue";
-import { useStore } from "vuex";
-import HeaderLogo from "./HeaderLogo";
-import GithubLogo from "./GithubLogo";
-import ProjectItemHeader from "./project_item/project_header.vue";
+<script lang="ts">
+import { computed, defineComponent } from "vue";
+import { useStore } from '@store/index'
+import HeaderLogo from "@components/HeaderLogo.vue";
+import GithubLogo from "@components/GithubLogo.vue";
+import ProjectItemHeader from "@components/project_item/project_header.vue";
+import type { RootState } from "@/store/modules/module_types";
 
-export default {
+export default defineComponent({
   name: "HeaderComponent",
   components: { HeaderLogo, GithubLogo, ProjectItemHeader },
   props: { modifier: { type: String, required: false, default: "" } },
@@ -85,7 +85,11 @@ export default {
   setup(props, context) {
     const store = useStore();
     const { emit } = context;
-    const { isMobile } = store.getters["checkMobile"];
+    const { isMobile }: {
+      isMobile: RootState["isMobile"],
+      isAndroid: RootState["isAndroid"]
+    } = store.getters["checkMobile"];
+
     const classModifiers = computed(() => {
       const linkClass = props.modifier ? props.modifier : "";
       const spanClass = props.modifier
@@ -96,14 +100,15 @@ export default {
     });
 
     const toggleToolbox = () => {
-      const isActive = store.getters["checkToolBox"];
+      const isActive = store.getters["checkToolBox"] as RootState["isToolboxActive"];
+
       store.dispatch({ type: "setToolBoxState", isToolboxActive: !isActive });
       emit("toggleToolbox");
     };
 
     return { classModifiers, toggleToolbox, isMobile };
   },
-};
+});
 </script>
 
 <style>
@@ -161,6 +166,7 @@ export default {
   font-size: 1.1rem;
   transition: color 0.2s linear;
 }
+
 .nav-link-text {
   position: relative;
   z-index: 10;

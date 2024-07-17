@@ -24,7 +24,7 @@
     </p>
   </div>
   <ProjectImage
-    alt-text="view of available tools for testing ecommerce integrations in Ship&Co"
+    alt-text="view the applicant tracking system dashboard"
     url="/ats_candidates.png"
     caption="Applicant tracking system"
   />
@@ -73,10 +73,12 @@
   </div>
 </template>
 
-<script>
-import ProjectSummary from "./project_summary";
-import ProjectImage from "./project_image";
-export default {
+<script lang="ts">
+import ProjectSummary from "@components/project_item/project_summary.vue";
+import ProjectImage from "@components/project_item/project_image.vue";
+import { defineComponent } from "vue";
+
+export default defineComponent({
   name: "AtsContent",
   components: { ProjectSummary, ProjectImage },
   props: { modifier: { type: String, required: false, default: "" } },
@@ -99,9 +101,9 @@ export default {
         "Github Actions",
         "CircleCI",
       ],
-      years: "2021 –",
+      years: "2021 - 2023",
     };
     return { summary };
   },
-};
+});
 </script>

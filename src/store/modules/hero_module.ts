@@ -1,4 +1,7 @@
-export default {
+import type { Module } from "vuex";
+import type { RootState, HeroModuleState } from "@store/modules/module_types";
+
+const heroModule: Module<HeroModuleState, RootState> = {
   namespaced: true,
   state: () => ({
     bashHistory: [],
@@ -10,13 +13,10 @@ export default {
     animationTextLines: [
       "$ whoami",
       "I shape ideas into practical software focusing on accessibility and performance.",
-      "I follow industry-recognized best practices.",
-      "My tech stack: ReScript, TypeScript and Node.js.",
-      "Proficient with Swift UI.",
-      "Learning Rust and iOS development in my spare time.",
-      "I'm doing my best work when closely collaborating with clients, designers and other web engineers.",
-      // `I'm excited about the intersection of code and math, looking to complement my coding skills with knowledge of machine learning.`,
-      `Open to full-time offers in Japan. Available to take on freelance opportunities worldwide.`,
+      "I ensure high-quality outcomes by following industry recognized best practices.",
+      "My primary tech stack includes TypeScript, Node.js and ReScript.",
+      "I have foundational knowledge in Rust and Swift.",
+      "I thrive in interdisciplinary teams, bringing out my best work through close collaboration.",
     ],
   }),
   getters: {
@@ -26,7 +26,7 @@ export default {
     getStaticText: (state) => {
       return state.staticText;
     },
-    getCoordinates: (state) => {
+    getCoordinates: (state): HeroModuleState["coordinates"] => {
       return state.coordinates;
     },
     getAnimationText: (state) => {
@@ -55,3 +55,5 @@ export default {
     },
   },
 };
+
+export default heroModule;

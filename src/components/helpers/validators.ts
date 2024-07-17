@@ -1,4 +1,4 @@
-export function generalSectionArrayValidator(value) {
+export function generalSectionArrayValidator(value: unknown): boolean {
   if (!Array.isArray(value)) {
     return false;
   }
@@ -8,7 +8,7 @@ export function generalSectionArrayValidator(value) {
       !val.path ||
       !val.callToAction ||
       !val.title ||
-      (!val.excerpt && val.type === 'project')
+      (!val.excerpt && val.type === "project")
     ) {
       return false;
     }

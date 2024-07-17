@@ -6,25 +6,28 @@
   <!-- <span id="blinking-cursor" :style="computedStyle" /> -->
 </template>
 
-<script>
-import { ref } from 'vue';
-import { useStore } from 'vuex';
-import HeroSection from '../components/hero_component';
-import GeneralSection from '../components/general_section';
-import { getProjectData, getWorkData } from '../components/helpers';
+<script lang="ts">
+import { ref, defineComponent } from 'vue';
+import { useStore } from '@store/index'
+import HeroSection from '@components/hero_component/index.vue';
+import GeneralSection from '@components/general_section/index.vue';
+import { getProjectData, getWorkData } from '@components/helpers';
+import type { HeroModuleState, CompaniesModuleState } from '@store/modules/module_types';
 
-export default {
+export default defineComponent({
   name: 'HomePage',
   components: { GeneralSection, HeroSection },
   setup() {
     const store = useStore();
-    const computedStyle = ref({});
-    const allProjects = store.getters['projects/getAllProjects'];
-    const allCompanies = store.getters['companies/getAllCompanies'];
-    const projectsData = getProjectData(allProjects, store);
+    const computedStyle = ref<Record<string, string>>({});
+    const mainProjects = ["calliope", "ats", "shipandco"]
+
+    const allCompanies = store.getters['companies/getAllCompanies'] as CompaniesModuleState["companies"];
+    const projectsData = getProjectData(mainProjects, store);
     const workData = getWorkData(allCompanies);
     const updateCaretPosition = () => {
-      const { x, y } = store.getters['hero/getCoordinates'];
+      // sad but true; getters are not type safe
+      const { x, y } = store.getters['hero/getCoordinates'] as HeroModuleState["coordinates"];
       computedStyle.value.left = `${x}px`;
       computedStyle.value.top = `${y}px`;
     };
@@ -36,7 +39,7 @@ export default {
       updateCaretPosition,
     };
   },
-};
+});
 </script>
 
 <style>
@@ -53,6 +56,7 @@ export default {
   -webkit-animation: cursor-blink 1s step-end infinite;
   animation: cursor-blink 1s step-end infinite;
 }
+
 #animation-blinking-cursor {
   position: relative;
   display: none;
@@ -62,20 +66,25 @@ export default {
   0% {
     opacity: 0.8;
   }
+
   50% {
     opacity: 0;
   }
+
   100% {
     opacity: 0.8;
   }
 }
+
 @keyframes cursor-blink {
   0% {
     opacity: 0.8;
   }
+
   50% {
     opacity: 0;
   }
+
   100% {
     opacity: 0.8;
   }

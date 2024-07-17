@@ -21,8 +21,10 @@
   </p>
 </template>
 
-<script>
-export default {
+<script lang="ts">
+import { defineComponent } from 'vue';
+
+export default defineComponent({
   name: "ProjectComponent",
   props: {
     options: {
@@ -31,7 +33,7 @@ export default {
     },
     idx: { type: Number, required: true },
   },
-};
+});
 </script>
 
 <style></style>

@@ -8,11 +8,13 @@
     </svg>
   </a>
 </template>
-<script>
-export default {
+<script lang="ts">
+import { defineComponent } from 'vue';
+
+export default defineComponent({
   name: 'GithubLogo',
   props: { modifierClass: { type: String, default: '', required: false } },
-};
+});
 </script>
 
 <style scoped>

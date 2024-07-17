@@ -28,7 +28,7 @@
           class="bash-history"
           v-for="(line, i) in animationText"
           :key="i"
-          :ref="(el) => animationTextRefs.push(el)"
+          :ref="(el) => animationTextRefs.push(el as HTMLElement)"
           tabindex="0"
         >
           <span class="animation-text">{{ line }}</span>
@@ -38,33 +38,36 @@
   </section>
 </template>
 
-<script>
-import anime from "animejs/lib/anime.es.js";
-import { computed, ref, onMounted, onUnmounted } from "vue";
-import { useStore } from "vuex";
-import { getExplodedContent } from "../helpers";
-import { getAnimationObserver } from "../helpers/intersect";
-import { stopAnimation } from "../helpers/animate";
+<script lang="ts">
+import anime from "animejs";
+import animeNamespace from "animejs"
+import { computed, ref, onMounted, onUnmounted, defineComponent } from "vue";
+import { useStore } from '@store/index'
+import { getExplodedContent } from "@components/helpers";
+import { getAnimationObserver } from "@components/helpers/intersect";
+import { stopAnimation } from "@components/helpers/animate";
+import type { HeroModuleState } from "@/store/modules/module_types";
 
-export default {
+export default defineComponent({
   name: "HeroSection",
   emits: {
     "update-caret-position": null,
   },
   setup() {
-    let cliObserver = null;
+    let cliObserver: IntersectionObserver | undefined
     const store = useStore();
-    const bashHistory = computed(() => store.getters["hero/getBashHistory"]);
-    const staticText = computed(() => store.getters["hero/getStaticText"]);
-    const cliContainer = ref(null);
+    const bashHistory = computed(() => store.getters["hero/getBashHistory"] as HeroModuleState["bashHistory"]);
+    const staticText = computed(() => store.getters["hero/getStaticText"] as HeroModuleState["staticText"]);
+    const cliContainer = ref<HTMLDivElement | null>(null);
     const cliWrapperActiveText = ref(null);
-    const animationText = store.getters["hero/getAnimationText"];
+    const animationText = store.getters["hero/getAnimationText"] as HeroModuleState["animationTextLines"];
     // Using a function ref in the HTML above because of the bug documented here:
     // https://github.com/vuejs/core/issues/5525#issuecomment-1059855276
     // function ref working while regular v-for ref is failing
     // https://stackblitz.com/edit/vitejs-vite-h42vi4?file=src/App.vue
-    const animationTextRefs = ref([]);
-    let staggeredAnimation = ref(null);
+    // Type assertion to HTMLElement[] because if ain't broke, don't fix it
+    const animationTextRefs = ref<HTMLElement[]>([]);
+    let staggeredAnimation = ref<ReturnType<typeof animeNamespace> | null>(null);
 
     onMounted(() => {
       // prepare text for animation -> explode into single characters
@@ -81,8 +84,11 @@ export default {
     });
 
     onUnmounted(() => {
-      cliObserver.disconnect();
-      stopAnimation(staggeredAnimation.value, anime);
+      cliObserver?.disconnect();
+
+      if (staggeredAnimation.value) {
+        stopAnimation(staggeredAnimation.value, anime)
+      };
     });
 
     return {
@@ -94,7 +100,7 @@ export default {
       animationTextRefs,
     };
   },
-};
+});
 </script>
 
 <style>
@@ -141,11 +147,13 @@ export default {
   text-align: left;
   color: var(--gray);
 }
+
 @media all and (min-width: 600px) {
   .hero-section .hero-title h1 {
     font-size: 4rem;
   }
 }
+
 @media all and (min-width: 1000px) {
   .hero-section .hero-subtitle p {
     padding-right: 3.5rem;
@@ -215,6 +223,7 @@ export default {
   letter-spacing: 0.0625em;
   display: block;
 }
+
 .animation-text {
   display: inline-block;
   opacity: 0;
@@ -229,11 +238,13 @@ span.text-block {
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: repeat(4, auto);
   }
+
   .hero-section .hero-title,
   .hero-section .hero-subtitle {
     grid-column: 1 / 2;
     grid-row: span 2;
   }
+
   .hero-section .cli-interaction-wrap {
     grid-column: 2 / 3;
     grid-row: 1/ 5;
@@ -252,7 +263,8 @@ span.text-block {
   padding: 20px 10px;
   align-self: flex-start;
 }
-.cli-buttons > span {
+
+.cli-buttons>span {
   height: 14px;
   width: 14px;
   display: inline-block;
@@ -261,13 +273,15 @@ span.text-block {
   margin-right: 5px;
 }
 
-.cli-buttons > span:first-child {
+.cli-buttons>span:first-child {
   background-color: #ef4444;
 }
-.cli-buttons > span:nth-child(2) {
+
+.cli-buttons>span:nth-child(2) {
   background-color: #facc15;
 }
-.cli-buttons > span:last-child {
+
+.cli-buttons>span:last-child {
   background-color: #22c55e;
 }
 </style>

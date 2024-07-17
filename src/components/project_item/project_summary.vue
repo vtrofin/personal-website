@@ -33,8 +33,10 @@
     </div>
   </div>
 </template>
-<script>
-export default {
+<script lang="ts">
+import { defineComponent } from "vue";
+
+export default defineComponent({
   name: "ProjectSummary",
   props: {
     options: { type: Object, required: true },
@@ -44,13 +46,14 @@ export default {
     const currentYear = `${new Date().getFullYear()}`;
     return { currentYear };
   },
-};
+});
 </script>
 <style>
 .summary-container {
   margin: 3.5rem auto;
   box-sizing: border-box;
 }
+
 .project-content .summary-container h3 {
   margin: 0;
   z-index: 10;
@@ -59,6 +62,7 @@ export default {
   font-size: 8vmin;
   position: relative;
 }
+
 @media all and (min-width: 600px) {
   .project-content .summary-container h3 {
     font-size: 2.2rem;
@@ -73,6 +77,7 @@ export default {
   padding: 2rem 0.5rem;
   border-radius: var(--base-border);
 }
+
 @media all and (min-width: 600px) {
   .summary {
     padding: 2rem 1rem;

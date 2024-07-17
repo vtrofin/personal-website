@@ -5,14 +5,15 @@
       <router-view />
     </div>
   </main>
-  <FooterComponent :modifier="modifier" />
+  <FooterComponent />
 </template>
 
-<script>
-import HeaderComponent from "../components/Header";
-import FooterComponent from "../components/Footer";
+<script lang="ts">
+import HeaderComponent from "@components/Header.vue";
+import FooterComponent from "@components/Footer.vue";
+import { defineComponent } from "vue";
 
-export default {
+export default defineComponent({
   name: "MainLayout",
   components: { HeaderComponent, FooterComponent },
   props: {
@@ -26,12 +27,13 @@ export default {
     const relayToggle = () => emit("relayToggleToolbox");
     return { relayToggle };
   },
-};
+});
 </script>
 <style>
 main {
   width: 100%;
 }
+
 /* Fix scolling lag in Safari: only the body is painted while scrolling. Content is painted with a delay
 https://stackoverflow.com/a/26682113/20296910
 */
@@ -56,7 +58,8 @@ main .content,
   color: #232320;
   text-decoration: none;
   cursor: pointer;
-  transition: all 0.2s ease-in-out; /* linear */
+  transition: all 0.2s ease-in-out;
+  /* linear */
   touch-action: manipulation;
 }
 
@@ -77,7 +80,8 @@ main .content,
   left: 0;
   height: 3px;
   background-color: var(--red);
-  transition: all 0.2s ease-in-out; /* linear */
+  transition: all 0.2s ease-in-out;
+  /* linear */
   transform: rotate(-1deg);
 }
 
@@ -87,6 +91,7 @@ main .content,
 }
 
 @media (hover: hover) {
+
   .content-link:hover:before,
   .contact-link:hover:before {
     height: 10px;
@@ -110,39 +115,47 @@ main .content,
   background-color: var(--yellow);
   color: var(--black);
 }
+
 .ats-active,
 .ats-project-active {
   background-color: var(--light-yellow);
   color: var(--black);
 }
+
 .shipandco-active,
 .shipandco-project-active {
   background-color: var(--pink);
   color: var(--black);
 }
+
 .stockandco-active,
 .stockandco-project-active {
   color: var(--black);
 }
+
 .staff-active,
 .staff-project-active {
   background-color: var(--light-yellow);
   color: var(--black);
 }
+
 .utils-active,
 .utils-project-active {
   background-color: var(--red);
   color: var(--white);
 }
+
 .bentoandco-active,
 .bentoandco-project-active {
   background-color: var(--light-green);
   color: var(--white);
 }
+
 .scoville-active {
   background-color: var(--pink);
   color: var(--black);
 }
+
 .bertrandco-active {
   background-color: var(--light-yellow);
   color: var(--black);
@@ -155,18 +168,23 @@ main .content,
   background-size: cover;
   background-repeat: no-repeat;
 }
+
 .shipandco-background {
   background-position: -150px center;
 }
+
 .shipandco-project-active {
   background-position: right center;
 }
+
 @media all and (min-width: 800px) {
+
   .shipandco-background,
   .shipandco-project-active {
     background-position: center center;
   }
 }
+
 @media all and (min-width: 1400px) {
   .shipandco-project-active {
     background-position: center top;
@@ -197,12 +215,15 @@ main .content,
 .shipandco-logo {
   background-image: url("/public/logo-shipandco.svg");
 }
+
 .stockandco-logo {
   background-image: url("/public/logo-stockandco.svg");
 }
+
 .bentoandco-logo {
   background-image: url("/public/logo-bentoandco.svg");
 }
+
 .scoville-logo {
   background-image: url("/public/logo-scoville.svg");
 }
@@ -214,10 +235,12 @@ main .content,
 .nav-links li.toolbox.bentoandco {
   color: var(--white);
 }
+
 .nav-link-text.utils:before,
 .nav-link-text.bentoandco:before {
   background: var(--white);
 }
+
 .nav-link-text.stockandco:before {
   background: var(--yellow);
 }
@@ -225,6 +248,7 @@ main .content,
 .nav-links li a.bentoandco {
   color: var(--white);
 }
+
 .nav-link-text.bentoandco:before {
   background: var(--yellow);
 }

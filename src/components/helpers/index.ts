@@ -1,8 +1,15 @@
-import { getFormattedTitle } from "../../helpers";
+import { getFormattedTitle } from "@helpers/index";
+import { Store } from "vuex";
+import type { RootState, Company, Project } from "@store/modules/module_types";
 
-export const getProjectData = (vuexProjects, store) => {
+export const getProjectData = (
+  vuexProjects: string[],
+  store: Store<RootState>,
+) => {
   return vuexProjects.map((project) => {
-    const projectData = store.getters[`projects/${project}/getProject`];
+    const projectData = store.getters[
+      `projects/${project}/getProject`
+    ] as Project;
     const formatted = getFormattedTitle(project);
     const path = `/projects/${project}`;
 
@@ -20,7 +27,7 @@ export const getProjectData = (vuexProjects, store) => {
   });
 };
 
-export const getWorkData = (vuexCompanies) => {
+export const getWorkData = (vuexCompanies: Company[]) => {
   return vuexCompanies.map((work) => {
     const formatted = getFormattedTitle(work.project);
 
@@ -32,8 +39,12 @@ export const getWorkData = (vuexCompanies) => {
   });
 };
 
-export const getExplodedContent = (textArr = []) => {
-  const getFormattedLine = (textLine = "", i, self) => {
+export const getExplodedContent = (textArr: string[] = []): string[] => {
+  const getFormattedLine = (
+    textLine: string = "",
+    i: number,
+    self: string[],
+  ) => {
     const split = textLine.split("");
 
     return split.reduce((acc, char, j, arr) => {
@@ -49,10 +60,11 @@ export const getExplodedContent = (textArr = []) => {
   return textArr.filter(Boolean).map(getFormattedLine);
 };
 
-export const getLastNode = (parent) => {
+export const getLastNode = (parent: HTMLElement): Element | undefined => {
   if (!parent) {
     return;
   }
+
   let ch = parent?.children;
   while (ch.length) {
     if (!ch[ch.length - 1].children.length) {

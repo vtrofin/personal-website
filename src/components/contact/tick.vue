@@ -21,13 +21,15 @@
     />
   </svg>
 </template>
-<script>
-export default {
+<script lang="ts">
+import { defineComponent } from "vue";
+
+export default defineComponent({
   name: "TickComponent",
   props: {
     width: { type: String, required: false, default: "24px" },
     color: { type: String, required: false, default: "green" },
   },
-};
+});
 </script>
 <style scoped></style>

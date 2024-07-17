@@ -4,16 +4,27 @@
   </ToolBoxWrapper>
 </template>
 
-<script>
-import { useStore } from 'vuex';
-import { useRoute } from 'vue-router';
-import { watch, ref, reactive, onMounted, onUnmounted } from 'vue';
-import MainLayout from './layouts/MainLayout';
-import ToolBoxWrapper from './layouts/ToolBoxWrapper';
+<script lang="ts">
+import { useStore } from '@store/index'
+import { useRoute, type RouteLocationNormalizedLoaded } from 'vue-router';
+import { watch, ref, reactive, onMounted, onUnmounted, defineComponent } from 'vue';
+import MainLayout from '@layouts/MainLayout.vue';
+import ToolBoxWrapper from '@layouts/ToolBoxWrapper.vue';
+import { type RootState } from '@store/modules/module_types';
+const getProjectItem = (route: RouteLocationNormalizedLoaded): string => {
+  const project = route?.params?.project_item
+  if (!project) {
+    return ''
+  }
 
-const getProjectItem = route => route?.params?.project_item ?? '';
+  if (Array.isArray(project)) {
+    return project[0]
+  }
 
-export default {
+  return project
+}
+
+const App = defineComponent({
   name: 'App',
   components: { MainLayout, ToolBoxWrapper },
   setup() {
@@ -22,45 +33,61 @@ export default {
     const modifier = ref('');
     const toolboxState = reactive({ active: false });
 
-    const isMobileDevice = /Mobi/i.test(window.navigator.userAgent);
-    const isAndroid = /Android/i.test(window.navigator.userAgent);
-    store.dispatch({ type: 'setMobileDevice', isMobile: isMobileDevice, isAndroid });
+    const hasWindow = typeof window !== 'undefined';
+    const isMobileDevice = hasWindow ? /Mobi/i.test(window.navigator.userAgent) : false
+    const isAndroid = hasWindow ? /Android/i.test(window.navigator.userAgent) : false
+
+    store.dispatch({
+      type: 'setMobileDevice',
+      isMobile: isMobileDevice,
+      isAndroid
+    });
 
     watch(
       () => route.params,
-      () => {
-        return store
-          .dispatch({
+      async () => {
+        try {
+          await store.dispatch({
             type: 'projects/setActiveProject',
             project: getProjectItem(route),
           })
-          .then(() => {
-            modifier.value = getProjectItem(route);
-          })
-          .catch(err => {
-            console.error('Failed to set current project', err.message);
-            modifier.value = '';
-          });
+
+          modifier.value = getProjectItem(route);
+        } catch (err) {
+          console.error('Failed to set current project', err instanceof Error ? err.message : err);
+          modifier.value = '';
+        }
       }
     );
 
     const toggleAndTranslateBody = () => {
-      const isActive = store.getters['checkToolBox'];
+      const isActive = store.getters['checkToolBox'] as RootState["isToolboxActive"];
       toolboxState.active = isActive;
     };
 
     const resizeHandler = () => {
-      const windowWidth = window.innerWidth;
+      const hasWindow = typeof window !== 'undefined';
+      const windowWidth = hasWindow ? window.innerWidth : 0
+
       store.dispatch({ type: 'setWindowWidth', windowWidth });
     };
 
     onMounted(() => {
-      store.dispatch({ type: 'setWindowWidth', windowWidth: window.innerWidth });
-      window.addEventListener('resize', resizeHandler);
+      const hasWindow = typeof window !== 'undefined';
+      const windowWidth = hasWindow ? window.innerWidth : 0
+      store.dispatch({ type: 'setWindowWidth', windowWidth });
+
+      if (hasWindow) {
+        window.addEventListener('resize', resizeHandler)
+      };
     });
 
     onUnmounted(() => {
-      window.removeEventListener('resize', resizeHandler);
+      const hasWindow = typeof window !== 'undefined';
+
+      if (hasWindow) {
+        window.removeEventListener('resize', resizeHandler);
+      }
     });
 
     return {
@@ -69,7 +96,9 @@ export default {
       toolboxState,
     };
   },
-};
+});
+
+export default App
 </script>
 
 <style>

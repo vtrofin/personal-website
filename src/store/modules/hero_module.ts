@@ -1,4 +1,7 @@
-export default {
+import type { Module } from "vuex";
+import type { RootState, HeroModuleState } from "@store/modules/module_types";
+
+const heroModule: Module<HeroModuleState, RootState> = {
   namespaced: true,
   state: () => ({
     bashHistory: [],
@@ -23,7 +26,7 @@ export default {
     getStaticText: (state) => {
       return state.staticText;
     },
-    getCoordinates: (state) => {
+    getCoordinates: (state): HeroModuleState["coordinates"] => {
       return state.coordinates;
     },
     getAnimationText: (state) => {
@@ -52,3 +55,5 @@ export default {
     },
   },
 };
+
+export default heroModule;

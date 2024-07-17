@@ -24,23 +24,27 @@
   </router-link>
 </template>
 
-<script>
-import { computed, toRefs, toRef } from 'vue';
+<script lang="ts">
+import { computed, toRefs, toRef, defineComponent } from 'vue';
 import { RouterLink, useLink } from 'vue-router';
 import { checkExternalPath, getSectionLinkClassName } from '../helpers';
 
-export default {
+export default defineComponent({
   name: 'SectionAppLink',
   props: {
+    // @ts-expect-error - Some hacky thing i did in JS. 
     ...RouterLink.props,
     ariaLabel: { type: String, required: false, default: 'View section' },
     // eslint-disable-next-line
     inactiveClass: { type: String, required: false },
     totalItems: { required: false, type: Number, default: 0 },
+    activeClass: { type: String, required: true },
+    exactActiveClass: { type: String, required: true },
   },
   setup(props) {
     const { activeClass, exactActiveClass, totalItems } = toRefs(props);
     const path = toRef(props, 'to');
+    // @ts-expect-error - Some hacky thing i did in JS with the props.
     const { isActive, isExactActive } = useLink(props);
 
     const isExternalLink = computed(() => checkExternalPath({ path: path.value }));
@@ -56,7 +60,7 @@ export default {
 
     return { isExternalLink, computedClassName };
   },
-};
+});
 </script>
 
 <style>
@@ -73,13 +77,16 @@ export default {
   box-sizing: border-box;
   position: relative;
 }
+
 .section-link:first-of-type {
   border-top-left-radius: var(--base-border);
   border-top-right-radius: var(--base-border);
 }
+
 .section-link:nth-last-child(2) {
   border-bottom-left-radius: var(--base-border);
 }
+
 .section-link:last-of-type {
   border-bottom-right-radius: var(--base-border);
 }
@@ -88,10 +95,12 @@ export default {
   .section-link {
     flex-basis: 50%;
   }
+
   .section-link:first-of-type,
   .section-link:nth-of-type(3n + 1) {
     flex-basis: 100%;
   }
+
   .section-link.force-half-width {
     flex-basis: 50%;
   }
@@ -100,6 +109,7 @@ export default {
     border-top-right-radius: 0px;
     border-bottom-left-radius: var(--base-border);
   }
+
   .section-link.force-half-width:last-of-type {
     border-bottom-left-radius: 0px;
     border-top-right-radius: var(--base-border);

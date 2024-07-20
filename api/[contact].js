@@ -1,11 +1,11 @@
 import { createTransport } from "nodemailer";
 import { google } from "googleapis";
-import got from "got";
 import get from "lodash.get";
+// import got from "got";
 
 const { OAuth2 } = google.auth;
 
-module.exports = async (req, res) => {
+export default async function handler(req, res) {
   if (req.method !== "POST") {
     return res.status(400).json({
       message: `${req.method} method not available. Try a POST request`,
@@ -14,7 +14,7 @@ module.exports = async (req, res) => {
   }
 
   const contactToken = get(req, "query.token", "");
-  if (contactToken !== process.env.VUE_APP_CONTACT_TOKEN) {
+  if (contactToken !== process.env.VITE_APP_CONTACT_TOKEN) {
     return res
       .status(401)
       .json({ message: "Not authorized", response: "error" });
@@ -50,8 +50,8 @@ module.exports = async (req, res) => {
       response: "error",
     });
   }
-
-  try {
+  // disposable help is down
+  /* try {
     const split = senderEmail.split("@");
     const domain = split[1];
     if (!domain) {
@@ -69,7 +69,7 @@ module.exports = async (req, res) => {
       return res.status(400).json({ message: err.message, response: "error" });
     }
     // let the request continue if email domain is not found in database of disposable emails
-  }
+  }*/
 
   const message = {
     from: sender,
@@ -96,4 +96,4 @@ module.exports = async (req, res) => {
     const message = err.message;
     return res.status(400).json({ message, response: "error" });
   }
-};
+}

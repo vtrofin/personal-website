@@ -178,7 +178,7 @@ export default defineComponent({
 
       try {
         templateData.isLoading = true;
-        const url = `/api/contact?token=${import.meta.env.VUE_APP_CONTACT_TOKEN}`;
+        const url = `/api/contact?token=${import.meta.env.VITE_APP_CONTACT_TOKEN}`;
         const response = await fetch(url, {
           method: "POST",
           headers: {

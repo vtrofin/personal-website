@@ -1,3 +1,3 @@
-module.exports = (req, res) => {
+export default function handler(req, res) {
   return res.send(`Hello Moto! ${JSON.stringify(req.query)}`);
-};
+}

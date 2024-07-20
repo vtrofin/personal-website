@@ -4,10 +4,10 @@ import type { ToolsModuleState, RootState } from "@store/modules/module_types";
 const toolsModule: Module<ToolsModuleState, RootState> = {
   namespaced: true,
   state: () => ({
-    frontEnd: ["React", "Vue.js", "CSS", "Tailwind"],
-    backEnd: ["Fastify", "Express"],
-    staticSiteGens: ["Next.js", "Gatsby"],
-    other: ["GraphQL", "MongoDB", "PostgreSQL", "Prisma", "SwiftUI"],
+    frontEnd: ["React", "Vue.js", "Tailwind CSS"],
+    backEnd: ["Nodejs", "Fastify", "Express"],
+    staticSiteGens: ["Next.js"],
+    other: ["GraphQL", "MongoDB", "PostgreSQL", "Prisma"], // "SwiftUI"
     compiled: ["TypeScript", "ReScript"],
     devops: ["Github Actions", "CircleCI", "Terraform", "AWS", "Docker"],
   }),

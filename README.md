@@ -60,7 +60,7 @@ REFRESH_TOKEN=
 SENDER_EMAIL=testmaa33@gmail.com
 RECEIVER_EMAIL=
 REDIRECT_URL=https://developers.google.com/oauthplayground
-VUE_APP_CONTACT_TOKEN=
+VITE_APP_CONTACT_TOKEN=
 ```
 
 - Set up Vercel production env variables [here](https://vercel.com/victortrofin/personal-website/settings/environment-variables)

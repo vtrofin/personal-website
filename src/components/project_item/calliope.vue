@@ -2,7 +2,7 @@
   <div class="project-content">
     <h2>The Project</h2>
     <p>
-      Calliope is an AI-powered, web-based call center application that leverages AWS Connect to handle contact queuing and audio streaming. Calliope addresses the challenges of understaffing in call centers, particularly in call management, feedback loops for agents, and reporting.
+      Calliope is an AI-powered, web-based call center application that leverages AWS Connect to handle contact queuing and audio streaming. Calliope addresses challenges in understaffed call centers, particularly in call management, feedback loops for agents, and reporting.
     </p>
     <p>
       There are several productivity issues in call centers across Japan that require more staff to handle manual, repetitive, and error-prone tasks. Through our research and specific use cases, we identified the following pain points:
@@ -68,7 +68,7 @@
       caption="Call panel - make a call report"
     />
     <p>
-      By implementing these solutions, Calliope has significantly improved call center efficiency, enabling agents to handle more contacts with fewer errors and providing managers with better tools for monitoring and training.
+      By implementing these solutions, Calliope has significantly improved the call center efficiency, enabling agents to handle more contacts with fewer errors and providing managers with better tools for monitoring and training.
     </p>
   </div>
   <div class="project-content">
@@ -91,9 +91,10 @@ export default defineComponent({
       organization: "Scoville",
       work: ["Front-end dev"],
       stack: [
+        "React",
+        "Amazon Connect",
         "TypeScript",
         "Tailwind CSS",
-        "Amazon Connect",
         "Terraform",
         "Jenkins",
         "Sentry",

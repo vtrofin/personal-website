@@ -13,7 +13,7 @@ const companiesModule: Module<CompaniesModuleState, RootState> = {
         type: "work",
         item_title: "",
         logoClass: `scoville-logo`,
-        excerpt: "Full-stack web engineer for an applicant tracking system",
+        excerpt: "Full-stack web engineer within the AI team",
         path: "https://scoville.jp/",
         ariaLabel: "View Scoville's website",
       },

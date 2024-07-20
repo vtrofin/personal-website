@@ -13,5 +13,8 @@
       "use": "@vercel/node"
     }
   ],
-  "rewrites": [{ "handle": "filesystem" }]
+  "rewrites": [
+    { "source": "/api/(.*)", "destination": "/api/$1" },
+    { "source": "/(.*)", "destination": "/", "status": 200 }
+  ]
 }

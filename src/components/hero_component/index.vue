@@ -39,8 +39,7 @@
 </template>
 
 <script lang="ts">
-import anime from "animejs";
-import animeNamespace from "animejs"
+import type { JSAnimation } from "animejs";
 import { computed, ref, onMounted, onUnmounted, defineComponent } from "vue";
 import { useStore } from '@store/index'
 import { getExplodedContent } from "@components/helpers";
@@ -67,7 +66,7 @@ export default defineComponent({
     // https://stackblitz.com/edit/vitejs-vite-h42vi4?file=src/App.vue
     // Type assertion to HTMLElement[] because if ain't broke, don't fix it
     const animationTextRefs = ref<HTMLElement[]>([]);
-    let staggeredAnimation = ref<ReturnType<typeof animeNamespace> | null>(null);
+    let staggeredAnimation = ref<JSAnimation | null>(null);
 
     onMounted(() => {
       // prepare text for animation -> explode into single characters
@@ -78,7 +77,6 @@ export default defineComponent({
       //  check that cli is visible & trigger animation
       cliObserver = getAnimationObserver({
         cliContainer,
-        anime,
         staggeredAnimation,
       });
     });
@@ -87,7 +85,7 @@ export default defineComponent({
       cliObserver?.disconnect();
 
       if (staggeredAnimation.value) {
-        stopAnimation(staggeredAnimation.value, anime)
+        stopAnimation(staggeredAnimation.value)
       };
     });
 

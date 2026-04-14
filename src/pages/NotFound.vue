@@ -36,22 +36,21 @@
 </template>
 
 <script lang="ts">
-import anime from 'animejs';
-import animeNamespace from 'animejs';
+import type { Timeline } from 'animejs';
 import { onMounted, onUnmounted, defineComponent } from 'vue';
 import { setUpAnimation, stopAnimation } from '@components/helpers/animate';
 
 export default defineComponent({
   name: 'NotFound',
   setup() {
-    let tl: animeNamespace.AnimeTimelineInstance;
+    let tl: Timeline;
     onMounted(() => {
-      tl = setUpAnimation(anime);
+      tl = setUpAnimation();
       tl.play();
     });
 
     onUnmounted(() => {
-      stopAnimation(tl, anime);
+      stopAnimation(tl);
     });
   },
 });

@@ -32,7 +32,7 @@ export const handleMetaTags = (
 
   // remove old meta tags on route change
   const stale = document.querySelectorAll("[data-vue-router-controlled]");
-  for (let staleTag of stale) {
+  for (const staleTag of stale) {
     staleTag?.parentNode?.removeChild(staleTag);
   }
 
@@ -46,7 +46,7 @@ export const handleMetaTags = (
     return;
   }
   document.title = title;
-  for (let metaTag of metaTags) {
+  for (const metaTag of metaTags) {
     const tag = document.createElement("meta");
     Object.keys(metaTag).forEach((key) => {
       tag.setAttribute(key, metaTag[key]);

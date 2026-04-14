@@ -9,7 +9,7 @@
     "build": "rm -rf dist && VUE_APP_SSG=false vite build",
     "build:ssg": "rm -rf dist && VUE_APP_SSG=true vite-ssg build",
     "serve": "vite preview",
-    "lint": "eslint --ext .ts,.vue,.js --ignore-path .gitignore --fix src",
+    "lint": "eslint --fix src",
     "ts:check": "tsc --noEmit"
   },
   "dependencies": {
@@ -31,6 +31,7 @@
     "vuex": "^4.1.0"
   },
   "devDependencies": {
+    "@eslint/js": "^9.39.4",
     "@prerenderer/prerenderer": "^1.2.5",
     "@prerenderer/renderer-puppeteer": "^1.2.4",
     "@types/animejs": "^3.1.13",
@@ -39,24 +40,15 @@
     "@vue/compiler-sfc": "^3.5.32",
     "eslint": "^9.22.0",
     "eslint-plugin-vue": "^9.33.0",
+    "globals": "^17.5.0",
     "puppeteer": "^24.40.0",
     "typescript": "^5.9.3",
+    "typescript-eslint": "^8.58.2",
     "vite": "^7.3.2",
     "vite-plugin-checker": "^0.12.0",
     "vite-ssg": "^28.3.0",
     "vite-tsconfig-paths": "^6.1.1",
     "vue-svg-loader": "^0.16.0"
-  },
-  "eslintConfig": {
-    "root": true,
-    "env": {
-      "node": true
-    },
-    "extends": [
-      "plugin:vue/vue3-essential",
-      "eslint:recommended"
-    ],
-    "rules": {}
   },
   "browserslist": [
     "> 1%",

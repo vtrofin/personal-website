@@ -39,7 +39,7 @@ export default defineComponent({
   props: {
     className: { type: String, required: false, default: "" },
     title: { type: String, required: true },
-    // eslint-disable-next-line
+     
     data: {
       validator: generalSectionArrayValidator,
       required: true, type: Array as () => ReturnType<typeof getProjectData | typeof getWorkData>

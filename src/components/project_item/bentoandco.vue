@@ -6,7 +6,7 @@
         :class="$props.modifier
           ? 'content-link reversed' + ' ' + $props.modifier
           : 'content-link reversed'
-          "
+        "
         target="_blank"
         rel="noopener"
         aria-label="Click to see this awesome url"

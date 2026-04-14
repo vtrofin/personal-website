@@ -18,7 +18,7 @@
         <li
           :class="'toolbox' +
             (classModifiers.linkClass ? ' ' + classModifiers.linkClass : '')
-            "
+          "
           @click.prevent="toggleToolbox"
           tabindex="0"
           aria-label="My skills"

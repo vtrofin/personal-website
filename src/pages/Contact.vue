@@ -14,10 +14,8 @@
           name="name"
           @focus="toggleInputFocus"
           @blur="toggleInputFocus"
-        />
-        <span class="input-label" @click.stop.prevent="handleSpanFocus"
-          >Name</span
         >
+        <span class="input-label" @click.stop.prevent="handleSpanFocus">Name</span>
       </div>
       <label for="email">Email</label>
       <div :class="getClassName('input-container', 'email')">
@@ -28,10 +26,8 @@
           :required="true"
           @focus="toggleInputFocus"
           @blur="toggleInputFocus"
-        />
-        <span class="input-label" @click.stop.prevent="handleSpanFocus"
-          >Email</span
         >
+        <span class="input-label" @click.stop.prevent="handleSpanFocus">Email</span>
       </div>
       <span class="required-label">*Required</span>
 
@@ -43,10 +39,8 @@
           name="subject"
           @focus="toggleInputFocus"
           @blur="toggleInputFocus"
-        />
-        <span class="input-label" @click.stop.prevent="handleSpanFocus"
-          >Subject</span
         >
+        <span class="input-label" @click.stop.prevent="handleSpanFocus">Subject</span>
       </div>
 
       <label for="message">Message*</label>
@@ -59,9 +53,7 @@
           @focus="toggleInputFocus"
           @blur="toggleInputFocus"
         />
-        <span class="input-label" @click.stop.prevent="handleSpanFocus"
-          >Message</span
-        >
+        <span class="input-label" @click.stop.prevent="handleSpanFocus">Message</span>
       </div>
       <span class="required-label">*Required</span>
 

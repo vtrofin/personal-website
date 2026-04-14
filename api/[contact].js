@@ -1,6 +1,5 @@
 import { createTransport } from "nodemailer";
 import { google } from "googleapis";
-import get from "lodash.get";
 // import got from "got";
 
 const { OAuth2 } = google.auth;
@@ -13,7 +12,7 @@ export default async function handler(req, res) {
     });
   }
 
-  const contactToken = get(req, "query.token", "");
+  const contactToken = req?.query?.token ?? "";
   if (contactToken !== process.env.VITE_APP_CONTACT_TOKEN) {
     return res
       .status(401)
@@ -41,9 +40,9 @@ export default async function handler(req, res) {
   };
   const mailer = createTransport(transport);
 
-  const senderName = get(req, "body.name", "[No name]");
-  const senderEmail = get(req, "body.email");
-  const formMessage = get(req, "body.message");
+  const senderName = req?.body?.name ?? "[No name]";
+  const senderEmail = req?.body?.email;
+  const formMessage = req?.body?.message;
   if (!senderEmail || !formMessage) {
     return res.status(400).json({
       message: `No ${!senderEmail ? "email" : "message"} provided`,
@@ -74,7 +73,7 @@ export default async function handler(req, res) {
   const message = {
     from: sender,
     to: [receiver],
-    subject: get(req, "body.subject", "[No subject]"),
+    subject: req?.body?.subject ?? "[No subject]",
     html: `
     <p>From: ${senderName} &lt;${senderEmail}&gt;</p>
     <p>Message: ${formMessage}</p> 

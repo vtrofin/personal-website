@@ -1,15 +1,13 @@
 import { getFormattedTitle } from "@helpers/index";
-import { Store } from "vuex";
-import type { RootState, Company, Project } from "@store/modules/module_types";
+import { useProjectsStore } from "@store/useProjectsStore";
+import type { Company } from "@store/modules/module_types";
+import type { ProjectName } from "src/globals";
 
-export const getProjectData = (
-  vuexProjects: string[],
-  store: Store<RootState>,
-) => {
-  return vuexProjects.map((project) => {
-    const projectData = store.getters[
-      `projects/${project}/getProject`
-    ] as Project;
+export const getProjectData = (projects: ProjectName[]) => {
+  const projectsStore = useProjectsStore();
+
+  return projects.map((project) => {
+    const projectData = projectsStore.getProjectByName(project);
     const formatted = getFormattedTitle(project);
     const path = `/projects/${project}`;
 

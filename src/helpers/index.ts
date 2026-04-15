@@ -1,13 +1,11 @@
-import type {
-  ProjectsModuleState,
-  RootState,
-} from "@store/modules/module_types";
-import { Store } from "vuex";
+import type { ProjectsModuleState } from "@store/modules/module_types";
+import { useProjectsStore } from "@store/useProjectsStore";
 import type {
   RouteLocationNormalizedLoaded,
   RouteParamsGeneric,
   UseLinkReturn,
 } from "vue-router";
+import type { ProjectName } from "src/globals";
 import { type Ref } from "vue";
 
 const projects: ProjectsModuleState["projects"] = [
@@ -83,30 +81,20 @@ export const getFormattedTitle = (value: string) => {
   return isBertrand ? sentenceCase : sentenceCase.replace(/andco/, "&Co");
 };
 
-export const checkProjectPage = (
-  store: Store<RootState>,
-  route: RouteLocationNormalizedLoaded,
-) => {
-  if (!store) {
-    throw new Error("missing arguments store");
-  }
-
-  const projects = (store.getters["projects/getAllProjects"] ||
-    []) as ProjectsModuleState["projects"];
+export const checkProjectPage = (route: RouteLocationNormalizedLoaded) => {
+  const projectsStore = useProjectsStore();
+  const projects = projectsStore.projects ?? [];
 
   const paramProject = Array.isArray(route?.params?.project_item)
     ? route?.params?.project_item[0]
     : route?.params?.project_item;
 
-  const storeProject = store.getters[
-    "projects/getActiveProject"
-  ] as ProjectsModuleState["activeProject"];
-
-  const project = paramProject || storeProject;
+  const project = paramProject ?? projectsStore.activeProject;
 
   if (!projects.length || !project) {
     return false;
   }
 
-  return projects.includes(project);
+  // paramProject is string from the url params
+  return projects.includes(project as ProjectName);
 };

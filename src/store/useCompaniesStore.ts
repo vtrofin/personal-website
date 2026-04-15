@@ -1,18 +1,14 @@
-import type { Module } from "vuex";
-import type {
-  CompaniesModuleState,
-  RootState,
-} from "@store/modules/module_types";
+import { defineStore } from "pinia";
+import type { CompaniesModuleState } from "@store/modules/module_types";
 
-const companiesModule: Module<CompaniesModuleState, RootState> = {
-  namespaced: true,
-  state: () => ({
+export const useCompaniesStore = defineStore("companies", {
+  state: (): CompaniesModuleState => ({
     companies: [
       {
         project: "scoville",
         type: "work",
         item_title: "",
-        logoClass: `scoville-logo`,
+        logoClass: "scoville-logo",
         excerpt: "Full-stack web engineer within the AI team",
         path: "https://scoville.jp/",
         ariaLabel: "View Scoville's website",
@@ -27,11 +23,4 @@ const companiesModule: Module<CompaniesModuleState, RootState> = {
       },
     ],
   }),
-  getters: {
-    getAllCompanies: (state) => {
-      return state.companies;
-    },
-  },
-};
-
-export default companiesModule;
+});

@@ -53,31 +53,22 @@
   </div>
 </template>
 <script lang="ts">
-import { toRefs, defineComponent } from "vue";
+import { defineComponent } from "vue";
+import { storeToRefs } from "pinia";
 import { useToolsStore } from '@store/useToolsStore';
 import { useAppStore } from '@store/useAppStore';
 
 export default defineComponent({
   name: "ToolBoxWrapper",
-  props: {
-    toolboxState: { type: Object, required: true },
-  },
-  emits: {
-    toggleToolboxState: ({ isActive }: { isActive: boolean }) => {
-      return typeof isActive === "boolean";
-    },
-  },
-  setup(props, context) {
-    const { active: toolboxActive } = toRefs(props.toolboxState);
-    const { emit } = context;
+  setup() {
     const toolsStore = useToolsStore();
     const appStore = useAppStore();
     const tools = toolsStore.allTools;
+    const { isToolboxActive: toolboxActive } = storeToRefs(appStore);
 
     const handleBlur = () => {
       if (toolboxActive.value) {
         appStore.setToolBoxState(false);
-        emit("toggleToolboxState", { isActive: false });
       }
     };
 

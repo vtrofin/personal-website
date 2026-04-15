@@ -1,3 +1,5 @@
+import type { ProjectName } from "src/globals";
+
 export interface HeroModuleState {
   bashHistory: string[];
   staticText: string;
@@ -45,7 +47,7 @@ export interface ProjectState {
 }
 
 export interface ProjectsModuleState {
-  projects: string[];
+  projects: readonly ProjectName[];
   activeProject: string;
 }
 

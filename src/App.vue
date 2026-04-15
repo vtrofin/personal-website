@@ -1,6 +1,6 @@
 <template>
-  <ToolBoxWrapper :toolbox-state="toolboxState" @toggle-toolbox-state="toggleAndTranslateBody">
-    <MainLayout :modifier="modifier" @relay-toggle-toolbox="toggleAndTranslateBody" />
+  <ToolBoxWrapper>
+    <MainLayout :modifier="modifier" />
   </ToolBoxWrapper>
 </template>
 
@@ -8,17 +8,19 @@
 import { useAppStore } from '@store/useAppStore';
 import { useProjectsStore } from '@store/useProjectsStore';
 import { useRoute, type RouteLocationNormalizedLoaded } from 'vue-router';
-import { watch, ref, reactive, onMounted, onUnmounted, defineComponent } from 'vue';
+import { watch, ref, onMounted, onUnmounted, defineComponent } from 'vue';
 import MainLayout from '@layouts/MainLayout.vue';
 import ToolBoxWrapper from '@layouts/ToolBoxWrapper.vue';
+
 const getProjectItem = (route: RouteLocationNormalizedLoaded): string => {
   const project = route?.params?.project_item
+
   if (!project) {
-    return ''
+    return ""
   }
 
   if (Array.isArray(project)) {
-    return project[0]
+    return project[0] ?? ""
   }
 
   return project
@@ -32,7 +34,6 @@ const App = defineComponent({
     const appStore = useAppStore();
     const projectsStore = useProjectsStore();
     const modifier = ref('');
-    const toolboxState = reactive({ active: false });
 
     const hasWindow = typeof window !== 'undefined';
     const isMobileDevice = hasWindow ? /Mobi/i.test(window.navigator.userAgent) : false
@@ -52,10 +53,6 @@ const App = defineComponent({
         }
       }
     );
-
-    const toggleAndTranslateBody = () => {
-      toolboxState.active = appStore.isToolboxActive;
-    };
 
     const resizeHandler = () => {
       const hasWindow = typeof window !== 'undefined';
@@ -84,8 +81,6 @@ const App = defineComponent({
 
     return {
       modifier,
-      toggleAndTranslateBody,
-      toolboxState,
     };
   },
 });

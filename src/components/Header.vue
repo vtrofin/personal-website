@@ -69,26 +69,18 @@
 
 <script lang="ts">
 import { computed, defineComponent } from "vue";
-import { useStore } from '@store/index'
+import { useAppStore } from '@store/useAppStore';
 import HeaderLogo from "@components/HeaderLogo.vue";
 import GithubLogo from "@components/GithubLogo.vue";
 import ProjectItemHeader from "@components/project_item/project_header.vue";
-import type { RootState } from "@/store/modules/module_types";
 
 export default defineComponent({
   name: "HeaderComponent",
   components: { HeaderLogo, GithubLogo, ProjectItemHeader },
   props: { modifier: { type: String, required: false, default: "" } },
-  emits: {
-    toggleToolbox: null,
-  },
-  setup(props, context) {
-    const store = useStore();
-    const { emit } = context;
-    const { isMobile }: {
-      isMobile: RootState["isMobile"],
-      isAndroid: RootState["isAndroid"]
-    } = store.getters["checkMobile"];
+  setup(props) {
+    const appStore = useAppStore();
+    const isMobile = appStore.isMobile;
 
     const classModifiers = computed(() => {
       const linkClass = props.modifier ? props.modifier : "";
@@ -100,10 +92,7 @@ export default defineComponent({
     });
 
     const toggleToolbox = () => {
-      const isActive = store.getters["checkToolBox"] as RootState["isToolboxActive"];
-
-      store.dispatch({ type: "setToolBoxState", isToolboxActive: !isActive });
-      emit("toggleToolbox");
+      appStore.setToolBoxState(!appStore.isToolboxActive);
     };
 
     return { classModifiers, toggleToolbox, isMobile };

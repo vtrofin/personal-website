@@ -6,4 +6,6 @@ export const allProjects = [
   "shipandco",
   "utils",
   "bentoandco",
-];
+] as const;
+
+export type ProjectName = (typeof allProjects)[number];

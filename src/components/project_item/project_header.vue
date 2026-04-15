@@ -9,7 +9,7 @@
 </template>
 
 <script lang="ts">
-import { useStore } from '@store/index'
+import { useProjectsStore } from '@store/useProjectsStore';
 import { type Project } from '@store/modules/module_types';
 import { reactive, onBeforeUpdate, defineComponent } from 'vue';
 import { getFormattedTitle } from '@helpers/index';
@@ -36,14 +36,13 @@ export default defineComponent({
     modifier: { type: String, required: false, default: '' },
   },
   setup(props) {
-    const store = useStore();
+    const projectsStore = useProjectsStore();
     const localState = reactive<LocalState>({ logoClass: '', projectTitle: '', excerpt: '', role: '' });
-    const projectData = (store.getters[`projects/${props.modifier}/getProject`] as Project) || {};
+    const projectData = projectsStore.getProjectByName(props.modifier) || {};
     setLocalState(localState, projectData, props);
 
     onBeforeUpdate(() => {
-      const getterPath = `projects/${props.modifier}/getProject`;
-      const newProjData = store.getters[getterPath] as Project;
+      const newProjData = projectsStore.getProjectByName(props.modifier);
       setLocalState(localState, newProjData, props);
     });
 

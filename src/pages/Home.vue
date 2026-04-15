@@ -8,28 +8,28 @@
 
 <script lang="ts">
 import { ref, defineComponent } from 'vue';
-import { useStore } from '@store/index'
+import { useCompaniesStore } from '@store/useCompaniesStore';
+import { useHeroStore } from '@store/useHeroStore';
 import HeroSection from '@components/hero_component/index.vue';
 import GeneralSection from '@components/general_section/index.vue';
 import { getProjectData, getWorkData } from '@components/helpers';
-import type { HeroModuleState, CompaniesModuleState } from '@store/modules/module_types';
 
 export default defineComponent({
   name: 'HomePage',
   components: { GeneralSection, HeroSection },
   setup() {
-    const store = useStore();
+    const companiesStore = useCompaniesStore();
+    const heroStore = useHeroStore();
     const computedStyle = ref<Record<string, string>>({});
     const mainProjects = ["calliope", "ats", "shipandco"]
 
-    const allCompanies = store.getters['companies/getAllCompanies'] as CompaniesModuleState["companies"];
-    const projectsData = getProjectData(mainProjects, store);
-    const workData = getWorkData(allCompanies);
+    const projectsData = getProjectData(mainProjects);
+    const workData = getWorkData(companiesStore.companies);
+
     const updateCaretPosition = () => {
-      // sad but true; getters are not type safe
-      const { x, y } = store.getters['hero/getCoordinates'] as HeroModuleState["coordinates"];
-      computedStyle.value.left = `${x}px`;
-      computedStyle.value.top = `${y}px`;
+      const { x, y } = heroStore.coordinates;
+      if (x !== null) computedStyle.value.left = `${x}px`;
+      if (y !== null) computedStyle.value.top = `${y}px`;
     };
 
     return {

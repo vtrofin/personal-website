@@ -93,7 +93,13 @@ const initAppPlugins = (app: App<Element>) => {
 };
 
 const initApp = async () => {
-  const isSSG = import.meta.env.VUE_APP_SSG;
+  /*
+  import.meta.env.VUE_APP_SSG — Vite only exposes VITE_* prefixed vars in import.meta.env. During the SSG build, VUE_APP_SSG is
+  undefined, the condition is falsy, and it falls through to app.mount("#app") which fails in Node.js where document doesn't exist.
+
+  The fix is to use import.meta.env.SSR — Vite sets this automatically to true during any SSG/SSR build.
+  */
+  const isSSG = import.meta.env.SSR;
 
   if (isSSG) {
     const ssgApp = createViteSSG(

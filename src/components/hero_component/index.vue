@@ -40,12 +40,11 @@
 
 <script lang="ts">
 import type { JSAnimation } from "animejs";
-import { computed, ref, onMounted, onUnmounted, defineComponent } from "vue";
-import { useStore } from '@store/index'
+import { ref, onMounted, onUnmounted, defineComponent } from "vue";
+import { useHeroStore } from '@store/useHeroStore';
 import { getExplodedContent } from "@components/helpers";
 import { getAnimationObserver } from "@components/helpers/intersect";
 import { stopAnimation } from "@components/helpers/animate";
-import type { HeroModuleState } from "@/store/modules/module_types";
 
 export default defineComponent({
   name: "HeroSection",
@@ -54,12 +53,12 @@ export default defineComponent({
   },
   setup() {
     let cliObserver: IntersectionObserver | undefined
-    const store = useStore();
-    const bashHistory = computed(() => store.getters["hero/getBashHistory"] as HeroModuleState["bashHistory"]);
-    const staticText = computed(() => store.getters["hero/getStaticText"] as HeroModuleState["staticText"]);
+    const heroStore = useHeroStore();
+    const bashHistory = heroStore.bashHistory;
+    const staticText = heroStore.staticText;
     const cliContainer = ref<HTMLDivElement | null>(null);
     const cliWrapperActiveText = ref(null);
-    const animationText = store.getters["hero/getAnimationText"] as HeroModuleState["animationTextLines"];
+    const animationText = heroStore.animationTextLines;
     // Using a function ref in the HTML above because of the bug documented here:
     // https://github.com/vuejs/core/issues/5525#issuecomment-1059855276
     // function ref working while regular v-for ref is failing

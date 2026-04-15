@@ -54,7 +54,8 @@
 </template>
 <script lang="ts">
 import { toRefs, defineComponent } from "vue";
-import { useStore } from '@store/index'
+import { useToolsStore } from '@store/useToolsStore';
+import { useAppStore } from '@store/useAppStore';
 
 export default defineComponent({
   name: "ToolBoxWrapper",
@@ -69,12 +70,13 @@ export default defineComponent({
   setup(props, context) {
     const { active: toolboxActive } = toRefs(props.toolboxState);
     const { emit } = context;
-    const store = useStore();
-    const tools = store.getters["tools/getAllTools"] as string[];
+    const toolsStore = useToolsStore();
+    const appStore = useAppStore();
+    const tools = toolsStore.allTools;
 
     const handleBlur = () => {
       if (toolboxActive.value) {
-        store.dispatch({ type: "setToolBoxState", isToolboxActive: false });
+        appStore.setToolBoxState(false);
         emit("toggleToolboxState", { isActive: false });
       }
     };

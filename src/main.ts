@@ -5,7 +5,7 @@ import {
   type RouteRecordRaw,
   type RouteRecordNormalized,
 } from "vue-router";
-import { key, store } from "@store/index";
+import { createPinia } from "pinia";
 import { FontAwesomeIcon } from "@libs/fa/font_awesome";
 import VueApp from "./App.vue";
 import HomePage from "@pages/Home.vue";
@@ -87,7 +87,7 @@ router.beforeEach((to, from, next) => {
 
 const initAppPlugins = (app: App<Element>) => {
   app.use(router);
-  app.use(store, key);
+  app.use(createPinia());
   // eslint-disable-next-line
   app.component("Fa", FontAwesomeIcon);
 };

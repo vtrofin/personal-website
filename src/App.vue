@@ -5,12 +5,12 @@
 </template>
 
 <script lang="ts">
-import { useStore } from '@store/index'
+import { useAppStore } from '@store/useAppStore';
+import { useProjectsStore } from '@store/useProjectsStore';
 import { useRoute, type RouteLocationNormalizedLoaded } from 'vue-router';
 import { watch, ref, reactive, onMounted, onUnmounted, defineComponent } from 'vue';
 import MainLayout from '@layouts/MainLayout.vue';
 import ToolBoxWrapper from '@layouts/ToolBoxWrapper.vue';
-import { type RootState } from '@store/modules/module_types';
 const getProjectItem = (route: RouteLocationNormalizedLoaded): string => {
   const project = route?.params?.project_item
   if (!project) {
@@ -29,7 +29,8 @@ const App = defineComponent({
   components: { MainLayout, ToolBoxWrapper },
   setup() {
     const route = useRoute();
-    const store = useStore();
+    const appStore = useAppStore();
+    const projectsStore = useProjectsStore();
     const modifier = ref('');
     const toolboxState = reactive({ active: false });
 
@@ -37,21 +38,13 @@ const App = defineComponent({
     const isMobileDevice = hasWindow ? /Mobi/i.test(window.navigator.userAgent) : false
     const isAndroid = hasWindow ? /Android/i.test(window.navigator.userAgent) : false
 
-    store.dispatch({
-      type: 'setMobileDevice',
-      isMobile: isMobileDevice,
-      isAndroid
-    });
+    appStore.setMobileDevice({ isMobile: isMobileDevice, isAndroid });
 
     watch(
       () => route.params,
       async () => {
         try {
-          await store.dispatch({
-            type: 'projects/setActiveProject',
-            project: getProjectItem(route),
-          })
-
+          projectsStore.setActiveProject(getProjectItem(route));
           modifier.value = getProjectItem(route);
         } catch (err) {
           console.error('Failed to set current project', err instanceof Error ? err.message : err);
@@ -61,21 +54,20 @@ const App = defineComponent({
     );
 
     const toggleAndTranslateBody = () => {
-      const isActive = store.getters['checkToolBox'] as RootState["isToolboxActive"];
-      toolboxState.active = isActive;
+      toolboxState.active = appStore.isToolboxActive;
     };
 
     const resizeHandler = () => {
       const hasWindow = typeof window !== 'undefined';
       const windowWidth = hasWindow ? window.innerWidth : 0
 
-      store.dispatch({ type: 'setWindowWidth', windowWidth });
+      appStore.setWindowWidth(windowWidth);
     };
 
     onMounted(() => {
       const hasWindow = typeof window !== 'undefined';
       const windowWidth = hasWindow ? window.innerWidth : 0
-      store.dispatch({ type: 'setWindowWidth', windowWidth });
+      appStore.setWindowWidth(windowWidth);
 
       if (hasWindow) {
         window.addEventListener('resize', resizeHandler)

@@ -26,6 +26,8 @@ export const handleMetaTags = (
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   _from: RouteLocationNormalizedLoaded,
 ): void => {
+  if (typeof document === "undefined") return;
+
   const nearestWithTitle = (to?.matched ?? [])
     .slice()
     .reverse()

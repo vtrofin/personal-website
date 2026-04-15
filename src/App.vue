@@ -51,7 +51,8 @@ const App = defineComponent({
           console.error('Failed to set current project', err instanceof Error ? err.message : err);
           modifier.value = '';
         }
-      }
+      },
+      { immediate: true }
     );
 
     const resizeHandler = () => {

@@ -99,7 +99,13 @@ const initApp = async () => {
     const ssgApp = createViteSSG(
       VueApp,
       { routes },
-      ({ app, router, routes, isClient, initialState }) => {
+
+      ({
+        app,
+        router: _router, // eslint-disable-line @typescript-eslint/no-unused-vars
+        routes: _routes, // eslint-disable-line @typescript-eslint/no-unused-vars
+        initialState: _initialState, // eslint-disable-line @typescript-eslint/no-unused-vars
+      }) => {
         initAppPlugins(app);
       },
     );

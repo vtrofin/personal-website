@@ -23,7 +23,8 @@ const getMeta = (
 
 export const handleMetaTags = (
   to: RouteLocationNormalized,
-  from: RouteLocationNormalizedLoaded,
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  _from: RouteLocationNormalizedLoaded,
 ): void => {
   const nearestWithTitle = (to?.matched ?? [])
     .slice()

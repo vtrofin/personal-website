@@ -15,7 +15,7 @@ export const getAnimationObserver = ({
         observer.disconnect();
         animateCliText({ cliContainer, staggeredAnimation });
       }
-    } catch (err) {
+    } catch {
       throw new Error("Intersection Observer Failed on this browser");
     }
   };

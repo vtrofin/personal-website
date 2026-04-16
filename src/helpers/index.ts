@@ -9,6 +9,7 @@ import type { ProjectName } from "src/globals";
 import { type Ref } from "vue";
 
 const projects: ProjectsModuleState["projects"] = [
+  "eyeq",
   "calliope",
   "ats",
   "shipandco",

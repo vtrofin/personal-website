@@ -102,9 +102,15 @@ main .content,
 
 /* Modifier classes */
 /* Font and background colors */
+.eyeq-active,
+.eyeq-project-active {
+  background-color: var(--peach);
+  color: var(--black);
+}
+
 .calliope-active,
 .calliope-project-active {
-  background-color: var(--yellow);
+  background-color: var(--light-blue);
   color: var(--black);
 }
 

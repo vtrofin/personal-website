@@ -1,12 +1,12 @@
 import { getFormattedTitle } from "@helpers/index";
 import { useProjectsStore } from "@store/useProjectsStore";
 import type { Company } from "@store/modules/module_types";
-import type { ProjectName } from "src/globals";
+import { allProjects } from "src/globals";
 
-export const getProjectData = (projects: ProjectName[]) => {
+export const getProjectData = () => {
   const projectsStore = useProjectsStore();
 
-  return projects.map((project) => {
+  return allProjects.map((project) => {
     const projectData = projectsStore.getProjectByName(project);
     const formatted = getFormattedTitle(project);
     const path = `/projects/${project}`;

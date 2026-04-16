@@ -8,6 +8,7 @@ import { useRoute } from 'vue-router';
 import ShipandcoContent from '@components/project_item/shipandco.vue';
 import AtsContent from '@components/project_item/ats.vue';
 import CalliopeContent from '@components/project_item/calliope.vue';
+import EyeqContent from '@components/project_item/eyeq.vue';
 
 export default defineComponent({
   name: 'ProjectItemContent',
@@ -15,6 +16,7 @@ export default defineComponent({
     ShipandcoContent,
     AtsContent,
     CalliopeContent,
+    EyeqContent,
   },
   setup() {
     const route = useRoute();

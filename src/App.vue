@@ -102,6 +102,8 @@ export default App
   --red: #f28482;
   --purple: #150042;
   --misty-rose: #f0efeb;
+  --peach: #f4a47c;
+  --light-blue: #b8c8f4;
   --base-border: 5px;
 }
 

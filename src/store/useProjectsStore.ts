@@ -11,6 +11,13 @@ export const useProjectsStore = defineStore("projects", {
     projects: allProjects,
     activeProject: "",
     projectsData: {
+      eyeq: {
+        type: "project",
+        backgroundClass: "eyeq-background",
+        excerpt: "Video interview platform for structured candidate assessment",
+        item_title: "EyeQ",
+        role: "Full-stack web engineer",
+      },
       ats: {
         type: "project",
         backgroundClass: "ats-background",

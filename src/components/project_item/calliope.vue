@@ -5,7 +5,7 @@
       Calliope is an AI-powered, web-based call center application that leverages AWS Connect to handle contact queuing and audio streaming. Calliope addresses challenges in understaffed call centers, particularly in call management, feedback loops for agents, and reporting.
     </p>
     <p>
-      There are several productivity issues in call centers across Japan that require more staff to handle manual, repetitive, and error-prone tasks. Through our research and specific use cases, we identified the following pain points:
+      There are several productivity issues in call centers across Japan that require more staff to handle manual, repetitive, and error-prone tasks. The platform addresses the following pain points:
     </p>
     <ul class="content-list">
       <li>
@@ -18,7 +18,7 @@
     </ul>
     <h2>The Solution</h2>
     <p>
-      We developed Calliope AI to address these pain points, resulting in significant improvements for the calling staff. Feedback from agents indicates that Calliope helps them handle three times more contacts in the same time. The solution incorporates the following features:
+      Calliope AI was built to address these pain points, resulting in significant improvements for the calling staff. Feedback from agents indicates that Calliope helps them handle three times more contacts in the same time. The solution incorporates the following features:
     </p>
     <ul class="content-list">
       <li>
@@ -44,22 +44,22 @@
   <div class="project-content">
     <h2>Key Implementations</h2>
     <p>
-      Initially, we planned to use the out-of-the-box call panel UI provided by Amazon Connect. However, it became clear that it did not meet our needs, as agents found it difficult to understand. Therefore, we customized our own call panel with the following features:
+      Initially, the plan was to use the out-of-the-box call panel UI provided by Amazon Connect. However, it became clear that it did not meet our needs, as agents found it difficult to understand. I built a custom call panel with the following features:
     </p>
     <ul class="content-list">
       <li>
-        Task-Based Outbound Calls: For outbound calls, we created tasks in Amazon Connect populated with relevant information and phone numbers that agents could click to call, reducing errors and repetitive dialing.
+        Task-Based Outbound Calls: For outbound calls, I created tasks in Amazon Connect populated with relevant information and phone numbers that agents could click to call, reducing errors and repetitive dialing.
       </li>
       <li>
-        Data Integration: Leveraged Amazon Connect Customer Profiles API and React Query to fetch necessary information for each contact. Due to some Amazon Connect features not being available in Japan, we set up an API using the Serverless framework and a DocumentDB instance to manage unstructured datasets.
+        Data Integration: Leveraged Amazon Connect Customer Profiles API to fetch necessary information for each contact. Due to some Amazon Connect features not being available in Japan, I set up an API using the Serverless framework and a DocumentDB instance to manage unstructured datasets.
       </li>
       <li>Enhanced Call Reporting: Added a form for agents to provide comments and statuses after handling calls, greatly reducing data entry errors.</li>
       <li>Streamlined Workflow: Removed unnecessary steps, automatically closing tasks after call reports were submitted to save agents time and improve efficiency.</li>
       <li>
-        Monitoring and Issue Resolution: Implemented monitoring via Sentry. One great feature I’ve experimented with is Sentry Session Replays to record and stream UIs along with errors for easier troubleshooting.
+        Monitoring and Issue Resolution: Implemented monitoring via Sentry, including Session Replays to record and stream UIs along with errors for easier troubleshooting.
       </li>
       <li>
-        One significant challenge was the authentication process with Amazon Connect, which had limited compatibility with external SAML providers. We resolved this by using AWS Cognito as Identity provider, to retrieve a federation token, allowing the front-end to authenticate with Amazon Connect using the same email address.
+        One significant challenge was the authentication process with Amazon Connect, which had limited compatibility with external SAML providers. I resolved this by using AWS Cognito as an identity provider to retrieve a federation token, allowing the front-end to authenticate with Amazon Connect using the same email address.
       </li>
     </ul>
     <ProjectImage

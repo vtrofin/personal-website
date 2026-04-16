@@ -12,10 +12,6 @@ const projects: ProjectsModuleState["projects"] = [
   "calliope",
   "ats",
   "shipandco",
-  "stockandco",
-  "staff",
-  "utils",
-  "bentoandco",
 ];
 
 export const checkProjectRoute = (params: RouteParamsGeneric = {}) => {

@@ -120,28 +120,6 @@ main .content,
   color: var(--black);
 }
 
-.stockandco-active,
-.stockandco-project-active {
-  color: var(--black);
-}
-
-.staff-active,
-.staff-project-active {
-  background-color: var(--light-yellow);
-  color: var(--black);
-}
-
-.utils-active,
-.utils-project-active {
-  background-color: var(--red);
-  color: var(--white);
-}
-
-.bentoandco-active,
-.bentoandco-project-active {
-  background-color: var(--light-green);
-  color: var(--white);
-}
 
 .scoville-active {
   background-color: var(--pink);
@@ -184,64 +162,13 @@ main .content,
   }
 }
 
-.stockandco-background,
-.stockandco-project-active {
-  background-image: url("/public/stockandco.jpg");
-  background-size: cover;
-  background-position: center center;
-}
-
-.bentoandco-background,
-.bentoandco-project-active {
-  background-image: url("/public/bentoandco.png");
-  background-size: cover;
-  background-position: center 420px;
-  background-repeat: no-repeat;
-}
-
-.bentoandco-project-active {
-  background-position: center 450px;
-}
-
 /* Icons and Logos  */
 .shipandco-logo {
   background-image: url("/public/logo-shipandco.svg");
-}
-
-.stockandco-logo {
-  background-image: url("/public/logo-stockandco.svg");
-}
-
-.bentoandco-logo {
-  background-image: url("/public/logo-bentoandco.svg");
 }
 
 .scoville-logo {
   background-image: url("/public/logo-scoville.svg");
 }
 
-/* links modifiers */
-.nav-links li a.utils,
-.nav-links li a.bentoandco,
-.nav-links li.toolbox.utils,
-.nav-links li.toolbox.bentoandco {
-  color: var(--white);
-}
-
-.nav-link-text.utils:before,
-.nav-link-text.bentoandco:before {
-  background: var(--white);
-}
-
-.nav-link-text.stockandco:before {
-  background: var(--yellow);
-}
-
-.nav-links li a.bentoandco {
-  color: var(--white);
-}
-
-.nav-link-text.bentoandco:before {
-  background: var(--yellow);
-}
 </style>

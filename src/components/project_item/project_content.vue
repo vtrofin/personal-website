@@ -6,10 +6,6 @@
 import { computed, ref, watch, defineComponent } from 'vue';
 import { useRoute } from 'vue-router';
 import ShipandcoContent from '@components/project_item/shipandco.vue';
-import StockandcoContent from '@components/project_item/stockandco.vue';
-import UtilsContent from '@components/project_item/utils.vue';
-import StaffContent from '@components/project_item/staff.vue';
-import BentoandcoContent from '@components/project_item/bentoandco.vue';
 import AtsContent from '@components/project_item/ats.vue';
 import CalliopeContent from '@components/project_item/calliope.vue';
 
@@ -17,10 +13,6 @@ export default defineComponent({
   name: 'ProjectItemContent',
   components: {
     ShipandcoContent,
-    StockandcoContent,
-    UtilsContent,
-    StaffContent,
-    BentoandcoContent,
     AtsContent,
     CalliopeContent,
   },

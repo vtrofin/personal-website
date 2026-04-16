@@ -200,9 +200,6 @@ a:hover .item-background {
   transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
-.item-logo.bentoandco-logo {
-  width: 128px;
-}
 
 .section-link:hover .item-logo {
   transform: translateY(6px) translateZ(0);

@@ -25,18 +25,11 @@
         <span v-for="(tool, i) in tools" :key="i">{{ tool }}</span>
       </div>
       <div class="toolbox-icons" tabindex="0">
-        <div aria-label="javascript">
-          <fa :icon="['fab', 'js']" class="fa-2x" />
-        </div>
         <div id="ts" aria-label="typescript" />
         <div id="rescript" aria-label="rescript" />
         <div aria-label="swift">
           <fa :icon="['fab', 'swift']" class="fa-2x" />
         </div>
-        <div aria-label="rust">
-          <fa :icon="['fab', 'rust']" class="fa-2x" />
-        </div>
-        <!-- <div id="go" aria-label="go lang" /> -->
       </div>
     </section>
     <button
@@ -237,32 +230,33 @@ export default defineComponent({
 
 .toolbox-icons {
   align-content: center;
-  justify-content: space-evenly;
+  justify-content: flex-start;
+  gap: 1.5rem;
 }
 
 .toolbox-icons>div {
-  width: 28px;
+  width: 32px;
+  height: 32px;
   background-repeat: no-repeat;
   background-position: center;
-  flex-grow: 1;
+  background-size: contain;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.toolbox-icons>svg {
-  margin: 5px;
-  flex-grow: 1;
-}
-
-.toolbox-icons #go {
-  background-image: url("/public/go_logo.svg");
+.toolbox-icons>div>svg {
+  width: 32px;
+  height: 32px;
 }
 
 .toolbox-icons #rescript {
   background-image: url("/public/rescript_logo.svg");
-  background-position-x: 0%;
+  background-size: 32px 32px;
 }
 
 .toolbox-icons #ts {
   background-image: url("/public/ts_logo.svg");
-  background-position-x: 54%;
+  background-size: 32px 32px;
 }
 </style>

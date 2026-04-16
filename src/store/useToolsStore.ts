@@ -3,12 +3,12 @@ import type { ToolsModuleState } from "@store/modules/module_types";
 
 export const useToolsStore = defineStore("tools", {
   state: (): ToolsModuleState => ({
-    frontEnd: ["React", "Vue.js", "Tailwind CSS"],
-    backEnd: ["Nodejs", "Fastify", "Express"],
-    staticSiteGens: ["Next.js"],
-    other: ["GraphQL", "MongoDB", "PostgreSQL", "Prisma"],
+    frontEnd: ["React", "Vue.js", "Tailwind CSS", "shadcn/radix UI", "Storybook"],
+    backEnd: ["Node.js", "Fastify", "PostgreSQL", "Drizzle ORM", "Prisma", "Redis", "MongoDB", "GraphQL"],
+    staticSiteGens: ["Next.js", "React Router v7"],
+    other: ["Jest", "Vitest", "Sentry"],
     compiled: ["TypeScript", "ReScript"],
-    devops: ["Github Actions", "CircleCI", "Terraform", "AWS", "Docker"],
+    devops: ["GitHub Actions", "Terraform", "CDK", "SST", "AWS", "Docker"],
   }),
   getters: {
     allTools: (state): string[] => [

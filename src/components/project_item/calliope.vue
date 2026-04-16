@@ -96,7 +96,7 @@ export default defineComponent({
         "TypeScript",
         "Tailwind CSS",
         "Terraform",
-        "Jenkins",
+        "GitHub Actions",
         "Sentry",
         "Serverless",
         "ViteJS"

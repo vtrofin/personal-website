@@ -9,7 +9,7 @@ type ProjectsState = ProjectsModuleState & {
 export const useProjectsStore = defineStore("projects", {
   state: (): ProjectsState => ({
     projects: allProjects,
-    activeProject: "",
+    activeProject: undefined,
     projectsData: {
       eyeq: {
         type: "project",
@@ -57,7 +57,7 @@ export const useProjectsStore = defineStore("projects", {
       },
   },
   actions: {
-    setActiveProject(project: string) {
+    setActiveProject(project: ProjectName | undefined) {
       this.activeProject = project;
     },
   },

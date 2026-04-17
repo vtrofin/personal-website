@@ -48,7 +48,7 @@ export interface ProjectState {
 
 export interface ProjectsModuleState {
   projects: readonly ProjectName[];
-  activeProject: ProjectName;
+  activeProject?: ProjectName;
 }
 
 export interface RootState {

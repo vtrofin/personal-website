@@ -11,16 +11,17 @@ import { useRoute, type RouteLocationNormalizedLoaded } from 'vue-router';
 import { watch, ref, onMounted, onUnmounted, defineComponent } from 'vue';
 import MainLayout from '@layouts/MainLayout.vue';
 import ToolBoxWrapper from '@layouts/ToolBoxWrapper.vue';
+import { ProjectName } from './globals';
 
-const getProjectItem = (route: RouteLocationNormalizedLoaded): string => {
-  const project = route?.params?.project_item
+const getProjectItem = (route: RouteLocationNormalizedLoaded): ProjectName | undefined => {
+  const project = route?.params?.project_item as ProjectName | ProjectName[] | undefined;
 
   if (!project) {
-    return ""
+    return
   }
 
   if (Array.isArray(project)) {
-    return project[0] ?? ""
+    return project[0]
   }
 
   return project
@@ -46,7 +47,7 @@ const App = defineComponent({
       async () => {
         try {
           projectsStore.setActiveProject(getProjectItem(route));
-          modifier.value = getProjectItem(route);
+          modifier.value = getProjectItem(route) ?? "";
         } catch (err) {
           console.error('Failed to set current project', err instanceof Error ? err.message : err);
           modifier.value = '';

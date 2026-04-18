@@ -21,13 +21,4 @@ export default defineComponent({
 svg path {
   fill: var(--black);
 }
-
-svg path.utils,
-svg path.bentoandco {
-  fill: var(--white);
-}
-
-svg path.staff {
-  fill: var(--black);
-}
 </style>

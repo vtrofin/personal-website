@@ -74,23 +74,4 @@ svg path {
   left: 0;
   stroke: #232320;
 }
-
-/* modifiers */
-.logo.bentoandco:before,
-.logo.utils:before {
-  color: var(--white);
-}
-
-.logo.staff:before {
-  color: var(--black);
-}
-
-svg path.bentoandco,
-svg path.utils {
-  stroke: var(--white);
-}
-
-svg path.staff {
-  stroke: var(--black);
-}
 </style>

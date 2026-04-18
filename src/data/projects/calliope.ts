@@ -1,64 +1,54 @@
-import type { ProjectData } from '../types';
+import type { ProjectData } from "../types";
 
 export const calliopeData: ProjectData = {
-  slug: 'calliope',
-  title: 'Calliope AI',
-  excerpt: 'AI powered call center',
-  outcomeTag: 'Agents handling 3× more calls',
-  accentColorToken: '--color-accent-calliope',
+  slug: "calliope",
+  title: "Calliope AI",
+  excerpt: "AI powered call center",
+  outcomeTag: "Agents handling 3× more calls",
+  accentColorToken: "--color-accent-calliope",
   openingProblem:
-    'Calliope is an AI-powered, web-based call center application that leverages AWS Connect to handle contact queuing and audio streaming. Calliope addresses challenges in understaffed call centers, particularly in call management, feedback loops for agents, and reporting.',
+    "The call center ran on spreadsheets and manual dialing. Every morning a manager filtered and split contact lists in Excel, then handed them out to agents — who sat idle until that was done. Agents dialed each number by hand, typed up reports after every call, and moved on to the next row. The manager, buried in data prep, had no time left to listen to recorded calls and give the team feedback.",
   narrative: [
     {
-      type: 'text',
+      type: "text",
       content:
-        'There are several productivity issues in call centers across Japan that require more staff to handle manual, repetitive, and error-prone tasks. The platform addresses the following pain points: manual contact selection from spreadsheets, manual dialing and reporting leading to data entry errors, and limited time for managers to listen to recorded calls and provide meaningful feedback.',
+        "Calliope replaced that routine with a single browser-based tool. Agents see their contacts, make calls, and file reports in one place. The result, according to the agents themselves, was handling three times more contacts in the same time.",
     },
     {
-      type: 'text',
+      type: "image",
+      src: "/calliope-call.webp",
+      alt: "The Calliope call panel during a live outbound call",
+    },
+    {
+      type: "text",
       content:
-        'Calliope AI was built to address these pain points, resulting in significant improvements for the calling staff. Feedback from agents indicates that Calliope helps them handle three times more contacts in the same time. The solution incorporates a contact management UI, a real-time KPI dashboard, and a call panel for agents to make and receive voice calls efficiently.',
+        "I designed its architecture and built the call panel, the screen agents worked in all day. The original plan was to use the default interface provided by the telephony platform, but agents found it confusing and hard to follow. I replaced it with a custom panel that guided them through each call, step by step: task-based outbound dialing, contact details pulled in automatically, and a structured report form at the end.",
     },
     {
-      type: 'image',
-      src: '/calliope-call.webp',
-      alt: 'view the calliope call panel',
+      type: "image",
+      src: "/calliope-report.webp",
+      alt: "The post-call report form agents complete after each conversation",
     },
     {
-      type: 'text',
+      type: "text",
       content:
-        'My work on the project focused on crafting the UI for agents to handle phone calls and provide call reports. The UI needed to support both outbound and inbound calls, prompting the decision to build an SPA with ViteJS, React, and the Amazon Connect Streams API for handling voice calls.',
+        "Getting the interface right meant managing a lot of moving parts behind the scenes. The panel had to stay in sync with the telephony service running in a separate frame, so I used state machines to make sure the screen always matched reality — no impossible buttons, no stale states.",
     },
     {
-      type: 'text',
+      type: "text",
       content:
-        'This project was my first opportunity to leverage React with a different code-base (iframes) and learn about state management across two different apps — the main React app and multiple iframes provided by Amazon Connect. The complexity of the UI necessitated the use of state machines to ensure the correct UI was displayed and impossible states were prevented.',
-    },
-    {
-      type: 'text',
-      content:
-        'Initially, the plan was to use the out-of-the-box call panel UI provided by Amazon Connect. However, it became clear that it did not meet our needs, as agents found it difficult to understand. I built a custom call panel with task-based outbound calls, data integration via Amazon Connect Customer Profiles API, enhanced call reporting, and streamlined workflows.',
-    },
-    {
-      type: 'image',
-      src: '/calliope-report.webp',
-      alt: 'view the calliope call report panel',
-    },
-    {
-      type: 'text',
-      content:
-        'By implementing these solutions, Calliope has significantly improved the call center efficiency, enabling agents to handle more contacts with fewer errors and providing managers with better tools for monitoring and training.',
+        "On the reporting side, an AI component transcribed voice calls and ran sentiment analysis to flag conversations that needed a manager\u2019s attention — giving managers the insight they never had time to gather manually.",
     },
   ],
   stackItems: [
-    'React',
-    'Amazon Connect',
-    'TypeScript',
-    'Tailwind CSS',
-    'Terraform',
-    'GitHub Actions',
-    'Sentry',
-    'Serverless',
-    'ViteJS',
+    "React",
+    "Amazon Connect",
+    "TypeScript",
+    "Tailwind CSS",
+    "Terraform",
+    "GitHub Actions",
+    "Sentry",
+    "Serverless",
+    "ViteJS",
   ],
 };

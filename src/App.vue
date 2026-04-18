@@ -91,6 +91,8 @@ export default App
 </script>
 
 <style>
+@import './assets/styles/tokens.css';
+
 :root {
   --white: #fff;
   --background-white: #fefaf6;
@@ -119,7 +121,7 @@ body {
   text-align: center;
   font-size: 16px;
   font-family: 'Helvetica Neue', 'Source Sans Pro', Arial, sans-serif;
-  background-color: var(--purple);
+  background-color: var(--color-bg);
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
 }

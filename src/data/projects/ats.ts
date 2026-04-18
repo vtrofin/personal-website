@@ -1,52 +1,52 @@
-import type { ProjectData } from '../types';
+import type { ProjectData } from "../types";
 
 export const atsData: ProjectData = {
-  slug: 'ats',
-  title: 'Bluum Hire',
-  excerpt: 'Applicant tracking system for handling job applications and hiring',
-  outcomeTag: 'Hiring pipelines off spreadsheets',
-  accentColorToken: '--color-accent-ats',
+  slug: "ats",
+  title: "Bluum Hire",
+  excerpt: "Applicant tracking system for handling job applications and hiring",
+  outcomeTag: "Hiring pipelines off spreadsheets",
+  accentColorToken: "--color-accent-ats",
   openingProblem:
-    'Bluum Hire is an applicant tracking system built using a modern tech stack with emphasis on type safety, flexibility and performance.',
+    "In Japan, hiring entry-level graduates is nothing like posting a job and waiting for applications. Companies run year-long recruitment campaigns targeting students who all start work in April. Most applicant tracking tools are built for Western-style hiring and don\u2019t fit this cycle. The few Japanese options that existed were clunky or incomplete — leaving recruiters to manage candidates across spreadsheets and email chains.",
   narrative: [
     {
-      type: 'text',
+      type: "text",
       content:
-        'The first iteration of the app leveraged Next.js and ReScript to create a server side rendered app while guaranteeing type safety and fast compile times. It also featured an identity provider service leveraging Next.js, TypeScript and ORY Hydra to implement the OAuth 2.0 authorization framework.',
+        "Bluum Hire was built specifically for this market. It gave recruiters a single pipeline view — post a role, track every candidate through each stage, and keep the whole hiring team on the same page across a campaign that could stretch over twelve months.",
     },
     {
-      type: 'text',
-      content:
-        'The app has since been refactored into a Single Page Application leveraging TypeScript and React 18. URQL is used to build a light-weight and customizable GraphQL client. The app is now using an improved Identity Provider implementation leveraging ORY Hydra to manage identity across company-wide products and services.',
+      type: "image",
+      src: "/ats_candidates.webp",
+      alt: "The candidate pipeline view showing applicants across hiring stages",
     },
     {
-      type: 'text',
+      type: "text",
       content:
-        'BluumHire features a GraphQL API built with Fastify, Apollo Server and a PostgreSQL database. Type safety is achieved by using TypeScript together with Prisma as a type-safe database client.',
+        "I joined the project during its first version and stayed through a full rebuild. I moved the codebase from a mix of languages to a single one used across the entire application (TypeScript), then reorganised it so the different parts of the product could be worked on and released independently.",
     },
     {
-      type: 'image',
-      src: '/ats_candidates.png',
-      alt: 'view the applicant tracking system dashboard',
+      type: "text",
+      content:
+        "I also set up the systems that kept the product running reliably — automated testing and deployment, email delivery for candidate notifications, and the infrastructure that served the application to users.",
     },
     {
-      type: 'text',
+      type: "text",
       content:
-        'This project allowed me to experience working in an Agile environment using modern languages and tools, while adhering to proven development practices such as sprints, building smaller features in small and easy to review PRs, integration testing and more.',
+        "The project has since been closed, but the work shaped how I approach building products from early stage through to production.",
     },
   ],
   stackItems: [
-    'ReScript',
-    'TypeScript',
-    'Next.js',
-    'Tailwind CSS',
-    'Fastify',
-    'Apollo Server',
-    'Prisma',
-    'PostgreSQL',
-    'AWS',
-    'Terraform',
-    'Github Actions',
-    'CircleCI',
+    "ReScript",
+    "TypeScript",
+    "Next.js",
+    "Tailwind CSS",
+    "Fastify",
+    "Apollo Server",
+    "Prisma",
+    "PostgreSQL",
+    "AWS",
+    "Terraform",
+    "Github Actions",
+    "CircleCI",
   ],
 };

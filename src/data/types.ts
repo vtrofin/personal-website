@@ -9,6 +9,11 @@ export interface ProjectSummary {
   years: string;
 }
 
+/** Props for `project_summary.vue` — project `summary` plus UI `stack` from `stackItems`. */
+export type ProjectSummaryOptions = ProjectSummary & {
+  stack: string[];
+};
+
 export interface ProjectData {
   slug: string;
   title: string;

@@ -14,11 +14,11 @@ export const shipandcoData: ProjectData = {
       content:
         "Ship&Co collapsed that workflow into a single dashboard. It pulls orders from every connected sales channel, shows rates from all carriers side by side, and lets the seller pick the cheapest or most convenient option for that route — then prints a shipping label in one click and automatically marks the order as fulfilled. It was the only tool of its kind that also supported Japanese domestic carriers.",
     },
-    {
-      type: "image",
-      src: "/shipandco_orders.webp",
-      alt: "The orders dashboard showing incoming orders from multiple sales channels",
-    },
+    // {
+    //   type: "image",
+    //   src: "/shipandco_orders.webp",
+    //   alt: "The orders dashboard showing incoming orders from multiple sales channels",
+    // },
     {
       type: "image",
       src: "/shipandco_order_rates.webp",

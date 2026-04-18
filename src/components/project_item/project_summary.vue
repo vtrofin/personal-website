@@ -34,12 +34,17 @@
   </aside>
 </template>
 <script lang="ts">
+import type { ProjectSummaryOptions } from "@/data/types";
+import type { PropType } from "vue";
 import { defineComponent } from "vue";
 
 export default defineComponent({
   name: "ProjectSummary",
   props: {
-    options: { type: Object, required: true },
+    options: {
+      type: Object as PropType<ProjectSummaryOptions>,
+      required: true,
+    },
     modifier: { type: String, required: false, default: "" },
   },
   setup() {

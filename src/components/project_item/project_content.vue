@@ -1,51 +1,60 @@
 <template>
-  <component :is="projectContentComponent" :modifier="modifierClass" />
+  <template v-if="projectData">
+    <div class="project-content">
+      <p>{{ projectData.openingProblem }}</p>
+      <template v-for="(block, i) in projectData.narrative" :key="i">
+        <p v-if="block.type === 'text'">{{ block.content }}</p>
+        <ProjectImage
+          v-else-if="block.type === 'image'"
+          :url="block.src"
+          :alt-text="block.alt"
+        />
+      </template>
+    </div>
+    <div v-if="summaryOptions" class="project-content">
+      <ProjectSummary
+        :modifier="slug ?? ''"
+        :options="summaryOptions"
+      />
+    </div>
+  </template>
 </template>
 
 <script lang="ts">
-import { computed, ref, watch, defineComponent } from 'vue';
-import { useRoute } from 'vue-router';
-import ShipandcoContent from '@components/project_item/shipandco.vue';
-import AtsContent from '@components/project_item/ats.vue';
-import CalliopeContent from '@components/project_item/calliope.vue';
-import EyeqContent from '@components/project_item/eyeq.vue';
+import { computed, defineComponent } from "vue";
+import { useRoute } from "vue-router";
+import { projectDataBySlug } from "@/data/projects";
+import type { ProjectSummaryOptions } from "@/data/types";
+import type { ProjectName } from "src/globals";
+import ProjectSummary from "@components/project_item/project_summary.vue";
+import ProjectImage from "@components/project_item/project_image.vue";
 
 export default defineComponent({
-  name: 'ProjectItemContent',
-  components: {
-    ShipandcoContent,
-    AtsContent,
-    CalliopeContent,
-    EyeqContent,
-  },
+  name: "ProjectItemContent",
+  components: { ProjectSummary, ProjectImage },
   setup() {
     const route = useRoute();
-    const modifierClass = ref('');
 
-    watch(
-      () => route?.params?.project_item,
-      (projectItem) => {
-        if (!projectItem) {
-          modifierClass.value = '';
-        } else {
-          modifierClass.value = `${projectItem}-link`;
-        }
-      }
-    );
-
-    const projectContentComponent = computed(() => {
-      const current = route?.params?.project_item;
-      if (!current) {
-        return undefined;
-      }
-
-      return `${route.params.project_item}-content`;
+    const slug = computed(() => {
+      const param = route?.params?.project_item;
+      return typeof param === "string" ? (param as ProjectName) : undefined;
     });
 
-    return {
-      projectContentComponent,
-      modifierClass,
-    };
+    const projectData = computed(() =>
+      slug.value ? projectDataBySlug[slug.value] : undefined
+    );
+
+    const summaryOptions = computed((): ProjectSummaryOptions | undefined => {
+      const data = projectData.value;
+      if (!data) return undefined;
+
+      return {
+        ...data.summary,
+        stack: data.stackItems,
+      };
+    });
+
+    return { slug, projectData, summaryOptions };
   },
 });
 </script>

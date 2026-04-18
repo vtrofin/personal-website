@@ -140,7 +140,7 @@ main .content,
 /* Backgrounds  */
 .shipandco-background,
 .shipandco-project-active {
-  background-image: url("/public/shipandco.png");
+  background-image: url("/shipandco.png");
   background-size: cover;
   background-repeat: no-repeat;
 }
@@ -176,5 +176,4 @@ main .content,
 .scoville-logo {
   background-image: url("/public/logo-scoville.svg");
 }
-
 </style>

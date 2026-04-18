@@ -7,37 +7,32 @@ export const shipandcoData: ProjectData = {
   outcomeTag: "30 minutes to one click",
   accentColorToken: "--color-accent-shipandco",
   openingProblem:
-    "Ship&co evolved from a pet project into a fully fledged multilingual SaaS tool used by online sellers worldwide to compare shipping rates, create shipping labels and manage order fulfillment on e-commerce platforms.",
+    "Online sellers who ship internationally face a tedious routine: log into each carrier\u2019s website, type in package details, print a label, then go back to the sales channel to manually mark the order as fulfilled — and do it all again for the next one. And there\u2019s no way to compare prices across carriers — each one only shows its own rates, so finding the most economical option for a particular route means checking every site separately. For a seller handling dozens of orders a day, what should take a minute per order can easily take thirty.",
   narrative: [
     {
       type: "text",
       content:
-        "It supports all major international carriers such as DHL, Fedex, UPS. It is the only app of this kind that supports Japanese domestic carriers — Sagawa, Yamato, Seino. It supports all major e-commerce platforms, both Japanese and international, such as Shopify, eBay, Amazon, Etsy, and Base.",
+        "Ship&Co collapsed that workflow into a single dashboard. It pulls orders from every connected sales channel, shows rates from all carriers side by side, and lets the seller pick the cheapest or most convenient option for that route — then prints a shipping label in one click and automatically marks the order as fulfilled. It was the only tool of its kind that also supported Japanese domestic carriers.",
+    },
+    {
+      type: "image",
+      src: "/shipandco_orders.webp",
+      alt: "The orders dashboard showing incoming orders from multiple sales channels",
+    },
+    {
+      type: "image",
+      src: "/shipandco_order_rates.webp",
+      alt: "Rate comparison view for a single order across available carriers",
     },
     {
       type: "text",
       content:
-        "It's built on top of Meteor, a full-stack javascript framework, features a MongoDB cloud database instance and exposes its own REST API endpoints for bulk shipping.",
+        "I worked across the full stack on a small team, contributing everything from bug fixes to major feature releases. The larger pieces I delivered include integrating a new commerce platform, connecting the DHL shipping API, building scheduled parcel pick-ups, transitioning billing to subscription-based pricing with Stripe, and implementing the data privacy requirements that came with serving European customers.",
     },
     {
       type: "image",
-      src: "/shipandco_orders.png",
-      alt: "shipandco orders page view",
-    },
-    {
-      type: "image",
-      src: "/shipandco_order_rates.png",
-      alt: "shipandco order page detailed view with rates displayed",
-    },
-    {
-      type: "text",
-      content:
-        "I've worked on all sides of the app on tasks ranging from the smallest bug fixes to major feature releases. Major contributions include integrating QuickBook Commerce platform, DHL eCommerce carrier APIs, scheduling parcel pick-ups, transitioning to subscription-based pricing with Stripe, and implementing GDPR requirements.",
-    },
-    {
-      type: "image",
-      src: "/shipandco_label.png",
-      alt: "shipandco shipment label detail view",
+      src: "/shipandco_label.webp",
+      alt: "A generated shipping label ready for printing",
     },
   ],
   stackItems: ["Handlebars", "Meteor", "Express", "MongoDB"],

@@ -49,4 +49,10 @@ export const atsData: ProjectData = {
     "Github Actions",
     "CircleCI",
   ],
+  summary: {
+    position: "Web engineer",
+    organization: "Scoville",
+    work: ["Full-stack dev"],
+    years: "2021 - 2023",
+  },
 };

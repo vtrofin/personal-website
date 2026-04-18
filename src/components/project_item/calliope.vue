@@ -87,7 +87,7 @@ export default defineComponent({
   props: { modifier: { type: String, required: false, default: "" } },
   setup() {
     const summary = {
-      position: "Web engineer",
+      position: "Front-end lead / Tech lead",
       organization: "Scoville",
       work: ["Front-end dev"],
       stack: [
@@ -101,7 +101,7 @@ export default defineComponent({
         "Serverless",
         "ViteJS"
       ],
-      years: "2023 -",
+      years: "2023 - present",
     };
     return { summary };
   },

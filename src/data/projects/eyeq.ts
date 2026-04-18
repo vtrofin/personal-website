@@ -59,4 +59,10 @@ export const eyeqData: ProjectData = {
     "Sentry",
     "GitHub Actions",
   ],
+  summary: {
+    position: "Full-stack web engineer",
+    organization: "Scoville",
+    work: ["Full-stack dev"],
+    years: "2025 – present",
+  },
 };

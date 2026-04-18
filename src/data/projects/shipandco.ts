@@ -36,4 +36,10 @@ export const shipandcoData: ProjectData = {
     },
   ],
   stackItems: ["Handlebars", "Meteor", "Express", "MongoDB"],
+  summary: {
+    position: "Web engineer",
+    organization: "Ship&Co",
+    work: ["Full-stack dev"],
+    years: "2018 – 2021",
+  },
 };

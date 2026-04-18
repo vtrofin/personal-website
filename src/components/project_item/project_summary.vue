@@ -1,6 +1,6 @@
 <template>
-  <div class="summary-container">
-    <h3 tabindex="0">Summary</h3>
+  <aside class="summary-container" aria-labelledby="at-a-glance-heading">
+    <h3 id="at-a-glance-heading" tabindex="0">At a glance</h3>
     <div class="summary">
       <div class="summary-left" tabindex="0">
         <span class="summary-subtitle">Position</span>
@@ -31,7 +31,7 @@
         </ul>
       </div>
     </div>
-  </div>
+  </aside>
 </template>
 <script lang="ts">
 import { defineComponent } from "vue";
@@ -99,10 +99,13 @@ export default defineComponent({
 }
 
 .summary-content {
-  padding: 0;
+  padding: 1rem 0;
   list-style-type: none;
-  margin: 1rem 0 2.5rem;
+  margin: 0 0 1.5rem;
   line-height: 1.4;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
 }
 
 .summary-content:last-child {

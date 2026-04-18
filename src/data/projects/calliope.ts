@@ -50,5 +50,12 @@ export const calliopeData: ProjectData = {
     "Sentry",
     "Serverless",
     "ViteJS",
+    "AWS",
   ],
+  summary: {
+    position: "Front-end lead / Tech lead",
+    organization: "Scoville",
+    work: ["Full-stack dev"],
+    years: "2023 - present",
+  },
 };

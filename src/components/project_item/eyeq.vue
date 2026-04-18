@@ -56,7 +56,7 @@ export default defineComponent({
         "Sentry",
         "GitHub Actions",
       ],
-      years: "2025 –",
+      years: "2025 – present",
     };
     return { summary };
   },

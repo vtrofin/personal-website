@@ -2,6 +2,13 @@ export type NarrativeBlock =
   | { type: 'text'; content: string }
   | { type: 'image'; src: string; alt: string };
 
+export interface ProjectSummary {
+  position: string;
+  organization: string;
+  work: string[];
+  years: string;
+}
+
 export interface ProjectData {
   slug: string;
   title: string;
@@ -11,6 +18,7 @@ export interface ProjectData {
   openingProblem: string;
   narrative: NarrativeBlock[];
   stackItems: string[];
+  summary: ProjectSummary;
 }
 
 export interface HeroData {

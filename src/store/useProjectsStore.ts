@@ -1,6 +1,10 @@
 import { defineStore } from "pinia";
 import { allProjects, type ProjectName } from "src/globals";
 import type { Project, ProjectsModuleState } from "@store/modules/module_types";
+import { calliopeData } from "../data/projects/calliope";
+import { atsData } from "../data/projects/ats";
+import { shipandcoData } from "../data/projects/shipandco";
+import { eyeqData } from "../data/projects/eyeq";
 
 type ProjectsState = ProjectsModuleState & {
   projectsData: Record<ProjectName, Project>;
@@ -14,32 +18,35 @@ export const useProjectsStore = defineStore("projects", {
       eyeq: {
         type: "project",
         backgroundClass: "eyeq-background",
-        excerpt: "Video interview platform for structured candidate assessment",
-        item_title: "EyeQ",
+        excerpt: eyeqData.excerpt,
+        item_title: eyeqData.title,
         role: "Full-stack web engineer",
+        outcomeTag: eyeqData.outcomeTag,
       },
       ats: {
         type: "project",
         backgroundClass: "ats-background",
-        excerpt:
-          "Applicant tracking system for handling job applications and hiring",
-        item_title: "Bluum Hire",
+        excerpt: atsData.excerpt,
+        item_title: atsData.title,
         role: "Full-stack web engineer",
+        outcomeTag: atsData.outcomeTag,
       },
       shipandco: {
         type: "project",
         logoClass: "shipandco-logo",
         backgroundClass: "shipandco-background",
-        excerpt: "Shipping management solution for eCommerce",
-        item_title: "Ship&Co",
+        excerpt: shipandcoData.excerpt,
+        item_title: shipandcoData.title,
         role: "Full-stack web engineer",
+        outcomeTag: shipandcoData.outcomeTag,
       },
       calliope: {
         type: "project",
         backgroundClass: "calliope-background",
-        excerpt: "AI powered call center",
-        item_title: "Calliope AI",
+        excerpt: calliopeData.excerpt,
+        item_title: calliopeData.title,
         role: "Full-stack web engineer",
+        outcomeTag: calliopeData.outcomeTag,
       },
     },
   }),

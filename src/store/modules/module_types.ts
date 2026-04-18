@@ -40,6 +40,7 @@ export interface Project {
   excerpt: string;
   item_title: string;
   role: string;
+  outcomeTag: string;
 }
 
 export interface ProjectState {

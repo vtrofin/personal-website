@@ -1,12 +1,10 @@
 <template>
   <section class="hero-section">
     <div class="hero-title" tabindex="0">
-      <h1>Hi. I'm Victor. <span class="text-block">A web engineer.</span></h1>
+      <h1>I build software that makes work faster.</h1>
     </div>
     <div class="hero-subtitle" tabindex="0">
-      <p>
-        I'm a full-stack web engineer with a passion for bringing products to
-        life. Currently living in Kyoto and working at
+      <p>Hi. I'm Victor, a web engineer, currently living in Kyoto and working at
         <a
           class="content-link"
           target="_blank"
@@ -14,10 +12,10 @@
           href="https://scoville.jp/"
         >
           Scoville
-        </a>
+        </a>.
       </p>
     </div>
-    <div class="cli-interaction-wrap">
+    <div class="cli-interaction-wrap" aria-hidden="true">
       <div class="cli-buttons">
         <span />
         <span />
@@ -29,7 +27,6 @@
           v-for="(line, i) in animationText"
           :key="i"
           :ref="(el) => animationTextRefs.push(el as HTMLElement)"
-          tabindex="0"
         >
           <span class="animation-text">{{ line }}</span>
         </div>
@@ -68,6 +65,23 @@ export default defineComponent({
     let staggeredAnimation = ref<JSAnimation | null>(null);
 
     onMounted(() => {
+      // Disable animation if user prefers reduced motion
+      // DevTools → More tools → Rendering → scroll to "Emulate CSS media feature prefers-reduced-motion" 
+      const prefersReducedMotion = typeof window !== 'undefined'
+        && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      if (prefersReducedMotion) {
+        for (const el of animationTextRefs.value) {
+          const span = el.querySelector('.animation-text');
+
+          if (span) {
+            (span as HTMLElement).style.opacity = '1'
+          };
+        }
+
+        return;
+      }
+
       // prepare text for animation -> explode into single characters
       const formattedText = getExplodedContent(animationText);
       for (let i in formattedText) {
@@ -131,23 +145,24 @@ export default defineComponent({
 }
 
 .hero-section .hero-title h1 {
-  font-size: 10vmin;
-  letter-spacing: -2px;
-  line-height: 1.1;
+  font-size: 2.5rem;
+  font-weight: 700;
+  letter-spacing: -1px;
+  line-height: 1.2;
   text-align: left;
-  color: var(--black);
+  color: var(--color-text-primary);
 }
 
 .hero-section .hero-subtitle p {
   font-size: 1.2rem;
   line-height: 1.5;
   text-align: left;
-  color: var(--gray);
+  color: var(--color-text-secondary);
 }
 
 @media all and (min-width: 600px) {
   .hero-section .hero-title h1 {
-    font-size: 4rem;
+    font-size: 3.25rem;
   }
 }
 
@@ -174,7 +189,7 @@ export default defineComponent({
   margin-bottom: 1rem;
   padding-left: 0.5rem;
   padding-right: 0.5rem;
-  color: var(--white);
+  color: var(--color-text-light);
   font-family: "Roboto Mono", Courier, Monaco, Arial, Helvetica, sans-serif;
   font-weight: 500;
   font-size: 1rem;
@@ -200,6 +215,11 @@ export default defineComponent({
   scroll-snap-align: start;
   line-height: 1.2em;
   margin-bottom: 1rem;
+}
+
+.cli-container .bash-history:first-child,
+.cli-container .bash-history:nth-child(5) {
+  color: var(--color-accent);
 }
 
 .cli-container .cli-wrapper {

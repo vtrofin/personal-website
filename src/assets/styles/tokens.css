@@ -3,9 +3,12 @@
   --color-bg: #1a1410;
   --color-surface: #f5f0eb;
 
-  /* Text */
-  --color-text-primary: #f5f0eb;
-  --color-text-secondary: #b8af9f;
+  /* Text — dark, for use on light backgrounds */
+  --color-text-primary: #232320;
+  --color-text-secondary: #574b33;
+
+  /* Text — light, for use on dark backgrounds (CLI, etc.) */
+  --color-text-light: #fff;
 
   /* Accent — global terracotta */
   --color-accent: #c1623f;

@@ -3,6 +3,7 @@
     <div class="content">
       <h1 tabindex="0">{{ projectTitle }}</h1>
       <p :v-if="role" class="role-class" tabindex="0">{{ role }}</p>
+      <div class="item-divider" />
     </div>
   </section>
 </template>

@@ -10,7 +10,8 @@
     "build:ssg": "rm -rf dist && VUE_APP_SSG=true vite-ssg build",
     "serve": "vite preview",
     "lint": "eslint --fix src",
-    "ts:check": "tsc --noEmit"
+    "ts:check": "tsc --noEmit",
+    "vue:check": "vue-tsc --noEmit"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^7.2.0",

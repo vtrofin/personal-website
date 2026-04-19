@@ -143,6 +143,15 @@ h3.item-title {
   }
 }
 
+p.item-outcome-tag {
+  font-size: 0.9rem;
+  color: var(--color-accent);
+  margin: 0.5rem auto 0;
+  text-align: center;
+  position: relative;
+  z-index: 10;
+}
+
 .item-divider {
   display: block;
   position: relative;

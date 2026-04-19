@@ -4,7 +4,7 @@ export const eyeqData: ProjectData = {
   slug: "eyeq",
   title: "EyeQ",
   excerpt: "Video interview platform for structured candidate assessment",
-  outcomeTag: "Structured hiring in one place",
+  outcomeTag: "Screening effort cut by automating first rounds",
   accentColorToken: "--color-accent-eyeq",
   openingProblem:
     "Screening candidates takes a lot of time and ties up human resources. In Japan\u2019s year-long entry-level recruitment campaigns, the interviewing process alone can consume weeks of a hiring team\u2019s time — time better spent on other meaningful work.",

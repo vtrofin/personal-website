@@ -5,9 +5,6 @@
   <h3 class="item-title" :id="options.type + '-title' + '-' + idx">
     {{ options.title || options.item_title }}
   </h3>
-  <p v-if="options.outcomeTag" class="item-outcome-tag">
-    {{ options.outcomeTag }}
-  </p>
   <div class="item-divider" />
   <p class="item-text" :id="options.type + '-description' + '-' + idx">
     {{ options.excerpt }}

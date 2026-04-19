@@ -3,7 +3,7 @@ import type { ProjectData } from "../types";
 export const atsData: ProjectData = {
   slug: "ats",
   title: "Bluum Hire",
-  excerpt: "Applicant tracking system for handling job applications and hiring",
+  excerpt: "Applicant tracking system",
   outcomeTag: "Hiring pipelines off spreadsheets",
   accentColorToken: "--color-accent-ats",
   openingProblem:

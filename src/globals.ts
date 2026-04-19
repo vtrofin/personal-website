@@ -3,6 +3,7 @@ export const allProjects = [
   "calliope",
   "ats",
   "shipandco",
+  // "dummy",
 ] as const;
 
 export type ProjectName = (typeof allProjects)[number];

@@ -3,7 +3,6 @@
     <div class="content">
       <h1 tabindex="0">{{ projectTitle }}</h1>
       <p :v-if="role" class="role-class" tabindex="0">{{ role }}</p>
-      <div :v-if="logoClass" :class="logoClass" />
     </div>
   </section>
 </template>
@@ -15,16 +14,12 @@ import { reactive, onBeforeUpdate, defineComponent } from 'vue';
 import { getFormattedTitle } from '@helpers/index';
 
 type LocalState = {
-  logoClass: string;
   projectTitle: string;
   excerpt: string;
   role: string;
 }
 
 const setLocalState = (localState: LocalState, projectData: Project, props: { modifier: string }) => {
-  localState.logoClass = projectData?.logoClass
-    ? 'item-logo' + ' ' + projectData.logoClass
-    : 'item-divider';
   localState.projectTitle = projectData.item_title || getFormattedTitle(props.modifier);
   localState.excerpt = projectData.excerpt;
   localState.role = projectData.role;
@@ -37,7 +32,7 @@ export default defineComponent({
   },
   setup(props) {
     const projectsStore = useProjectsStore();
-    const localState = reactive<LocalState>({ logoClass: '', projectTitle: '', excerpt: '', role: '' });
+    const localState = reactive<LocalState>({ projectTitle: '', excerpt: '', role: '' });
     const projectData = projectsStore.getProjectByName(props.modifier) || {};
     setLocalState(localState, projectData, props);
 
@@ -54,7 +49,7 @@ export default defineComponent({
 <style>
 .project-header-container {
   width: 100%;
-  padding: 12vh 0 25vh;
+  padding: 4vh 0 2vh;
   max-width: 800px;
   margin-left: auto;
   margin-right: auto;
@@ -81,16 +76,6 @@ export default defineComponent({
 @media all and (min-width: 600px) {
   .project-header-container .role-class {
     margin-top: 2rem;
-  }
-}
-
-.project-header-container .item-logo {
-  margin-top: 5vh;
-}
-
-@media all and (min-width: 600px) {
-  .project-header-container .item-logo {
-    margin-top: 4.5rem;
   }
 }
 </style>

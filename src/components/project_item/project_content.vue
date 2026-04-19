@@ -66,7 +66,7 @@ export default defineComponent({
 }
 
 .project-content:first-of-type {
-  padding-top: 10vh;
+  padding-top: 1rem;
 }
 
 .project-content:last-of-type {
@@ -79,7 +79,7 @@ export default defineComponent({
   }
 
   .project-content:first-of-type {
-    padding-top: 5rem;
+    padding-top: 2rem;
   }
 
   .project-content:last-of-type {

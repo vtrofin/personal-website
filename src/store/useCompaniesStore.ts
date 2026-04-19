@@ -8,7 +8,6 @@ export const useCompaniesStore = defineStore("companies", {
         project: "scoville",
         type: "work",
         item_title: "",
-        logoClass: "scoville-logo",
         excerpt: "Full-stack web engineer within the AI team",
         path: "https://scoville.jp/",
         ariaLabel: "View Scoville's website",

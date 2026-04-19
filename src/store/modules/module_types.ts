@@ -23,7 +23,6 @@ export interface Company {
   project: string;
   type: string;
   item_title: string;
-  logoClass?: string;
   excerpt: string;
   path: string;
   ariaLabel: string;
@@ -35,8 +34,6 @@ export interface CompaniesModuleState {
 
 export interface Project {
   type: string;
-  backgroundClass?: string;
-  logoClass?: string;
   excerpt: string;
   item_title: string;
   role: string;

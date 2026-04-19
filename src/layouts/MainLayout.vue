@@ -137,43 +137,9 @@ main .content,
   color: var(--black);
 }
 
-/* Backgrounds  */
-.shipandco-background,
-.shipandco-project-active {
-  background-image: url("/shipandco.png");
-  background-size: cover;
-  background-repeat: no-repeat;
-}
-
-.shipandco-background {
-  background-position: -150px center;
-}
-
-.shipandco-project-active {
-  background-position: right center;
-}
-
-@media all and (min-width: 800px) {
-
-  .shipandco-background,
-  .shipandco-project-active {
-    background-position: center center;
-  }
-}
-
-@media all and (min-width: 1400px) {
-  .shipandco-project-active {
-    background-position: center top;
-    background-image: url("/public/shipandco_highres.png");
-  }
-}
 
 /* Icons and Logos  */
-.shipandco-logo {
-  background-image: url("/public/logo-shipandco.svg");
-}
-
 .scoville-logo {
-  background-image: url("/public/logo-scoville.svg");
+  background-image: url("/logo-scoville.svg");
 }
 </style>

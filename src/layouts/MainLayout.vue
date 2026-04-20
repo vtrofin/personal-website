@@ -126,6 +126,12 @@ main .content,
   color: var(--black);
 }
 
+.dummy-active,
+.dummy-project-active {
+  background-color: var(--color-accent-dummy);
+  color: var(--white);
+}
+
 
 .scoville-active {
   background-color: var(--pink);

@@ -85,12 +85,40 @@ export default defineComponent({
   border-bottom-right-radius: var(--base-border);
 }
 
+/* Border radius on outer corners on desktop */
+@media all and (min-width: 1000px) {
+
+  .general-section .section-link:nth-of-type(4n+1) {
+    border-top-right-radius: 0;
+    /* fixes the 5th element in the array */
+    border-bottom-right-radius: 0;
+  }
+
+  .general-section .section-link:nth-of-type(4n+3) {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+
+  .general-section .section-link:nth-of-type(2) {
+    border-top-right-radius: var(--base-border);
+  }
+
+  .general-section .section-link:nth-last-of-type(2) {
+    border-bottom-left-radius: var(--base-border);
+  }
+
+  .general-section .section-link:last-of-type {
+    border-bottom-left-radius: 0;
+  }
+}
+
+
 @media all and (min-width: 1000px) {
   .general-section .section-header {
     grid-column: 1 / -1;
   }
 
-  /* Projects: alternating 3fr 2fr / 2fr 3fr rows */
+  /* Customization for Projects: alternating 3fr 2fr / 2fr 3fr rows */
   .general-section.projects {
     grid-template-columns: repeat(5, 1fr);
   }
@@ -119,31 +147,6 @@ export default defineComponent({
 
   .general-section.projects .section-link:nth-of-type(4n+3):last-of-type~.section-link-filler {
     grid-column: 3 / 6;
-  }
-
-  /* Border radius on outer corners on desktop */
-  .general-section .section-link:nth-of-type(1) {
-    border-top-left-radius: var(--base-border);
-  }
-
-  .general-section .section-link:nth-of-type(2) {
-    border-top-right-radius: var(--base-border);
-  }
-
-  .general-section .section-link:nth-last-of-type(2) {
-    border-bottom-left-radius: var(--base-border);
-  }
-
-  .general-section .section-link:nth-last-of-type(1) {
-    border-bottom-right-radius: var(--base-border);
-  }
-
-  .general-section .section-link:first-of-type {
-    border-top-right-radius: 0;
-  }
-
-  .general-section .section-link:last-of-type {
-    border-bottom-left-radius: 0;
   }
 
   /* Work: equal two columns */

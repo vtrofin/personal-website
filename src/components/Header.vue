@@ -68,16 +68,17 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent } from "vue";
+import { computed, defineComponent, type PropType } from "vue";
 import { useAppStore } from '@store/useAppStore';
 import HeaderLogo from "@components/HeaderLogo.vue";
 import GithubLogo from "@components/GithubLogo.vue";
 import ProjectItemHeader from "@components/project_item/project_header.vue";
+import { type ProjectName } from "src/globals";
 
 export default defineComponent({
   name: "HeaderComponent",
   components: { HeaderLogo, GithubLogo, ProjectItemHeader },
-  props: { modifier: { type: String, required: false, default: "" } },
+  props: { modifier: { type: String as PropType<ProjectName>, required: false, default: "" } },
   setup(props) {
     const appStore = useAppStore();
     const isMobile = appStore.isMobile;

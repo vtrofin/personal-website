@@ -11,13 +11,14 @@
 <script lang="ts">
 import HeaderComponent from "@components/Header.vue";
 import FooterComponent from "@components/Footer.vue";
-import { defineComponent } from "vue";
+import { defineComponent, PropType } from "vue";
+import { type ProjectName } from "src/globals";
 
 export default defineComponent({
   name: "MainLayout",
   components: { HeaderComponent, FooterComponent },
   props: {
-    modifier: { type: String, required: false, default: "" },
+    modifier: { type: String as PropType<ProjectName>, required: false, default: "" },
   },
 });
 </script>
@@ -47,11 +48,10 @@ main .content,
   display: inline-block;
   box-sizing: border-box;
   z-index: 10;
-  color: #232320;
+  color: var(--color-text-primary);
   text-decoration: none;
   cursor: pointer;
   transition: all 0.2s ease-in-out;
-  /* linear */
   touch-action: manipulation;
 }
 
@@ -71,9 +71,8 @@ main .content,
   bottom: -3px;
   left: 0;
   height: 3px;
-  background-color: var(--red);
+  background-color: var(--color-accent);
   transition: all 0.2s ease-in-out;
-  /* linear */
   transform: rotate(-1deg);
 }
 

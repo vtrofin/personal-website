@@ -104,11 +104,11 @@ footer .section-header {
 }
 
 .footer-container .contact-link {
-  color: var(--black);
+  color: var(--color-text-primary);
 }
 
 .footer-container .contact-link:before {
-  background-color: var(--yellow);
+  background-color: var(--color-accent);
 }
 
 .thanks {

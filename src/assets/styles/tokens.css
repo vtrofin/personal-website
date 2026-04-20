@@ -12,6 +12,7 @@
 
   /* Accent — global terracotta */
   --color-accent: #c1623f;
+  --color-accent-inverted: #e8e0d5;
 
   /* Per-project accent — pastel family */
   --color-accent-calliope: #c4a07c;

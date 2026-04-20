@@ -77,7 +77,7 @@ export default defineComponent({
 .summary {
   display: flex;
   box-sizing: border-box;
-  background-color: var(--yellow);
+  background-color: var(--color-surface);
   width: 100%;
   padding: 2rem 0.5rem;
   border-radius: var(--base-border);

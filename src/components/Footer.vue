@@ -32,8 +32,8 @@ export default defineComponent({
 <style>
 footer {
   grid-row-start: -1;
-  background: var(--light-green);
-  color: var(--black);
+  background: var(--color-accent-inverted);
+  color: var(--color-text-primary);
   width: 100%;
   margin-top: 2.5rem;
 }

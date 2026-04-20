@@ -17,35 +17,6 @@
         </a>
         .
       </p>
-      <ul class="thanks">
-        <li>Stock photos and icons by:</li>
-        <li>
-          <a href="https://www.pexels.com/@vanessa-loring">Vanessa Loring</a>
-        </li>
-        <li>
-          <a
-            href="https://burst.shopify.com/@lightleaksin?utm_campaign=photo_credit&amp;utm_content=Browse+Free+HD+Images+of+Different+Packages+Ready+To+Be+Shipped&amp;utm_medium=referral&amp;utm_source=credit"
-          >
-            Samantha Hurley
-          </a>
-        </li>
-        <li>
-          <a
-            href="https://unsplash.com/@chuttersnap?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText"
-          >
-            Chuttersnap
-          </a>
-        </li>
-        <li>
-          <a
-            href="https://www.flaticon.com/authors/pixel-perfect"
-            title="Pixel perfect"
-          >
-            Pixel perfect
-          </a>
-        </li>
-        <li>Thank you very much!</li>
-      </ul>
     </div>
   </footer>
 </template>

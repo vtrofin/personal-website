@@ -18,4 +18,11 @@
   --color-accent-ats: #7ca0b8;
   --color-accent-shipandco: #8fb89a;
   --color-accent-eyeq: #b88b8b;
+
+    /* Per-company accent */
+  --color-accent-scoville: #c47a7a;
+  --color-accent-bertrandco: #c49a6c;
+
+  /* Dummy/test accent */
+  --color-accent-dummy: #000000;
 }

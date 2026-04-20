@@ -25,8 +25,8 @@ export const getProjectData = () => {
   });
 };
 
-export const getWorkData = (vuexCompanies: Company[]) => {
-  return vuexCompanies.map((work) => {
+export const getWorkData = (companies: Company[]) => {
+  return companies.map((work) => {
     const formatted = getFormattedTitle(work.project);
 
     return {

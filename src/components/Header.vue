@@ -89,6 +89,7 @@ export default defineComponent({
         ? props.modifier + " " + "nav-link-text"
         : "nav-link-text";
       const navClass = props.modifier ? props.modifier + "-project-active" : "";
+
       return { linkClass, spanClass, navClass };
     });
 
@@ -139,7 +140,7 @@ export default defineComponent({
   padding: 1.5rem;
   cursor: pointer;
   font-size: 1.1rem;
-  color: var(--black);
+  color: inherit;
 }
 
 .nav-links li.auto-margin {
@@ -152,9 +153,8 @@ export default defineComponent({
   position: relative;
   cursor: pointer;
   text-decoration: none;
-  color: var(--black);
+  color: inherit;
   font-size: 1.1rem;
-  transition: color 0.2s linear;
 }
 
 .nav-link-text {
@@ -176,6 +176,10 @@ export default defineComponent({
   transform: translate3d(0, 5px, 0);
   transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   opacity: 0;
+}
+
+nav[class*="-project-active"] .nav-link-text:before {
+  background: currentColor;
 }
 
 .nav-links li:hover .nav-link-text:before {

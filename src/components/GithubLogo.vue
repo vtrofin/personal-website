@@ -19,6 +19,6 @@ export default defineComponent({
 
 <style scoped>
 svg path {
-  fill: var(--black);
+  fill: currentColor;
 }
 </style>

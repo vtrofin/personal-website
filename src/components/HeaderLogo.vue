@@ -58,7 +58,7 @@ export default defineComponent({
   content: '>_';
   position: absolute;
   text-align: center;
-  color: var(--black);
+  color: currentColor;
   font-size: 0.7rem;
   z-index: 99999;
   font-weight: bold;
@@ -72,6 +72,6 @@ svg path {
   stroke-width: 6;
   top: 0;
   left: 0;
-  stroke: #232320;
+  stroke: currentColor;
 }
 </style>

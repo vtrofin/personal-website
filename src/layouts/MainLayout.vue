@@ -99,8 +99,11 @@ main .content,
   display: block;
 }
 
-/* Modifier classes */
-/* Font and background colors */
+/* Modifier classes
+  Font and background colors
+  [project]-active for the links on Home page, in the Projects section
+  [project]-project-active for the nav links in the project's page header
+  */
 .eyeq-active,
 .eyeq-project-active {
   background-color: var(--color-accent-eyeq);
@@ -123,7 +126,6 @@ main .content,
 .shipandco-project-active {
   background-color: var(--color-accent-shipandco);
   color: var(--color-surface);
-
 }
 
 .dummy-active,

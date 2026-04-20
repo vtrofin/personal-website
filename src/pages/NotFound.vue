@@ -59,7 +59,7 @@ export default defineComponent({
 <style scoped>
 .container {
   --base-animation-border: 5px;
-  --animation-shadow: #978c72;
+  --animation-shadow: var(--color-text-secondary);
 
   display: flex;
   flex-direction: column;
@@ -91,7 +91,7 @@ export default defineComponent({
   min-height: 400px;
   max-height: 600px;
   max-width: 600px;
-  background-color: var(--pink);
+  background-color: var(--color-bg);
   border-radius: calc(var(--base-animation-border) * 1);
   transform: translate3d(-50%, 0, 0);
 }
@@ -127,7 +127,7 @@ export default defineComponent({
 .ghost-eyes-container .eye {
   width: 12px;
   height: 12px;
-  background-color: var(--black);
+  background-color: var(--color-text-primary);
   border-radius: 50%;
   margin: 0 10px;
   position: absolute;
@@ -160,7 +160,7 @@ export default defineComponent({
 
 .ghost-feet-container>div:nth-child(2n) {
   margin: 0;
-  border-top: 10px solid var(--pink);
+  border-top: 10px solid var(--color-bg);
   background-color: transparent;
 }
 
@@ -297,7 +297,7 @@ export default defineComponent({
 }
 
 .text-container {
-  color: var(--black);
+  color: var(--color-text-light);
   position: absolute;
   left: 50%;
   bottom: 30px;
@@ -327,13 +327,13 @@ export default defineComponent({
 }
 
 .content-link.not-found {
-  color: var(--black);
+  color: var(--color-text-light);
   font-weight: 500;
 }
 
 .content-link.not-found:before {
   bottom: -10px;
-  background-color: var(--red);
+  background-color: var(--color-accent);
 }
 
 @media (hover: hover) {

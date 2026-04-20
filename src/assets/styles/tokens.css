@@ -14,6 +14,7 @@
   --color-accent: #c1623f;
   --color-accent-inverted: #e8e0d5;
 
+  /* Add new tokens here for each new project and company */
   /* Per-project accent — pastel family */
   --color-accent-calliope: #c4a07c;
   --color-accent-ats: #7ca0b8;

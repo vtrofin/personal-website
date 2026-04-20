@@ -103,26 +103,27 @@ main .content,
 /* Font and background colors */
 .eyeq-active,
 .eyeq-project-active {
-  background-color: var(--peach);
-  color: var(--black);
+  background-color: var(--color-accent-eyeq);
+  color: var(--color-surface);
 }
 
 .calliope-active,
 .calliope-project-active {
-  background-color: var(--light-blue);
-  color: var(--black);
+  background-color: var(--color-accent-calliope);
+  color: var(--color-surface);
 }
 
 .ats-active,
 .ats-project-active {
-  background-color: var(--light-yellow);
-  color: var(--black);
+  background-color: var(--color-accent-ats);
+  color: var(--color-surface);
 }
 
 .shipandco-active,
 .shipandco-project-active {
-  background-color: var(--pink);
-  color: var(--black);
+  background-color: var(--color-accent-shipandco);
+  color: var(--color-surface);
+
 }
 
 .dummy-active,
@@ -131,15 +132,14 @@ main .content,
   color: var(--white);
 }
 
-
 .scoville-active {
-  background-color: var(--pink);
-  color: var(--black);
+  background-color: var(--color-accent-scoville);
+  color: var(--color-surface);
 }
 
 .bertrandco-active {
-  background-color: var(--light-yellow);
-  color: var(--black);
+  background-color: var(--color-accent-bertrandco);
+  color: var(--color-surface);
 }
 
 

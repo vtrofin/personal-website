@@ -104,28 +104,44 @@ main .content,
   [project]-active for the links on Home page, in the Projects section
   [project]-project-active for the nav links in the project's page header
   */
-.eyeq-active,
-.eyeq-project-active {
+.eyeq-active {
   background-color: var(--color-accent-eyeq);
   color: var(--color-surface);
 }
 
-.calliope-active,
-.calliope-project-active {
+.eyeq-project-active {
+  background-color: var(--color-accent-eyeq);
+  color: var(--color-bg);
+}
+
+.calliope-active {
   background-color: var(--color-accent-calliope);
   color: var(--color-surface);
 }
 
-.ats-active,
-.ats-project-active {
+.calliope-project-active {
+  background-color: var(--color-accent-calliope);
+  color: var(--color-bg);
+}
+
+.ats-active {
   background-color: var(--color-accent-ats);
   color: var(--color-surface);
 }
 
-.shipandco-active,
-.shipandco-project-active {
+.ats-project-active {
+  background-color: var(--color-accent-ats);
+  color: var(--color-bg);
+}
+
+.shipandco-active {
   background-color: var(--color-accent-shipandco);
   color: var(--color-surface);
+}
+
+.shipandco-project-active {
+  background-color: var(--color-accent-shipandco);
+  color: var(--color-bg);
 }
 
 .dummy-active,

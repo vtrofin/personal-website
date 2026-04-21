@@ -38,11 +38,15 @@
 <script lang="ts">
 import type { Timeline } from 'animejs';
 import { onMounted, onUnmounted, defineComponent } from 'vue';
+import { useHead } from '@unhead/vue';
+import { metaTags } from '@/helpers/meta_tags';
 import { setUpAnimation, stopAnimation } from '@components/helpers/animate';
 
 export default defineComponent({
   name: 'NotFound',
   setup() {
+    useHead(metaTags.notFound);
+
     let tl: Timeline;
     onMounted(() => {
       tl = setUpAnimation();

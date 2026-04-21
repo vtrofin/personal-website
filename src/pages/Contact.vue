@@ -92,6 +92,8 @@ import { reactive, ref, defineComponent } from "vue";
 import TickComponent from "@components/contact/tick.vue";
 import AlertComponent from "@components/contact/alert.vue";
 import SpinnerComponent from "@components/spinner/index.vue";
+import { useHead } from '@unhead/vue';
+import { metaTags } from '@/helpers/meta_tags';
 
 type TemplateData = {
   isLoading: boolean;
@@ -155,6 +157,8 @@ export default defineComponent({
   name: "ContactPage",
   components: { TickComponent, AlertComponent, SpinnerComponent },
   setup() {
+    useHead(metaTags.contact);
+
     const timeoutVal = (import.meta.env.NODE_ENV === "development" ? 3 : 30) * 1000;
     const templateData = reactive<TemplateData>({
       isLoading: false,

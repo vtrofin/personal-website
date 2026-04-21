@@ -3,15 +3,22 @@
 </template>
 
 <script lang="ts">
-import { onBeforeRouteUpdate } from 'vue-router';
+import { computed, defineComponent } from 'vue';
+import { useRoute, onBeforeRouteUpdate } from 'vue-router';
+import { useHead } from '@unhead/vue';
 import ProjectItemContent from '@components/project_item/project_content.vue';
 import { checkProjectRoute } from '@helpers/index';
-import { defineComponent } from 'vue';
+import { ProjectName } from '@/globals';
+import { metaTags } from '@/helpers/meta_tags';
 
 export default defineComponent({
   name: 'ProjectItem',
   components: { ProjectItemContent },
   setup() {
+    const route = useRoute();
+    const slug = computed(() => route?.params?.project_item as ProjectName);
+    useHead(metaTags.project(slug.value));
+
     onBeforeRouteUpdate((to) => {
       const params = to?.params;
       const pathRedirect = checkProjectRoute(params);

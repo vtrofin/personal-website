@@ -1,134 +1,150 @@
-import type {
-  RouteLocationNormalizedLoaded,
-  RouteLocationNormalized,
-  RouteRecordNormalized,
-  RouteLocationNormalizedGeneric,
-} from "vue-router";
+import type { ProjectName } from "@/globals";
+import { projectDataBySlug } from "@/data/projects";
 
-const matchTitle = (route: RouteRecordNormalized) => {
-  const meta = route?.meta;
-  // @ts-expect-error - Some hacky way i've added a meta function to the route
-  return typeof meta === "function" ? meta(route)?.title : meta?.title;
+const jsonLdScriptsPerson = {
+  type: "application/ld+json",
+  innerHTML: JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "Person",
+    name: "Victor Trofin",
+    jobTitle: "Web Engineer",
+    url: "https://trofin.me",
+    sameAs: [
+      // "https://www.linkedin.com/in/victortrofin",
+      "https://github.com/vtrofin",
+    ],
+  }),
 };
 
-const getMeta = (
-  nearestWithTitle: RouteRecordNormalized,
-  to: RouteLocationNormalizedGeneric,
-) => {
-  return typeof nearestWithTitle?.meta === "function"
-    ? // @ts-expect-error - Some hacky way i've added a meta function to the route
-      nearestWithTitle?.meta(to)
-    : (nearestWithTitle?.meta ?? {});
-};
+const homePageOgData = [
+  { property: "og:url", content: "https://trofin.me" },
+  { property: "og:type", content: "website" },
+  { property: "og:image", content: "https://trofin.me/og_image.jpg" },
+];
 
-export const handleMetaTags = (
-  to: RouteLocationNormalized,
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  _from: RouteLocationNormalizedLoaded,
-): void => {
-  if (typeof document === "undefined") return;
-
-  const nearestWithTitle = (to?.matched ?? [])
-    .slice()
-    .reverse()
-    .find(matchTitle);
-
-  // remove old meta tags on route change
-  const stale = document.querySelectorAll("[data-vue-router-controlled]");
-  for (const staleTag of stale) {
-    staleTag?.parentNode?.removeChild(staleTag);
-  }
-
-  if (!nearestWithTitle) {
-    return;
-  }
-
-  // put new meta
-  const { metaTags = [], title } = getMeta(nearestWithTitle, to);
-  if (!title || !metaTags.length) {
-    return;
-  }
-  document.title = title;
-  for (const metaTag of metaTags) {
-    const tag = document.createElement("meta");
-    Object.keys(metaTag).forEach((key) => {
-      tag.setAttribute(key, metaTag[key]);
-    });
-    tag.setAttribute("data-vue-router-controlled", "");
-    document.head.appendChild(tag);
-  }
-};
-
-export const metaTags = {
-  notFound: [
-    {
-      name: "description",
-      content: `This is a little embarassing. I can't find the page you are looking for`,
-    },
-    {
-      name: "keywords",
-      content:
-        "React, Vue.js, Node.js, full stack, web engineer, developer, Kyoto, Japan",
-    },
-  ],
-  homePage: [
-    {
-      name: "description",
-      content: "I build web apps for e-commerce and logistics, in Japan.",
-    },
-    {
-      name: "keywords",
-      content:
-        "React, Vue.js, Node.js, full stack, web engineer, developer, Kyoto, Japan",
-    },
-    {
-      property: "og:title",
-      content: "My name is Victor. I am a web engineer in Kyoto",
-    },
-    {
-      property: "og:description",
-      content:
-        "My area of expertise lies in building systems for e-commerce and logistics. I work at Ship&co, building a shipping management solution for e-commerce.",
-    },
-    { property: "og:url", content: "https://trofin.me" },
-    { property: "og:site_name", content: `Victor Trofin's portfolio` },
-    { property: "og:type", content: "website" },
-    { property: "og:image", content: "https://trofin.me/og_image.jpg" },
-  ],
-  project: (route: RouteLocationNormalizedLoaded) => {
-    if (route?.params?.project_item === "ats") {
-      return [
-        {
-          name: "description",
-          content:
-            "Full stack web engineer for an applicant tracking system with Next.js, GraphQL, ReScript and TypeScript",
-        },
-        {
-          name: "keywords",
-          content:
-            "Scoville, ReScript, TypeScript, Fastify, GraphQL, Next.js, Prisma.io, Tailwind, web engineer",
-        },
-      ];
-    }
-
-    return [
+const metaTags = {
+  notFound: {
+    title: "Victor Trofin — Page not found",
+    meta: [
       {
         name: "description",
-        content: `Full-stack web development for ${
-          route?.params?.project_item ?? "e-commerce and logistics"
-        } project with Node.js, Meteor, React, Vue.js and Feathers js`,
+        content: "I'm sorry, I can't find the page you are looking for.",
       },
       {
         name: "keywords",
-        content: `${route?.params?.project_item}, React, Vue.js, Node.js, Meteor, full stack, web engineer, developer, Kyoto, Japan`,
+        content:
+          "React, Vue.js, Node.js, full stack, web engineer, developer, Kyoto, Japan",
       },
-    ];
+      { property: "og:title", content: "Victor Trofin — Page not found" },
+      {
+        property: "og:description",
+        content: "I'm sorry, I can't find the page you are looking for.",
+      },
+      ...homePageOgData,
+    ],
+    script: [jsonLdScriptsPerson],
   },
-  contact: [
-    { name: "description", content: "Contact me for a quote on your project" },
-    {
-      name: "keywords",
-      content: "contact, full stack, web engineer, developer, Kyoto, Japan",
-    },
-  ],
+  homePage: {
+    title: "Victor Trofin — Web Engineer in Kyoto",
+    meta: [
+      {
+        name: "description",
+        content:
+          "I build software tools that give people their time back. Web engineer based in Kyoto, Japan.",
+      },
+      {
+        property: "og:title",
+        content: "Victor Trofin — Web Engineer in Kyoto",
+      },
+      {
+        property: "og:description",
+        content:
+          "I build software tools that give people their time back. Web engineer based in Kyoto, Japan.",
+      },
+      ...homePageOgData,
+    ],
+    script: [jsonLdScriptsPerson],
+  },
+  project: (slug?: ProjectName) => {
+    if (!slug || !projectDataBySlug[slug]) {
+      return {
+        title: "Victor Trofin — Projects",
+        meta: [
+          {
+            name: "description",
+            content:
+              "A selection of projects I've worked on as a web engineer. Full-stack development with React, Vue.js, Node.js, and more.",
+          },
+        ],
+      };
+    }
+
+    const projectData = projectDataBySlug[slug];
+    const techStack = projectData.stackItems.length
+      ? projectData.stackItems.join(", ")
+      : "various technologies";
+
+    const metaTitle = `Victor Trofin — ${projectData.title} project`;
+    const metaDescription = `Full-stack web engineer for ${projectData.title} - ${projectData.excerpt}`;
+    const metaKeywords = techStack.trim().substring(0, 160);
+    const url = `https://trofin.me/projects/${slug}`;
+
+    return {
+      title: metaTitle,
+      meta: [
+        {
+          name: "description",
+          content: metaDescription.trim().substring(0, 160),
+        },
+        { name: "keywords", content: metaKeywords },
+        { property: "og:title", content: metaTitle },
+        { property: "og:description", content: metaDescription },
+        { property: "og:url", content: url },
+        { property: "og:type", content: "website" },
+        { property: "og:image", content: "https://trofin.me/og_image.jpg" },
+      ],
+      script: [
+        {
+          type: "application/ld+json",
+          innerHTML: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "SoftwareApplication",
+            name: projectData.title,
+            description: metaDescription,
+            url,
+            author: {
+              "@type": "Person",
+              name: "Victor Trofin",
+              url: "https://trofin.me",
+            },
+          }),
+        },
+      ],
+    };
+  },
+  contact: {
+    title: "Victor Trofin — Contact",
+    meta: [
+      {
+        name: "description",
+        content:
+          "Have a project you want to discuss? Leave a message and I'll be in touch shortly. Web engineer based in Kyoto, Japan.",
+      },
+      {
+        property: "og:title",
+        content: "Victor Trofin — Contact",
+      },
+      {
+        property: "og:description",
+        content:
+          "Have a project you want to discuss? Leave a message and I'll be in touch shortly. Web engineer based in Kyoto, Japan.",
+      },
+      { property: "og:url", content: "https://trofin.me/contact" },
+      { property: "og:type", content: "website" },
+      { property: "og:image", content: "https://trofin.me/og_image.jpg" },
+    ],
+    script: [jsonLdScriptsPerson],
+  },
 };
+
+export { metaTags };

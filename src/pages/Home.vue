@@ -8,6 +8,8 @@
 
 <script lang="ts">
 import { ref, defineComponent } from 'vue';
+import { useHead } from '@unhead/vue';
+import { metaTags } from '@/helpers/meta_tags';
 import { useCompaniesStore } from '@store/useCompaniesStore';
 import { useHeroStore } from '@store/useHeroStore';
 import HeroSection from '@components/hero_component/index.vue';
@@ -18,6 +20,8 @@ export default defineComponent({
   name: 'HomePage',
   components: { GeneralSection, HeroSection },
   setup() {
+    useHead(metaTags.homePage);
+
     const companiesStore = useCompaniesStore();
     const heroStore = useHeroStore();
     const computedStyle = ref<Record<string, string>>({});

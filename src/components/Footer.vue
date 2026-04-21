@@ -4,9 +4,8 @@
       <h2 class="section-header">Connect</h2>
     </div>
     <div class="footer-container">
-      <h3 class="item-title" tabindex="0">Want to hire me?</h3>
-      <p class="item-text">
-        Feel free to
+      <h3 class="item-title" tabindex="0">Want to hire me?
+         Feel free to
         <a
           class="contact-link reversed"
           href="mailto:trofin.victor@gmail.com?subject=Hi"
@@ -16,7 +15,7 @@
           <span> send me a message </span>
         </a>
         .
-      </p>
+      </h3>
     </div>
   </footer>
 </template>
@@ -36,6 +35,7 @@ footer {
   color: var(--color-text-primary);
   width: 100%;
   margin-top: 2.5rem;
+  /* padding-bottom: 2.5rem; */
 }
 
 .section-header-container {
@@ -50,53 +50,19 @@ footer .section-header {
 }
 
 .footer-container {
-  display: grid;
-  grid-gap: 20px;
   width: 90%;
   max-width: 1280px;
-  color: var(--black);
+  color: var(--color-text-primary);
   margin: 0 auto;
   padding: 0;
   text-align: left;
 }
 
-@media all and (min-width: 600px) {
-  .footer-container {
-    grid-template-columns: 5fr 1fr;
-    grid-template-rows: repeat(2 auto);
-    margin-bottom: 3rem;
-  }
-
-  .footer-container h3.item-title {
-    grid-column: 1/2;
-  }
-
-  .footer-container p.item-text {
-    grid-column: 1/2;
-  }
-
-}
-
 .footer-container h3.item-title {
-  font-size: 7vmin;
+  font-size: 1.25rem;
   font-weight: 500;
-  margin-left: 0;
-  margin-bottom: 0;
-  word-break: normal;
-}
-
-@media all and (min-width: 600px) {
-  .footer-container h3.item-title {
-    font-size: 1.8rem;
-  }
-}
-
-.footer-container p.item-text {
-  max-width: 100%;
-  padding-bottom: 1rem;
-  margin-left: 0;
-  margin-bottom: 0;
-  width: auto;
+  margin: 3rem 0;
+  word-break: break-word;
 }
 
 .footer-container .contact-link {

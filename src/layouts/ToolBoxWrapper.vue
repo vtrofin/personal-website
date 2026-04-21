@@ -24,13 +24,6 @@
       <div class="toolbox-list" tabindex="0">
         <span v-for="(tool, i) in tools" :key="i">{{ tool }}</span>
       </div>
-      <div class="toolbox-icons" tabindex="0">
-        <div id="ts" aria-label="typescript" />
-        <div id="rescript" aria-label="rescript" />
-        <div aria-label="swift">
-          <fa :icon="['fab', 'swift']" class="fa-2x" />
-        </div>
-      </div>
     </section>
     <button
       id="close-button"
@@ -210,8 +203,7 @@ export default defineComponent({
   padding-bottom: 0.4rem;
 }
 
-.toolbox-list,
-.toolbox-icons {
+.toolbox-list {
   display: flex;
   flex-direction: row;
   margin: 1.5rem auto 0;
@@ -226,37 +218,5 @@ export default defineComponent({
   border-radius: var(--base-border);
   margin: 2px;
   padding: 2px 4px;
-}
-
-.toolbox-icons {
-  align-content: center;
-  justify-content: flex-start;
-  gap: 1.5rem;
-}
-
-.toolbox-icons>div {
-  width: 32px;
-  height: 32px;
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: contain;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.toolbox-icons>div>svg {
-  width: 32px;
-  height: 32px;
-}
-
-.toolbox-icons #rescript {
-  background-image: url("/public/rescript_logo.svg");
-  background-size: 32px 32px;
-}
-
-.toolbox-icons #ts {
-  background-image: url("/public/ts_logo.svg");
-  background-size: 32px 32px;
 }
 </style>

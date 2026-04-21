@@ -75,10 +75,6 @@ footer .section-header {
     grid-column: 1/2;
   }
 
-  .thanks {
-    grid-column: 2/3;
-    grid-row: 1/-3;
-  }
 }
 
 .footer-container h3.item-title {
@@ -109,61 +105,5 @@ footer .section-header {
 
 .footer-container .contact-link:before {
   background-color: var(--color-accent);
-}
-
-.thanks {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  list-style-type: none;
-  padding: 0;
-  margin: 0 0 1.5rem;
-  font-size: 0.8rem;
-}
-
-.thanks li {
-  margin-top: 0.3rem;
-  color: var(--gray);
-}
-
-.thanks li:not(:first-of-type):not(:last-of-type):not(:nth-last-of-type(2)):after {
-  content: "|";
-  margin-left: 0.2rem;
-  margin-right: 0.2rem;
-}
-
-.thanks li:first-of-type {
-  font-weight: 700;
-  margin-right: 0.2rem;
-}
-
-.thanks li:nth-last-of-type(2):after {
-  content: ".";
-  margin-left: -0.1rem;
-}
-
-.thanks li a {
-  cursor: pointer;
-  text-decoration: none;
-  color: var(--gray);
-}
-
-@media all and (min-width: 600px) {
-  .thanks {
-    flex-direction: column;
-    flex-wrap: nowrap;
-    margin-bottom: 0;
-    margin: 1.5rem 0;
-  }
-
-  .thanks li:first-of-type,
-  .thanks li:last-of-type {
-    max-width: 100px;
-  }
-
-  .thanks li:nth-last-of-type(2):after,
-  .thanks li:after {
-    display: none;
-  }
 }
 </style>

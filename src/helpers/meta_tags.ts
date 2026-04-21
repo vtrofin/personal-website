@@ -122,29 +122,6 @@ const metaTags = {
       ],
     };
   },
-  contact: {
-    title: "Victor Trofin — Contact",
-    meta: [
-      {
-        name: "description",
-        content:
-          "Have a project you want to discuss? Leave a message and I'll be in touch shortly. Web engineer based in Kyoto, Japan.",
-      },
-      {
-        property: "og:title",
-        content: "Victor Trofin — Contact",
-      },
-      {
-        property: "og:description",
-        content:
-          "Have a project you want to discuss? Leave a message and I'll be in touch shortly. Web engineer based in Kyoto, Japan.",
-      },
-      { property: "og:url", content: "https://trofin.me/contact" },
-      { property: "og:type", content: "website" },
-      { property: "og:image", content: "https://trofin.me/og_image.jpg" },
-    ],
-    script: [jsonLdScriptsPerson],
-  },
 };
 
 export { metaTags };

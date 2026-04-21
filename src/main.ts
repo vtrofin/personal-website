@@ -5,7 +5,6 @@ import VueApp from "./App.vue";
 import HomePage from "@pages/Home.vue";
 import ProjectItem from "@pages/ProjectItem.vue";
 import NotFound from "@pages/NotFound.vue";
-import ContactPage from "@pages/Contact.vue";
 import { checkProjectRoute } from "@helpers/index";
 import { inject } from "@vercel/analytics";
 import { ViteSSG as createViteSSG } from "vite-ssg";
@@ -35,11 +34,6 @@ const routes: Readonly<RouteRecordRaw[]> = [
     beforeEnter: (to) => {
       return checkProjectRoute(to?.params);
     },
-  },
-  {
-    path: "/contact",
-    component: ContactPage,
-    name: "contact",
   },
 ];
 

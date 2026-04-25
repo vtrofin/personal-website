@@ -66,7 +66,7 @@ footer .section-header {
 }
 
 .footer-container .contact-link {
-  color: var(--color-text-primary);
+  color: inherit;
 }
 
 .footer-container .contact-link:before {

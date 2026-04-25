@@ -30,7 +30,7 @@ export default defineComponent({
 <style>
 .how-i-work {
   margin: 120px auto;
-  color: var(--color-accent);
+  color: inherit;
   position: relative;
   z-index: 10;
 }

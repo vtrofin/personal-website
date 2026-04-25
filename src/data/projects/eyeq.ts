@@ -15,14 +15,19 @@ export const eyeqData: ProjectData = {
         "EyeQ is an AI-powered video interview platform that screens candidates before they ever reach a human interviewer. Candidates receive a link, join a video session without creating an account, and answer a set of questions on camera. The platform records, transcribes, and evaluates their responses — giving hiring teams a shortlist of vetted candidates to review, including the recorded interviews.",
     },
     {
+      type: "image",
+      src: "/eyeq_candidates.webp",
+      alt: "EyeQ dashboard showing a list of candidates and their interview status",
+    },
+    {
       type: "text",
       content:
         "It can be configured for different interview formats: standard screening questions, structured behavioural interviews, or case interviews like those used by management consulting firms to test junior hires.",
     },
     {
       type: "image",
-      src: "/eyeq-placeholder.webp",
-      alt: "TBD",
+      src: "/eyeq_interview.webp",
+      alt: "Interview session in EyeQ, showing the candidate's video feed and the question they're answering",
     },
     {
       type: "text",

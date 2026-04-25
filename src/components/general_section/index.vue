@@ -234,6 +234,7 @@ h3.item-title {
   transform: translateY(-6px) translateZ(0);
 }
 
+
 @media all and (min-width: 600px) {
   h3.item-title {
     font-size: 3rem;
@@ -255,7 +256,25 @@ h3.item-title {
   transform: scaleX(1) translateY(6px);
 }
 
-p.item-text {
+p.item-subtitle {
+  margin: -0.25rem auto 0.5rem;
+  width: 80%;
+  max-width: 500px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: currentColor;
+  opacity: 0.8;
+  z-index: 10;
+  position: relative;
+  transform: translateZ(0);
+  transition: transform 0.3s cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+
+.section-link:hover p.item-subtitle {
+  transform: translateY(-4px) translateZ(0);
+}
+
+p.item-outcome {
   margin: 0 auto 1.5rem;
   width: 80%;
   z-index: 10;
@@ -265,9 +284,10 @@ p.item-text {
   transition: transform 0.3s cubic-bezier(0.215, 0.61, 0.355, 1);
   font-size: 1.2rem;
   font-weight: 500;
+  color: var(--color-text-light);
 }
 
-.section-link:hover p.item-text {
+.section-link:hover p.item-outcome {
   transform: translateY(8px) translateZ(0);
 }
 

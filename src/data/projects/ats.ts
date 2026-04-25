@@ -7,7 +7,7 @@ export const atsData: ProjectData = {
   outcomeTag: "Hiring pipelines off spreadsheets",
   accentColorToken: "--color-accent-ats",
   openingProblem:
-    "In Japan, hiring entry-level graduates is nothing like posting a job and waiting for applications. Companies run year-long recruitment campaigns targeting students who all start work in April. Most applicant tracking tools are built for Western-style hiring and don\u2019t fit this cycle. The few Japanese options that existed were clunky or incomplete — leaving recruiters to manage candidates across spreadsheets and email chains.",
+    "In Japan, hiring entry-level graduates is nothing like posting a job and waiting for applications. Companies run year-long recruitment campaigns targeting students who all start work in April. Most hiring software is built for Western-style hiring and don\u2019t fit this cycle. The few Japanese options that existed were clunky or incomplete — leaving recruiters to manage candidates across spreadsheets and email chains.",
   narrative: [
     {
       type: "text",

@@ -1,15 +1,17 @@
 <template>
   <section class="how-i-work">
-    <h2 class="how-i-work-heading">How I Work</h2>
-    <ol class="how-i-work-steps">
-      <li v-for="(step, idx) in steps" :key="step.title" class="how-i-work-step">
-        <span class="step-number" aria-hidden="true">{{ idx + 1 }}</span>
-        <div class="step-content">
-          <h3 class="step-title">{{ step.title }}</h3>
-          <p class="step-description">{{ step.description }}</p>
-        </div>
-      </li>
-    </ol>
+    <h2 class="section-header">How I Work</h2>
+    <div class="how-i-work-container">
+      <ol class="how-i-work-steps">
+        <li v-for="(step, idx) in steps" :key="step.title" class="how-i-work-step">
+          <span class="step-number" aria-hidden="true">{{ idx + 1 }}</span>
+          <div class="step-content">
+            <h3 class="step-title">{{ step.title }}</h3>
+            <p class="step-description">{{ step.description }}</p>
+          </div>
+        </li>
+      </ol>
+    </div>
   </section>
 </template>
 
@@ -27,17 +29,22 @@ export default defineComponent({
 
 <style>
 .how-i-work {
-  background-color: var(--color-bg);
-  color: var(--color-text-light);
-  padding: 2rem 0;
   margin: 120px auto;
-  border-radius: var(--base-border)
+  color: var(--color-accent);
+  position: relative;
+  z-index: 10;
 }
 
-.how-i-work-heading {
-  font-size: 2rem;
-  font-weight: 700;
-  margin: 0 0 2.5rem;
+.how-i-work .section-header {
+  position: relative;
+  z-index: 20;
+}
+
+.how-i-work-container {
+  background-color: var(--color-bg);
+  color: var(--color-surface);
+  padding: 2.5rem 0 2rem;
+  border-radius: var(--base-border);
 }
 
 .how-i-work-steps {

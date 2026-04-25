@@ -4,8 +4,9 @@
       <h2 class="section-header">Connect</h2>
     </div>
     <div class="footer-container">
-      <h3 class="item-title" tabindex="0">Want to hire me?
-         Feel free to
+      <h3 class="item-title" tabindex="0">
+        Want to hire me?
+        Feel free to
         <a
           class="contact-link reversed"
           href="mailto:trofin.victor@gmail.com?subject=Hi"

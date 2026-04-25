@@ -9,10 +9,7 @@ const jsonLdScriptsPerson = {
     name: "Victor Trofin",
     jobTitle: "Web Engineer",
     url: "https://trofin.me",
-    sameAs: [
-      // "https://www.linkedin.com/in/victortrofin",
-      "https://github.com/vtrofin",
-    ],
+    sameAs: ["https://github.com/vtrofin"],
   }),
 };
 

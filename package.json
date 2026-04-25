@@ -45,7 +45,8 @@
     "vite-plugin-checker": "^0.12.0",
     "vite-ssg": "^28.3.0",
     "vite-tsconfig-paths": "^6.1.1",
-    "vue-svg-loader": "^0.16.0"
+    "vue-svg-loader": "^0.16.0",
+    "vue-tsc": "^3.2.7"
   },
   "browserslist": [
     "> 1%",

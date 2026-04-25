@@ -4,7 +4,8 @@
       <h1>I build software that makes work faster.</h1>
     </div>
     <div class="hero-subtitle" tabindex="0">
-      <p>Hi. I'm Victor, a web engineer, currently living in Kyoto and working at
+      <p>
+        Hi. I'm Victor, a web engineer, currently living in Kyoto and working at
         <a
           class="content-link"
           target="_blank"

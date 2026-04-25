@@ -237,7 +237,7 @@ nav[class*="-project-active"] .nav-link-text:before {
 .nav-right a:focus-visible,
 .toolbox-btn:focus-visible {
   outline: 2px solid var(--color-accent);
-  outline-offset: 4px;
+  outline-offset: -2px;
   border-radius: 2px;
 }
 </style>

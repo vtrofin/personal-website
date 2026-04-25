@@ -28,17 +28,6 @@
           </span>
         </li>
         <li>
-          <router-link
-            to="/contact"
-            :class="classModifiers.linkClass"
-            aria-label="Send me a message"
-          >
-            <span :class="classModifiers.spanClass">
-              <fa :icon="['fas', 'envelope']" />
-            </span>
-          </router-link>
-        </li>
-        <li>
           <a
             :class="classModifiers.linkClass"
             href="https://vtrofin.github.io/"

@@ -27,14 +27,14 @@ export default defineComponent({
 <style scoped>
 .brand {
   --logo-size: 50px;
+  display: flex;
+  align-items: center;
 }
 
 .main-link {
   display: none;
-  position: absolute;
-  left: 50%;
-  bottom: -15px;
-  transform: translate3d(-50%, 0, 0);
+  color: inherit;
+  text-decoration: none;
 }
 
 @media all and (min-width: 600px) {

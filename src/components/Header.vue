@@ -1,54 +1,71 @@
 <template>
   <nav :class="classModifiers.navClass">
     <div class="nav-container">
-      <ul class="nav-links">
-        <li><HeaderLogo :modifier-class="classModifiers.linkClass" /></li>
+      <ul class="nav-left">
         <li class="mobile-home-button">
           <router-link
             to="/"
             :class="classModifiers.linkClass"
             aria-label="Go to the Homepage"
-            :aria-hidden="!isMobile"
           >
             <span :class="classModifiers.spanClass">
-              <fa :icon="['fas', 'home']" />
+              <fa :icon="['fas', 'home']" aria-hidden="true" />
             </span>
           </router-link>
         </li>
-        <li
-          :class="'toolbox' +
-            (classModifiers.linkClass ? ' ' + classModifiers.linkClass : '')
-            "
-          @click.prevent="toggleToolbox"
-          tabindex="0"
-          aria-label="My skills"
-        >
-          <span :class="classModifiers.spanClass">
-            <fa :icon="['fas', 'user']" />
-          </span>
+        <li>
+          <button
+            class="toolbox-btn"
+            :class="classModifiers.linkClass"
+            @click="toggleToolbox"
+            :aria-expanded="String(isToolboxActive)"
+            aria-label="Tools"
+          >
+            <span :class="classModifiers.spanClass">
+              <fa :icon="['fas', 'user']" aria-hidden="true" />
+              <span class="nav-label">Tools</span>
+            </span>
+          </button>
         </li>
         <li>
           <a
             :class="classModifiers.linkClass"
             href="https://vtrofin.github.io/"
-            aria-label="View my curriculum vitae"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Open CV in a new tab"
           >
-            <span :class="classModifiers.spanClass"> CV </span>
+            <span :class="classModifiers.spanClass">
+              <fa :icon="['fas', 'file-alt']" aria-hidden="true" />
+              <span class="nav-label">CV</span>
+            </span>
           </a>
         </li>
-        <li class="auto-margin">
+      </ul>
+
+      <div class="nav-center">
+        <HeaderLogo :modifier-class="classModifiers.linkClass" />
+      </div>
+
+      <ul class="nav-right">
+        <li>
           <a
             :class="classModifiers.linkClass"
             href="https://dev.to/vtrofin"
-            aria-label="View my profile on dev.to"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Read my blog on dev.to (opens in a new tab)"
           >
             <span :class="classModifiers.spanClass">
-              <fa :icon="['fas', 'pen-nib']" />
+              <fa :icon="['fas', 'pen-nib']" aria-hidden="true" />
+              <span class="nav-label">Blog</span>
             </span>
           </a>
         </li>
         <li>
-          <GithubLogo :modifier-class="classModifiers.linkClass" />
+          <GithubLogo :modifier-class="classModifiers.linkClass" :span-class="classModifiers.spanClass">
+            <span class="nav-label">GitHub</span>
+          </GithubLogo>
         </li>
       </ul>
     </div>
@@ -70,7 +87,7 @@ export default defineComponent({
   props: { modifier: { type: String as PropType<ProjectName>, required: false, default: "" } },
   setup(props) {
     const appStore = useAppStore();
-    const isMobile = appStore.isMobile;
+    const isToolboxActive = computed(() => appStore.isToolboxActive);
 
     const classModifiers = computed(() => {
       const linkClass = props.modifier ? props.modifier : "";
@@ -86,57 +103,81 @@ export default defineComponent({
       appStore.setToolBoxState(!appStore.isToolboxActive);
     };
 
-    return { classModifiers, toggleToolbox, isMobile };
+    return { classModifiers, toggleToolbox, isToolboxActive };
   },
 });
 </script>
 
 <style>
+/* ── Layout ── */
 .nav-container {
   --logo-size: 75px;
-}
-
-.nav-container {
   position: relative;
   width: 90%;
   max-width: 1280px;
   margin: 0 auto;
-}
-
-.nav-links {
-  margin: 0 auto;
-  list-style-type: none;
-  padding: 0;
-  overflow: hidden;
-  width: 100%;
   display: flex;
-  justify-content: space-between;
   align-items: center;
 }
 
-.nav-links li {
+.nav-left,
+.nav-right {
+  flex: 1;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  align-items: center;
+}
+
+.nav-right {
+  justify-content: flex-end;
+}
+
+.nav-center {
+  flex-shrink: 0;
+  display: none;
+}
+
+@media (min-width: 600px) {
+  .nav-center {
+    display: block;
+  }
+}
+
+.nav-left li,
+.nav-right li {
   max-width: 100%;
   min-width: 0;
 }
 
+/* ── Mobile home button (icon only, hidden on desktop) ── */
 @media all and (min-width: 600px) {
   .mobile-home-button {
     display: none;
   }
 }
 
-.toolbox {
-  padding: 1.5rem;
-  cursor: pointer;
-  font-size: 1.1rem;
-  color: inherit;
+/* ── Desktop text labels ── */
+.nav-label {
+  display: none;
 }
 
-.nav-links li.auto-margin {
-  margin-left: auto;
+@media (min-width: 600px) {
+  .nav-label {
+    display: inline;
+  }
+
+  .nav-link-text {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4em;
+  }
 }
 
-.nav-links li a {
+/* ── Links ── */
+.nav-left li a,
+.nav-right li a {
   padding: 1.5rem;
   display: block;
   position: relative;
@@ -146,6 +187,20 @@ export default defineComponent({
   font-size: 1.1rem;
 }
 
+.toolbox-btn {
+  background: none;
+  border: none;
+  padding: 1.5rem;
+  display: block;
+  cursor: pointer;
+  color: inherit;
+  font-size: 1.1rem;
+  font-family: inherit;
+  font-weight: inherit;
+  line-height: inherit;
+}
+
+/* ── Hover underline animation ── */
 .nav-link-text {
   position: relative;
   z-index: 10;
@@ -171,8 +226,18 @@ nav[class*="-project-active"] .nav-link-text:before {
   background: currentColor;
 }
 
-.nav-links li:hover .nav-link-text:before {
+.nav-left li:hover .nav-link-text:before,
+.nav-right li:hover .nav-link-text:before {
   opacity: 1;
   transform: translateZ(0) scale3d(1.1, 1.1, 1.1) rotate(2deg);
+}
+
+/* ── Focus rings ── */
+.nav-left a:focus-visible,
+.nav-right a:focus-visible,
+.toolbox-btn:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 4px;
+  border-radius: 2px;
 }
 </style>

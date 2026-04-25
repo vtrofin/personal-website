@@ -2,6 +2,7 @@
   <HeroSection @update-caret-position="updateCaretPosition" />
   <GeneralSection class-name="projects" title="Projects" :data="projectsData" />
   <GeneralSection class-name="work" title="Work" :data="workData" />
+  <HowIWork />
   <!-- hide cli blinking cursor until i have the time to make it interactive -->
   <!-- <span id="blinking-cursor" :style="computedStyle" /> -->
 </template>
@@ -14,11 +15,12 @@ import { useCompaniesStore } from '@store/useCompaniesStore';
 import { useHeroStore } from '@store/useHeroStore';
 import HeroSection from '@components/hero_component/index.vue';
 import GeneralSection from '@components/general_section/index.vue';
+import HowIWork from '@components/HowIWork.vue';
 import { getProjectData, getWorkData } from '@components/helpers';
 
 export default defineComponent({
   name: 'HomePage',
-  components: { GeneralSection, HeroSection },
+  components: { GeneralSection, HeroSection, HowIWork },
   setup() {
     useHead(metaTags.homePage);
 

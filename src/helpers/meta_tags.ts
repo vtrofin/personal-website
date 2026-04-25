@@ -42,21 +42,21 @@ const metaTags = {
     script: [jsonLdScriptsPerson],
   },
   homePage: {
-    title: "Victor Trofin — Web Engineer in Kyoto",
+    title: "Victor Trofin — Web Engineer in Kyoto, Japan",
     meta: [
       {
         name: "description",
         content:
-          "I build software tools that give people their time back. Web engineer based in Kyoto, Japan.",
+          "I build software tools that give people their time back. Web engineer based in Kyoto, Japan. See my work and get in touch.",
       },
       {
         property: "og:title",
-        content: "Victor Trofin — Web Engineer in Kyoto",
+        content: "Victor Trofin — Web Engineer in Kyoto, Japan",
       },
       {
         property: "og:description",
         content:
-          "I build software tools that give people their time back. Web engineer based in Kyoto, Japan.",
+          "I build software tools that give people their time back. Web engineer based in Kyoto, Japan. See my work and get in touch.",
       },
       ...homePageOgData,
     ],

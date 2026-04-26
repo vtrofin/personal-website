@@ -32,19 +32,25 @@ export default defineComponent({
   margin: 120px auto;
   color: inherit;
   position: relative;
-  z-index: 10;
+  background-color: var(--color-surface-light);
 }
 
 .how-i-work .section-header {
   position: relative;
-  z-index: 20;
+  z-index: 10;
 }
 
 .how-i-work-container {
   background-color: var(--color-bg);
   color: var(--color-surface);
-  padding: 2.5rem 0 2rem;
+  padding: 2rem 0;
   border-radius: var(--radius-base);
+}
+
+@media all and (min-width: 600px) {
+  .how-i-work-container {
+    padding: 4rem 2rem;
+  }
 }
 
 .how-i-work-steps {

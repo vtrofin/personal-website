@@ -87,7 +87,7 @@ export default defineComponent({
 
         // prepare text for animation -> explode into single characters
         const formattedText = getExplodedContent(animationText);
-        for (let i in formattedText) {
+        for (const i in formattedText) {
           animationTextRefs.value[i].innerHTML = formattedText[i];
         }
         //  check that cli is visible & trigger animation

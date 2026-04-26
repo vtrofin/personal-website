@@ -4,7 +4,7 @@
   --color-surface: #f5f0eb;
 
   /* Text — dark, for use on light backgrounds */
-  --color-text-primary: #232320;
+  --color-text-primary: #000000;
   --color-text-secondary: #574b33;
 
   /* Text — light, for use on dark backgrounds (CLI, etc.) */

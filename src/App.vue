@@ -122,6 +122,7 @@ body {
   font-size: 16px;
   font-family: 'Helvetica Neue', 'Source Sans Pro', Arial, sans-serif;
   background-color: var(--color-bg);
+  color: var(--color-text-primary);
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
 }

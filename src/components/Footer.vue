@@ -36,7 +36,6 @@ footer {
   color: var(--color-text-primary);
   width: 100%;
   margin-top: 2.5rem;
-  /* padding-bottom: 2.5rem; */
 }
 
 .section-header-container {

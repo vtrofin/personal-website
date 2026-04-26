@@ -68,12 +68,6 @@ export default defineComponent({
   }
 }
 
-@media (min-width: 1024px) {
-  .how-i-work-steps {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
 .how-i-work-step {
   display: flex;
   align-items: flex-start;

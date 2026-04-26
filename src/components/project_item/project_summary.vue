@@ -1,6 +1,6 @@
 <template>
   <aside class="summary-container" aria-labelledby="at-a-glance-heading">
-    <h3 id="at-a-glance-heading" tabindex="0">At a glance</h3>
+    <h2 id="at-a-glance-heading" tabindex="0">At a glance</h2>
     <div class="summary">
       <div class="summary-left" tabindex="0">
         <span class="summary-subtitle">Position</span>
@@ -59,7 +59,7 @@ export default defineComponent({
   box-sizing: border-box;
 }
 
-.project-content .summary-container h3 {
+.project-content .summary-container h2 {
   margin: 0;
   z-index: 10;
   font-weight: 500;
@@ -69,7 +69,7 @@ export default defineComponent({
 }
 
 @media all and (min-width: 600px) {
-  .project-content .summary-container h3 {
+  .project-content .summary-container h2 {
     font-size: 2.2rem;
   }
 }

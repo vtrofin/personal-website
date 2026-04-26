@@ -8,6 +8,7 @@
           v-else-if="block.type === 'image'"
           :url="block.src"
           :alt-text="block.alt"
+          :priority="i === firstImageIndex ? 'high' : 'lazy'"
         />
       </template>
     </div>
@@ -54,7 +55,11 @@ export default defineComponent({
       };
     });
 
-    return { slug, projectData, summaryOptions };
+    const firstImageIndex = computed(() =>
+      projectData.value?.narrative.findIndex(b => b.type === 'image') ?? -1
+    );
+
+    return { slug, projectData, summaryOptions, firstImageIndex };
   },
 });
 </script>
@@ -129,5 +134,6 @@ export default defineComponent({
 
 .content-image {
   width: 100%;
+  height: auto;
 }
 </style>

@@ -66,32 +66,35 @@ export default defineComponent({
     let staggeredAnimation = ref<JSAnimation | null>(null);
 
     onMounted(() => {
-      // Disable animation if user prefers reduced motion
-      // DevTools → More tools → Rendering → scroll to "Emulate CSS media feature prefers-reduced-motion" 
-      const prefersReducedMotion = typeof window !== 'undefined'
-        && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      // Defer animation setup to after first paint so it does not block LCP
+      requestAnimationFrame(() => {
+        // Disable animation if user prefers reduced motion
+        // DevTools → More tools → Rendering → scroll to "Emulate CSS media feature prefers-reduced-motion"
+        const prefersReducedMotion = typeof window !== 'undefined'
+          && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-      if (prefersReducedMotion) {
-        for (const el of animationTextRefs.value) {
-          const span = el.querySelector('.animation-text');
+        if (prefersReducedMotion) {
+          for (const el of animationTextRefs.value) {
+            const span = el.querySelector('.animation-text');
 
-          if (span) {
-            (span as HTMLElement).style.opacity = '1'
-          };
+            if (span) {
+              (span as HTMLElement).style.opacity = '1'
+            };
+          }
+
+          return;
         }
 
-        return;
-      }
-
-      // prepare text for animation -> explode into single characters
-      const formattedText = getExplodedContent(animationText);
-      for (let i in formattedText) {
-        animationTextRefs.value[i].innerHTML = formattedText[i];
-      }
-      //  check that cli is visible & trigger animation
-      cliObserver = getAnimationObserver({
-        cliContainer,
-        staggeredAnimation,
+        // prepare text for animation -> explode into single characters
+        const formattedText = getExplodedContent(animationText);
+        for (let i in formattedText) {
+          animationTextRefs.value[i].innerHTML = formattedText[i];
+        }
+        //  check that cli is visible & trigger animation
+        cliObserver = getAnimationObserver({
+          cliContainer,
+          staggeredAnimation,
+        });
       });
     });
 

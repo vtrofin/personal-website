@@ -9,6 +9,7 @@
           :url="block.src"
           :alt-text="block.alt"
           :priority="i === firstImageIndex ? 'high' : 'lazy'"
+          :src-small="block.srcSmall"
         />
       </template>
     </div>

@@ -17,6 +17,7 @@ export const eyeqData: ProjectData = {
     {
       type: "image",
       src: "/eyeq_candidates.webp",
+      srcSmall: "/eyeq_candidates_resized.webp",
       alt: "EyeQ dashboard showing a list of candidates and their interview status",
     },
     {
@@ -27,6 +28,7 @@ export const eyeqData: ProjectData = {
     {
       type: "image",
       src: "/eyeq_interview.webp",
+      srcSmall: "/eyeq_interview_resized.webp",
       alt: "Interview session in EyeQ, showing the candidate's video feed and the question they're answering",
     },
     {

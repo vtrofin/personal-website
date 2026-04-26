@@ -17,6 +17,7 @@ export const calliopeData: ProjectData = {
     {
       type: "image",
       src: "/calliope-call.webp",
+      srcSmall: "/calliope-call_resized.webp",
       alt: "The Calliope call panel during a live outbound call",
     },
     {
@@ -27,6 +28,7 @@ export const calliopeData: ProjectData = {
     {
       type: "image",
       src: "/calliope-report.webp",
+      srcSmall: "/calliope-report_resized.webp",
       alt: "The post-call report form agents complete after each conversation",
     },
     {

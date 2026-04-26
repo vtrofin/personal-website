@@ -1,6 +1,6 @@
 export type NarrativeBlock =
   | { type: 'text'; content: string }
-  | { type: 'image'; src: string; alt: string };
+  | { type: 'image'; src: string; alt: string; srcSmall?: string };
 
 export interface ProjectSummary {
   position: string;

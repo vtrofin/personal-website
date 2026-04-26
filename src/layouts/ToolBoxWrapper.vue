@@ -6,6 +6,7 @@
   <nav
     :class="'toolbox-menu' + (toolboxActive ? ' ' + 'toolbox-open' : '')"
     :aria-hidden="!toolboxActive"
+    :inert="!toolboxActive"
   >
     <section class="profile-container">
       <div class="profile" tabindex="0">

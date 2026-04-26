@@ -158,7 +158,7 @@ export default defineComponent({
   font-size: 1.2rem;
   line-height: 1.5;
   text-align: left;
-  color: var(--color-text-secondary);
+  color: var(--color-text-primary);
 }
 
 @media all and (min-width: 600px) {

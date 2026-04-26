@@ -4,6 +4,7 @@
     :src="$props.url"
     :alt="$props.altText"
     width="1484"
+    height="750"
     :loading="$props.priority === 'high' ? undefined : 'lazy'"
     :fetchpriority="$props.priority === 'high' ? 'high' : undefined"
   >

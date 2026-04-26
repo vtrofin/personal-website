@@ -59,7 +59,7 @@ export default defineComponent({
   margin: 120px auto;
   box-sizing: border-box;
   padding-top: 2.5rem;
-  border-radius: var(--base-border);
+  border-radius: var(--radius-base);
 }
 
 /* display a filler on desktop when odd number of projects are present */
@@ -76,13 +76,13 @@ export default defineComponent({
 
 /* Mobile: single column border radius */
 .general-section .section-link:first-of-type {
-  border-top-left-radius: var(--base-border);
-  border-top-right-radius: var(--base-border);
+  border-top-left-radius: var(--radius-base);
+  border-top-right-radius: var(--radius-base);
 }
 
 .general-section .section-link:last-of-type {
-  border-bottom-left-radius: var(--base-border);
-  border-bottom-right-radius: var(--base-border);
+  border-bottom-left-radius: var(--radius-base);
+  border-bottom-right-radius: var(--radius-base);
 }
 
 /* Border radius on outer corners on desktop */
@@ -100,11 +100,11 @@ export default defineComponent({
   }
 
   .general-section .section-link:nth-of-type(2) {
-    border-top-right-radius: var(--base-border);
+    border-top-right-radius: var(--radius-base);
   }
 
   .general-section .section-link:nth-last-of-type(2) {
-    border-bottom-left-radius: var(--base-border);
+    border-bottom-left-radius: var(--radius-base);
   }
 
   .general-section .section-link:last-of-type {
@@ -184,8 +184,8 @@ span.item-button {
   top: 0;
   right: 20px;
   padding: 1rem 1.1rem;
-  background-color: var(--black);
-  color: var(--white);
+  background-color: var(--color-surface-dark);
+  color: var(--color-text-light);
   font-size: 0.8rem;
   transform-origin: 0 0;
   will-change: transform, opacity;

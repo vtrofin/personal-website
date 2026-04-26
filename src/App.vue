@@ -93,23 +93,6 @@ export default App
 <style>
 @import './assets/styles/tokens.css';
 
-:root {
-  --white: #fff;
-  --background-white: #fefaf6;
-  --gray: #574b33;
-  --black: #232320;
-  --yellow: #f6bd60;
-  --light-yellow: #f7ede2;
-  --pink: #f5cac3;
-  --light-green: #84a59d;
-  --red: #f28482;
-  --purple: #150042;
-  --misty-rose: #f0efeb;
-  --peach: #f4a47c;
-  --light-blue: #b8c8f4;
-  --base-border: 5px;
-}
-
 html,
 body {
   height: 100%;

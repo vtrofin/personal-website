@@ -180,8 +180,8 @@ export default defineComponent({
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
-  background-color: var(--black);
-  border-radius: var(--base-border);
+  background-color: var(--color-surface-dark);
+  border-radius: var(--radius-base);
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
 }
 
@@ -289,7 +289,7 @@ span.text-block {
   height: 14px;
   width: 14px;
   display: inline-block;
-  border-radius: 50%;
+  border-radius: var(--radius-circle);
   margin-left: 5px;
   margin-right: 5px;
 }

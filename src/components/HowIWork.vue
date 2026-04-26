@@ -44,7 +44,7 @@ export default defineComponent({
   background-color: var(--color-bg);
   color: var(--color-surface);
   padding: 2.5rem 0 2rem;
-  border-radius: var(--base-border);
+  border-radius: var(--radius-base);
 }
 
 .how-i-work-steps {

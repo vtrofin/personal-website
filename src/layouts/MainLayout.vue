@@ -92,7 +92,7 @@ main .content,
 .content-image {
   width: 100%;
   filter: drop-shadow(0 52px 74px rgba(0, 21, 64, 0.14));
-  border-radius: var(--base-border);
+  border-radius: var(--radius-base);
   user-select: none;
   margin: 2rem auto 1rem;
   max-width: 1000px;
@@ -147,7 +147,7 @@ main .content,
 .dummy-active,
 .dummy-project-active {
   background-color: var(--color-accent-dummy);
-  color: var(--white);
+  color: var(--color-text-light);
 }
 
 .scoville-active {

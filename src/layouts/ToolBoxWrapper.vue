@@ -72,7 +72,7 @@ export default defineComponent({
   margin: 0;
   transform: translate3d(0, 0, 0);
   transition: transform 0.3s;
-  background-color: var(--background-white);
+  background-color: var(--color-surface-light);
 }
 
 /* Fix for unequal margin-left margin-right in ios */
@@ -121,8 +121,8 @@ export default defineComponent({
   z-index: 101;
   width: 320px;
   padding: 2rem;
-  background-color: var(--misty-rose);
-  color: var(--black);
+  background-color: var(--color-surface);
+  color: var(--color-surface-dark);
   transform: translate3d(-320px, -320px, 0);
   transition: transform 0.3s;
 }
@@ -181,7 +181,7 @@ export default defineComponent({
 }
 
 .profile img {
-  border-radius: 42%;
+  border-radius: var(--radius-avatar);
   margin-left: 0;
   margin-right: 1rem;
 }
@@ -214,9 +214,9 @@ export default defineComponent({
 }
 
 .toolbox-list span {
-  background-color: var(--yellow);
-  border: 1px solid var(--yellow);
-  border-radius: var(--base-border);
+  background-color: var(--color-accent-yellow);
+  border: 1px solid var(--color-accent-yellow);
+  border-radius: var(--radius-base);
   margin: 2px;
   padding: 2px 4px;
 }

@@ -111,7 +111,7 @@ export default defineComponent({
 .ghost-container {
   position: relative;
   margin: 0 auto;
-  background-color: var(--white);
+  background-color: var(--color-text-light);
   width: 100px;
   height: 100px;
   border-top-left-radius: 100px;
@@ -132,7 +132,7 @@ export default defineComponent({
   width: 12px;
   height: 12px;
   background-color: var(--color-text-primary);
-  border-radius: 50%;
+  border-radius: var(--radius-circle);
   margin: 0 10px;
   position: absolute;
 }
@@ -158,8 +158,8 @@ export default defineComponent({
   position: relative;
   top: -10px;
   height: 20px;
-  background-color: var(--white);
-  border-radius: 100%;
+  background-color: var(--color-text-light);
+  border-radius: var(--radius-full);
 }
 
 .ghost-feet-container>div:nth-child(2n) {
@@ -171,7 +171,7 @@ export default defineComponent({
 .ghost-shadow {
   height: 20px;
   margin: 0 auto;
-  border-radius: 50%;
+  border-radius: var(--radius-circle);
   box-shadow: 0 40px 15px 5px var(--animation-shadow);
   animation: smallbig 3s ease-in-out infinite;
 }
@@ -191,8 +191,8 @@ export default defineComponent({
   position: absolute;
   width: 12px;
   height: 4px;
-  background: var(--white);
-  border-radius: 5px;
+  background: var(--color-text-light);
+  border-radius: var(--radius-base);
 }
 
 .symbol:nth-of-type(2) {
@@ -202,8 +202,8 @@ export default defineComponent({
   height: 12px;
   width: 12px;
   border: 4px solid;
-  border-radius: 50%;
-  border-color: var(--white);
+  border-radius: var(--radius-circle);
+  border-color: var(--color-text-light);
   animation-delay: 1.3s;
 }
 
@@ -224,8 +224,8 @@ export default defineComponent({
   height: 8px;
   width: 8px;
   border: 3px solid;
-  border-radius: 50%;
-  border-color: var(--white);
+  border-radius: var(--radius-circle);
+  border-color: var(--color-text-light);
   animation-duration: 1.7s;
   animation-delay: 7s;
 }

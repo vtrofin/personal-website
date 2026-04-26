@@ -40,7 +40,7 @@ footer {
 }
 
 .section-header-container {
-  background-color: var(--background-white);
+  background-color: var(--color-surface-light);
 }
 
 footer .section-header {

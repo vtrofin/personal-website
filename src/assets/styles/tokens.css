@@ -2,6 +2,8 @@
   /* Background & Surface */
   --color-bg: #1a1410;
   --color-surface: #f5f0eb;
+  --color-surface-light: #fefaf6;
+  --color-surface-dark: #232320;
 
   /* Text — dark, for use on light backgrounds */
   --color-text-primary: #000000;
@@ -12,6 +14,7 @@
 
   /* Accent — global terracotta */
   --color-accent: #c1623f;
+  --color-accent-yellow: #f6bd60;
   --color-accent-inverted: #e8e0d5;
 
   /* Add new tokens here for each new project and company */
@@ -27,4 +30,11 @@
 
   /* Dummy/test accent */
   --color-accent-dummy: #000000;
+
+  /* Border radius */
+  --radius-base: 5px;
+  --radius-sm: 2px;
+  --radius-avatar: 42%;
+  --radius-circle: 50%;
+  --radius-full: 100%;
 }

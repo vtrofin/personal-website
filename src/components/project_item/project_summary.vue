@@ -80,7 +80,7 @@ export default defineComponent({
   background-color: var(--color-surface);
   width: 100%;
   padding: 2rem 0.5rem;
-  border-radius: var(--base-border);
+  border-radius: var(--radius-base);
 }
 
 @media all and (min-width: 600px) {

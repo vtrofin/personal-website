@@ -41,7 +41,7 @@ export default defineComponent({
 }
 
 .how-i-work-container {
-  background-color: var(--color-bg);
+  background-color: var(--color-section-how-i-work);
   color: var(--color-surface);
   padding: 2rem 0;
   border-radius: var(--radius-base);

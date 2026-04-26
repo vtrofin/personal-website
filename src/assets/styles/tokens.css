@@ -31,6 +31,9 @@
   /* Dummy/test accent */
   --color-accent-dummy: #000000;
 
+  /* Section backgrounds */
+  --color-section-how-i-work: #5f9ea0;
+
   /* Border radius */
   --radius-base: 5px;
   --radius-sm: 2px;

@@ -144,12 +144,6 @@ main .content,
   color: var(--color-bg);
 }
 
-.dummy-active,
-.dummy-project-active {
-  background-color: var(--color-accent-dummy);
-  color: var(--color-text-light);
-}
-
 .scoville-active {
   background-color: var(--color-accent-scoville);
   color: var(--color-surface);

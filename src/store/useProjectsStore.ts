@@ -43,13 +43,6 @@ export const useProjectsStore = defineStore("projects", {
         role: calliopeData.summary.position,
         outcomeTag: calliopeData.outcomeTag,
       },
-      // dummy: {
-      //   type: "project",
-      //   excerpt: "A placeholder project for testing the grid layout",
-      //   item_title: "Dummy Project",
-      //   role: "Full-stack",
-      //   outcomeTag: "Testing the grid",
-      // },
     },
   }),
   getters: {

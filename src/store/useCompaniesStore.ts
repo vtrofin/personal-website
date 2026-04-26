@@ -20,14 +20,6 @@ export const useCompaniesStore = defineStore("companies", {
         path: "https://bertrandco.com/",
         ariaLabel: "View Bertrand Co website",
       },
-      // {
-      //   project: "dummy",
-      //   type: "work",
-      //   item_title: "",
-      //   excerpt: "Dummy company for testing",
-      //   path: "#",
-      //   ariaLabel: "Dummy company",
-      // },
     ],
   }),
 });

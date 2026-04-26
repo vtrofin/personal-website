@@ -11,7 +11,7 @@
     <section class="profile-container">
       <div class="profile" tabindex="0">
         <img
-          src="/victor_profile_yellow.webp"
+          src="/victor_profile_yellow_small.webp"
           alt="victor trofin's profile image"
           loading="lazy"
           width="80"

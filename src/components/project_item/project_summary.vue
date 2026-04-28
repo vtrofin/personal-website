@@ -4,32 +4,13 @@
       <h2 id="at-a-glance-heading" tabindex="0">At a glance</h2>
       <div class="summary-columns">
         <div class="summary-left" tabindex="0">
-          <span class="summary-subtitle">Position</span>
-          <ul class="summary-content">
-            <li>{{ $props.options.position }}</li>
-          </ul>
-          <span class="summary-subtitle">Organization</span>
-          <ul class="summary-content">
-            <li>{{ $props.options.organization }}</li>
-          </ul>
-          <span class="summary-subtitle">Year(s)</span>
-          <ul class="summary-content">
-            <li>{{ $props.options.years }}</li>
-          </ul>
+          <SummarySection title="Position" :items="[$props.options.position]" />
+          <SummarySection title="Organization" :items="[$props.options.organization]" />
+          <SummarySection title="Year(s)" :items="[$props.options.years]" />
         </div>
         <div class="summary-right" tabindex="0">
-          <span class="summary-subtitle">Stack</span>
-          <ul class="summary-content">
-            <li v-for="(stackItem, i) in $props.options.stack" :key="i">
-              {{ stackItem }}
-            </li>
-          </ul>
-          <span class="summary-subtitle">Work</span>
-          <ul class="summary-content">
-            <li v-for="(workItem, j) in $props.options.work" :key="j">
-              {{ workItem }}
-            </li>
-          </ul>
+          <SummarySection title="Stack" :items="$props.options.stack" />
+          <SummarySection title="Work" :items="$props.options.work" />
         </div>
       </div>
     </div>
@@ -39,9 +20,11 @@
 import type { ProjectSummaryOptions } from "@/data/types";
 import type { PropType } from "vue";
 import { defineComponent } from "vue";
+import SummarySection from "./summary_section.vue";
 
 export default defineComponent({
   name: "ProjectSummary",
+  components: { SummarySection },
   props: {
     options: {
       type: Object as PropType<ProjectSummaryOptions>,

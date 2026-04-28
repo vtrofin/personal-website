@@ -13,7 +13,7 @@ export default defineComponent({
   name: "SummarySection",
   props: {
     title: { type: String, required: true },
-    items: { type: Array as PropType<string[]>, required: false, default: [] },
+    items: { type: Array as PropType<string[]>, required: false, default: () => [] },
   },
 });
 </script>

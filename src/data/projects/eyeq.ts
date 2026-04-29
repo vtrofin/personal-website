@@ -34,7 +34,7 @@ export const eyeqData: ProjectData = {
     {
       type: "text",
       content:
-        "I joined the project in 2025 and worked across everything from what candidates see to the services running behind the scenes. The largest piece I delivered was the bulk invitation system \u2014 hiring teams can send a batch of interview requests in one action, see who accepted or declined, and follow up with a single click.",
+        "I joined the project in 2025 and worked across everything from what candidates see to the services running behind the scenes. The largest piece I delivered was the bulk invitation system \u2014 hiring teams can send a batch of interview requests in one action, and follow up with a single click.",
     },
     {
       type: "text",
@@ -50,6 +50,7 @@ export const eyeqData: ProjectData = {
   stackItems: [
     "TypeScript",
     "React Router",
+    "Hono",
     "PostgreSQL",
     "AWS Lambda",
     "SST",

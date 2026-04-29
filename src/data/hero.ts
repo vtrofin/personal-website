@@ -10,7 +10,7 @@ export const heroData: HeroData = {
     "What I shipped with teams I'm proud of:",
     "Call agents handling 3× more calls.",
     "Taking HR managers off spreadsheets.",
-    "Shipping labels in one click, not thirty minutes.",
+    "Shipping labels in few clicks, not thirty minutes.",
     "Video interviews from invite to feedback.",
   ],
 };

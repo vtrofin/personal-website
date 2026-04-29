@@ -7,7 +7,7 @@ export const calliopeData: ProjectData = {
   outcomeTag: "Agents now handle 3× more calls",
   accentColorToken: "--color-accent-calliope",
   openingProblem:
-    "The call center ran on spreadsheets and manual dialing. Every morning a manager filtered and split contact lists in Excel, then handed them out to agents — who sat idle until that was done. Agents dialed each number by hand, typed up reports after every call, and moved on to the next row. The manager, buried in data prep, had no time left to listen to recorded calls and give the team feedback.",
+    "For an outbound call center, the daily routine was entirely manual. Every morning a manager filtered and split contact lists in Excel, then handed them out to agents — who sat idle until that was done. Agents dialed each number by hand, typed up reports after every call, and moved on to the next row. The manager, buried in data prep, had no time left to listen to recorded calls and give the team feedback.",
   narrative: [
     {
       type: "text",
@@ -23,7 +23,7 @@ export const calliopeData: ProjectData = {
     {
       type: "text",
       content:
-        "I designed its architecture and built the call panel, the screen agents worked in all day. The original plan was to use the default interface provided by the telephony platform, but agents found it confusing and hard to follow. I replaced it with a custom panel that guided them through each call, step by step: task-based outbound dialing, contact details pulled in automatically, and a structured report form at the end.",
+        "I designed its client-side architecture and built the call panel, the screen agents worked in all day. The original plan was to use the default interface provided by the telephony platform, but agents found it confusing and hard to follow. I replaced it with a custom panel that guided them through each call, step by step: task-based outbound dialing, contact details pulled in automatically, and a structured report form at the end.",
     },
     {
       type: "image",

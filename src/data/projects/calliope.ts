@@ -4,7 +4,7 @@ export const calliopeData: ProjectData = {
   slug: "calliope",
   title: "Calliope AI",
   excerpt: "AI powered call center",
-  outcomeTag: "Agents handling 3× more calls",
+  outcomeTag: "Agents now handle 3× more calls",
   accentColorToken: "--color-accent-calliope",
   openingProblem:
     "The call center ran on spreadsheets and manual dialing. Every morning a manager filtered and split contact lists in Excel, then handed them out to agents — who sat idle until that was done. Agents dialed each number by hand, typed up reports after every call, and moved on to the next row. The manager, buried in data prep, had no time left to listen to recorded calls and give the team feedback.",

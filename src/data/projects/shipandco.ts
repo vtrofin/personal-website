@@ -4,7 +4,7 @@ export const shipandcoData: ProjectData = {
   slug: "shipandco",
   title: "Ship&Co",
   excerpt: "Shipping management solution for eCommerce",
-  outcomeTag: "30 minutes to one click",
+  outcomeTag: "Shipping label creation reduced from 30 minutes to a few clicks",
   accentColorToken: "--color-accent-shipandco",
   openingProblem:
     "Online sellers who ship internationally face a tedious routine: log into each carrier\u2019s website, type in package details, print a label, then go back to the sales channel to manually mark the order as fulfilled — and do it all again for the next one. And there\u2019s no way to compare prices across carriers — each one only shows its own rates, so finding the most economical option for a particular route means checking every site separately. For a seller handling dozens of orders a day, what should take a minute per order can easily take thirty.",

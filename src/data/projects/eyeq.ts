@@ -3,7 +3,7 @@ import type { ProjectData } from "../types";
 export const eyeqData: ProjectData = {
   slug: "eyeq",
   title: "EyeQ",
-  excerpt: "Video interview platform for structured candidate assessment",
+  excerpt: "AI powered video interview platform",
   outcomeTag: "Screening effort cut by automating first rounds",
   accentColorToken: "--color-accent-eyeq",
   openingProblem:

@@ -6,16 +6,17 @@
   <nav
     :class="'toolbox-menu' + (toolboxActive ? ' ' + 'toolbox-open' : '')"
     :aria-hidden="!toolboxActive"
+    :inert="!toolboxActive"
   >
     <section class="profile-container">
       <div class="profile" tabindex="0">
         <img
-          src="/victor_profile_yellow.jpg"
+          src="/victor_profile_yellow_small.webp"
           alt="victor trofin's profile image"
           loading="lazy"
           width="80"
           height="80"
-        />
+        >
         <div class="about-text">
           <span class="caption-text">Victor Trofin</span>
           <span class="caption-text-small">My toolbox: </span>
@@ -23,20 +24,6 @@
       </div>
       <div class="toolbox-list" tabindex="0">
         <span v-for="(tool, i) in tools" :key="i">{{ tool }}</span>
-      </div>
-      <div class="toolbox-icons" tabindex="0">
-        <div aria-label="javascript">
-          <fa :icon="['fab', 'js']" class="fa-2x" />
-        </div>
-        <div id="ts" aria-label="typescript" />
-        <div id="rescript" aria-label="rescript" />
-        <div aria-label="swift">
-          <fa :icon="['fab', 'swift']" class="fa-2x" />
-        </div>
-        <div aria-label="rust">
-          <fa :icon="['fab', 'rust']" class="fa-2x" />
-        </div>
-        <!-- <div id="go" aria-label="go lang" /> -->
       </div>
     </section>
     <button
@@ -53,29 +40,22 @@
   </div>
 </template>
 <script lang="ts">
-import { toRefs, defineComponent } from "vue";
-import { useStore } from '@store/index'
+import { defineComponent } from "vue";
+import { storeToRefs } from "pinia";
+import { useToolsStore } from '@store/useToolsStore';
+import { useAppStore } from '@store/useAppStore';
 
 export default defineComponent({
   name: "ToolBoxWrapper",
-  props: {
-    toolboxState: { type: Object, required: true },
-  },
-  emits: {
-    toggleToolboxState: ({ isActive }: { isActive: boolean }) => {
-      return typeof isActive === "boolean";
-    },
-  },
-  setup(props, context) {
-    const { active: toolboxActive } = toRefs(props.toolboxState);
-    const { emit } = context;
-    const store = useStore();
-    const tools = store.getters["tools/getAllTools"] as string[];
+  setup() {
+    const toolsStore = useToolsStore();
+    const appStore = useAppStore();
+    const tools = toolsStore.allTools;
+    const { isToolboxActive: toolboxActive } = storeToRefs(appStore);
 
     const handleBlur = () => {
       if (toolboxActive.value) {
-        store.dispatch({ type: "setToolBoxState", isToolboxActive: false });
-        emit("toggleToolboxState", { isActive: false });
+        appStore.setToolBoxState(false);
       }
     };
 
@@ -92,7 +72,7 @@ export default defineComponent({
   margin: 0;
   transform: translate3d(0, 0, 0);
   transition: transform 0.3s;
-  background-color: var(--background-white);
+  background-color: var(--color-surface-light);
 }
 
 /* Fix for unequal margin-left margin-right in ios */
@@ -141,8 +121,8 @@ export default defineComponent({
   z-index: 101;
   width: 320px;
   padding: 2rem;
-  background-color: var(--misty-rose);
-  color: var(--black);
+  background-color: var(--color-surface);
+  color: var(--color-surface-dark);
   transform: translate3d(-320px, -320px, 0);
   transition: transform 0.3s;
 }
@@ -201,7 +181,7 @@ export default defineComponent({
 }
 
 .profile img {
-  border-radius: 42%;
+  border-radius: var(--radius-avatar);
   margin-left: 0;
   margin-right: 1rem;
 }
@@ -224,8 +204,7 @@ export default defineComponent({
   padding-bottom: 0.4rem;
 }
 
-.toolbox-list,
-.toolbox-icons {
+.toolbox-list {
   display: flex;
   flex-direction: row;
   margin: 1.5rem auto 0;
@@ -235,41 +214,10 @@ export default defineComponent({
 }
 
 .toolbox-list span {
-  background-color: var(--yellow);
-  border: 1px solid var(--yellow);
-  border-radius: var(--base-border);
+  background-color: var(--color-accent-yellow);
+  border: 1px solid var(--color-accent-yellow);
+  border-radius: var(--radius-base);
   margin: 2px;
   padding: 2px 4px;
-}
-
-.toolbox-icons {
-  align-content: center;
-  justify-content: space-evenly;
-}
-
-.toolbox-icons>div {
-  width: 28px;
-  background-repeat: no-repeat;
-  background-position: center;
-  flex-grow: 1;
-}
-
-.toolbox-icons>svg {
-  margin: 5px;
-  flex-grow: 1;
-}
-
-.toolbox-icons #go {
-  background-image: url("/public/go_logo.svg");
-}
-
-.toolbox-icons #rescript {
-  background-image: url("/public/rescript_logo.svg");
-  background-position-x: 0%;
-}
-
-.toolbox-icons #ts {
-  background-image: url("/public/ts_logo.svg");
-  background-position-x: 54%;
 }
 </style>

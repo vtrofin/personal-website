@@ -27,14 +27,14 @@ export default defineComponent({
 <style scoped>
 .brand {
   --logo-size: 50px;
+  display: flex;
+  align-items: center;
 }
 
 .main-link {
   display: none;
-  position: absolute;
-  left: 50%;
-  bottom: -15px;
-  transform: translate3d(-50%, 0, 0);
+  color: inherit;
+  text-decoration: none;
 }
 
 @media all and (min-width: 600px) {
@@ -58,7 +58,7 @@ export default defineComponent({
   content: '>_';
   position: absolute;
   text-align: center;
-  color: var(--black);
+  color: currentColor;
   font-size: 0.7rem;
   z-index: 99999;
   font-weight: bold;
@@ -72,25 +72,6 @@ svg path {
   stroke-width: 6;
   top: 0;
   left: 0;
-  stroke: #232320;
-}
-
-/* modifiers */
-.logo.bentoandco:before,
-.logo.utils:before {
-  color: var(--white);
-}
-
-.logo.staff:before {
-  color: var(--black);
-}
-
-svg path.bentoandco,
-svg path.utils {
-  stroke: var(--white);
-}
-
-svg path.staff {
-  stroke: var(--black);
+  stroke: currentColor;
 }
 </style>

@@ -1,0 +1,40 @@
+:root {
+  /* Background & Surface */
+  --color-bg: #1a1410;
+  --color-surface: #f5f0eb;
+  --color-surface-light: #fefaf6;
+  --color-surface-dark: #232320;
+
+  /* Text — dark, for use on light backgrounds */
+  --color-text-primary: #000000;
+  --color-text-secondary: #574b33;
+
+  /* Text — light, for use on dark backgrounds (CLI, etc.) */
+  --color-text-light: #fff;
+
+  /* Accent — global terracotta */
+  --color-accent: #c1623f;
+  --color-accent-yellow: #f6bd60;
+  --color-accent-inverted: #e8e0d5;
+
+  /* Add new tokens here for each new project and company */
+  /* Per-project accent — pastel family */
+  --color-accent-calliope: #c4a07c;
+  --color-accent-ats: #7ca0b8;
+  --color-accent-shipandco: #8fb89a;
+  --color-accent-eyeq: #b88b8b;
+
+    /* Per-company accent */
+  --color-accent-scoville: #c47a7a;
+  --color-accent-bertrandco: #c49a6c;
+
+  /* Section backgrounds */
+  --color-section-how-i-work: #5f9ea0;
+
+  /* Border radius */
+  --radius-base: 5px;
+  --radius-sm: 2px;
+  --radius-avatar: 42%;
+  --radius-circle: 50%;
+  --radius-full: 100%;
+}

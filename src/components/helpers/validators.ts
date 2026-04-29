@@ -2,7 +2,7 @@ export function generalSectionArrayValidator(value: unknown): boolean {
   if (!Array.isArray(value)) {
     return false;
   }
-  for (let val of value) {
+  for (const val of value) {
     if (
       !val ||
       !val.path ||

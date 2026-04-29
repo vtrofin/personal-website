@@ -1,12 +1,11 @@
 <template>
   <section class="hero-section">
     <div class="hero-title" tabindex="0">
-      <h1>Hi. I'm Victor. <span class="text-block">A web engineer.</span></h1>
+      <h1>I build software that makes work faster.</h1>
     </div>
     <div class="hero-subtitle" tabindex="0">
       <p>
-        I'm a full-stack web engineer with a passion for bringing products to
-        life. Currently living in Kyoto and working at
+        Hi. I'm Victor, a web engineer, currently living in Kyoto and working at
         <a
           class="content-link"
           target="_blank"
@@ -14,10 +13,10 @@
           href="https://scoville.jp/"
         >
           Scoville
-        </a>
+        </a>.
       </p>
     </div>
-    <div class="cli-interaction-wrap">
+    <div class="cli-interaction-wrap" aria-hidden="true">
       <div class="cli-buttons">
         <span />
         <span />
@@ -29,7 +28,6 @@
           v-for="(line, i) in animationText"
           :key="i"
           :ref="(el) => animationTextRefs.push(el as HTMLElement)"
-          tabindex="0"
         >
           <span class="animation-text">{{ line }}</span>
         </div>
@@ -39,14 +37,12 @@
 </template>
 
 <script lang="ts">
-import anime from "animejs";
-import animeNamespace from "animejs"
-import { computed, ref, onMounted, onUnmounted, defineComponent } from "vue";
-import { useStore } from '@store/index'
+import type { JSAnimation } from "animejs";
+import { ref, onMounted, onUnmounted, defineComponent } from "vue";
+import { useHeroStore } from '@store/useHeroStore';
 import { getExplodedContent } from "@components/helpers";
 import { getAnimationObserver } from "@components/helpers/intersect";
 import { stopAnimation } from "@components/helpers/animate";
-import type { HeroModuleState } from "@/store/modules/module_types";
 
 export default defineComponent({
   name: "HeroSection",
@@ -55,31 +51,50 @@ export default defineComponent({
   },
   setup() {
     let cliObserver: IntersectionObserver | undefined
-    const store = useStore();
-    const bashHistory = computed(() => store.getters["hero/getBashHistory"] as HeroModuleState["bashHistory"]);
-    const staticText = computed(() => store.getters["hero/getStaticText"] as HeroModuleState["staticText"]);
+    const heroStore = useHeroStore();
+    const bashHistory = heroStore.bashHistory;
+    const staticText = heroStore.staticText;
     const cliContainer = ref<HTMLDivElement | null>(null);
     const cliWrapperActiveText = ref(null);
-    const animationText = store.getters["hero/getAnimationText"] as HeroModuleState["animationTextLines"];
+    const animationText = heroStore.animationTextLines;
     // Using a function ref in the HTML above because of the bug documented here:
     // https://github.com/vuejs/core/issues/5525#issuecomment-1059855276
     // function ref working while regular v-for ref is failing
     // https://stackblitz.com/edit/vitejs-vite-h42vi4?file=src/App.vue
     // Type assertion to HTMLElement[] because if ain't broke, don't fix it
     const animationTextRefs = ref<HTMLElement[]>([]);
-    let staggeredAnimation = ref<ReturnType<typeof animeNamespace> | null>(null);
+    let staggeredAnimation = ref<JSAnimation | null>(null);
 
     onMounted(() => {
-      // prepare text for animation -> explode into single characters
-      const formattedText = getExplodedContent(animationText);
-      for (let i in formattedText) {
-        animationTextRefs.value[i].innerHTML = formattedText[i];
-      }
-      //  check that cli is visible & trigger animation
-      cliObserver = getAnimationObserver({
-        cliContainer,
-        anime,
-        staggeredAnimation,
+      // Defer animation setup to after first paint so it does not block LCP
+      requestAnimationFrame(() => {
+        // Disable animation if user prefers reduced motion
+        // DevTools → More tools → Rendering → scroll to "Emulate CSS media feature prefers-reduced-motion"
+        const prefersReducedMotion = typeof window !== 'undefined'
+          && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+        if (prefersReducedMotion) {
+          for (const el of animationTextRefs.value) {
+            const span = el.querySelector('.animation-text');
+
+            if (span) {
+              (span as HTMLElement).style.opacity = '1'
+            };
+          }
+
+          return;
+        }
+
+        // prepare text for animation -> explode into single characters
+        const formattedText = getExplodedContent(animationText);
+        for (const i in formattedText) {
+          animationTextRefs.value[i].innerHTML = formattedText[i];
+        }
+        //  check that cli is visible & trigger animation
+        cliObserver = getAnimationObserver({
+          cliContainer,
+          staggeredAnimation,
+        });
       });
     });
 
@@ -87,7 +102,7 @@ export default defineComponent({
       cliObserver?.disconnect();
 
       if (staggeredAnimation.value) {
-        stopAnimation(staggeredAnimation.value, anime)
+        stopAnimation(staggeredAnimation.value)
       };
     });
 
@@ -134,23 +149,24 @@ export default defineComponent({
 }
 
 .hero-section .hero-title h1 {
-  font-size: 10vmin;
-  letter-spacing: -2px;
-  line-height: 1.1;
+  font-size: 2.5rem;
+  font-weight: 700;
+  letter-spacing: -1px;
+  line-height: 1.2;
   text-align: left;
-  color: var(--black);
+  color: var(--color-text-primary);
 }
 
 .hero-section .hero-subtitle p {
   font-size: 1.2rem;
   line-height: 1.5;
   text-align: left;
-  color: var(--gray);
+  color: var(--color-text-primary);
 }
 
 @media all and (min-width: 600px) {
   .hero-section .hero-title h1 {
-    font-size: 4rem;
+    font-size: 3.25rem;
   }
 }
 
@@ -164,8 +180,8 @@ export default defineComponent({
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
-  background-color: var(--black);
-  border-radius: var(--base-border);
+  background-color: var(--color-surface-dark);
+  border-radius: var(--radius-base);
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
 }
 
@@ -177,7 +193,7 @@ export default defineComponent({
   margin-bottom: 1rem;
   padding-left: 0.5rem;
   padding-right: 0.5rem;
-  color: var(--white);
+  color: var(--color-text-light);
   font-family: "Roboto Mono", Courier, Monaco, Arial, Helvetica, sans-serif;
   font-weight: 500;
   font-size: 1rem;
@@ -203,6 +219,11 @@ export default defineComponent({
   scroll-snap-align: start;
   line-height: 1.2em;
   margin-bottom: 1rem;
+}
+
+.cli-container .bash-history:first-child,
+.cli-container .bash-history:nth-child(5) {
+  color: var(--color-accent);
 }
 
 .cli-container .cli-wrapper {
@@ -268,7 +289,7 @@ span.text-block {
   height: 14px;
   width: 14px;
   display: inline-block;
-  border-radius: 50%;
+  border-radius: var(--radius-circle);
   margin-left: 5px;
   margin-right: 5px;
 }

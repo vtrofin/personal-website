@@ -1,0 +1,8 @@
+{
+  "framework": "vite",
+  "buildCommand": "pnpm build:ssg",
+  "outputDirectory": "dist",
+  "cleanUrls": true,
+  "trailingSlash": false,
+  "rewrites": [{ "source": "/api/(.*)", "destination": "/api/$1" }]
+}

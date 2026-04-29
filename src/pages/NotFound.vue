@@ -36,22 +36,25 @@
 </template>
 
 <script lang="ts">
-import anime from 'animejs';
-import animeNamespace from 'animejs';
+import type { Timeline } from 'animejs';
 import { onMounted, onUnmounted, defineComponent } from 'vue';
+import { useHead } from '@unhead/vue';
+import { metaTags } from '@/helpers/meta_tags';
 import { setUpAnimation, stopAnimation } from '@components/helpers/animate';
 
 export default defineComponent({
   name: 'NotFound',
   setup() {
-    let tl: animeNamespace.AnimeTimelineInstance;
+    useHead(metaTags.notFound);
+
+    let tl: Timeline;
     onMounted(() => {
-      tl = setUpAnimation(anime);
+      tl = setUpAnimation();
       tl.play();
     });
 
     onUnmounted(() => {
-      stopAnimation(tl, anime);
+      stopAnimation(tl);
     });
   },
 });
@@ -60,7 +63,7 @@ export default defineComponent({
 <style scoped>
 .container {
   --base-animation-border: 5px;
-  --animation-shadow: #978c72;
+  --animation-shadow: var(--color-text-secondary);
 
   display: flex;
   flex-direction: column;
@@ -92,7 +95,7 @@ export default defineComponent({
   min-height: 400px;
   max-height: 600px;
   max-width: 600px;
-  background-color: var(--pink);
+  background-color: var(--color-bg);
   border-radius: calc(var(--base-animation-border) * 1);
   transform: translate3d(-50%, 0, 0);
 }
@@ -108,7 +111,7 @@ export default defineComponent({
 .ghost-container {
   position: relative;
   margin: 0 auto;
-  background-color: var(--white);
+  background-color: var(--color-text-light);
   width: 100px;
   height: 100px;
   border-top-left-radius: 100px;
@@ -128,8 +131,8 @@ export default defineComponent({
 .ghost-eyes-container .eye {
   width: 12px;
   height: 12px;
-  background-color: var(--black);
-  border-radius: 50%;
+  background-color: var(--color-text-primary);
+  border-radius: var(--radius-circle);
   margin: 0 10px;
   position: absolute;
 }
@@ -155,20 +158,20 @@ export default defineComponent({
   position: relative;
   top: -10px;
   height: 20px;
-  background-color: var(--white);
-  border-radius: 100%;
+  background-color: var(--color-text-light);
+  border-radius: var(--radius-full);
 }
 
 .ghost-feet-container>div:nth-child(2n) {
   margin: 0;
-  border-top: 10px solid var(--pink);
+  border-top: 10px solid var(--color-bg);
   background-color: transparent;
 }
 
 .ghost-shadow {
   height: 20px;
   margin: 0 auto;
-  border-radius: 50%;
+  border-radius: var(--radius-circle);
   box-shadow: 0 40px 15px 5px var(--animation-shadow);
   animation: smallbig 3s ease-in-out infinite;
 }
@@ -188,8 +191,8 @@ export default defineComponent({
   position: absolute;
   width: 12px;
   height: 4px;
-  background: var(--white);
-  border-radius: 5px;
+  background: var(--color-text-light);
+  border-radius: var(--radius-base);
 }
 
 .symbol:nth-of-type(2) {
@@ -199,8 +202,8 @@ export default defineComponent({
   height: 12px;
   width: 12px;
   border: 4px solid;
-  border-radius: 50%;
-  border-color: var(--white);
+  border-radius: var(--radius-circle);
+  border-color: var(--color-text-light);
   animation-delay: 1.3s;
 }
 
@@ -221,8 +224,8 @@ export default defineComponent({
   height: 8px;
   width: 8px;
   border: 3px solid;
-  border-radius: 50%;
-  border-color: var(--white);
+  border-radius: var(--radius-circle);
+  border-color: var(--color-text-light);
   animation-duration: 1.7s;
   animation-delay: 7s;
 }
@@ -298,7 +301,7 @@ export default defineComponent({
 }
 
 .text-container {
-  color: var(--black);
+  color: var(--color-text-light);
   position: absolute;
   left: 50%;
   bottom: 30px;
@@ -328,13 +331,13 @@ export default defineComponent({
 }
 
 .content-link.not-found {
-  color: var(--black);
+  color: var(--color-text-light);
   font-weight: 500;
 }
 
 .content-link.not-found:before {
   bottom: -10px;
-  background-color: var(--red);
+  background-color: var(--color-accent);
 }
 
 @media (hover: hover) {

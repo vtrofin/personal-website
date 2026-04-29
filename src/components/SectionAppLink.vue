@@ -65,54 +65,16 @@ export default defineComponent({
 
 <style>
 .section-link {
-  padding: 8rem 1.5rem;
-  flex-grow: 1;
-  flex-basis: 100%;
-  min-height: 500px;
+  padding: 4rem 2rem;
+  min-height: auto;
   overflow: hidden;
+  display: flex;
   flex-direction: column;
   justify-content: center;
   text-align: center;
   text-decoration: none;
   box-sizing: border-box;
   position: relative;
-}
-
-.section-link:first-of-type {
-  border-top-left-radius: var(--base-border);
-  border-top-right-radius: var(--base-border);
-}
-
-.section-link:nth-last-child(2) {
-  border-bottom-left-radius: var(--base-border);
-}
-
-.section-link:last-of-type {
-  border-bottom-right-radius: var(--base-border);
-}
-
-@media all and (min-width: 1000px) {
-  .section-link {
-    flex-basis: 50%;
-  }
-
-  .section-link:first-of-type,
-  .section-link:nth-of-type(3n + 1) {
-    flex-basis: 100%;
-  }
-
-  .section-link.force-half-width {
-    flex-basis: 50%;
-  }
-
-  .section-link.force-half-width:first-of-type {
-    border-top-right-radius: 0px;
-    border-bottom-left-radius: var(--base-border);
-  }
-
-  .section-link.force-half-width:last-of-type {
-    border-bottom-left-radius: 0px;
-    border-top-right-radius: var(--base-border);
-  }
+  border-radius: 0;
 }
 </style>

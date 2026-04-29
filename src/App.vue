@@ -1,20 +1,23 @@
 <template>
-  <ToolBoxWrapper :toolbox-state="toolboxState" @toggle-toolbox-state="toggleAndTranslateBody">
-    <MainLayout :modifier="modifier" @relay-toggle-toolbox="toggleAndTranslateBody" />
+  <ToolBoxWrapper>
+    <MainLayout :modifier="modifier" />
   </ToolBoxWrapper>
 </template>
 
 <script lang="ts">
-import { useStore } from '@store/index'
+import { useAppStore } from '@store/useAppStore';
+import { useProjectsStore } from '@store/useProjectsStore';
 import { useRoute, type RouteLocationNormalizedLoaded } from 'vue-router';
-import { watch, ref, reactive, onMounted, onUnmounted, defineComponent } from 'vue';
+import { watch, ref, onMounted, onUnmounted, defineComponent } from 'vue';
 import MainLayout from '@layouts/MainLayout.vue';
 import ToolBoxWrapper from '@layouts/ToolBoxWrapper.vue';
-import { type RootState } from '@store/modules/module_types';
-const getProjectItem = (route: RouteLocationNormalizedLoaded): string => {
-  const project = route?.params?.project_item
+import { ProjectName } from './globals';
+
+const getProjectItem = (route: RouteLocationNormalizedLoaded): ProjectName | undefined => {
+  const project = route?.params?.project_item as ProjectName | ProjectName[] | undefined;
+
   if (!project) {
-    return ''
+    return
   }
 
   if (Array.isArray(project)) {
@@ -29,53 +32,41 @@ const App = defineComponent({
   components: { MainLayout, ToolBoxWrapper },
   setup() {
     const route = useRoute();
-    const store = useStore();
+    const appStore = useAppStore();
+    const projectsStore = useProjectsStore();
     const modifier = ref('');
-    const toolboxState = reactive({ active: false });
 
     const hasWindow = typeof window !== 'undefined';
     const isMobileDevice = hasWindow ? /Mobi/i.test(window.navigator.userAgent) : false
     const isAndroid = hasWindow ? /Android/i.test(window.navigator.userAgent) : false
 
-    store.dispatch({
-      type: 'setMobileDevice',
-      isMobile: isMobileDevice,
-      isAndroid
-    });
+    appStore.setMobileDevice({ isMobile: isMobileDevice, isAndroid });
 
     watch(
       () => route.params,
       async () => {
         try {
-          await store.dispatch({
-            type: 'projects/setActiveProject',
-            project: getProjectItem(route),
-          })
-
-          modifier.value = getProjectItem(route);
+          projectsStore.setActiveProject(getProjectItem(route));
+          modifier.value = getProjectItem(route) ?? "";
         } catch (err) {
           console.error('Failed to set current project', err instanceof Error ? err.message : err);
           modifier.value = '';
         }
-      }
+      },
+      { immediate: true }
     );
-
-    const toggleAndTranslateBody = () => {
-      const isActive = store.getters['checkToolBox'] as RootState["isToolboxActive"];
-      toolboxState.active = isActive;
-    };
 
     const resizeHandler = () => {
       const hasWindow = typeof window !== 'undefined';
       const windowWidth = hasWindow ? window.innerWidth : 0
 
-      store.dispatch({ type: 'setWindowWidth', windowWidth });
+      appStore.setWindowWidth(windowWidth);
     };
 
     onMounted(() => {
       const hasWindow = typeof window !== 'undefined';
       const windowWidth = hasWindow ? window.innerWidth : 0
-      store.dispatch({ type: 'setWindowWidth', windowWidth });
+      appStore.setWindowWidth(windowWidth);
 
       if (hasWindow) {
         window.addEventListener('resize', resizeHandler)
@@ -92,8 +83,6 @@ const App = defineComponent({
 
     return {
       modifier,
-      toggleAndTranslateBody,
-      toolboxState,
     };
   },
 });
@@ -102,20 +91,7 @@ export default App
 </script>
 
 <style>
-:root {
-  --white: #fff;
-  --background-white: #fefaf6;
-  --gray: #574b33;
-  --black: #232320;
-  --yellow: #f6bd60;
-  --light-yellow: #f7ede2;
-  --pink: #f5cac3;
-  --light-green: #84a59d;
-  --red: #f28482;
-  --purple: #150042;
-  --misty-rose: #f0efeb;
-  --base-border: 5px;
-}
+@import './assets/styles/tokens.css';
 
 html,
 body {
@@ -128,7 +104,8 @@ body {
   text-align: center;
   font-size: 16px;
   font-family: 'Helvetica Neue', 'Source Sans Pro', Arial, sans-serif;
-  background-color: var(--purple);
+  background-color: var(--color-bg);
+  color: var(--color-text-primary);
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
 }

@@ -2,34 +2,38 @@
   <HeroSection @update-caret-position="updateCaretPosition" />
   <GeneralSection class-name="projects" title="Projects" :data="projectsData" />
   <GeneralSection class-name="work" title="Work" :data="workData" />
+  <HowIWork />
   <!-- hide cli blinking cursor until i have the time to make it interactive -->
   <!-- <span id="blinking-cursor" :style="computedStyle" /> -->
 </template>
 
 <script lang="ts">
 import { ref, defineComponent } from 'vue';
-import { useStore } from '@store/index'
+import { useHead } from '@unhead/vue';
+import { metaTags } from '@/helpers/meta_tags';
+import { useCompaniesStore } from '@store/useCompaniesStore';
+import { useHeroStore } from '@store/useHeroStore';
 import HeroSection from '@components/hero_component/index.vue';
 import GeneralSection from '@components/general_section/index.vue';
+import HowIWork from '@components/HowIWork.vue';
 import { getProjectData, getWorkData } from '@components/helpers';
-import type { HeroModuleState, CompaniesModuleState } from '@store/modules/module_types';
 
 export default defineComponent({
   name: 'HomePage',
-  components: { GeneralSection, HeroSection },
+  components: { GeneralSection, HeroSection, HowIWork },
   setup() {
-    const store = useStore();
-    const computedStyle = ref<Record<string, string>>({});
-    const mainProjects = ["calliope", "ats", "shipandco"]
+    useHead(metaTags.homePage);
 
-    const allCompanies = store.getters['companies/getAllCompanies'] as CompaniesModuleState["companies"];
-    const projectsData = getProjectData(mainProjects, store);
-    const workData = getWorkData(allCompanies);
+    const companiesStore = useCompaniesStore();
+    const heroStore = useHeroStore();
+    const computedStyle = ref<Record<string, string>>({});
+    const projectsData = getProjectData();
+    const workData = getWorkData(companiesStore.companies);
+
     const updateCaretPosition = () => {
-      // sad but true; getters are not type safe
-      const { x, y } = store.getters['hero/getCoordinates'] as HeroModuleState["coordinates"];
-      computedStyle.value.left = `${x}px`;
-      computedStyle.value.top = `${y}px`;
+      const { x, y } = heroStore.coordinates;
+      if (x !== null) computedStyle.value.left = `${x}px`;
+      if (y !== null) computedStyle.value.top = `${y}px`;
     };
 
     return {

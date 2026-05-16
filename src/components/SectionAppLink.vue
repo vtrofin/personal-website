@@ -17,6 +17,8 @@
       :href="href"
       :class="computedClassName"
       @click="navigate"
+      @mouseenter="warmProjectImages"
+      @focus="warmProjectImages"
       :aria-label="ariaLabel"
     >
       <slot name="section-link-slot">Click me</slot>
@@ -27,12 +29,16 @@
 <script lang="ts">
 import { computed, toRefs, toRef, defineComponent } from 'vue';
 import { useLink } from 'vue-router';
+import { projectDataBySlug } from '@/data/projects';
+import type { ProjectName } from '@/globals';
+import { getProjectImageUrls, warmImageUrls } from '@helpers/project_image_preloads';
 import { checkExternalPath, getSectionLinkClassName } from '../helpers';
 
 export default defineComponent({
   name: 'SectionAppLink',
   props: {
     to: { type: String, required: true },
+    project: { type: String, default: '' },
     ariaLabel: { type: String, default: 'View section' },
     inactiveClass: { type: String, required: false },
     totalItems: { type: Number, default: 0 },
@@ -55,9 +61,19 @@ export default defineComponent({
       })
     );
 
+    const warmProjectImages = () => {
+      const slug = props.project;
+      if (!slug || !(slug in projectDataBySlug)) {
+        return;
+      }
+
+      warmImageUrls(getProjectImageUrls(slug as ProjectName));
+    };
+
     return {
       isExternalLink,
       computedClassName,
+      warmProjectImages,
     };
   },
 });

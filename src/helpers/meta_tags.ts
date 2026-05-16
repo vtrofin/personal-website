@@ -1,6 +1,6 @@
 import type { ProjectName } from "@/globals";
 import { projectDataBySlug } from "@/data/projects";
-import { projectImageAssets } from "@/helpers/project_image_preloads";
+import { getProjectPreloadLinks } from "@/helpers/project_image_preloads";
 
 const jsonLdScriptsPerson = {
   type: "application/ld+json",
@@ -89,7 +89,7 @@ const metaTags = {
 
     return {
       title: metaTitle,
-      link: projectImageAssets(slug).links,
+      link: getProjectPreloadLinks(slug),
       meta: [
         {
           name: "description",

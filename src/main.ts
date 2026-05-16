@@ -5,10 +5,7 @@ import VueApp from "./App.vue";
 import HomePage from "@pages/Home.vue";
 import ProjectItem from "@pages/ProjectItem.vue";
 import NotFound from "@pages/NotFound.vue";
-import { projectDataBySlug } from "@/data/projects";
-import type { ProjectName } from "@/globals";
 import { checkProjectRoute } from "@helpers/index";
-import { projectImageAssets, warmImageUrls } from "@helpers/project_image_preloads";
 import { inject } from "@vercel/analytics";
 import { ViteSSG as createViteSSG } from "vite-ssg";
 
@@ -57,13 +54,5 @@ export const createApp = createViteSSG(
     // eslint-disable-next-line
     app.component("Fa", FontAwesomeIcon);
 
-    router.beforeEach((to) => {
-      if (to.name !== "projectItem") return;
-      const raw = to.params.project_item;
-      const slug = Array.isArray(raw) ? raw[0] : raw;
-      if (typeof slug === "string" && slug in projectDataBySlug) {
-        warmImageUrls(projectImageAssets(slug as ProjectName).urls);
-      }
-    });
   },
 );

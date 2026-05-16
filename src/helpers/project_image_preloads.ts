@@ -87,12 +87,18 @@ export function getProjectHeroImageWarmupUrls(slug: ProjectName): string[] {
   return [];
 }
 
+/** Hovered / navigated URLs already assigned via `new Image()` this session (idempotent hover). */
+const clientWarmedImageUrls = new Set<string>();
+
 /**
  * Prime HTTP + image decoder caches (`<img>` hits cache sooner than preload alone on some paths).
+ * Each URL is only warmed once per page load to avoid repeated work on every hover.
  */
 export function warmImageUrls(urls: string[]): void {
   if (import.meta.env.SSR || typeof Image === "undefined") return;
   for (const href of urls) {
+    if (!href || clientWarmedImageUrls.has(href)) continue;
+    clientWarmedImageUrls.add(href);
     const img = new Image();
     img.src = href;
   }

@@ -17,6 +17,8 @@
       :href="href"
       :class="computedClassName"
       @click="navigate"
+      @mouseenter="warmProjectImages"
+      @focus="warmProjectImages"
       :aria-label="ariaLabel"
     >
       <slot name="section-link-slot">Click me</slot>
@@ -26,25 +28,26 @@
 
 <script lang="ts">
 import { computed, toRefs, toRef, defineComponent } from 'vue';
-import { RouterLink, useLink } from 'vue-router';
+import { useLink } from 'vue-router';
+import { projectDataBySlug } from '@/data/projects';
+import type { ProjectName } from '@/globals';
+import { getProjectImageUrls, warmImageUrls } from '@helpers/project_image_preloads';
 import { checkExternalPath, getSectionLinkClassName } from '../helpers';
 
 export default defineComponent({
   name: 'SectionAppLink',
   props: {
-    // @ts-expect-error - Some hacky thing i did in JS. 
-    ...RouterLink.props,
-    ariaLabel: { type: String, required: false, default: 'View section' },
-    // eslint-disable-next-line
+    to: { type: String, required: true },
+    project: { type: String, default: '' },
+    ariaLabel: { type: String, default: 'View section' },
     inactiveClass: { type: String, required: false },
-    totalItems: { required: false, type: Number, default: 0 },
+    totalItems: { type: Number, default: 0 },
     activeClass: { type: String, required: true },
     exactActiveClass: { type: String, required: true },
   },
   setup(props) {
     const { activeClass, exactActiveClass, totalItems } = toRefs(props);
     const path = toRef(props, 'to');
-    // @ts-expect-error - Some hacky thing i did in JS with the props.
     const { isActive, isExactActive } = useLink(props);
 
     const isExternalLink = computed(() => checkExternalPath({ path: path.value }));
@@ -58,7 +61,20 @@ export default defineComponent({
       })
     );
 
-    return { isExternalLink, computedClassName };
+    const warmProjectImages = () => {
+      const slug = props.project;
+      if (!slug || !(slug in projectDataBySlug)) {
+        return;
+      }
+
+      warmImageUrls(getProjectImageUrls(slug as ProjectName));
+    };
+
+    return {
+      isExternalLink,
+      computedClassName,
+      warmProjectImages,
+    };
   },
 });
 </script>

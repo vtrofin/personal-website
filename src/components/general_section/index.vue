@@ -9,6 +9,7 @@
       :active-class="'active' + ' ' + (options.project ? `${options.project}-active` : 'shipandco-active')"
       :exact-active-class="'exact-active' + ' ' + (options.project ? `${options.project}-active` : 'shipandco-active')"
       :total-items="data.length"
+      :project="options.project"
     >
       <template #section-link-slot>
         <ProjectComponent

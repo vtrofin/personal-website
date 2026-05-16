@@ -6,6 +6,12 @@ import HomePage from "@pages/Home.vue";
 import ProjectItem from "@pages/ProjectItem.vue";
 import NotFound from "@pages/NotFound.vue";
 import { checkProjectRoute } from "@helpers/index";
+import { projectDataBySlug } from "@/data/projects";
+import type { ProjectName } from "@/globals";
+import {
+  getProjectImageUrls,
+  warmImageUrls,
+} from "@helpers/project_image_preloads";
 import { inject } from "@vercel/analytics";
 import { ViteSSG as createViteSSG } from "vite-ssg";
 
@@ -49,9 +55,23 @@ export const createApp = createViteSSG(
       return savedPosition ? savedPosition : { left: 0, top: 0 };
     },
   },
-  ({ app }) => {
+  ({ app, router }) => {
     app.use(createPinia());
     // eslint-disable-next-line
     app.component("Fa", FontAwesomeIcon);
+
+    router.beforeEach((to) => {
+      if (to.name !== "projectItem") {
+        return;
+      }
+
+      const raw = to.params.project_item;
+      const slug = Array.isArray(raw) ? raw[0] : raw;
+
+      if (typeof slug === "string" && slug in projectDataBySlug) {
+        const heroUrls = getProjectImageUrls(slug as ProjectName);
+        warmImageUrls(heroUrls);
+      }
+    });
   },
 );

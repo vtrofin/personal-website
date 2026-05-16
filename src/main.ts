@@ -11,6 +11,8 @@ import { checkProjectRoute } from "@helpers/index";
 import {
   injectDomProjectImagePreloads,
   removeHeadPreloadsForProject,
+  warmImageUrls,
+  getProjectImageWarmupUrls,
 } from "@helpers/project_image_preloads";
 import { inject } from "@vercel/analytics";
 import { ViteSSG as createViteSSG } from "vite-ssg";
@@ -74,7 +76,9 @@ export const createApp = createViteSSG(
       const raw = to.params.project_item;
       const slug = Array.isArray(raw) ? raw[0] : raw;
       if (typeof slug === "string" && slug in projectDataBySlug) {
-        injectDomProjectImagePreloads(slug as ProjectName);
+        const projectSlug = slug as ProjectName;
+        injectDomProjectImagePreloads(projectSlug);
+        warmImageUrls(getProjectImageWarmupUrls(projectSlug));
       }
     });
   },

@@ -8,7 +8,7 @@ import { useRoute, onBeforeRouteUpdate } from 'vue-router';
 import { useHead } from '@unhead/vue';
 import ProjectItemContent from '@components/project_item/project_content.vue';
 import { checkProjectRoute } from '@helpers/index';
-import { ProjectName } from '@/globals';
+import type { ProjectName } from '@/globals';
 import { metaTags } from '@/helpers/meta_tags';
 
 export default defineComponent({
@@ -16,8 +16,12 @@ export default defineComponent({
   components: { ProjectItemContent },
   setup() {
     const route = useRoute();
-    const slug = computed(() => route?.params?.project_item as ProjectName);
-    useHead(metaTags.project(slug.value));
+    const slug = computed((): ProjectName | undefined => {
+      const param = route.params.project_item;
+      return typeof param === 'string' ? (param as ProjectName) : undefined;
+    });
+
+    useHead(computed(() => metaTags.project(slug.value)));
 
     onBeforeRouteUpdate((to) => {
       const params = to?.params;

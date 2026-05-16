@@ -17,6 +17,8 @@
       :href="href"
       :class="computedClassName"
       @click="navigate"
+      @mouseenter="prefetchLinkedProjectImages"
+      @focus="prefetchLinkedProjectImages"
       :aria-label="ariaLabel"
     >
       <slot name="section-link-slot">Click me</slot>
@@ -27,6 +29,11 @@
 <script lang="ts">
 import { computed, toRefs, toRef, defineComponent } from 'vue';
 import { RouterLink, useLink } from 'vue-router';
+import { projectSlugFromLinkTo } from '@helpers/project_link';
+import {
+  getProjectHeroImageWarmupUrls,
+  warmImageUrls,
+} from '@helpers/project_image_preloads';
 import { checkExternalPath, getSectionLinkClassName } from '../helpers';
 
 export default defineComponent({
@@ -58,7 +65,13 @@ export default defineComponent({
       })
     );
 
-    return { isExternalLink, computedClassName };
+    const prefetchLinkedProjectImages = () => {
+      const slug = projectSlugFromLinkTo(path.value);
+      if (!slug) return;
+      warmImageUrls(getProjectHeroImageWarmupUrls(slug));
+    };
+
+    return { isExternalLink, computedClassName, prefetchLinkedProjectImages };
   },
 });
 </script>

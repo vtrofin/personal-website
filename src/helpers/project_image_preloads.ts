@@ -60,6 +60,44 @@ export function removeHeadPreloadsForProject(slug: ProjectName): void {
   });
 }
 
+/** Unique asset URLs for all narrative images (full-size + small variants). */
+export function getProjectImageWarmupUrls(slug: ProjectName): string[] {
+  const data = projectDataBySlug[slug];
+  if (!data) return [];
+
+  const urls: string[] = [];
+  for (const block of data.narrative) {
+    if (block.type !== "image") continue;
+    if (block.srcSmall) urls.push(block.srcSmall);
+    urls.push(block.src);
+  }
+  return [...new Set(urls)];
+}
+
+/** URLs for the first narrative image only (cheap hover hint before navigation). */
+export function getProjectHeroImageWarmupUrls(slug: ProjectName): string[] {
+  const data = projectDataBySlug[slug];
+  if (!data) return [];
+
+  for (const block of data.narrative) {
+    if (block.type !== "image") continue;
+    if (block.srcSmall) return [block.srcSmall, block.src];
+    return [block.src];
+  }
+  return [];
+}
+
+/**
+ * Prime HTTP + image decoder caches (`<img>` hits cache sooner than preload alone on some paths).
+ */
+export function warmImageUrls(urls: string[]): void {
+  if (import.meta.env.SSR || typeof Image === "undefined") return;
+  for (const href of urls) {
+    const img = new Image();
+    img.src = href;
+  }
+}
+
 /**
  * Client-only: starts image fetches before route components render (SPA navigations).
  * Skips entries already present from SSG. When switching projects, call

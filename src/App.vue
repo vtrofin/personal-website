@@ -1,4 +1,5 @@
 <template>
+  <SpeedInsights />
   <ToolBoxWrapper>
     <MainLayout :modifier="modifier" />
   </ToolBoxWrapper>
@@ -11,6 +12,7 @@ import { useRoute, type RouteLocationNormalizedLoaded } from 'vue-router';
 import { watch, ref, onMounted, onUnmounted, defineComponent } from 'vue';
 import MainLayout from '@layouts/MainLayout.vue';
 import ToolBoxWrapper from '@layouts/ToolBoxWrapper.vue';
+import { SpeedInsights } from '@vercel/speed-insights/vue';
 import { ProjectName } from './globals';
 
 const getProjectItem = (route: RouteLocationNormalizedLoaded): ProjectName | undefined => {
@@ -29,7 +31,7 @@ const getProjectItem = (route: RouteLocationNormalizedLoaded): ProjectName | und
 
 const App = defineComponent({
   name: 'App',
-  components: { MainLayout, ToolBoxWrapper },
+  components: { MainLayout, ToolBoxWrapper, SpeedInsights },
   setup() {
     const route = useRoute();
     const appStore = useAppStore();

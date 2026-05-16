@@ -40,3 +40,44 @@ export function getProjectPreloadLinks(slug: ProjectName): PreloadLink[] {
 
   return links;
 }
+
+export function getProjectImageUrls(slug: ProjectName): string[] {
+  const data = projectDataBySlug[slug];
+
+  if (!data) {
+    return [];
+  }
+
+  const urls: string[] = [];
+
+  for (const b of data.narrative) {
+    if (b.type !== "image") {
+      continue;
+    }
+
+    if (b.srcSmall) {
+      urls.push(b.srcSmall);
+    }
+
+    urls.push(b.src);
+  }
+
+  return urls;
+}
+
+const seen = new Set<string>();
+
+export function warmImageUrls(urls: string[]): void {
+  if (import.meta.env.SSR || typeof Image === "undefined") {
+    return;
+  }
+
+  for (const href of urls) {
+    if (!href || seen.has(href)) {
+      continue;
+    }
+
+    seen.add(href);
+    new Image().src = href;
+  }
+}

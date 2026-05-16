@@ -5,6 +5,7 @@
       v-for="(options, idx) in data"
       :key="idx"
       :to="options.path"
+      :project="options.project"
       :aria-label="options.ariaLabel"
       :active-class="'active' + ' ' + (options.project ? `${options.project}-active` : 'shipandco-active')"
       :exact-active-class="'exact-active' + ' ' + (options.project ? `${options.project}-active` : 'shipandco-active')"

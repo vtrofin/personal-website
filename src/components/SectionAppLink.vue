@@ -27,17 +27,18 @@
 </template>
 
 <script lang="ts">
-import { computed, toRefs, toRef, defineComponent } from 'vue';
+import { computed, toRefs, toRef, defineComponent, } from 'vue';
 import { useLink } from 'vue-router';
 import { projectDataBySlug } from '@/data/projects';
-import type { ProjectName } from '@/globals';
-import { projectImageAssets, warmImageUrls } from '@helpers/project_image_preloads';
+import { getProjectImageAssets, warmImageUrls } from '@helpers/project_image_preloads';
 import { checkExternalPath, getSectionLinkClassName } from '../helpers';
+import type { ProjectName } from '@/globals';
 
 export default defineComponent({
   name: 'SectionAppLink',
   props: {
     to: { type: String, required: true },
+    project: { type: String, default: '' },
     ariaLabel: { type: String, default: 'View section' },
     inactiveClass: { type: String, required: false },
     totalItems: { type: Number, default: 0 },
@@ -61,10 +62,13 @@ export default defineComponent({
     );
 
     const prefetchLinkedProjectImages = () => {
-      const m = /^\/projects\/([^/]+)/.exec(path.value.split('?')[0] ?? '');
-      const slug = m?.[1];
-      if (!slug || !(slug in projectDataBySlug)) return;
-      warmImageUrls(projectImageAssets(slug as ProjectName).heroUrls);
+      const slug = props.project;
+      if (!slug || !(slug in projectDataBySlug)) {
+        return;
+      }
+
+      const { heroUrls } = getProjectImageAssets(slug as ProjectName);
+      warmImageUrls(heroUrls);
     };
 
     return {

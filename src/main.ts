@@ -8,12 +8,7 @@ import NotFound from "@pages/NotFound.vue";
 import { projectDataBySlug } from "@/data/projects";
 import type { ProjectName } from "@/globals";
 import { checkProjectRoute } from "@helpers/index";
-import {
-  injectDomProjectImagePreloads,
-  removeHeadPreloadsForProject,
-  warmImageUrls,
-  getProjectImageWarmupUrls,
-} from "@helpers/project_image_preloads";
+import { projectImageAssets, warmImageUrls } from "@helpers/project_image_preloads";
 import { inject } from "@vercel/analytics";
 import { ViteSSG as createViteSSG } from "vite-ssg";
 
@@ -62,23 +57,12 @@ export const createApp = createViteSSG(
     // eslint-disable-next-line
     app.component("Fa", FontAwesomeIcon);
 
-    router.beforeEach((to, from) => {
-      if (from.name === "projectItem") {
-        const prevRaw = from.params.project_item;
-        const prevSlug = Array.isArray(prevRaw) ? prevRaw[0] : prevRaw;
-        if (typeof prevSlug === "string" && prevSlug in projectDataBySlug) {
-          removeHeadPreloadsForProject(prevSlug as ProjectName);
-        }
-      }
-
+    router.beforeEach((to) => {
       if (to.name !== "projectItem") return;
-
       const raw = to.params.project_item;
       const slug = Array.isArray(raw) ? raw[0] : raw;
       if (typeof slug === "string" && slug in projectDataBySlug) {
-        const projectSlug = slug as ProjectName;
-        injectDomProjectImagePreloads(projectSlug);
-        warmImageUrls(getProjectImageWarmupUrls(projectSlug));
+        warmImageUrls(projectImageAssets(slug as ProjectName).urls);
       }
     });
   },

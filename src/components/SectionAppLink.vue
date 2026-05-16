@@ -29,11 +29,9 @@
 <script lang="ts">
 import { computed, toRefs, toRef, defineComponent } from 'vue';
 import { RouterLink, useLink } from 'vue-router';
-import { projectSlugFromLinkTo } from '@helpers/project_link';
-import {
-  getProjectHeroImageWarmupUrls,
-  warmImageUrls,
-} from '@helpers/project_image_preloads';
+import { projectDataBySlug } from '@/data/projects';
+import type { ProjectName } from '@/globals';
+import { projectImageAssets, warmImageUrls } from '@helpers/project_image_preloads';
 import { checkExternalPath, getSectionLinkClassName } from '../helpers';
 
 export default defineComponent({
@@ -66,9 +64,12 @@ export default defineComponent({
     );
 
     const prefetchLinkedProjectImages = () => {
-      const slug = projectSlugFromLinkTo(path.value);
-      if (!slug) return;
-      warmImageUrls(getProjectHeroImageWarmupUrls(slug));
+      const raw = path.value;
+      const pathStr = typeof raw === 'string' ? raw : '';
+      const m = /^\/projects\/([^/]+)/.exec(pathStr.split('?')[0] ?? '');
+      const slug = m?.[1];
+      if (!slug || !(slug in projectDataBySlug)) return;
+      warmImageUrls(projectImageAssets(slug as ProjectName).heroUrls);
     };
 
     return { isExternalLink, computedClassName, prefetchLinkedProjectImages };

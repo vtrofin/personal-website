@@ -1,130 +1,53 @@
 import { projectDataBySlug } from "@/data/projects";
 import type { ProjectName } from "@/globals";
 
-/** Matches `<picture>` breakpoints in `project_image.vue`. */
-const MEDIA_SMALL = "(max-width: 768px)";
-const MEDIA_LARGE = "(min-width: 769px)";
+/** Same breakpoints as `project_image.vue` picture sources. */
+const SM = "(max-width: 768px)";
+const LG = "(min-width: 769px)";
 
-export type ProjectImagePreloadLink = {
-  rel: "preload";
-  as: "image";
-  href: string;
-  media?: string;
-};
+type PreloadLink = { rel: "preload"; as: "image"; href: string; media?: string };
 
-/** Collect preload descriptors for every narrative image on a project page. */
-export function getProjectImagePreloadDescriptors(
-  slug: ProjectName,
-): ProjectImagePreloadLink[] {
+const seen = new Set<string>();
+
+/** Head preload entries + URL lists for warming (single pass over narrative). */
+export function projectImageAssets(slug: ProjectName): {
+  links: PreloadLink[];
+  urls: string[];
+  heroUrls: string[];
+} {
   const data = projectDataBySlug[slug];
-  if (!data) return [];
+  if (!data) return { links: [], urls: [], heroUrls: [] };
 
-  const links: ProjectImagePreloadLink[] = [];
+  const links: PreloadLink[] = [];
+  const urls: string[] = [];
+  let heroUrls: string[] | undefined;
 
-  for (const block of data.narrative) {
-    if (block.type !== "image") continue;
+  for (const b of data.narrative) {
+    if (b.type !== "image") continue;
 
-    if (block.srcSmall) {
-      links.push({
-        rel: "preload",
-        as: "image",
-        href: block.srcSmall,
-        media: MEDIA_SMALL,
-      });
-      links.push({
-        rel: "preload",
-        as: "image",
-        href: block.src,
-        media: MEDIA_LARGE,
-      });
+    if (!heroUrls) heroUrls = b.srcSmall ? [b.srcSmall, b.src] : [b.src];
+
+    if (b.srcSmall) {
+      links.push(
+        { rel: "preload", as: "image", href: b.srcSmall, media: SM },
+        { rel: "preload", as: "image", href: b.src, media: LG },
+      );
+      urls.push(b.srcSmall, b.src);
     } else {
-      links.push({ rel: "preload", as: "image", href: block.src });
+      links.push({ rel: "preload", as: "image", href: b.src });
+      urls.push(b.src);
     }
   }
 
-  return links;
+  return { links, urls: [...new Set(urls)], heroUrls: heroUrls ?? [] };
 }
 
-function preloadHrefSet(slug: ProjectName): Set<string> {
-  return new Set(getProjectImagePreloadDescriptors(slug).map((e) => e.href));
-}
-
-/** Removes preload hints for a project's images (SSR + client-injected). */
-export function removeHeadPreloadsForProject(slug: ProjectName): void {
-  if (import.meta.env.SSR || typeof document === "undefined") return;
-
-  const hrefs = preloadHrefSet(slug);
-  document.querySelectorAll('link[rel="preload"][as="image"]').forEach((el) => {
-    const h = el.getAttribute("href");
-    if (h && hrefs.has(h)) el.remove();
-  });
-}
-
-/** Unique asset URLs for all narrative images (full-size + small variants). */
-export function getProjectImageWarmupUrls(slug: ProjectName): string[] {
-  const data = projectDataBySlug[slug];
-  if (!data) return [];
-
-  const urls: string[] = [];
-  for (const block of data.narrative) {
-    if (block.type !== "image") continue;
-    if (block.srcSmall) urls.push(block.srcSmall);
-    urls.push(block.src);
-  }
-  return [...new Set(urls)];
-}
-
-/** URLs for the first narrative image only (cheap hover hint before navigation). */
-export function getProjectHeroImageWarmupUrls(slug: ProjectName): string[] {
-  const data = projectDataBySlug[slug];
-  if (!data) return [];
-
-  for (const block of data.narrative) {
-    if (block.type !== "image") continue;
-    if (block.srcSmall) return [block.srcSmall, block.src];
-    return [block.src];
-  }
-  return [];
-}
-
-/** Hovered / navigated URLs already assigned via `new Image()` this session (idempotent hover). */
-const clientWarmedImageUrls = new Set<string>();
-
-/**
- * Prime HTTP + image decoder caches (`<img>` hits cache sooner than preload alone on some paths).
- * Each URL is only warmed once per page load to avoid repeated work on every hover.
- */
+/** `new Image().src` once per URL per tab (hover + route). */
 export function warmImageUrls(urls: string[]): void {
   if (import.meta.env.SSR || typeof Image === "undefined") return;
   for (const href of urls) {
-    if (!href || clientWarmedImageUrls.has(href)) continue;
-    clientWarmedImageUrls.add(href);
-    const img = new Image();
-    img.src = href;
-  }
-}
-
-/**
- * Client-only: starts image fetches before route components render (SPA navigations).
- * Skips entries already present from SSG. When switching projects, call
- * `removeHeadPreloadsForProject` for the previous slug first (see router guard).
- */
-export function injectDomProjectImagePreloads(slug: ProjectName): void {
-  if (import.meta.env.SSR || typeof document === "undefined") return;
-
-  for (const entry of getProjectImagePreloadDescriptors(slug)) {
-    const alreadyInHead = [...document.head.querySelectorAll('link[rel="preload"][as="image"]')].some(
-      (el) =>
-        el.getAttribute("href") === entry.href &&
-        (entry.media ? el.media === entry.media : !el.media),
-    );
-    if (alreadyInHead) continue;
-
-    const link = document.createElement("link");
-    link.rel = "preload";
-    link.as = "image";
-    link.href = entry.href;
-    if (entry.media) link.media = entry.media;
-    document.head.appendChild(link);
+    if (!href || seen.has(href)) continue;
+    seen.add(href);
+    new Image().src = href;
   }
 }

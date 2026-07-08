@@ -4,9 +4,19 @@ import tsconfigPaths from "vite-tsconfig-paths";
 import { allProjects } from "./src/globals";
 import { type RouteRecordRaw } from "vue-router";
 
+const siteUrl =
+  process.env.VERCEL_PROJECT_PRODUCTION_URL
+    ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
+    : process.env.VERCEL_URL
+      ? `https://${process.env.VERCEL_URL}`
+      : `https://${process.env.VITE_APP_DOMAIN || "localhost:3000"}`;
+
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [vue(), tsconfigPaths({ loose: true })],
+  define: {
+    __SITE_URL__: JSON.stringify(siteUrl),
+  },
   resolve: {
     extensions: [".mjs", ".js", ".ts", ".jsx", ".tsx", ".json", ".vue"],
   },

@@ -2,6 +2,8 @@ import type { ProjectName } from "@/globals";
 import { projectDataBySlug } from "@/data/projects";
 import { getProjectPreloadLinks } from "@/helpers/project_image_preloads";
 
+const baseUrl = __SITE_URL__;
+
 const jsonLdScriptsPerson = {
   type: "application/ld+json",
   innerHTML: JSON.stringify({
@@ -9,15 +11,15 @@ const jsonLdScriptsPerson = {
     "@type": "Person",
     name: "Victor Trofin",
     jobTitle: "Web Engineer",
-    url: "https://trofin.me",
+    url: baseUrl,
     sameAs: ["https://github.com/vtrofin"],
   }),
 };
 
 const homePageOgData = [
-  { property: "og:url", content: "https://trofin.me" },
+  { property: "og:url", content: baseUrl },
   { property: "og:type", content: "website" },
-  { property: "og:image", content: "https://trofin.me/og_image.jpg" },
+  { property: "og:image", content: `${baseUrl}/og_image.jpg` },
 ];
 
 const metaTags = {
@@ -85,7 +87,7 @@ const metaTags = {
     const metaTitle = `Victor Trofin — ${projectData.title} project`;
     const metaDescription = `Full-stack web engineer for ${projectData.title} - ${projectData.excerpt}`;
     const metaKeywords = techStack.trim().substring(0, 160);
-    const url = `https://trofin.me/projects/${slug}`;
+    const url = `${baseUrl}/projects/${slug}`;
 
     return {
       title: metaTitle,
@@ -100,7 +102,7 @@ const metaTags = {
         { property: "og:description", content: metaDescription },
         { property: "og:url", content: url },
         { property: "og:type", content: "website" },
-        { property: "og:image", content: "https://trofin.me/og_image.jpg" },
+        { property: "og:image", content: `${baseUrl}/og_image.jpg` },
       ],
       script: [
         {
@@ -114,7 +116,7 @@ const metaTags = {
             author: {
               "@type": "Person",
               name: "Victor Trofin",
-              url: "https://trofin.me",
+              url: baseUrl,
             },
           }),
         },

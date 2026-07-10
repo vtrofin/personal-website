@@ -14,6 +14,7 @@ import FooterComponent from "@components/Footer.vue";
 import { defineComponent, PropType } from "vue";
 import { type ProjectName } from "src/globals";
 
+// one more test 
 export default defineComponent({
   name: "MainLayout",
   components: { HeaderComponent, FooterComponent },

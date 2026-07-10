@@ -69,7 +69,7 @@ export default defineComponent({
 
       warmImageUrls(getProjectImageUrls(slug as ProjectName));
     };
-
+// one more test for build
     return {
       isExternalLink,
       computedClassName,

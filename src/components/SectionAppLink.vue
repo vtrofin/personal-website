@@ -34,6 +34,8 @@ import type { ProjectName } from '@/globals';
 import { getProjectImageUrls, warmImageUrls } from '@helpers/project_image_preloads';
 import { checkExternalPath, getSectionLinkClassName } from '../helpers';
 
+
+// test commit
 export default defineComponent({
   name: 'SectionAppLink',
   props: {
@@ -69,7 +71,7 @@ export default defineComponent({
 
       warmImageUrls(getProjectImageUrls(slug as ProjectName));
     };
-// one more test for build
+    // one more test for build
     return {
       isExternalLink,
       computedClassName,

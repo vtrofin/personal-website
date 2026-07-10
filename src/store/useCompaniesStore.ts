@@ -23,3 +23,5 @@ export const useCompaniesStore = defineStore("companies", {
     ],
   }),
 });
+
+// Test me

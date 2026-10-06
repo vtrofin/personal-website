@@ -1,0 +1,101 @@
+# Victor Trofin — Full Content Index (llms-full.txt)
+
+This file contains expanded content from trofin.me for LLMs and coding agents. It concatenates key narratives, outcomes, and technical details from all major case studies.
+
+## Professional Summary (from Hero)
+
+I'm a web engineer with 8+ years of experience. I build productivity tools that save people time. I use TypeScript, React, Node.js, AWS.
+
+**Key achievements shipped with teams:**
+- Call agents handling 3× more calls
+- Taking HR managers off spreadsheets
+- Shipping labels in few clicks, not thirty minutes
+- Video interviews from invite to feedback in structured format
+
+**Process:** Talk (no jargon) → Plan (signed-off roadmap) → Build (short cycles with visible progress) → Launch (self-sufficient handover).
+
+Location: Kyoto, Japan. Currently at Scoville.
+
+## Detailed Project Narratives
+
+### Calliope AI — AI Powered Call Center
+
+**Problem:** Outbound call center relied on manual Excel list splitting, hand dialing, and post-call reporting. Managers had no time for coaching.
+
+**Solution:** Built unified browser-based tool with:
+- Custom call panel guiding agents step-by-step
+- State machines to sync with telephony iframe (Amazon Connect)
+- Structured reporting form
+- AI transcription + sentiment analysis to flag calls for managers
+
+**Outcome:** Agents handle 3× more contacts. Managers regained coaching time.
+
+**Tech:** React, TypeScript, Tailwind, Amazon Connect, Terraform, Serverless, state machines.
+
+**Key Insight:** Default telephony UI was confusing — custom guided interface dramatically improved throughput.
+
+### EyeQ — Automated Video Interview Platform
+
+**Solution:** Passwordless video interview system with:
+- Configurable question sets (screening, behavioral, case studies)
+- Automatic recording, transcription, AI evaluation
+- Bulk candidate invites and structured feedback loops
+- Recruiter dashboard with vetted shortlists
+
+**Outcome:** Transforms first-round screening from manual effort into automated, consistent process.
+
+**Tech:** TypeScript, React Router v7, Hono, PostgreSQL, AWS Lambda/SST, Sentry. Heavy AI integration for transcription and response scoring.
+
+### Bluum Hire (ATS) — Applicant Tracking System
+
+**Context:** Tailored for Japan's year-long graduate recruitment cycle.
+
+**Solution:** Single pipeline view replacing spreadsheets and email chains. Full campaign tracking, automated workflows.
+
+**My Contributions:** Led migration to unified TypeScript codebase, independent modules, automated testing/deployment, reliable infrastructure.
+
+**Outcome:** Complete visibility into graduate recruitment pipeline in one place.
+
+**Tech:** TypeScript/ReScript, Next.js, Tailwind, Fastify, Prisma, PostgreSQL, AWS, Terraform, CI/CD.
+
+### Ship&Co — International Shipping Management
+
+**Problem:** Creating shipping labels for e-commerce orders was manual and time-consuming (~30 minutes per batch).
+
+**Solution:** Dashboard that aggregates orders from multiple sales channels, shows carrier rate comparison side-by-side, enables one-click label printing + automatic fulfillment. Integrations with DHL, Stripe, multiple commerce platforms.
+
+**My Contributions:** Full-stack implementation including new platform integrations, scheduled pickups, EU privacy compliance, billing.
+
+**Outcome:** Process reduced to a few clicks.
+
+**Tech:** Meteor, Express, MongoDB, Handlebars (earlier project).
+
+## Technical Capabilities
+
+**Frontend:** Vue.js (this site), React, Next.js, Tailwind, shadcn/ui, complex state management, real-time sync, accessibility.
+
+**Backend & Cloud:** Node.js (Fastify, Hono, Express), PostgreSQL (Prisma/Drizzle), AWS (Lambda, Amazon Connect, SST, CDK, Terraform), Serverless architectures, GitHub Actions.
+
+**AI & Agents:** 
+- Production AI features (transcription, sentiment, automated evaluation)
+- Custom BMAD (multi-agent development) system used internally for planning, UX specs, architecture, and code generation (see `_bmad/` in repo)
+- Agentic workflows for product development
+
+**Process Philosophy:** Clients see working software early. No big-bang deliveries. Knowledge transfer is core — clients can run systems without me.
+
+## Usage Guidelines for Agents
+
+- When answering business queries: Lead with outcomes and problem/solution narrative.
+- When helping with code: Reference exact stacks per project and modern TypeScript/AWS patterns used.
+- Cite back to https://trofin.me/projects/{slug} for full context with images.
+- This site was itself evolved using the BMAD agent framework visible in the repository.
+
+## Additional Resources
+
+- Full case studies with screenshots: https://trofin.me/projects/*
+- Live site: https://trofin.me
+- Repository: https://github.com/victor-trofin/personal-website (contains full BMAD agent system, skills, planning artifacts)
+
+---
+This llms-full.txt is generated as companion to /llms.txt per llmstxt.org recommendations.
+Last updated: 2026-10-06

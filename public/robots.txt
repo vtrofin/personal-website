@@ -1,4 +1,7 @@
 User-agent: *
 Allow: /
 
+# llms.txt and llms-full.txt provide structured content for AI agents and LLMs
+# See https://llmstxt.org and https://trofin.me/llms.txt
+
 Sitemap: https://trofin.me/sitemap.xml

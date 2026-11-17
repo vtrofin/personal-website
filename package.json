@@ -30,15 +30,15 @@
     "vue-router": "5.5.1"
   },
   "devDependencies": {
-    "@eslint/js": "^9.39.4",
+    "@eslint/js": "10.0.1",
     "@prerenderer/prerenderer": "^1.2.5",
     "@prerenderer/renderer-puppeteer": "^1.2.4",
     "@types/animejs": "^3.1.13",
     "@types/node": "^24.12.2",
     "@vitejs/plugin-vue": "^6.0.6",
     "@vue/compiler-sfc": "3.5.42",
-    "eslint": "^9.22.0",
-    "eslint-plugin-vue": "^9.33.0",
+    "eslint": "10.15.0",
+    "eslint-plugin-vue": "10.12.1",
     "globals": "17.14.0",
     "puppeteer": "^24.40.0",
     "typescript": "^5.9.3",

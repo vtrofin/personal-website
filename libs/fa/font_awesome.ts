@@ -1,4 +1,7 @@
-import { library } from "@fortawesome/fontawesome-svg-core";
+import { config, library } from "@fortawesome/fontawesome-svg-core";
+
+// The injected style tag is blocked by style-src 'self'.
+config.autoAddCss = false
 import {
   fas,
   faTools,

@@ -6,35 +6,15 @@ settings:
 
 overrides:
   tar@>=7.0.0 <8.0.0: 7.5.21
-  proxy-addr@>=2.0.0 <3.0.0: 2.0.8
   path-to-regexp@>=6.0.0 <7.0.0: 6.3.0
   path-to-regexp@>=8.0.0 <9.0.0: 8.4.0
   minimatch@>=10.0.0 <11.0.0: 10.2.5
   undici@>=5.0.0 <6.0.0: 5.28.5
-  undici@>=6.0.0 <7.0.0: 6.29.1
-  undici@>=7.0.0 <8.0.0: 7.30.1
-  basic-ftp@>=5.0.0 <6.0.0: 5.3.1
-  ws@>=8.0.0 <9.0.0: 8.21.0
-  form-data@>=4.0.0 <5.0.0: 4.0.6
-  brace-expansion@>=1.0.0 <2.0.0: 1.1.21
-  brace-expansion@>=5.0.0 <6.0.0: 5.0.12
-  js-yaml@>=3.0.0 <4.0.0: 3.15.2
   js-yaml@>=4.0.0 <5.0.0: 4.3.2
-  fast-uri@>=3.0.0 <4.0.0: 3.1.9
-  postcss@>=8.0.0 <9.0.0: 8.5.23
-  ip-address@>=10.0.0 <11.0.0: 10.7.4
-  nanoid@>=3.0.0 <4.0.0: 3.3.18
   smol-toml@>=1.0.0 <2.0.0: 1.9.0
-  source-map-js@>=1.0.0 <2.0.0: 1.2.2
-  follow-redirects@>=1.0.0 <2.0.0: 1.16.2
-  zod@>=4.0.0 <5.0.0: 4.6.6
   ajv@>=8.0.0 <9.0.0: 8.18.0
   srvx@>=0.0.0 <1.0.0: 0.11.13
   qs@>=6.0.0 <7.0.0: 6.16.1
-  http-proxy-middleware@>=2.0.0 <3.0.0: 2.0.10
-  '@humanfs/node@>=0.16.0 <0.17.0': 0.16.8
-  '@vue/compiler-sfc@>=3.0.0 <4.0.0': 3.5.42
-  postcss-selector-parser@>=6.0.0 <7.0.0: 6.1.5
 
 importers:
 
@@ -3956,7 +3936,7 @@ packages:
     resolution: {integrity: sha512-lUENd/QIhKd2HWACnXID3us0GWBnuOi3BwkTUzce2+4nfM/b3seV5saNURM9+wt48/qUxviotpcm7yFxC0U4qA==}
     peerDependencies:
       '@pinia/colada': '>=0.21.2'
-      '@vue/compiler-sfc': 3.5.42
+      '@vue/compiler-sfc': ^3.5.34 || ^4.0.0
       pinia: ^3.0.4 || ^4.0.2
       vite: ^7.3.0 || ^8.0.0
       vue: ^3.5.34 || ^4.0.0

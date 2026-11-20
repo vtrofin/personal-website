@@ -93,7 +93,6 @@ export default App
 </script>
 
 <style>
-@import '@fortawesome/fontawesome-svg-core/styles.css';
 @import './assets/styles/tokens.css';
 
 html,

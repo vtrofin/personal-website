@@ -9,7 +9,6 @@
     "build": "rm -rf dist && VUE_APP_SSG=false vite build",
     "build:ssg": "rm -rf dist && VUE_APP_SSG=true vite-ssg build",
     "serve": "vite preview",
-    "check:headers": "node scripts/check-security-headers.mjs",
     "lint": "eslint --fix src",
     "ts:check": "tsc --noEmit",
     "vue:check": "vue-tsc --noEmit"

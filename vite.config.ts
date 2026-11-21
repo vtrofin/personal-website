@@ -1,6 +1,6 @@
 import { defineConfig } from "vite";
 import vue from "@vitejs/plugin-vue";
-import { allProjects } from "./src/globals";
+import { allProjects } from "./src/globals.ts";
 import { type RouteRecordRaw } from "vue-router";
 
 // https://vitejs.dev/config/

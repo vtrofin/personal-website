@@ -40,7 +40,7 @@ export default defineComponent({
     to: { type: String, required: true },
     project: { type: String, default: '' },
     ariaLabel: { type: String, default: 'View section' },
-    inactiveClass: { type: String, required: false },
+    inactiveClass: { type: String, default: '' },
     totalItems: { type: Number, default: 0 },
     activeClass: { type: String, required: true },
     exactActiveClass: { type: String, required: true },
